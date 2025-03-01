@@ -1,20 +1,15 @@
-name: Literature Update
+name: Literature Monitor
 
 on:
   schedule:
-    - cron: "0 8 * * *" # Daily 8 AM UTC
-  workflow_dispatch:
+    - cron: "0 0 * * 1" # Run weekly on Mondays
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
-  update:
+  monitor:
     runs-on: ubuntu-latest
-    env:
-      PPLX_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
-      ZOTERO_USER_ID: ${{ secrets.ZOTERO_USER_ID }}
-      ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
-
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,13 +19,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run monitor
-        run: python -m src.monitor
+      - name: Run literature monitor
+        env:
+          ZOTERO_USER_ID: ${{ secrets.ZOTERO_USER_ID }}
+          ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
+          PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python src/main.py
 
       - name: Deploy to GitHub Pages
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add docs/
-          git commit -m "Update literature site"
-          git push origin HEAD:gh-pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages

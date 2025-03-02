@@ -51,9 +51,9 @@ class LiteratureMonitor:
             raise
         
         # Read search terms from search_terms.txt
-        with open('src/search_terms.txt', 'r') as f:
+        with open('search_terms.txt', 'r') as f:
             self.search_terms = [line.strip() for line in f if line.strip()]
-            
+
         # Setup template engine
         self.template_env = Environment(
             loader=FileSystemLoader('src/templates')

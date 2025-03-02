@@ -249,6 +249,104 @@ class LiteratureMonitor:
         except Exception as e:
             logger.error(f"Failed to generate site: {str(e)}")
 
+    def _parse_response(self, content):
+        papers = []
+        current = {}
+        
+        for line in content.split('\n'):
+            if line.startswith('Title:'):
+                current['title'] = line[6:].strip()
+            elif line.startswith('Authors:'):
+                current['authors'] = line[8:].strip().split('; ')
+            elif line.startswith('DOI:'):
+                current['doi'] = line[4:].strip()
+            elif line.startswith('TRL:'):
+                current['trl'] = int(line[4:].strip())
+            elif line.startswith('Keywords:'):
+                current['keywords'] = [k.strip() for k in line[9:].split(',')]
+                papers.append(current)
+                current = {}
+                
+        return [p for p in papers if self._validate(p)]
+
+    def _generate_paper_summary(self, paper):
+        """
+        Generate an AI summary for a paper.
+        
+        Args:
+            paper (dict): Paper metadata
+            
+        Returns:
+            str: Summary of the paper
+        """
+        try:
+            prompt = f"""Provide a concise 2-3 sentence technical summary of this paper:
+            Title: {paper['title']}
+            Authors: {'; '.join(paper['authors'])}
+            DOI: {paper['doi']}
+            Keywords: {', '.join(paper['keywords'])}
+            
+            Focus on the key innovation and potential impact for biorobotics research.
+            """
+            
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.3,
+                max_tokens=200
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            logger.error(f"Failed to generate summary: {str(e)}")
+            return "Summary unavailable due to technical error."
+
+    def _create_archive_file(self, papers_with_summaries):
+        """
+        Create a markdown archive file with paper summaries.
+        
+        Args:
+            papers_with_summaries (list): List of paper dictionaries with summaries
+        """
+        try:
+            # Create archive directory if it doesn't exist
+            archive_dir = 'src/archive'
+            os.makedirs(archive_dir, exist_ok=True)
+            
+            # Create filename with current date
+            filename = f"{archive_dir}/papers_{datetime.now().strftime('%Y-%m-%d')}.md"
+            
+            with open(filename, 'w') as f:
+                f.write(f"# Research Papers Compilation - {datetime.now().strftime('%B %d, %Y')}\n\n")
+                f.write(f"## Summary\n")
+                f.write(f"This compilation contains {len(papers_with_summaries)} new papers in biorobotics research.\n\n")
+                
+                # Group papers by category
+                categories = {}
+                for paper in papers_with_summaries:
+                    category = self._categorize(paper)
+                    if category not in categories:
+                        categories[category] = []
+                    categories[category].append(paper)
+                
+                # Write papers by category
+                for category, cat_papers in categories.items():
+                    f.write(f"## {category} ({len(cat_papers)} papers)\n\n")
+                    
+                    for paper in cat_papers:
+                        f.write(f"### {paper['title']}\n\n")
+                        f.write(f"**Authors:** {'; '.join(paper['authors'])}\n\n")
+                        f.write(f"**DOI:** {paper['doi']}\n\n")
+                        f.write(f"**TRL:** {paper['trl']}\n\n")
+                        f.write(f"**Keywords:** {', '.join(paper['keywords'])}\n\n")
+                        f.write(f"**Summary:** {paper['summary']}\n\n")
+                        f.write("---\n\n")
+            
+            logger.info(f"Created archive file: {filename}")
+            return filename
+        except Exception as e:
+            logger.error(f"Failed to create archive file: {str(e)}")
+            return None
+
     def execute(self):
         """Execute the literature monitoring process."""
         new_papers = []
@@ -273,11 +371,17 @@ class LiteratureMonitor:
                     for paper in papers:
                         paper_doi = paper.get('doi', '').lower()
                         if paper_doi and paper_doi not in existing_dois:
+                            # Generate summary for the paper
+                            paper['summary'] = self._generate_paper_summary(paper)
                             self._save_to_zotero(paper)
                             new_papers.append(paper)
                             existing_dois.add(paper_doi)  # Prevent duplicates within batch
             
             if new_papers:
+                # Create archive file with summaries
+                self._create_archive_file(new_papers)
+                
+                # Generate the website
                 self.generate_site(new_papers)
                 logger.info(f"Added {len(new_papers)} papers")
                 

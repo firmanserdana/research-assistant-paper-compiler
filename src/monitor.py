@@ -49,13 +49,11 @@ class LiteratureMonitor:
         except Exception as e:
             logger.error(f"Failed to connect to Zotero: {str(e)}")
             raise
-            
-        self.search_terms = [
-            "biohybrid actuator design",
-            "neuromorphic control in prosthetics",
-            "soft robotics biomimicry"
-        ]
         
+        # Read search terms from search_terms.txt
+        with open('src/search_terms.txt', 'r') as f:
+            self.search_terms = [line.strip() for line in f if line.strip()]
+            
         # Setup template engine
         self.template_env = Environment(
             loader=FileSystemLoader('src/templates')
@@ -133,7 +131,7 @@ class LiteratureMonitor:
                 model=self.model,
                 messages=[{
                     "role": "user",
-                    "content": f"""Provide recent (2023-2025) peer-reviewed papers about {term} 
+                    "content": f"""Provide recent peer-reviewed papers about {term} 
                     in biomedical engineering and robotics. Include DOI, TRL (1-9), and technical 
                     keywords. Format:
                     Title: [Title]

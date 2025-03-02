@@ -1,0 +1,3 @@
+EMG decoding on Spinal Cord Injured patients
+Intracortical Decoding on Hand and Finger kinematics
+Stimulating peripheral nerve to enable hand and/or finger control

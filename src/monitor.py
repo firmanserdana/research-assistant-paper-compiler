@@ -235,6 +235,10 @@ class LiteratureMonitor:
         try:
             os.makedirs('docs', exist_ok=True)
             
+            # Add category to each paper before rendering
+            for paper in papers:
+                paper['category'] = self._categorize(paper)
+                
             # Use the Jinja2 template instead of hardcoded HTML
             template = self.template_env.get_template('index.html')
             

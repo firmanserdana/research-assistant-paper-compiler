@@ -17,7 +17,7 @@ Automated academic paper tracking system for PhD researchers in biorobotics.
      - General Biorobotics
 
 3. **Customization**:
-   - Modify `search_terms` in `monitor.py`
+   - Modify `search_terms` in `search_terms.txt`
    - Adjust quality thresholds in `_validate_paper()`
 
 ## Features
@@ -27,3 +27,4 @@ Automated academic paper tracking system for PhD researchers in biorobotics.
 - Duplicate prevention
 - Daily github pages digest
 - Cross-source verification
+- Daily updates can be seen on gh page https://firmanserdana.github.io/research-assistant-paper-compiler/

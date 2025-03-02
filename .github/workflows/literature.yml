@@ -38,3 +38,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           publish_branch: gh-pages
+
+      - name: Commit generated files
+        if: success()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/archive/
+          git commit -m "Update archived paper compilations" || echo "No changes to commit"
+          git push

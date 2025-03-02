@@ -105,12 +105,12 @@ class LiteratureMonitor:
         text = f"{paper['title']} {' '.join(paper['keywords'])}".lower()
         
         # Check for specific categories
-        if 'biohybrid' in text or 'bio-hybrid' in text:
-            return 'Biohybrid Systems'
-        elif 'neuromorphic' in text or 'neural' in text and ('circuit' in text or 'prosthetic' in text):
-            return 'Neuromorphic Engineering'
-        elif 'soft' in text and ('robot' in text or 'actuator' in text):
-            return 'Soft Robotics'
+        if 'emg' in text:
+            return 'EMG Decoding'
+        elif 'intracortical' in text:
+            return 'Intracortical Decoding'
+        elif 'stimulation' in text:
+            return 'Nerve Stimulation'
         
         # Default category
         return 'General Biorobotics'
@@ -173,19 +173,54 @@ class LiteratureMonitor:
                         'firstName': ''
                     })
             
+            # Get or create collection
+            category_name = self._categorize(paper)
+            collection_id = self._get_or_create_collection(category_name)
+            
             # Create item
-            self.zot.create_items([{
+            result = self.zot.create_items([{
                 'itemType': 'journalArticle',
                 'title': paper['title'],
                 'creators': creators,
                 'DOI': paper['doi'],
                 'tags': [{'tag': k} for k in paper['keywords']],
-                'collections': [self._categorize(paper)],
+                'collections': [collection_id] if collection_id else [],
                 'extra': f"TRL: {paper['trl']} | Added: {datetime.now().isoformat()}"
             }])
             logger.info(f"Added paper to Zotero: {paper['title']}")
+            return result
         except Exception as e:
             logger.error(f"Failed to save paper to Zotero: {str(e)}")
+            return None
+
+    def _get_or_create_collection(self, category_name):
+        """
+        Get or create a Zotero collection by name.
+        
+        Args:
+            category_name (str): The name of the category/collection
+            
+        Returns:
+            str: The collection ID
+        """
+        try:
+            collections = self.zot.collections()
+            
+            # Look for existing collection
+            for collection in collections:
+                if collection['data']['name'] == category_name:
+                    return collection['key']
+            
+            # Create new collection if not found
+            result = self.zot.create_collections([{'name': category_name}])
+            if result and 'successful' in result and result['successful']:
+                return result['successful']['0']
+            
+            # Return None if we couldn't create or find collection
+            return None
+        except Exception as e:
+            logger.error(f"Error with Zotero collection: {str(e)}")
+            return None
 
     def _parse_response(self, content):
         papers = []

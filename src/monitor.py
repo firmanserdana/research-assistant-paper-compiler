@@ -94,7 +94,7 @@ class LiteratureMonitor:
 
     def _categorize(self, paper):
         """
-        Categorize a paper based on its title and keywords.
+        Categorize a paper based on its source search term.
         
         Args:
             paper (dict): Paper metadata
@@ -102,6 +102,11 @@ class LiteratureMonitor:
         Returns:
             str: Category name
         """
+        # If we have a category from the source term, use that
+        if 'category' in paper:
+            return paper['category']
+        
+        # Fall back to the old method if needed
         text = f"{paper['title']} {' '.join(paper['keywords'])}".lower()
         
         # Check for specific categories
@@ -123,7 +128,7 @@ class LiteratureMonitor:
             term (str): The search term
             
         Returns:
-            str: AI-generated research results
+            tuple: (search_term, AI-generated research results)
         """
         try:
             logger.info(f"Researching term: {term}")
@@ -143,10 +148,11 @@ class LiteratureMonitor:
                 temperature=0.2,
                 max_tokens=2000
             )
-            return response.choices[0].message.content
+            # Return both the term and the response content
+            return (term, response.choices[0].message.content)
         except Exception as e:
             logger.error(f"API request failed: {str(e)}")
-            return ""  # Return empty string to handle gracefully
+            return (term, "")  # Return empty string to handle gracefully
             
     def _save_to_zotero(self, paper):
         """
@@ -250,14 +256,6 @@ class LiteratureMonitor:
             1 <= paper.get('trl', 0) <= 9
         ])
 
-    def _categorize(self, paper):
-        text = f"{paper['title']} {' '.join(paper['keywords'])}".lower()
-        if 'biohybrid' in text:
-            return 'Biohybrid Systems'
-        elif 'neuromorphic' in text:
-            return 'Neuromorphic Engineering'
-        return 'General Biorobotics'
-
     def generate_site(self, papers):
         """
         Generate the HTML site with the new papers.
@@ -285,26 +283,6 @@ class LiteratureMonitor:
             logger.info(f"Generated site with {len(papers)} new papers")
         except Exception as e:
             logger.error(f"Failed to generate site: {str(e)}")
-
-    def _parse_response(self, content):
-        papers = []
-        current = {}
-        
-        for line in content.split('\n'):
-            if line.startswith('Title:'):
-                current['title'] = line[6:].strip()
-            elif line.startswith('Authors:'):
-                current['authors'] = line[8:].strip().split('; ')
-            elif line.startswith('DOI:'):
-                current['doi'] = line[4:].strip()
-            elif line.startswith('TRL:'):
-                current['trl'] = int(line[4:].strip())
-            elif line.startswith('Keywords:'):
-                current['keywords'] = [k.strip() for k in line[9:].split(',')]
-                papers.append(current)
-                current = {}
-                
-        return [p for p in papers if self._validate(p)]
 
     def _generate_paper_summary(self, paper):
         """
@@ -384,6 +362,20 @@ class LiteratureMonitor:
             logger.error(f"Failed to create archive file: {str(e)}")
             return None
 
+    def _format_category_name(self, term):
+        """
+        Format a search term as a category name.
+        
+        Args:
+            term (str): The search term
+            
+        Returns:
+            str: Formatted category name
+        """
+        # Capitalize each word and remove extra whitespace
+        words = term.strip().split()
+        return ' '.join(word.capitalize() for word in words)
+    
     def execute(self):
         """Execute the literature monitoring process."""
         new_papers = []
@@ -400,7 +392,7 @@ class LiteratureMonitor:
             with ThreadPoolExecutor() as executor:
                 results = list(executor.map(self._deep_research_query, self.search_terms))
                 
-                for response in results:
+                for term, response in results:
                     if not response:
                         continue
                     
@@ -408,6 +400,11 @@ class LiteratureMonitor:
                     for paper in papers:
                         paper_doi = paper.get('doi', '').lower()
                         if paper_doi and paper_doi not in existing_dois:
+                            # Store the source search term as the category
+                            paper['source_term'] = term
+                            # Format the term for use as a category name
+                            paper['category'] = self._format_category_name(term)
+                            
                             # Generate summary for the paper
                             paper['summary'] = self._generate_paper_summary(paper)
                             self._save_to_zotero(paper)
@@ -422,14 +419,16 @@ class LiteratureMonitor:
                 self.generate_site(new_papers)
                 logger.info(f"Added {len(new_papers)} papers")
                 
-                # Save update metadata
+                # Get unique categories from the papers
+                categories = list(set(paper['category'] for paper in new_papers))
+                
+                # Create update.json with dynamic categories
                 with open('docs/update.json', 'w') as f:
                     json.dump({
                         "timestamp": datetime.now().isoformat(),
                         "count": len(new_papers),
-                        "categories": {cat: sum(1 for p in new_papers if self._categorize(p) == cat) 
-                                     for cat in ['Biohybrid Systems', 'Neuromorphic Engineering', 
-                                                'Soft Robotics', 'General Biorobotics']}
+                        "categories": {cat: sum(1 for p in new_papers if p['category'] == cat) 
+                                    for cat in categories}
                     }, f, indent=2)
             else:
                 logger.info("No new papers found")

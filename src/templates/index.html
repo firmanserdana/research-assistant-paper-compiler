@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<!-- filepath: src/templates/index.html -->
+.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +38,12 @@
             padding-top: 1rem;
             border-top: 1px solid #eee;
         }
+
+        .paper-summary {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0.8rem;
+        }
     </style>
 </head>
 
@@ -48,8 +51,8 @@
     <div class="container py-4">
         <header class="pb-3 mb-4 border-bottom">
             <div class="d-flex align-items-center justify-content-between">
-                <h1>Biorobotics Literature Monitor</h1> <span class="badge bg-primary">Last updated: {{ updated
-                    }}</span>
+                <h1>Biorobotics Literature Monitor</h1>
+                <span class="badge bg-primary">Last updated: {{ updated }}</span>
             </div>
             <p class="lead text-muted">Recent advances in biomedical engineering and robotics</p>
         </header>
@@ -63,32 +66,43 @@
             </div>
         </div>
 
-        {% set categories = papers|groupby('category') %}
-
-        {% for category_name in ['Biohybrid Systems', 'Neuromorphic Engineering', 'Soft Robotics', 'General
-        Biorobotics'] %}
-        {% set category_papers = [] %}
-        {% for paper in papers %}
-        {% if paper.category == category_name %}
-        {% set _ = category_papers.append(paper) %}
+        <!-- Debug information -->
+        {% if papers|length == 0 %}
+        <div class="alert alert-warning">
+            No papers were found to display. Check your data structure.
+        </div>
         {% endif %}
-        {% endfor %}
 
-        {% if category_papers|length > 0 %}
+        <!-- Display papers directly if categories aren't working -->
         <div class="category-section">
-            <h2 id="{{ category_name|lower|replace(' ', '-') }}">{{ category_name }}</h2>
+            <h2>All Papers</h2>
             <div class="row">
-                {% for paper in category_papers %}
+                {% for paper in papers %}
                 <div class="col-lg-6 paper-card">
                     <div class="card h-100 position-relative">
                         <div class="card-body">
                             <span class="badge bg-info trl-badge">TRL: {{ paper.trl }}</span>
                             <h5 class="card-title">{{ paper.title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ paper.authors|join(', ') }}</h6>
-                            <p class="card-text">
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {% if paper.authors is string %}
+                                {{ paper.authors }}
+                                {% else %}
+                                {{ paper.authors|join(', ') }}
+                                {% endif %}
+                            </h6>
+                            {% if paper.summary %}
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> {{ paper.summary }}
+                            </div>
+                            {% endif %}
+                            <p class="card-text mt-2">
+                                {% if paper.keywords is string %}
+                                <span class="badge bg-secondary keyword-pill">{{ paper.keywords }}</span>
+                                {% else %}
                                 {% for keyword in paper.keywords %}
                                 <span class="badge bg-secondary keyword-pill">{{ keyword }}</span>
                                 {% endfor %}
+                                {% endif %}
                             </p>
                         </div>
                         <div class="card-footer bg-transparent">
@@ -106,8 +120,6 @@
                 {% endfor %}
             </div>
         </div>
-        {% endif %}
-        {% endfor %}
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
             <div class="row">
@@ -134,3 +146,6 @@
             });
         });
     </script>
+</body>
+
+</html>

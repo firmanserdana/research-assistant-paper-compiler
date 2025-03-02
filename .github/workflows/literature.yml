@@ -25,7 +25,7 @@ jobs:
           ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
           PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python src/main.py
+        run: python src/monitor.py
 
       - name: Deploy to GitHub Pages
         if: success()

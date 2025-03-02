@@ -5,6 +5,10 @@ on:
     - cron: "0 0 * * 1" # Run weekly on Mondays
   workflow_dispatch: # Allow manual trigger
 
+# Add this permissions block
+permissions:
+  contents: write # Grants write access to repository contents
+
 jobs:
   monitor:
     runs-on: ubuntu-latest

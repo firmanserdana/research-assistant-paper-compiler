@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<!-- filepath: src/templates/index.html -->
+.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +38,12 @@
             padding-top: 1rem;
             border-top: 1px solid #eee;
         }
+
+        .paper-summary {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0.8rem;
+        }
     </style>
 </head>
 
@@ -48,131 +51,325 @@
     <div class="container py-4">
         <header class="pb-3 mb-4 border-bottom">
             <div class="d-flex align-items-center justify-content-between">
-                <h1>Biorobotics Literature Monitor</h1> <span class="badge bg-primary">Last updated: 2025-03-02 16:39</span>
+                <h1>Biorobotics Literature Monitor</h1>
+                <span class="badge bg-primary">Last updated: 2025-03-03 01:54</span>
             </div>
             <p class="lead text-muted">Recent advances in biomedical engineering and robotics</p>
         </header>
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="alert alert-info">
-                    <strong>11</strong> new papers have been added to the collection.
+                    <strong>7</strong> new papers have been added to the collection.
                 </div>
                 <input type="text" id="filter-input" class="form-control"
                     placeholder="Filter papers by title, author, or keyword...">
             </div>
         </div>
 
+        <!-- Debug information -->
         
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
+        <!-- Display papers directly if categories aren't working -->
+        <div class="category-section">
+            <h2>All Papers</h2>
+            <div class="row">
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 6</span>
+                            <h5 class="card-title">Fusion of EEG and EMG signals for detecting pre-movement intentions in sitting and standing</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Not provided in the search results
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> This study proposes a novel multimodal fusion method that combines EEG and EMG signals using functional connectivity to detect sitting and standing intentions before movement execution[1][5]. The method achieves high accuracy (94.33% in healthy subjects, 87.54% in SCI patients) in classifying pre-movement intentions, outperforming single-modality approaches and maintaining robustness under fatigue conditions[1]. This innovation has significant potential to improve the responsiveness and effectiveness of rehabilitation devices by enabling earlier and more accurate detection of motor intentions in both healthy individuals and those with spinal cord injuries[1][5].
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">EEG-EMG fusion</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">functional connectivity</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">motor intention detection</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">spinal cord injury</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">rehabilitation</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/10.3389/fnins.2025.1532099" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: 10.3389/fnins.2025.1532099)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 4</span>
+                            <h5 class="card-title">Sensing and decoding the neural drive to paralyzed muscles during attempted movements</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Not provided in the search results
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> This study demonstrates the use of a wearable electrode array to record and decode motor unit firing rates from paralyzed muscles in a person with motor complete tetraplegia. Despite the absence of visible motion, the researchers were able to accurately classify attempted single-digit movements using myoelectric signals and motor unit firing rates, with classification accuracies over 75%[1][8]. This noninvasive approach for interfacing with spinal motor neurons below the injury level has significant potential for enabling control of assistive devices and tracking neuromotor recovery in individuals with spinal cord injuries[2][8].
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">EMG</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">motor unit</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">decoding</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">neuroprosthetics</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">spinal cord injury</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/10.1152/jn.00312.2021" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: 10.1152/jn.00312.2021)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 5</span>
+                            <h5 class="card-title">Reclaiming Hand Functions after Complete Spinal Cord Injury with Minimally Invasive Brain-Computer Interface</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Not provided in the search results
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> I apologize, but I do not have enough information from the search results to provide a technical summary of the specific paper you mentioned. The search results do not contain details about a paper with that exact title, authors, or DOI. Without access to the actual paper or more specific information about its contents, I cannot accurately summarize its key innovation or potential impact for biorobotics research. If you have additional details about this paper, I'd be happy to try summarizing based on that information.
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">Brain-computer interface</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">spinal cord injury</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">hand function</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">rehabilitation</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">epidural electrodes</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/10.1101/2024.09.05.24313041" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: 10.1101/2024.09.05.24313041)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 3</span>
+                            <h5 class="card-title">High-Density Electromyography Based Control of Robotic Devices: On the Execution of Dexterous Manipulation Tasks</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Anany Dwivedi, Jaime Lara, Leo K. Cheng, Niranchan Paskaranandavadivel, Minas Liarokapis
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> This paper presents a novel learning scheme that uses high-density electromyography (HD-EMG) sensors to decode dexterous in-hand manipulation motions based on myoelectric activations of forearm and hand muscles. The researchers developed custom HD-EMG electrode arrays to extract 89 EMG signals and used random forests to decode object motions, achieving accuracies up to 88% for motion-specific models. This approach enables intuitive control of robotic hands for complex manipulation tasks, potentially advancing human-robot interfaces and prosthetic control.
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">High-density EMG</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">dexterous manipulation</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">robotic control</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">machine learning</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">random forests</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/Not provided in the search results" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: Not provided in the search results)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 5</span>
+                            <h5 class="card-title">Decoding and geometry of ten finger movements in human posterior parietal and motor cortex</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Guan C, Aflalo T, Zhang CY, et al.
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> This study demonstrated high-accuracy decoding of individual finger movements from neural signals in the posterior parietal cortex (PPC) and motor cortex (MC) of tetraplegic participants, achieving up to 92% online accuracy for brain-machine interface control of contralateral fingers[1][2]. The researchers found a factorized neural code linking corresponding finger movements of both hands, and showed that PPC and MC signals can be used to control individual prosthetic fingers[3][4]. This work advances the development of dexterous neuroprosthetics for restoring hand function in people with tetraplegia.
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">Brain-machine interfaces</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Neuroprosthetics</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Posterior parietal cortex</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Motor cortex</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Finger movements</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/10.1088/1741-2552/acbf9a" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: 10.1088/1741-2552/acbf9a)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 4</span>
+                            <h5 class="card-title">Decoding Joint-Level Hand Movements With Intracortical Neural Signals in a Human Brain-Computer Interface</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Hu X, Zhang J, Jiang N, et al.
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> This study investigates the decoding of fine hand movements at the single-joint level using intracortical neural signals recorded from the motor cortex in a human brain-computer interface[6]. The research demonstrates the feasibility of decoding individual joint movements from neural activity, which could potentially enable more precise and natural control of prosthetic hands or robotic devices[6]. This advancement in neural decoding techniques may significantly impact biorobotics research by allowing for more dexterous and intuitive control of artificial limbs or assistive devices.
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">Brain-computer interfaces</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Motor cortex</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Hand kinematics</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Neural decoding</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Intracortical recordings</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/10.1109/TNSRE.2024.3352847" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: 10.1109/TNSRE.2024.3352847)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 paper-card">
+                    <div class="card h-100 position-relative">
+                        <div class="card-body">
+                            <span class="badge bg-info trl-badge">TRL: 3</span>
+                            <h5 class="card-title">The impact of task context on predicting finger movements in a brain-machine interface</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                
+                                Suresh AK, Goodman JM, Okorokova EV, et al.
+                                
+                            </h6>
+                            
+                            <div class="paper-summary">
+                                <strong>Summary:</strong> This study investigated how changes in task context, such as adding spring resistance or altering wrist posture, affect the performance of brain-machine interfaces (BMIs) for decoding finger movements in rhesus macaques[1][3]. The researchers found that while offline decoding accuracy decreased in new contexts, monkeys could quickly adapt during online BMI control, likely due to the preservation of underlying neural population structure[1][4]. This work provides insights into BMI robustness across varying task conditions, which is crucial for translating these technologies to real-world applications in assistive devices and neuroprosthetics.
+                            </div>
+                            
+                            <p class="card-text mt-2">
+                                
+                                
+                                <span class="badge bg-secondary keyword-pill">Brain-machine interfaces</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Motor cortex</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Finger movements</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Neural decoding</span>
+                                
+                                <span class="badge bg-secondary keyword-pill">Task context</span>
+                                
+                                
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            
+                            <a href="https://doi.org/10.7554/eLife.82598" target="_blank"
+                                class="btn btn-sm btn-outline-primary">
+                                View Paper (DOI: 10.7554/eLife.82598)
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
             <div class="row">
@@ -199,3 +396,6 @@
             });
         });
     </script>
+</body>
+
+</html>

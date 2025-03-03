@@ -1,10 +1,8 @@
 {
-  "timestamp": "2025-03-02T16:39:18.144996",
-  "count": 11,
+  "timestamp": "2025-03-03T01:54:25.815551",
+  "count": 7,
   "categories": {
-    "Biohybrid Systems": 0,
-    "Neuromorphic Engineering": 0,
-    "Soft Robotics": 0,
-    "General Biorobotics": 11
+    "Intracortical Decoding On Hand And Finger Kinematics": 3,
+    "Emg Decoding On Spinal Cord Injured Patients": 4
   }
 }

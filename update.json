@@ -1,8 +1,9 @@
 {
-  "timestamp": "2025-03-03T01:54:25.815551",
-  "count": 7,
+  "timestamp": "2025-03-10T01:35:51.204584",
+  "count": 9,
   "categories": {
-    "Intracortical Decoding On Hand And Finger Kinematics": 3,
-    "Emg Decoding On Spinal Cord Injured Patients": 4
+    "Intracortical Decoding On Hand And Finger Kinematics": 4,
+    "Emg Decoding On Spinal Cord Injured Patients": 2,
+    "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control": 3
   }
 }

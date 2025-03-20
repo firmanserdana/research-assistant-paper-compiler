@@ -91,6 +91,83 @@ class LiteratureMonitor:
         except Exception as e:
             logger.error(f"Failed to initialize {provider} client: {str(e)}")
             raise
+    
+    def load_papers_from_archives(self):
+        """
+        Load papers from all archive Markdown files.
+        
+        Returns:
+            list: All historical papers found in archive files
+        """
+        all_papers = []
+        archive_dir = 'src/archive'
+        
+        if not os.path.exists(archive_dir):
+            return all_papers
+            
+        # Find all markdown files in the archive directory
+        archive_files = [f for f in os.listdir(archive_dir) if f.endswith('.md')]
+        
+        for filename in archive_files:
+            try:
+                filepath = os.path.join(archive_dir, filename)
+                with open(filepath, 'r') as f:
+                    content = f.read()
+                    
+                # Parse papers from the markdown file
+                papers = self._parse_archive_markdown(content)
+                all_papers.extend(papers)
+                
+            except Exception as e:
+                logger.error(f"Failed to load papers from {filename}: {str(e)}")
+                
+        return all_papers
+
+    def _parse_archive_markdown(self, content):
+        """
+        Parse papers from an archive markdown file.
+        
+        Args:
+            content (str): Markdown file content
+            
+        Returns:
+            list: Extracted paper dictionaries
+        """
+        papers = []
+        current_paper = None
+        current_category = "General Biorobotics"
+        
+        for line in content.split('\n'):
+            # Detect category headers
+            if line.startswith('## ') and ' papers)' in line:
+                current_category = line[3:].split(' (')[0].strip()
+                
+            # Start of a new paper
+            elif line.startswith('### '):
+                if current_paper:
+                    papers.append(current_paper)
+                current_paper = {'title': line[4:].strip(), 'category': current_category}
+                
+            # Paper metadata
+            elif current_paper and line.startswith('**Authors:**'):
+                current_paper['authors'] = line[12:].strip().split('; ')
+            elif current_paper and line.startswith('**DOI:**'):
+                current_paper['doi'] = line[8:].strip()
+            elif current_paper and line.startswith('**TRL:**'):
+                try:
+                    current_paper['trl'] = int(line[8:].strip())
+                except ValueError:
+                    current_paper['trl'] = 1
+            elif current_paper and line.startswith('**Keywords:**'):
+                current_paper['keywords'] = [k.strip() for k in line[13:].split(',')]
+            elif current_paper and line.startswith('**Summary:**'):
+                current_paper['summary'] = line[12:].strip()
+        
+        # Add the last paper if there is one
+        if current_paper:
+            papers.append(current_paper)
+            
+        return papers
 
     def _categorize(self, paper):
         """
@@ -256,34 +333,45 @@ class LiteratureMonitor:
             1 <= paper.get('trl', 0) <= 9
         ])
 
-    def generate_site(self, papers):
-        """
-        Generate the HTML site with the new papers.
-        
-        Args:
-            papers (list): List of paper dictionaries
-        """
+    def generate_site(self, new_papers):
+        """Generate the HTML site with all papers."""
         try:
             os.makedirs('docs', exist_ok=True)
             
+            # Load historical papers from archives
+            historical_papers = self.load_papers_from_archives()
+            
+            # Combine with new papers
+            all_papers = historical_papers + new_papers
+            
+            # Remove duplicates based on DOI
+            unique_papers = []
+            seen_dois = set()
+            for paper in all_papers:
+                if paper.get('doi') and paper['doi'].lower() not in seen_dois:
+                    unique_papers.append(paper)
+                    seen_dois.add(paper['doi'].lower())
+            
             # Add category to each paper before rendering
-            for paper in papers:
-                paper['category'] = self._categorize(paper)
-                
-            # Use the Jinja2 template instead of hardcoded HTML
+            for paper in unique_papers:
+                if 'category' not in paper:
+                    paper['category'] = self._categorize(paper)
+            
+            # Use the Jinja2 template
             template = self.template_env.get_template('index.html')
             
             with open('docs/index.html', 'w') as f:
                 f.write(template.render(
-                    papers=papers,
+                    papers=unique_papers,
                     updated=datetime.now().strftime("%Y-%m-%d %H:%M"),
-                    count=len(papers)
+                    count=len(new_papers),  # Only count new papers in the update message
+                    total=len(unique_papers)  # Total papers displayed
                 ))
             
-            logger.info(f"Generated site with {len(papers)} new papers")
+            logger.info(f"Generated site with {len(new_papers)} new papers and {len(unique_papers)} total papers")
         except Exception as e:
             logger.error(f"Failed to generate site: {str(e)}")
-
+            
     def _generate_paper_summary(self, paper):
         """
         Generate an AI summary for a paper.

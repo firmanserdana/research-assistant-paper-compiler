@@ -311,17 +311,36 @@ class LiteratureMonitor:
         
         for line in content.split('\n'):
             if line.startswith('Title:'):
+                if current.get('title'):  # We've hit a new paper
+                    papers.append(current)
+                    current = {}
                 current['title'] = line[6:].strip()
             elif line.startswith('Authors:'):
                 current['authors'] = line[8:].strip().split('; ')
             elif line.startswith('DOI:'):
                 current['doi'] = line[4:].strip()
             elif line.startswith('TRL:'):
-                current['trl'] = int(line[4:].strip())
+                # Extract the first number found or default to 5
+                trl_text = line[4:].strip()
+                try:
+                    # Try direct conversion first
+                    current['trl'] = int(trl_text)
+                except ValueError:
+                    # Look for any numbers in the string
+                    numbers = re.findall(r'\d+', trl_text)
+                    if numbers:
+                        # Use the first number found
+                        current['trl'] = int(numbers[0])
+                    else:
+                        # Default to 5 (middle of the TRL scale)
+                        current['trl'] = 5
+                        logger.warning(f"Could not parse TRL value '{trl_text}', defaulting to 5")
             elif line.startswith('Keywords:'):
                 current['keywords'] = [k.strip() for k in line[9:].split(',')]
-                papers.append(current)
-                current = {}
+                
+        # Add the last paper if not already added
+        if current.get('title'):
+            papers.append(current)
                 
         return [p for p in papers if self._validate(p)]
 

@@ -539,6 +539,7 @@ class LiteratureMonitor:
                     }, f, indent=2)
             else:
                 logger.info("No new papers found")
+                self.generate_site([])  # Generate site with no new papers
                 
         except Exception as e:
             logger.error(f"Execution error: {str(e)}")

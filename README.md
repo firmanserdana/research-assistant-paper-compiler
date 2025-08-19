@@ -1,5 +1,7 @@
 # Literature Monitor
 
+![Screenshot 2025-08-19 at 22 29 15](https://github.com/user-attachments/assets/a68a529d-9d92-43b9-8a99-68f65523a051)
+
 Automated academic paper tracking system for research.
 
 ## Configuration

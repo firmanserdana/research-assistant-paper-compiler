@@ -383,9 +383,14 @@ class LiteratureMonitor:
         Returns:
             bool: True if paper is valid
         """
+        # Check DOI validity
+        doi = paper.get('doi', '')
+        if not doi or '[' in doi or 'not provided' in doi.lower() or 'not available' in doi.lower():
+            logger.warning(f"Rejecting paper with invalid DOI: {paper.get('title', 'Unknown')}")
+            return False
+        
         # Check basic requirements
         if not all([
-            paper.get('doi'),
             paper.get('title'),
             len(paper.get('authors', [])) > 0,
             1 <= paper.get('trl', 0) <= 9
@@ -399,11 +404,14 @@ class LiteratureMonitor:
             # Check for placeholder text that indicates missing author information
             if any(phrase in author_lower for phrase in [
                 'not specified',
+                'not provided',
+                'not available',
                 'see article',
                 'full author list',
                 'et al.',
                 'and others',
-                'review article'
+                'review article',
+                '[not',  # Catches [Not provided], [Not specified], etc.
             ]):
                 # If it's the only author, reject the paper
                 if len(authors) == 1:

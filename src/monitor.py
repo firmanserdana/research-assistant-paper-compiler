@@ -152,7 +152,7 @@ class LiteratureMonitor:
             elif current_paper and line.startswith('**Authors:**'):
                 current_paper['authors'] = line[12:].strip().split('; ')
             elif current_paper and line.startswith('**DOI:**'):
-                current_paper['doi'] = line[8:].strip()
+                current_paper['doi'] = self._normalize_doi(line[8:].strip())
             elif current_paper and line.startswith('**TRL:**'):
                 try:
                     current_paper['trl'] = int(line[8:].strip())
@@ -214,13 +214,18 @@ class LiteratureMonitor:
                 messages=[{
                     "role": "user",
                     "content": f"""Provide recent peer-reviewed papers about {term} 
-                    in biomedical engineering and robotics. Include DOI, TRL (1-9), and technical 
+                    in biomedical engineering and robotics. Include DOI (without URL prefix), TRL (1-9), and technical 
                     keywords. Format:
                     Title: [Title]
-                    Authors: [Author1; Author2]
-                    DOI: [DOI]
+                    Authors: [Author1; Author2; Author3]
+                    DOI: [DOI number only, e.g., 10.1234/example]
                     TRL: [Number]
-                    Keywords: [Keyword1, Keyword2]"""
+                    Keywords: [Keyword1, Keyword2]
+                    
+                    IMPORTANT: 
+                    - Provide actual author names, not placeholders like "Not specified" or "See article"
+                    - Provide only the DOI number (e.g., 10.1234/example), not the full URL
+                    - Skip papers where author information is unavailable"""
                 }],
                 temperature=0.2,
                 max_tokens=2000
@@ -318,7 +323,7 @@ class LiteratureMonitor:
             elif line.startswith('Authors:'):
                 current['authors'] = line[8:].strip().split('; ')
             elif line.startswith('DOI:'):
-                current['doi'] = line[4:].strip()
+                current['doi'] = self._normalize_doi(line[4:].strip())
             elif line.startswith('TRL:'):
                 # Extract the first number found or default to 5
                 trl_text = line[4:].strip()
@@ -344,13 +349,88 @@ class LiteratureMonitor:
                 
         return [p for p in papers if self._validate(p)]
 
+    def _normalize_doi(self, doi):
+        """
+        Normalize a DOI by removing any URL prefix, reference numbers, and other artifacts.
+        
+        Args:
+            doi (str): The DOI string which may include URL prefix, reference numbers, or other artifacts
+            
+        Returns:
+            str: The normalized DOI without URL prefix, reference numbers, or artifacts
+        """
+        if not doi:
+            return doi
+        
+        # Remove common URL prefixes
+        doi = doi.strip()
+        prefixes = ['https://doi.org/', 'http://doi.org/', 'doi.org/', 'DOI: ', 'doi:']
+        for prefix in prefixes:
+            if doi.startswith(prefix):
+                doi = doi[len(prefix):]
+            elif doi.lower().startswith(prefix.lower()):
+                doi = doi[len(prefix):]
+        
+        # Remove reference numbers like [1], [2], [3], etc.
+        doi = re.sub(r'\[\d+\]$', '', doi)
+        
+        # Remove parenthetical information at the end (e.g., journal names, dates)
+        # Only if it's at the very end and in parentheses
+        doi = re.sub(r'\s*\([^)]*\)\s*\[\d+\]$', '', doi)
+        doi = re.sub(r'\s*\([^)]*\)$', '', doi)
+        
+        # Remove placeholder text if present
+        if doi.startswith('[') and doi.endswith(']'):
+            return ""  # Return empty string for placeholder DOIs like [Not provided in search results]
+        
+        return doi.strip()
+
     def _validate(self, paper):
-        return all([
-            paper.get('doi'),
+        """
+        Validate that a paper has all required fields and valid data.
+        
+        Args:
+            paper (dict): Paper metadata
+            
+        Returns:
+            bool: True if paper is valid
+        """
+        # Check DOI validity
+        doi = paper.get('doi', '')
+        if not doi or '[' in doi or 'not provided' in doi.lower() or 'not available' in doi.lower():
+            logger.warning(f"Rejecting paper with invalid DOI: {paper.get('title', 'Unknown')}")
+            return False
+        
+        # Check basic requirements
+        if not all([
             paper.get('title'),
             len(paper.get('authors', [])) > 0,
             1 <= paper.get('trl', 0) <= 9
-        ])
+        ]):
+            return False
+        
+        # Filter out invalid author entries
+        authors = paper.get('authors', [])
+        for author in authors:
+            author_lower = author.lower()
+            # Check for placeholder text that indicates missing author information
+            if any(phrase in author_lower for phrase in [
+                'not specified',
+                'not provided',
+                'not available',
+                'see article',
+                'full author list',
+                'et al.',
+                'and others',
+                'review article',
+                '[not',  # Catches [Not provided], [Not specified], etc.
+            ]):
+                # If it's the only author, reject the paper
+                if len(authors) == 1:
+                    logger.warning(f"Rejecting paper with invalid author: {paper.get('title', 'Unknown')}")
+                    return False
+        
+        return True
 
     def generate_site(self, new_papers):
         """Generate the HTML site with all papers."""

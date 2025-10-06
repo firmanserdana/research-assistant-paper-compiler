@@ -214,13 +214,18 @@ class LiteratureMonitor:
                 messages=[{
                     "role": "user",
                     "content": f"""Provide recent peer-reviewed papers about {term} 
-                    in biomedical engineering and robotics. Include DOI, TRL (1-9), and technical 
+                    in biomedical engineering and robotics. Include DOI (without URL prefix), TRL (1-9), and technical 
                     keywords. Format:
                     Title: [Title]
-                    Authors: [Author1; Author2]
-                    DOI: [DOI]
+                    Authors: [Author1; Author2; Author3]
+                    DOI: [DOI number only, e.g., 10.1234/example]
                     TRL: [Number]
-                    Keywords: [Keyword1, Keyword2]"""
+                    Keywords: [Keyword1, Keyword2]
+                    
+                    IMPORTANT: 
+                    - Provide actual author names, not placeholders like "Not specified" or "See article"
+                    - Provide only the DOI number (e.g., 10.1234/example), not the full URL
+                    - Skip papers where author information is unavailable"""
                 }],
                 temperature=0.2,
                 max_tokens=2000
@@ -397,7 +402,8 @@ class LiteratureMonitor:
                 'see article',
                 'full author list',
                 'et al.',
-                'and others'
+                'and others',
+                'review article'
             ]):
                 # If it's the only author, reject the paper
                 if len(authors) == 1:

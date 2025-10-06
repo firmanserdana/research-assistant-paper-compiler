@@ -351,13 +351,13 @@ class LiteratureMonitor:
 
     def _normalize_doi(self, doi):
         """
-        Normalize a DOI by removing any URL prefix.
+        Normalize a DOI by removing any URL prefix, reference numbers, and other artifacts.
         
         Args:
-            doi (str): The DOI string which may include URL prefix
+            doi (str): The DOI string which may include URL prefix, reference numbers, or other artifacts
             
         Returns:
-            str: The normalized DOI without URL prefix
+            str: The normalized DOI without URL prefix, reference numbers, or artifacts
         """
         if not doi:
             return doi
@@ -370,6 +370,18 @@ class LiteratureMonitor:
                 doi = doi[len(prefix):]
             elif doi.lower().startswith(prefix.lower()):
                 doi = doi[len(prefix):]
+        
+        # Remove reference numbers like [1], [2], [3], etc.
+        doi = re.sub(r'\[\d+\]$', '', doi)
+        
+        # Remove parenthetical information at the end (e.g., journal names, dates)
+        # Only if it's at the very end and in parentheses
+        doi = re.sub(r'\s*\([^)]*\)\s*\[\d+\]$', '', doi)
+        doi = re.sub(r'\s*\([^)]*\)$', '', doi)
+        
+        # Remove placeholder text if present
+        if doi.startswith('[') and doi.endswith(']'):
+            return ""  # Return empty string for placeholder DOIs like [Not provided in search results]
         
         return doi.strip()
 

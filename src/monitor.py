@@ -19,7 +19,7 @@ logger = logging.getLogger('literature_monitor')
 class LiteratureMonitor:
     """Monitor biorobotics literature and add new papers to Zotero library."""
     
-    def __init__(self, model="gemini-2.5-pro", provider="gemini"):
+    def __init__(self, model="gemini-3-pro", provider="perplexity"):
         """
         Initialize the literature monitor.
         

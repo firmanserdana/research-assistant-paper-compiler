@@ -2,6 +2,7 @@ import os
 import re
 import json
 import logging
+import requests
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from openai import OpenAI
@@ -18,7 +19,7 @@ logger = logging.getLogger('literature_monitor')
 class LiteratureMonitor:
     """Monitor biorobotics literature and add new papers to Zotero library."""
     
-    def __init__(self, model="sonar-pro", provider="perplexity"):
+    def __init__(self, model="gemini-2.5-pro", provider="gemini"):
         """
         Initialize the literature monitor.
         
@@ -32,6 +33,8 @@ class LiteratureMonitor:
             required_vars.append("PPLX_API_KEY")
         elif provider == "anthropic":
             required_vars.append("ANTHROPIC_API_KEY")
+        elif provider == "gemini":
+            required_vars.append("GEMINI_API_KEY")
             
         self._check_environment(required_vars)
         
@@ -83,6 +86,11 @@ class LiteratureMonitor:
                 return Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
             elif provider == "ollama":
                 return OpenAI(base_url="http://localhost:11434/v1")
+            elif provider == "gemini":
+                return OpenAI(
+                    api_key=os.getenv("GEMINI_API_KEY"),
+                    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+                )
             else:
                 return OpenAI(
                     api_key=os.getenv("PPLX_API_KEY"),
@@ -430,7 +438,42 @@ class LiteratureMonitor:
                     logger.warning(f"Rejecting paper with invalid author: {paper.get('title', 'Unknown')}")
                     return False
         
+        # Verify DOI exists in CrossRef (skip for preprints like arXiv/bioRxiv)
+        doi = paper.get('doi', '')
+        if doi and not any(prefix in doi for prefix in ['10.48550/', '10.1101/']):
+            if not self._verify_doi(doi):
+                logger.warning(f"Rejecting paper with unverified DOI: {paper.get('title', 'Unknown')}")
+                return False
+        
         return True
+
+    def _verify_doi(self, doi):
+        """
+        Verify that a DOI exists by checking against CrossRef API.
+        
+        Args:
+            doi (str): The DOI to verify
+            
+        Returns:
+            bool: True if the DOI exists in CrossRef
+        """
+        if not doi:
+            return False
+        
+        try:
+            url = f"https://api.crossref.org/works/{doi}"
+            response = requests.get(url, timeout=10, headers={
+                'User-Agent': 'LiteratureMonitor/1.0 (mailto:contact@example.com)'
+            })
+            if response.status_code == 200:
+                logger.info(f"DOI verified: {doi}")
+                return True
+            else:
+                logger.warning(f"DOI verification failed (status {response.status_code}): {doi}")
+                return False
+        except requests.RequestException as e:
+            logger.warning(f"DOI verification request failed for {doi}: {str(e)}")
+            return False
 
     def generate_site(self, new_papers):
         """Generate the HTML site with all papers."""

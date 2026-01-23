@@ -1,0 +1,1869 @@
+{
+  "summary": {
+    "total": 200,
+    "verified": 8,
+    "fake": 181,
+    "preprints": 2,
+    "errors": 9
+  },
+  "fake_papers": [
+    {
+      "title": "Fusion of EEG and EMG signals for detecting pre-movement intentions in sitting and standing",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "[Not provided in search results]",
+      "doi": "10.3389/fnins.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand prostheses",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "[Not provided in search results]",
+      "doi": "10.1038/s41598-023-34215-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Improvement of hand functions of spinal cord injury patients with electromyography-driven hand exoskeleton: a feasibility study",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "[Not provided in search results]",
+      "doi": "10.1017/wtc.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding Joint-Level Hand Movements With Intracortical Neural Signals in a Human Brain-Computer Interface",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "Not specified in search results",
+      "doi": "10.1109/TNSRE.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding repetitive finger movements with brain activity acquired via non-invasive electroencephalography",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "Not specified in search results",
+      "doi": "10.3389/fneng.2014.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Case study: persistent recovery of hand movement and tactile sensation in peripheral nerve injury using targeted transcutaneous spinal cord stimulation",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "Chandrasekaran S; Nanivadekar AC; McKernan GP; Helm ER; Boninger ML; Collinger JL; Gaunt RA; Fisher LE",
+      "doi": "10.3389/fnins.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A regenerative peripheral nerve interface allows real-time control of an artificial hand in upper limb amputees",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "Vu PP; Vaskov AK; Irwin ZT; Henning PT; Lueders DR; Laidlaw AT; Davis AJ; Nu CS; Gates DH; Brent Gillespie R; Kemp SWP; Kung TA; Chestek CA; Cederna PS",
+      "doi": "10.1126/scitranslmed.aay",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomimetic sensory feedback through peripheral nerve stimulation improves dexterous use of a bionic hand",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "George JA; Davis TS; Brinton MR; Clark GA",
+      "doi": "10.1126/scirobotics.aax",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Learning of Artificial Sensation Through Long-Term Home Use of a Sensory-Enabled Prosthesis",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "Graczyk EL; Resnik L; Schiefer MA; Schmitt MS; Tyler DJ",
+      "doi": "10.3389/fnins.2019.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Fusion of EEG and EMG signals for detecting pre-movement intentions in sitting and standing",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Not provided in the search results",
+      "doi": "10.3389/fnins.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Not provided in the search results",
+      "doi": "10.1152/jn.00312.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding and geometry of ten finger movements in human posterior parietal and motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Guan C; Aflalo T; Zhang CY; et al.",
+      "doi": "10.1088/1741-2552/acbf9a",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding Joint-Level Hand Movements With Intracortical Neural Signals in a Human Brain-Computer Interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Hu X; Zhang J; Jiang N; et al.",
+      "doi": "10.1109/TNSRE.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "The impact of task context on predicting finger movements in a brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Suresh AK; Goodman JM; Okorokova EV; et al.",
+      "doi": "10.7554/eLife.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Fusion of EEG and EMG signals for detecting pre-movement intentions in sitting and standing",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "[Not provided in search results]",
+      "doi": "10.3389/fnins.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand prostheses",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "[Not provided in search results]",
+      "doi": "10.1016/j.neuroscience.2023.06.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding Joint-Level Hand Movements With Intracortical Neural Signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Xin Liu; Zhenyu Ren; Xiaogang Chen; Qiaosheng Zhang; Jiping He",
+      "doi": "10.1109/TNSRE.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and local field potential activity",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Ajiboye, A. Bolu; Willett, Francis R.; Young, Daniel R.; Memberg, William D.; Murphy, Brian A.; Miller, Jonathan P.; Walter, Benjamin L.; Sweet, Jennifer A.; Hoyen, Harry A.; Keith, Michael W.; Peckham, P. Hunter; Simeral, John D.; Donoghue, John P.; Hochberg, Leigh R.; Kirsch, Robert F.",
+      "doi": "10.1152/jn.00079.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding repetitive finger movements with brain activity acquired via non-invasive electroencephalography",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Ofner, Patrick; M\u00fcller-Putz, Gernot R.",
+      "doi": "10.1038/s41598-018-25828-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Restoring motor control and sensory feedback in people with upper extremity amputations using arrays of 96 microelectrodes implanted in the median and ulnar nerves",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Dustin J. Tyler; David M. Durand; Kevin L. Kilgore",
+      "doi": "10.1088/1741-2552/aa",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Closed-loop control of grasp force using peripheral neural signals in a bidirectional prosthesis",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Shivaram Arun Kumar; Jacob A. George; Suzanne Wendelken; David M. Page; Gregory A. Clark",
+      "doi": "10.1109/TNSRE.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomimetic encoding model for restoring touch in bionic hands through a nerve interface",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Giacomo Valle; Francesco M. Petrini; Igor Strauss; Francesco Iberite; Edoardo D'Anna; Giuseppe Granata; Marco Controzzi; Christian Cipriani; Thomas Stieglitz; Paolo M. Rossini; Silvestro Micera",
+      "doi": "10.1088/1741-2552/ab4a5d",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding hand kinematics from population responses in sensorimotor cortex during grasping",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Schaffelhofer S; Agudelo-Toro A; Scherberger H",
+      "doi": "10.1152/jn.00532.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding grasp and movement-related parameters from cortical ensemble activity in humans with tetraplegia using surface electrocorticography",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Ajiboye AB; Willett FR; Young DR; Memberg WD; Murphy BA; Miller JP; Walter BL; Sweet JA; Hoyen HA; Keith MW; Peckham PH; Simeral JD; Donoghue JP; Hochberg LR; Kirsch RF",
+      "doi": "10.1088/1741-2552/aa",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding hand and finger kinematics from local field potentials in human motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Flint RD; Wang PT; Wright ZA; King CE; Krucoff MO; Schuele SU; Rosenow JM; Hsu FP; Liu CY; Lin JJ; Sazgar M; Millett DE; Shaw SJ; Nenadic Z; Do AH; Slutzky MW",
+      "doi": "10.1109/TNSRE.2014.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding individual finger movements from one hand using human ECoG signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Liang N; Bougrain L",
+      "doi": "10.1371/journal.pone.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding grasp force and individual finger forces from human motor cortical activity",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Vargas-Irwin CE; Brandman DM; Zimmermann JB; Donoghue JP; Hochberg LR",
+      "doi": "10.1088/1741-2552/aae",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Restoring the sense of touch by means of peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Dustin J. Tyler",
+      "doi": "10.1088/1741-2552/ab4d",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Closed-loop control of grasp force using peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Matthew A. Schiefer; Daniel Tan; Steven M. Sidek; Dustin J. Tyler",
+      "doi": "10.1088/1741-2552/aab",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomimetic intraneural sensory feedback enhances sensation naturalness, tactile sensitivity, and manual dexterity in a bidirectional prosthesis",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Giacomo Valle; Alberto Mazzoni; Francesco Iberite; et al.",
+      "doi": "10.1016/j.neuron.2018.08.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A neural interface provides long-term stable natural touch perception",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-03-17.md",
+      "authors": "Dustin J. Tyler; Aidan D. Roche; Emily L. Graczyk; et al.",
+      "doi": "10.1126/scitranslmed.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand through brain-derived muscle activity",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-31.md",
+      "authors": "Daniela Souza Oliveira; Thomas Mehari Kinfe; Alessandro Del Vecchio",
+      "doi": "10.1093/brain/awad",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-31.md",
+      "authors": "Nason SR; Vaskov AK; Willsey MS; et al.",
+      "doi": "10.1038/s41586-023-06094-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A flexible intracortical brain-computer interface for typing using attempted finger movements",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-31.md",
+      "authors": "Willett FR; Avansino DT; Hochberg LR; et al.",
+      "doi": "10.1038/s41467-023-39723-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "MyoGestic: EMG interfacing framework for decoding multiple spared motor dimensions in neural lesions",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-04-14.md",
+      "authors": "Not provided in the search results",
+      "doi": "10.1126/sciadv.ads",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "MyoGestic: EMG interfacing framework for decoding multiple spared motor dimensions in neural lesions",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-04-21.md",
+      "authors": "A. S. Kundu; S. M. S. Rehman; J. D. Simeral; et al.",
+      "doi": "10.1016/j.bme.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding hand kinetics and kinematics using somatosensory cortex area 2 in active and passive movement",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-04-21.md",
+      "authors": "S. Gharbawie; M. A. Lebedev; M. A. Nicolelis",
+      "doi": "10.1016/j.neuroimage.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble signals from motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-04-21.md",
+      "authors": "V. Aggarwal; N. V. Thakor",
+      "doi": "10.1152/jn.01038.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensory feedback by peripheral nerve stimulation improves task performance in individuals with upper limb loss",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-04-21.md",
+      "authors": "Raspopovic S; Capogrosso M; Petrini FM; Bonizzato M; Rigosa J; Di Pino G; Carpaneto J; Controzzi M; Boretius T; Fernandez E; Granata G; Oddo CM; Citi L; Ciancio AL; Cipriani C; Carrozza MC; Jensen W; Guglielmelli E; Stieglitz T; Rossini PM; Micera S",
+      "doi": "10.1038/nn.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Control of Prosthetic Hands via the Peripheral Nervous System",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-04-21.md",
+      "authors": "Raspopovic S; Petrini FM; Zelechowski M; Valle G",
+      "doi": "10.3389/fnins.2016.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding hand kinetics and kinematics using somatosensory cortex in active and passive movement",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Mohammad A. Khatoun; Yuxiao Sun; Shreya Saxena",
+      "doi": "10.1016/j.neuroimage.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain\u2013machine interfaces",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Z. Irwin; J. Thompson; C. C. Chestek",
+      "doi": "10.1088/1741-2552/aa83d",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Peripheral nerve stimulation: recent advances and future directions",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Not specified (review article)",
+      "doi": "10.1080/17581869.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Peripheral nerve stimulation for lower\u2010limb postoperative recovery: A systematic review and meta\u2010analysis",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Not specified",
+      "doi": "10.1002/pchj.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding Kinematic Information From Primary Motor Cortex Using Deep Canonical Correlation Analysis",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-05-05.md",
+      "authors": "Wang X; Zhang Y; Zhang X; Wang Y; Zhang S",
+      "doi": "10.3389/fnins.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "The Representation of Finger Movement and Force in Human Motor and Premotor Cortices",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-05-05.md",
+      "authors": "Willett FR; Avansino DT; Hochberg LR; Henderson JM; Shenoy KV",
+      "doi": "10.1523/ENEURO.0063-20.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding the brain-machine interaction for upper limb assistive robotics using intracortical microelectrode signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-05-05.md",
+      "authors": "[Authors not specified in snippet; see article for full list]",
+      "doi": "10.1016/j.bbe.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-05.md",
+      "authors": "Y. Wang; Y. Wang; Y. Wang; et al.",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Current Solutions and Future Trends for Robotic Prosthetic Hands",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-05.md",
+      "authors": "Christian Cipriani; Silvestro Micera",
+      "doi": "10.1146/annurev-control-071020-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding of unimanual and bimanual reach-and-grasp actions from electromyographic and inertial signals in individuals with cervical spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-12.md",
+      "authors": "S. Ison; J. M. Carmena; et al.",
+      "doi": "10.1016/j.neucom.2024.04.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements in tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-12.md",
+      "authors": "N. A. Mrachacz-Kersting; J. L. Thomas; et al.",
+      "doi": "10.1152/jn.00486.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-12.md",
+      "authors": "J. Wagner; N. Capogrosso; et al.",
+      "doi": "10.1093/brain/awad",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Use of Surface EMG in Clinical Rehabilitation of Individuals With SCI",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-12.md",
+      "authors": "A. S. D. Smith; J. L. Thomas; et al.",
+      "doi": "10.3389/fneur.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Intrafascicular peripheral nerve stimulation produces fine functional hand movements",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-12.md",
+      "authors": "Capogrosso M; Milekovic T; Borton D; Wagner F; Moraud EM; Mignardot JB; Buse N; Gandar J; Barraud Q; Xing D; Rey E; Duis S; Jianzhong Y; Ko WKD; Li Q; Detemple P; Denison T; Micera S; Bezard E; Bloch J; Courtine G",
+      "doi": "10.1126/scitranslmed.abg",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand by decoding the neural drive to muscles in humans with tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-19.md",
+      "authors": "Marco Capogrosso; et al.",
+      "doi": "10.1093/brain/awad",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements in a person with tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-19.md",
+      "authors": "Y. Chen; J. M. Mrachacz-Kersting; et al.",
+      "doi": "10.1152/jn.00435.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "High-frequency epidural electrical stimulation reduces spasticity and pathologic muscle cocontraction after spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-19.md",
+      "authors": "A. Formento; et al.",
+      "doi": "10.1126/scitranslmed.adp",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Noninvasive decoder could help restore movement after spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-19.md",
+      "authors": "Ismael Se\u00e1\u00f1ez; Carolyn Atkinson; et al.",
+      "doi": "10.1186/s12984-025-01307-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Mechanism of peripheral nerve modulation and recent applications",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-19.md",
+      "authors": "Not specified in search results",
+      "doi": "10.1080/15599612.2021.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements of a person with tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-26.md",
+      "authors": "M. A. Ganji; S. M. Muceli; D. Farina",
+      "doi": "10.1152/jn.00525.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-05-26.md",
+      "authors": "S. Barra; M. Sartori; et al.",
+      "doi": "10.1093/brain/awad",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand using high-density electromyogram signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-05-26.md",
+      "authors": "Zhang X; Wang Y; Chen X; Zhu X; Wang Y; Li G",
+      "doi": "10.1016/j.bspc.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "The Next Frontier in Neuroprosthetics: Integration of Biomimetic Somatosensory Feedback",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-26.md",
+      "authors": "S. S. Lee; J. M. Svientek; K. A. Cederna; P. S. Cederna",
+      "doi": "10.3390/bioengineering",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neuromodulation of the peripheral nervous system: Bioelectronic medicine approaches and clinical applications",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-26.md",
+      "authors": "S. R. Patel; J. S. Kwon; M. S. Humayun",
+      "doi": "10.1002/bmm2.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-06-09.md",
+      "authors": "Marco Capogrosso; Jocelyne Bloch; et al.",
+      "doi": "10.1093/brain/awae",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients: A Perspective on Decoding Strategies",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-06-09.md",
+      "authors": "Silvia Muceli; Dario Farina",
+      "doi": "10.3389/fneur.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand using high-density electromyogram",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-06-09.md",
+      "authors": "Zhang X; Li S; Zhou P",
+      "doi": "10.1016/j.neuroimage.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Surgically Implanted Electrodes Enable Real-Time Finger and Grasp Pattern Recognition for Prosthetic Hands",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-09.md",
+      "authors": "[Not specified in search result; typically available in full article]",
+      "doi": "10.1016/j.bjps.2023.03.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-09.md",
+      "authors": "[Not specified in search result; typically available in full article]",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand by decoding motor intentions from the spinal cord in humans",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-06-16.md",
+      "authors": "Marco Capogrosso; et al.",
+      "doi": "10.1093/brain/awae",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients: A Perspective on Decoding Strategies",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-06-16.md",
+      "authors": "S. Negro; D. Farina",
+      "doi": "10.3389/fnins.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand using high-density electromyogram signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-06-16.md",
+      "authors": "Zhang X; Chen X; Li Y; Zhu X; Zhang D",
+      "doi": "10.1016/j.bbe.2023.06.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Cortical decoding of individual finger and wrist kinematics for an entire hand",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-06-16.md",
+      "authors": "Wang W; Chan SS; Heldman DA; Moran DW",
+      "doi": "10.1152/jn.00520.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-16.md",
+      "authors": "Y. Wang; J. Kim; S. Lee; et al.",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neurorobotics for neurorehabilitation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-16.md",
+      "authors": "J.A. George; et al.",
+      "doi": "10.1126/science.abj",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients: Decoding and Frequency-Domain Analysis of Individual \u03b1-MNs Spike Trains",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-06-23.md",
+      "authors": "Negro F.; Muceli S.; Castronovo A.M.; Holobar A.; Farina D.",
+      "doi": "10.1109/TNSRE.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Intrafascicular peripheral nerve stimulation produces fine functional hand movements",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-23.md",
+      "authors": "Capogrosso M; Milekovic T; Borton D; Wagner F; Moraud EM; Mignardot JB; Buse N; Gandar J; Barraud Q; Xing D; Rey E; Duis S; Jianzhong Y; Ko WKD; Li Q; Detemple P; Denison T; Micera S; Bezard E; Bloch J; Courtine G",
+      "doi": "10.1016/j.neuron.2021.09.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-23.md",
+      "authors": "Wang Y; Li J; Zhang Y; Wang Y; Li J; Zhang Y; et al.",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Peripheral neurostimulation for encoding artificial somatosensations",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-23.md",
+      "authors": "Oddo CM",
+      "doi": "10.1111/ejn.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients: Decoding and Modulation of Spinal Cord Output",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-07-07.md",
+      "authors": "M. Negro; D. Farina",
+      "doi": "10.1109/TNSRE.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Brain decoder controls spinal cord stimulation to reinforce voluntary movement after spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-07-07.md",
+      "authors": "J. Se\u00e1\u00f1ez; et al.",
+      "doi": "10.1038/s41591-024-02910-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding of Finger, Hand and Arm Kinematics Using Switching Linear Dynamical Systems",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-07-07.md",
+      "authors": "Aggarwal V; Acharya S; Tenore F; et al.",
+      "doi": "10.1109/TBME.2013.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Cortical decoding of individual finger and wrist kinematics for an entire hand",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-07-07.md",
+      "authors": "Vargas-Irwin CE; Shakhnarovich G; Yadollahpour P; et al.",
+      "doi": "10.1109/TNSRE.2009.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Surgically Implanted Electrodes Enable Real-Time Finger and Grasp Pattern Recognition for Prosthetic Hands",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-07-07.md",
+      "authors": "Alexander K. Vaskov; Philip P. Vu; Paul S. Irwin; et al.",
+      "doi": "10.1016/j.jneumeth.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Intrafascicular peripheral nerve stimulation produces fine functional hand movements in primates",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-07-07.md",
+      "authors": "Quentin Barraud; David Guiraud; et al.",
+      "doi": "10.1016/j.brs.2021.10.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles after spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-07-14.md",
+      "authors": "JE Ting; et al.",
+      "doi": "10.1126/scitranslmed.abg",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding the brain-machine interaction for upper limb assistive technologies: A review",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-07-14.md",
+      "authors": "Mondini A; Kobler RJ; Ofner P; M\u00fcller-Putz GR",
+      "doi": "10.3389/fnbot.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-07-14.md",
+      "authors": "Yusuke Miyamoto; Shingo Tsukada; et al.",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements in a person with tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-07-21.md",
+      "authors": "Ajiboye AB; Kirsch RF; Schmit BD",
+      "doi": "10.1152/jn.00415.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients: Decoding and Frequency-Domain Analysis of \u03b1-MNs Spike Trains",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-07-21.md",
+      "authors": "Negro F; Muceli S; Castronovo AM; Holobar A; Farina D",
+      "doi": "10.3389/fnins.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-07-21.md",
+      "authors": "Nuyujukian P; Pandarinath C; Gilja V; Blabe CH; Wang PT; Sarma AA; Sorice BL; Saab J; Franco B; Makinwa K; Kao JC; Stavisky SD; Ryu SI; Shenoy KV; Andersen RA; Kirsch RF; Henderson JM",
+      "doi": "10.1371/journal.pone.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-07-21.md",
+      "authors": "Y. Yamada; S. Himori; S. Tsukada; et al.",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A Qualitative Exploration of EMG Visual Feedback for Spinal Cord Injury Rehabilitation",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-07-28.md",
+      "authors": "Janelle Aikens; Aaron Tabor; Kevin Englehart; Erik Scheme",
+      "doi": "10.1109/ICORR66766.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-07-28.md",
+      "authors": "ZT Irwin; JF O'Doherty; JH Perge; S Suresh; JH Nason; L Bullard; L Miller",
+      "doi": "10.3389/fnins.2017.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Properties of the surface electromyogram following traumatic spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "Not specified in search result (see article for full author list)",
+      "doi": "10.1186/s12984-021-00888-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "The impact of task context on predicting finger movements in a brain\u2013machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "Matthew J. Suresh; John P. Cunningham",
+      "doi": "10.7554/eLife.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "Vikash Gilja; Paul Nuyujukian; Joline M. Fan; et al.",
+      "doi": "10.3389/fnins.2014.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-grasp movements",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "Matthew D. Schieber; Nicholas G. Hatsopoulos",
+      "doi": "10.1152/jn.00995.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Intrafascicular peripheral nerve stimulation produces fine functional hand movements in primates",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "G. Valle; S. Mazzoni; F. Iberite; et al.",
+      "doi": "10.1126/scitranslmed.abg",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomimetic computer-to-brain communication enhancing naturalistic sensorimotor control",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "G. Valle; F. Petrini; S. Raspopovic; et al.",
+      "doi": "10.1038/s41467-024-45190-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "The Next Frontier in Neuroprosthetics: Integration of Biomimetic Sensory Feedback",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "J. D. Sando; M. D. Svientek; P. D. Marasco",
+      "doi": "10.1016/j.neuron.2025.02.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of digital avatars and robotic arms in individuals with tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "D.S. Oliveira; H. Zandieh; A. D\u2019Anna; et al.",
+      "doi": "10.1093/brain/awae",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Development and evaluation of a non\u2011invasive brain\u2013spine interface combining EEG and transcutaneous stimulation in SCI",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "C. Atkinson; A. Jochumsen; A. Wongsarnpigoon; et al.",
+      "doi": "10.1186/s12984-025-01628-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A high-performance brain\u2013computer interface for finger decoding enables continuous multi-finger control in a human participant",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "[Author list not fully visible in preview; Nature Medicine paper\u2014use full citation when available]",
+      "doi": "10.1038/s41591-024-03341-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-grasp movements",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "Shanechi MM; Hu RC; Powers M; Wornell GW; Brown EN; Williams ZM",
+      "doi": "10.1152/jn.01038.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain\u2013machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "Shanechi MM; Hu RC; Powers M; Wornell GW; Brown EN; Williams ZM",
+      "doi": "10.1152/jn.00485.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomimetic computer-to-brain communication enhancing artificial sensory perception",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "Greta Valle; et al.",
+      "doi": "10.1038/s41467-024-45190-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Dynamic peripheral nerve stimulation can produce cortical responses that resemble natural touch",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "J. Tanner; et al.",
+      "doi": "10.3389/fnhum.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "[AIP Advances authors; not listed in snippet]",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of paralyzed hands in humans",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-08-18.md",
+      "authors": "D.S. Oliveira; et al.",
+      "doi": "10.1093/brain/awae",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A high-performance brain\u2013computer interface for finger-based control",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-18.md",
+      "authors": "MS Willsey; et al.",
+      "doi": "10.1038/s41591-024-03341-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-08-18.md",
+      "authors": "Shogo Himori; Shingo Tsukada; Yuriko Furukawa",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and Decoding the Neural Drive to Paralyzed Muscles After Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-08-25.md",
+      "authors": "J E Ting; S E Harkema; R R Requejo; V R Edgerton",
+      "doi": "10.1152/jn.00484.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A Direct Spinal Cord\u2013Computer Interface Enables the Control of Paralyzed Muscles in Humans",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-08-25.md",
+      "authors": "D S Oliveira; [additional authors not listed in snippet]",
+      "doi": "10.1093/brain/awad",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding Handwriting Trajectories from Intracortical Brain Signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-25.md",
+      "authors": "Y. Zhang; J. Wang; et al.",
+      "doi": "10.1002/advs.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-25.md",
+      "authors": "S. N. S. Ethier; A. Oby; et al.",
+      "doi": "10.1152/jn.00651.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-09-01.md",
+      "authors": "Z.T. Irwin; D. Thompson; C. Wu; C. Schroeder; J.P. Schuele; L.E. Miller",
+      "doi": "10.1371/journal.pone.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and Decoding the Neural Drive to Paralyzed Muscles During Volitional Motor Attempt After Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-09-08.md",
+      "authors": "Brian A. Cramer; Daniel B. McFarland; et al.",
+      "doi": "10.1152/jn.00593.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interfaces",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-09-08.md",
+      "authors": "Nuyujukian P; Pandarinath C; Foster JD; Kao JC; Blabe CH; Sorice BL; Saab J; Franco B; Mernoff ST; Nurmikko AV; Donoghue JP; Hochberg LR; Shenoy KV",
+      "doi": "10.1152/jn.00651.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding hand kinetics and kinematics using somatosensory cortex signals in active and passive tasks",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-09-08.md",
+      "authors": "Salehi S; Abbasi L; Farivar M; Shamsollahi MB; Nasrabadi AM",
+      "doi": "10.3389/fnins.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Self-folding graphene cuff electrodes for peripheral nerve stimulation**",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-09-08.md",
+      "authors": "Y. Kim; S. Himori; S. Tsukada",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Decoding hand kinetics and kinematics using somatosensory cortex signals**",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-09-15.md",
+      "authors": "Gholami M; Omrani M; et al.",
+      "doi": "10.1016/j.isci.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**A flexible intracortical brain-computer interface for typing using attempted finger movements**",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-09-15.md",
+      "authors": "Willett FR; Avansino DT; et al.",
+      "doi": "10.1016/j.neuron.2024.05.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Real-time decoding of individual finger movements from noninvasive EEG enables dexterous robotic hand control",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-09-15.md",
+      "authors": "Yidan Ding; Chalisa Udompanyawit; Yisha Zhang; Bin He",
+      "doi": "10.1038/s41467-025-12345-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Essential Tremor",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-09-15.md",
+      "authors": "[Not specified in summary; see PMC11927668 for full list]",
+      "doi": "10.1016/j.nicl.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robotic hand with unprecedented tactile sensitivity achieves human-like adaptive grasping",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-09-15.md",
+      "authors": "Wanlin Li; Kaspar Althoefer; et al.",
+      "doi": "10.1038/s42256-025-01234-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Multimodal Decoding and Congruent Sensory Information Enhance Reaching Performance in Spinal Cord Injury**",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-09-22.md",
+      "authors": "Emily Corbett; Patrick W. Franks; et al.",
+      "doi": "10.3389/fnins.2014.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Brain Decoder Controls Spinal Cord Stimulation**",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-09-22.md",
+      "authors": "Ismael Se\u00e1\u00f1ez; Carolyn Atkinson; et al.",
+      "doi": "10.1186/s12984-025-01345-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "EMG Triggered Closed-Loop Stimulation for Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-09-29.md",
+      "authors": "Wu-17-18 (clinical trial, principal investigator not specified in search result)",
+      "doi": "N/A",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of virtual and robotic hands in people with tetraplegia",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-10-06.md",
+      "authors": "Camila Shibata; Andrea d\u2019Avella; Marco Capogrosso; Camillo Porcaro; Marco A. Minetto; Francesca Pisotta; Silvia Ferreri; Francesca Ferreri; Silvia Rossi; Andrea Cavallo; Valentina Mazzoleni; Marco Iosa; Marco Molinari; Silvia Sterzi; Francesco Lacquaniti; Francesco Posteraro; Francesco Negro",
+      "doi": "10.1093/brain/awae",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**A flexible intracortical brain\u2013computer interface for typing using attempted finger movements**",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-10-06.md",
+      "authors": "Francis R. Willett; Jaimie M. Henderson; Krishna V. Shenoy",
+      "doi": "10.1073/pnas.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Convolutional neural networks decode finger movements in motor learning tasks from non-invasive neurophysiological data**",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-10-06.md",
+      "authors": "Giulia Borra; Alessandro Gozzi; Silvia Galli; Marco Buiatti; Gianluca Baldassarre",
+      "doi": "10.1016/j.neuroimage.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A direct spinal cord\u2013computer interface enables the control of the paralyzed hand",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Ismael Se\u00e1\u00f1ez; Carolyn Atkinson; Daniel J. McGinnis; Michael R. Bruchas; Eric C. Leuthardt",
+      "doi": "10.1093/brain/awad",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Vikash Gilja; Paul Nuyujukian; Cindy A. Chestek; John P. Cunningham; Byron M. Yu; J. Mark Churchland; Stephen I. Ryu; Krishna V. Shenoy",
+      "doi": "10.1088/1741-2560/9/4/",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Merging motoneuron and postural synergies in prosthetic hand design for natural bionic interfacing",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Patricia Capsi-Morales; Matteo Cognolato; Dario Farina; Antonio Bicchi",
+      "doi": "10.1126/scirobotics.ado",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A highly integrated bionic hand with neural control and feedback for natural sensation and movement",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Solaiman Shokur; Eduardo Raspopovic; Stanisa Raspopovic; Silvestro Micera",
+      "doi": "10.1126/scirobotics.adf",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Y. Wang; Y. Wang; J. Li; J. Liu; Y. Wang; Y. Zhang; Y. Liu; Y. Liu; Y. Wang; Y. Wang",
+      "doi": "10.1063/5.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Soft robotics and functional electrical stimulation advances for hand function after stroke",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Y. Li; Y. Li; Y. Wang; Y. Wang; Y. Wang; Y. Wang",
+      "doi": "10.3389/fnbot.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Essential Tremor",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-20.md",
+      "authors": "Rajesh Pahwa; Kelly E. Lyons; Teresa Jacobson Kimberley; Mark Hallett; William Ondo; Stuart Isaacson; John Duda; Daniel Tarsy; Claudia Testa; Steven Frucht; Arif Dalvi; Michael Okun; Joseph Jankovic; Hubert Fernandez; Karen Frei; Elan Louis; James Boyd; Steven S. Schrock; David Charles",
+      "doi": "10.1016/j.npneu.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and Decoding the Neural Drive to Paralyzed Muscles During Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Daniel T. Kaczmarek; Emily L. H. Tran; Michael R. Bruns; Lee E. Fisher",
+      "doi": "10.1152/jn.00594.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Multimodal Decoding and Congruent Sensory Information Enhance Reaching Performance in Subjects With Cervical Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Elaine A. Corbett; Nicholas A. Kopp; Eric J. Perreault; Levi J. Hargrove",
+      "doi": "10.3389/fnbot.2021.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Complexity Measures, an Analysis for Electromyography and Its Application in Spinal Cord Injured Patients",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Mircea Ignat; Andrei D. Mihalache; Mihai Ignat",
+      "doi": "10.22514/sv.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural control of finger movement via intracortical brain-machine interfaces",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Matthew D. Moorman; Vikram Aggarwal; Chethan Pandarinath; Karen A. Moxon; Jose M. Carmena",
+      "doi": "10.1088/1741-2560/15/5/",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Convolutional neural networks decode finger movements in motor learning tasks using non-invasive neurophysiological data",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Daniel Borra; Andrea Bianchi; Silvia F. Borra; Marco G. Bianchi; Andrea S. Bianchi",
+      "doi": "10.1016/j.neuroimage.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Hand Function Recovery**",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Yifan Chen; Ming Li; Xiaoyu Zhang; Jie Sun; Zhiqiang Liu; Yan Wang; Qiang Li",
+      "doi": "10.1186/s12938-024-01234-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Soft Robotics and Functional Electrical Stimulation Advances for Hand Function Recovery**",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-10-27.md",
+      "authors": "Yifan Chen; Ming Li; Xiaoyu Zhang; Jie Sun; Zhiqiang Liu; Yan Wang; Qiang Li",
+      "doi": "10.3389/frobt.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Real-time decoding of individual finger movements from noninvasive EEG enables dexterous robotic hand control",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-03.md",
+      "authors": "Yidan Ding; Chalisa Udompanyawit; Yisha Zhang; Bin He",
+      "doi": "10.1038/s41467-024-46249-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Soft robotics and functional electrical stimulation advances for hand function restoration",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-03.md",
+      "authors": "Yiyu Cai; Xiaoyang Wu; Yuxiang Sun; Yuxiang Wang",
+      "doi": "10.3389/fnbot.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Essential Tremor",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-03.md",
+      "authors": "Mark Hallett; Sheng-Han Kuo; Elan D. Louis; William Ondo; Rajesh Pahwa; Claudia Testa; Daniel Tarsy; Hubert H. Fernandez; Kelly E. Lyons; Karen Frei; James McInerney; Michael S. Okun; Arif Dalvi; Stuart Isaacson; Joseph Jankovic; Steven Frucht; Michael D. Fox; Peter Hedera; William G. Ondo",
+      "doi": "10.1016/j.npneu.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and Decoding the Neural Drive to Paralyzed Muscles During Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-11-10.md",
+      "authors": "Dario Farina; Francesco Negro; Silvia Muceli; Alessandro Del Vecchio",
+      "doi": "10.3389/fnins.2021.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Soft robotics and functional electrical stimulation advances for hand rehabilitation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-10.md",
+      "authors": "Yanan Sun; Yuxiang Sun; Zhiqiang Wei; Xinyu Zhang",
+      "doi": "10.3390/bioengineering",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and Decoding the Neural Drive to Paralyzed Muscles During Volitional Attempt After Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-11-17.md",
+      "authors": "Francesco Negro; Dario Farina; Silvia Muceli; Alessandro Del Vecchio; Marco Gazzoni; Roberto Merletti",
+      "doi": "10.1126/sciadv.abj",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neurorehabilitation Through Synergistic Man-Machine Interfaces: Protocol for a Randomized Controlled Trial in Spinal Cord Injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-11-17.md",
+      "authors": "Marco Godi; Matteo Bianchi; Silvia Salatino; Andrea Mannini; Andrea d\u2019Avella; Maria Chiara Carrozza",
+      "doi": "10.2196/",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "**Convolutional neural networks decode finger movements in motor cortex using non-invasive MEG**",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-11-17.md",
+      "authors": "Matteo Borra; Andrea Gualandi; Marco Marino; Silvia Gazzola; Matteo Feurra; Giovanni Mirabella; Vincenzo Romei",
+      "doi": "10.3389/fnins.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Soft robotics and functional electrical stimulation advances for hand function recovery in spinal cord injury",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-17.md",
+      "authors": "Cristina Paredes-March\u00e1n; Francisco J. Rodr\u00edguez; Jos\u00e9 L. Pons",
+      "doi": "10.1016/j.rehab.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Fine-tuned brain-computer interface makes prosthetic limbs feel real",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-17.md",
+      "authors": "Sliman Bensmaia; Matthew Fifer; Emily Graczyk; Lee E. Miller",
+      "doi": "10.1016/j.neuron.2024.01.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Concurrent Decoding of Finger Kinematic and Kinetic Variables based on Motor Unit Discharges",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-11-24.md",
+      "authors": "Rinku Roy; Derek G. Kamper; Xiaogang Hu",
+      "doi": "10.1109/ICHMS56717.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-grasp movements",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-11-24.md",
+      "authors": "V. Aggarwal; M. H. Schieber; N. V. Thakor",
+      "doi": "10.1152/jn.00995.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomimetic sensory feedback through peripheral nerve stimulation improves dexterous use of a bionic hand",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-24.md",
+      "authors": "Silvestro Micera; Christian Cipriani; Francesco M. Petrini; Stanisa Raspopovic; Giacomo Valle; Edoardo D\u2019Anna",
+      "doi": "10.1126/scirobotics.aau",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Selectivity and Longevity of Peripheral-Nerve and Machine Interfaces: A Review",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-24.md",
+      "authors": "Zachary T. Irwin; Cynthia A. Chestek",
+      "doi": "10.3389/fnbot.2017.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Soft robotics and functional electrical stimulation advances for restoring hand function in people with SCI: a narrative review, clinical guidelines and future directions",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-24.md",
+      "authors": "S. J. Grahn; M. A. C. van der Sluis; J. L. H. Evers; J. L. van der Kooij; J. H. van der Meulen; J. H. van der Meulen",
+      "doi": "10.1007/s00415-023-11939-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Longitudinal intrafascicular electrode for prosthetic hand control",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-12-08.md",
+      "authors": "(example representative work) Stanisa Raspopovic; Giacomo Valle; Francesco Petrini; Tiziano Micera",
+      "doi": "10.1109/TNSRE.2017.XXXXXX",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Real-time decoding of individual finger movements from noninvasive EEG signals enables continuous control of a dexterous robotic hand",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-12-15.md",
+      "authors": "X. He; Y. Li; G. Xu; B. He",
+      "doi": "10.1038/s41467-025-51234-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A closed-loop hand prosthesis with simultaneous intraneural tactile feedback and sensory substitution for proprioception",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-12-15.md",
+      "authors": "F. M. Petrini; G. Valle; D. Strauss; L. Solc\u00e0; G. Granata; M. Controzzi; F. Clemente; C. D'Anna; P. Maria Rossini; P. Rigosa; L. Di Filippo; G. Raspopovic; S. Micera; P. Petrini; S. Salom\u00e9; M. Witkowska; D. Bazo; A. Gibo; L. Citi; U. Baronti; F. Becattini; M. Barbieri; S. Raspopovic; P. Artoni; L. Citi; S. Raspopovic; M. C. Bazzocchi; S. Castellazzi; G. Vallesi; D. G. Pinna; G. Di Pino; E. Guglielmelli; P. M. Rossini; S. Micera",
+      "doi": "10.1126/scirobotics.aau",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "AI-driven hybrid rehabilitation: synergizing robotics and electrical neuromuscular stimulation for upper-limb motor recovery",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-12-22.md",
+      "authors": "Ahmed Bouteraa; Mohamed Wassim Moghbel; Zaineb Karray; others[6]",
+      "doi": "10.3389/fbioe.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements in spinal cord injured individuals",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "R. Merletti; D. Farina; M. Negro; U. Gazzoni (see note below)",
+      "doi": "10.1152/jn.00436.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neural interfaces for restoring hand function after spinal cord injury via EMG-based control of robotic and functional electrical stimulation systems",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "M. A. Hayes; G. G. Muscolo; R. F. Kirsch",
+      "doi": "10.1109/TNSRE.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding attempted hand movements from residual EMG in chronic cervical spinal cord injury to control a virtual hand",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "C. Bouton; J. M. Nason; N. M. Annetta",
+      "doi": "10.1088/1741-2552/ac7f",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Surface EMG-based pattern recognition control of a wearable exoskeleton for upper limb rehabilitation after incomplete spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "P. K. Artemiadis; N. Hogan",
+      "doi": "10.1109/TBME.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust EMG decoding of lower-limb motor intent in individuals with incomplete spinal cord injury for robotic gait assistance",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "S. K. Au; H. Kazerooni; J. M. Hidler",
+      "doi": "10.1109/TMRB.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "EMG-driven musculoskeletal modeling to estimate joint moments in individuals with spinal cord injury during robot-assisted walking",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "F. Sartori; M. Reggiani; C. L. Sawicki",
+      "doi": "10.1016/j.jbiomech.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding residual EMG for control of a hand exoskeleton in individuals with motor-incomplete spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "L. J. H. van den Brand; R. Rupp; T. Nef",
+      "doi": "10.3389/fnbot.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand using intracortical signals and deep learning",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Yang Fan; Wentao Tang; Takashi Noda; Shinsuke Kondo; Zhi Yang",
+      "doi": "10.1109/TNSRE.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding handwriting trajectories from intracortical brain signals for brain-to-text communication",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Yao Zhang; Ruiqi Wang; Qi Liu; Junhui Zhang; Leigh R. Hochberg; Jaimie M. Henderson; Krishna V. Shenoy; Shaomin Zhang",
+      "doi": "10.1002/brb3.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Continuous decoding of 3D hand kinematics from primary motor cortex using recurrent neural networks",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Sina Mahnam; Justin D. Foster; Nicholas G. Hatsopoulos",
+      "doi": "10.1109/TBME.2022.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "High-dimensional finger kinematics decoding from human motor cortex for robotic hand control",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Francesco V. Tenore; Nitish V. Thakor; Matthew C. Oby; Mijail D. Serruya",
+      "doi": "10.1109/TNSRE.2021.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding individuated finger movements from monkey primary motor cortex for biomimetic prosthetic hand control",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Aaron A. Suminski; Nicholas G. Hatsopoulos",
+      "doi": "10.1152/jn.00745.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Simultaneous decoding of grasp kinematics and kinetics from intracortical population activity in motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Matthew A. Perich; Sliman J. Bensmaia; Lee E. Miller",
+      "doi": "10.1152/jn.00648.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding reach and grasp kinematics from human posterior parietal cortex using intracortical microelectrode arrays",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Spencer A. Kellis; Tyson Aflalo; Christian Klaes; Kelsie J. Lee; Richard A. Andersen",
+      "doi": "10.1038/nn.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Simultaneous and proportional control of a multidimensional prosthetic hand from chronic intracortical signals",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Jennifer L. Collinger; Michael L. Boninger; Robert A. Gaunt; Stephen T. Foldes; Elizabeth C. Tyler-Kabara",
+      "doi": "10.1093/brain/awv",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Online decoding of finger trajectories from human motor cortex for control of a virtual hand",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-12-29.md",
+      "authors": "Cynthia A. Chestek; Maryam M. Shanechi; Aaron P. Batista; Krishna V. Shenoy",
+      "doi": "10.1109/TBME.2014.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    }
+  ],
+  "verified_papers": [
+    {
+      "title": "Decoding hand kinetics and kinematics using somatosensory cortex activity in non-human primates",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-10.md",
+      "authors": "Abbasi, Adeel; Chao, Zenas C.; Ghanbari, Ladan; Torab, Kian; Yazdan-Shahmorad, Azadeh",
+      "doi": "10.1038/s41598-023-40664-x",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Investigating an abnormal hump phenomenon in top gate a-InGaZnO thin-film transistors due to mobile ",
+        "real_authors": [
+          "So Hee Park",
+          "Min Young Kim",
+          "Hyeong Wook Kim"
+        ]
+      }
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand prostheses",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-03-31.md",
+      "authors": "Liu S; Liu M; Zhang D; et al.",
+      "doi": "10.1088/1741-2552/adc48e",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Supervised autoencoder denoiser for non-stationarity in multi-session EEG-based BCI",
+        "real_authors": [
+          "Avin Ofer",
+          "Almagor Ophir",
+          "Noah Yoav"
+        ]
+      }
+    },
+    {
+      "title": "Wireless Peripheral Nerve Stimulation for The Upper Limb: A Case Series",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-04-21.md",
+      "authors": "Goudman L; De Smedt A; Eldabe S; Moens M",
+      "doi": "10.3390/ijerph",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "International Journal of Environmental Research and Public Health",
+        "real_authors": []
+      }
+    },
+    {
+      "title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-04.md",
+      "authors": "Yuxiao Chen; John P. Cunningham",
+      "doi": "10.1038/s41467-025-59039-z",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human premotor cortex",
+        "real_authors": [
+          "Nishal P. Shah",
+          "Donald Avansino",
+          "Foram Kamdar"
+        ]
+      }
+    },
+    {
+      "title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-11.md",
+      "authors": "[Author list not fully visible in preview; Nature Communications paper\u2014use full citation when available]",
+      "doi": "10.1038/s41467-025-59039-z",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human premotor cortex",
+        "real_authors": [
+          "Nishal P. Shah",
+          "Donald Avansino",
+          "Foram Kamdar"
+        ]
+      }
+    },
+    {
+      "title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-08-18.md",
+      "authors": "NP Shah; et al.",
+      "doi": "10.1038/s41467-025-59039-z",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human premotor cortex",
+        "real_authors": [
+          "Nishal P. Shah",
+          "Donald Avansino",
+          "Foram Kamdar"
+        ]
+      }
+    },
+    {
+      "title": "Real-time decoding of individual finger movements from noninvasive brain signals enables dexterous robotic hand control",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-11-10.md",
+      "authors": "Yidan Ding; Chalisa Udompanyawit; Yisha Zhang; Bin He",
+      "doi": "10.1038/s41467-025-60818-x",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Experimental demonstration of third-order memristor-based artificial sensory nervous system for neur",
+        "real_authors": [
+          "See-On Park",
+          "Hakcheon Jeong",
+          "Seokho Seo"
+        ]
+      }
+    },
+    {
+      "title": "Evoking stable and precise tactile sensations via multi-electrode intracortical microstimulation in human somatosensory cortex",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-12-22.md",
+      "authors": "Christopher L. Hughes; Matthew S. Fifer; David M. Rose; Tessy M. Thomas; Nathan E. Crone; Brock A. Wester; others[2]",
+      "doi": "10.1038/s41551-024-01299-z",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Evoking stable and precise tactile sensations via multi-electrode intracortical microstimulation of ",
+        "real_authors": [
+          "Charles M. Greenspon",
+          "Giacomo Valle",
+          "Natalya D. Shelchkova"
+        ]
+      }
+    }
+  ],
+  "preprints": [
+    {
+      "title": "Reclaiming Hand Functions after Complete Spinal Cord Injury with Minimally Invasive Brain-Computer Interface",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Not provided in the search results",
+      "doi": "10.1101/2024.09.05.",
+      "verification_status": "PREPRINT",
+      "verification_details": "Preprint - not verified"
+    },
+    {
+      "title": "MyoGestic: EMG interfacing framework for decoding multiple spared motor dimensions after neural lesions",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Y. Zhang; S. S. Raspopovic; et al.",
+      "doi": "10.1101/2024.04.09.",
+      "verification_status": "PREPRINT",
+      "verification_details": "Preprint - not verified"
+    }
+  ],
+  "errors": [
+    {
+      "title": "MyoGestic: EMG Interfacing Framework for Decoding Multiple Spared Degrees of Freedom of the Hand in Individuals with Neural Lesions",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "[Not provided in search results]",
+      "doi": "Not available",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not available' (found at least ' ')"
+    },
+    {
+      "title": "Cortical Decoding of Individual Finger and Wrist Kinematics for an Upper-Limb Neuroprosthesis",
+      "category": "General Biorobotics",
+      "source_file": "papers_2025-03-02.md",
+      "authors": "Not specified in search results",
+      "doi": "Not provided in search results",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not provided in search results' (found at least ' ')"
+    },
+    {
+      "title": "High-Density Electromyography Based Control of Robotic Devices: On the Execution of Dexterous Manipulation Tasks",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Anany Dwivedi, Jaime Lara, Leo K. Cheng, Niranchan Paskaranandavadivel, Minas Liarokapis",
+      "doi": "Not provided in the search results",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not provided in the search results' (found at least ' ')"
+    },
+    {
+      "title": "A flexible intracortical brain-computer interface for typing using attempted finger movements",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "[Authors not specified in summary; see source for full list]",
+      "doi": "Not available",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not available' (found at least ' ')"
+    },
+    {
+      "title": "The Role of Electrical Stimulation in Peripheral Nerve Regeneration",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Not specified (review article)",
+      "doi": "Not provided",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not provided' (found at least ' ')"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-05-19.md",
+      "authors": "Not specified in search results",
+      "doi": "Not fully specified",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not fully specified' (found at least ' ')"
+    },
+    {
+      "title": "Brain decoder controls spinal cord stimulation",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-06-02.md",
+      "authors": "Ismael Se\u00e1\u00f1ez, Carolyn Atkinson, et al.",
+      "doi": "Not provided in search results",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not provided in search results' (found at least ' ')"
+    },
+    {
+      "title": "Protocol for state-based decoding of hand movement parameters from primary somatosensory cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2025-06-02.md",
+      "authors": "Not specified in search results",
+      "doi": "Not specified in search results",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not specified in search results' (found at least ' ')"
+    },
+    {
+      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2025-06-02.md",
+      "authors": "Not specified in search results",
+      "doi": "Not specified in search results",
+      "verification_status": "ERROR",
+      "verification_details": "URL can't contain control characters. '/works/Not specified in search results' (found at least ' ')"
+    }
+  ]
+}

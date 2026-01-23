@@ -27,9 +27,13 @@ jobs:
         env:
           ZOTERO_USER_ID: ${{ secrets.ZOTERO_USER_ID }}
           ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
-          PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python src/monitor.py
+
+      - name: Verify DOIs in new archive
+        run: |
+          echo "Running DOI verification on new papers..."
+          python verify_dois.py || echo "Verification completed with some issues"
 
       - name: Deploy to GitHub Pages
         if: success()
@@ -44,6 +48,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add src/archive/
-          git commit -m "Update archived paper compilations" || echo "No changes to commit"
+          git add src/archive/ doi_verification_report.json
+          git commit -m "Update archived paper compilations with DOI verification" || echo "No changes to commit"
           git push

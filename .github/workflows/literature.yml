@@ -35,6 +35,13 @@ jobs:
           echo "Running DOI verification on new papers..."
           python verify_dois.py || echo "Verification completed with some issues"
 
+      - name: Repair Archives (Fix DOIs)
+        env:
+          PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
+        run: |
+          echo "Running Archive Repair..."
+          python repair_archives.py || echo "Repair script encountered errors but continuing..."
+
       - name: Deploy to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v3

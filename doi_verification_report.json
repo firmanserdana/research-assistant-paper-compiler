@@ -1,16 +1,16 @@
 {
   "summary": {
-    "total": 11,
+    "total": 12,
     "verified": 8,
     "fake": 0,
-    "preprints": 0,
-    "errors": 3
+    "preprints": 4,
+    "errors": 0
   },
   "fake_papers": [],
   "verified_papers": [
     {
       "title": "Decoding hand kinetics and kinematics using somatosensory cortex activity in non-human primates",
-      "category": "Verified Papers",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
       "source_file": "papers_2025-03-10.md",
       "authors": "Abbasi, Adeel; Chao, Zenas C.; Ghanbari, Ladan; Torab, Kian; Yazdan-Shahmorad, Azadeh",
       "doi": "10.1038/s41598-023-40664-x",
@@ -26,7 +26,7 @@
     },
     {
       "title": "Robust neural decoding for dexterous control of robotic hand prostheses",
-      "category": "Verified Papers",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
       "source_file": "papers_2025-03-31.md",
       "authors": "Liu S; Liu M; Zhang D; et al.",
       "doi": "10.1088/1741-2552/adc48e",
@@ -42,7 +42,7 @@
     },
     {
       "title": "Wireless Peripheral Nerve Stimulation for The Upper Limb: A Case Series",
-      "category": "Verified Papers",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
       "source_file": "papers_2025-04-21.md",
       "authors": "Goudman L; De Smedt A; Eldabe S; Moens M",
       "doi": "10.3390/ijerph",
@@ -54,7 +54,7 @@
     },
     {
       "title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human motor cortex",
-      "category": "Verified Papers",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
       "source_file": "papers_2025-08-04.md",
       "authors": "Yuxiao Chen; John P. Cunningham",
       "doi": "10.1038/s41467-025-59039-z",
@@ -70,7 +70,7 @@
     },
     {
       "title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human motor cortex",
-      "category": "Verified Papers",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
       "source_file": "papers_2025-08-11.md",
       "authors": "[Author list not fully visible in preview; Nature Communications paper\u2014use full citation when available]",
       "doi": "10.1038/s41467-025-59039-z",
@@ -86,7 +86,7 @@
     },
     {
       "title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human motor cortex",
-      "category": "Verified Papers",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
       "source_file": "papers_2025-08-18.md",
       "authors": "NP Shah; et al.",
       "doi": "10.1038/s41467-025-59039-z",
@@ -102,7 +102,7 @@
     },
     {
       "title": "Real-time decoding of individual finger movements from noninvasive brain signals enables dexterous robotic hand control",
-      "category": "Verified Papers",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
       "source_file": "papers_2025-11-10.md",
       "authors": "Yidan Ding; Chalisa Udompanyawit; Yisha Zhang; Bin He",
       "doi": "10.1038/s41467-025-60818-x",
@@ -118,7 +118,7 @@
     },
     {
       "title": "Evoking stable and precise tactile sensations via multi-electrode intracortical microstimulation in human somatosensory cortex",
-      "category": "Verified Papers",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
       "source_file": "papers_2025-12-22.md",
       "authors": "Christopher L. Hughes; Matthew S. Fifer; David M. Rose; Tessy M. Thomas; Nathan E. Crone; Brock A. Wester; others[2]",
       "doi": "10.1038/s41551-024-01299-z",
@@ -133,34 +133,43 @@
       }
     }
   ],
-  "preprints": [],
-  "errors": [
+  "preprints": [
     {
-      "title": "Brain decoder controls spinal cord stimulation",
+      "title": "Reclaiming Hand Functions after Complete Spinal Cord Injury with Minimally Invasive Brain-Computer Interface",
       "category": "Emg Decoding On Spinal Cord Injured Patients",
-      "source_file": "papers_2025-06-02.md",
-      "authors": "Ismael Se\u00e1\u00f1ez, Carolyn Atkinson, et al.",
-      "doi": "Not provided in search results",
-      "verification_status": "ERROR",
-      "verification_details": "URL can't contain control characters. '/works/Not provided in search results' (found at least ' ')"
+      "source_file": "papers_2025-03-03.md",
+      "authors": "Not provided in the search results",
+      "doi": "10.1101/2024.09.05.",
+      "verification_status": "PREPRINT",
+      "verification_details": "Preprint - not verified"
     },
     {
-      "title": "Protocol for state-based decoding of hand movement parameters from primary somatosensory cortex",
+      "title": "MyoGestic: EMG interfacing framework for decoding multiple spared motor dimensions after neural lesions",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2025-04-28.md",
+      "authors": "Y. Zhang; S. S. Raspopovic; et al.",
+      "doi": "10.1101/2024.04.09.",
+      "verification_status": "PREPRINT",
+      "verification_details": "Preprint - not verified"
+    },
+    {
+      "title": "Decoding hand kinematics from population responses towards a dexterous brain-machine interface",
       "category": "Intracortical Decoding On Hand And Finger Kinematics",
-      "source_file": "papers_2025-06-02.md",
-      "authors": "Not specified in search results",
-      "doi": "Not specified in search results",
-      "verification_status": "ERROR",
-      "verification_details": "URL can't contain control characters. '/works/Not specified in search results' (found at least ' ')"
+      "source_file": "papers_2026-01-05.md",
+      "authors": "Matthew D. Golub; Byron M. Yu; Andrew M. Schwartz; Matthew C. Whitford; Jean P. Clavert; Lee E. Miller",
+      "doi": "10.48550/arXiv.1904.",
+      "verification_status": "PREPRINT",
+      "verification_details": "Preprint - not verified"
     },
     {
-      "title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
-      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
-      "source_file": "papers_2025-06-02.md",
-      "authors": "Not specified in search results",
-      "doi": "Not specified in search results",
-      "verification_status": "ERROR",
-      "verification_details": "URL can't contain control characters. '/works/Not specified in search results' (found at least ' ')"
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and local field potential from motor cortex",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-01-05.md",
+      "authors": "V. Aggarwal; S. N. Katyal; M. V. gombolay; B. E. Gale; M. H. Schieber; M. A. L. Nicolelis; N. V. Thakor",
+      "doi": "10.1101/",
+      "verification_status": "PREPRINT",
+      "verification_details": "Preprint - not verified"
     }
-  ]
+  ],
+  "errors": []
 }

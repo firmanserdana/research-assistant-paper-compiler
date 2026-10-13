@@ -7,10 +7,9 @@ Automated academic paper tracking system for research.
 ## Configuration
 
 1. **Secrets Setup** (GitHub → Settings → Secrets):
-   - `PPLX_API_KEY`: Perplexity API key (or any LLM API key you have)
-   - `ZOTERO_LIB_ID`: Zotero user/library ID
-   - `ZOTERO_API_KEY`: Zotero API key
-   - `ANTHROPIC_API_KEY`: Anthropic key (optional)
+   - `PPLX_API_KEY`: Perplexity API key (optional). When present, it powers paper discovery and summaries.
+   - `ZOTERO_USER_ID` and `ZOTERO_API_KEY`: optional; used to sync discovered papers to Zotero.
+   - With no working Perplexity key, discovery automatically uses Crossref's free public API. The site and Markdown archive are still compiled; Zotero sync and AI summaries are skipped.
 
 2. **Zotero Preparation**:
    - Create collections matching categories:

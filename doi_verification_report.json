@@ -1,12 +1,463 @@
 {
   "summary": {
-    "total": 12,
-    "verified": 8,
-    "fake": 0,
+    "total": 69,
+    "verified": 15,
+    "fake": 50,
     "preprints": 4,
     "errors": 0
   },
-  "fake_papers": [],
+  "fake_papers": [
+    {
+      "title": "Charles Albert Elsberg (1871\u20131948) and his forgotten contributions to the treatment of Spinal Cord Injured patients",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Avi Ohry",
+      "doi": "10.1038/s41394-021-00443-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Effectiveness Of Robotic Assisted Gait Training In Spinal Cord Injured Patients \u2013 A Literature Review",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Anlitta C Johnson; Nischitha R Rao; Sreshtta Tinson",
+      "doi": "10.55248/gengpi.6.0625.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Neurogenic bowel dysfunction score in spinal cord-injured patients: translation and validation of the Dutch-language NBD score",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Tess van Doorn; Ilse M. Groenendijk; Jeroen R. Scheepe; Bertil F. M. Blok",
+      "doi": "10.1038/s41393-021-00668-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Reconstruction with muscle flaps after hip joint heterotopic ossification resection in spinal cord injured patients: a case series",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Luca Negosanti; Luca Gaiani; Silvia Campagnoni; Siriana Landi; Francesca Bettini; Pamela Salucci; Rossella Sgarzani",
+      "doi": "10.1038/s41394-026-00740-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Spontaneous Neurological Recovery of Patients with Acute Traumatic Spinal Cord Injuries (ATSCI) without Intervention the Injured Cord\u201d",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "W.S. El Masri",
+      "doi": "10.12974/2313-0954.2021.08.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Surface EMG in Subacute and Chronic Care after Traumatic Spinal Cord Injuries",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Gustavo Balbinot",
+      "doi": "10.3390/traumacare",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Exploring lifestyle components and associated factors in newly injured individuals with spinal cord injury",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Muriel Haldemann; Stevan Stojic; Inge Eriks-Hoogland; Jivko Stoyanov; Margret Hund-Georgiadis; Claudio Perret; Marija Glisic",
+      "doi": "10.1038/s41393-024-01039-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Spinal cord injury is an independent risk factor for acute kidney injury in traumatic spine-injured patients in the National Trauma Data Bank",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "John H. Kanter; Vasanth Raja; Phillip A. Bonney; Jason H. Gumbel; Phiroz E. Tarapore; Michael C. Huang; Geoffrey T. Manley; Anthony M. DiGiorgio",
+      "doi": "10.1080/10790268.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Connecting Researchers and Clinicians Before Connecting the Injured Spinal Cord",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Laura Krisa; Erica Witoslawski; Linda Jones; MJ Mulcahey; Karim Fouad",
+      "doi": "10.46292/sci22-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Broad opioid antagonism amplifies disruption of locomotor function following therapy-like hindlimb stretching in spinal cord injured rats",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Gregory J. R. States; Anastasia Keller; Alice Shum-Siu; Jeffrey C. Petruska; David S. K. Magnuson",
+      "doi": "10.1038/s41393-021-00705-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Clinical judgment is a cornerstone for validating and using clinical prediction rules: a head-to-head study on ambulation outcomes for spinal cord injured patients",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "R\u00e9mi Pelletier-Roy; Andr\u00e9ane Richard-Denis; St\u00e9phanie Jean; \u00c9tienne Bourassa-Moreau; Jean Fleury; Genevi\u00e8ve Beauchamp-Vien; Jean B\u00e9gin; Jean-Marc Mac-Thiong",
+      "doi": "10.1038/s41393-021-00632-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Level of Mental Burden Among Caregivers of Spinal Cord Injured Patients",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Muhammad S. Khan; Omer Farooq; Ramash Aqeel; Haider Darain; Gul Habib; Iftikhar Ahmad; Fawad Inayat",
+      "doi": "10.2139/ssrn.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Biomarker expression level changes within rectal\u00a0gut-associated lymphoid tissues in spinal cord-injured rats",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Yun Zhou; Charles H Hubscher",
+      "doi": "10.1093/immhor/vlaf",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients admitted to the intensive care unit: A retrospective study of 28 patients",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Vivian Huong Hoang Thien Le; Pascal Mputu Mputu; Andr\u00e9ane Richard-Denis; Francis Bernard; Yiorgos Alexandros Cavayas; Jean-Marc Mac-Thiong",
+      "doi": "10.1080/10790268.2025.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "DETERMINATION OF THE BENEFITS AND COMPLICATIONS OF CLEAN INTERMITTENT CATHETERIZATION TO SPINAL CORD INJURED PATIENTS",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Raheem Badr",
+      "doi": "10.37557/gjphm.v5i1.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Multimodal User Authentication via Keystroke-Triggered Fusion of Finger Pressure and Hand Kinematics",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Issei Hyakuda; Lei Jing",
+      "doi": "10.1109/access.2026.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Continuous Hand Kinematics Decoding From sEMG Signals via Self-Supervised Individual Finger Movement Disentanglement",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Yu Hu; Xin Wei; Dawei Gao; Pan Zhang; Chenfeng Huang; C. Guedes Soares",
+      "doi": "10.1109/lra.2026.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Comparison of finger kinematics between patients with hand osteoarthritis and healthy participants with and without joint protection programs",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Ahmed Tanashi; Mike Szekeres; Joy MacDermid; Emily A. Lalone",
+      "doi": "10.1016/j.jht.2020.10.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding hand kinetics and kinematics using somatosensory cortex activity in active and passive movement",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Alavie Mirfathollahi; Mohammad Taghi Ghodrati; Vahid Shalchyan; Mohammad Reza Zarrindast; Mohammad Reza Daliri",
+      "doi": "10.1016/j.isci.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "SAND: Spectral-Attention Neural Decoding of Hand Kinematics from Low-Frequency EEG Dynamics",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Rongrong Fu; Yuan Fang; Fangyao Xu; Changchun Hua; Chengcheng Hua",
+      "doi": "10.1109/tbme.2026.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Is the \u201cRugby Finger\u201d becoming the \u201cSoccer Finger\u201d?",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Didier Font\u00e8s",
+      "doi": "10.1016/j.hansur.2026.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Brain-inspired spiking neural networks for decoding and understanding muscle activity and kinematics from electroencephalography signals during hand movements",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Kaushalya Kumarasinghe; Nikola Kasabov; Denise Taylor",
+      "doi": "10.1038/s41598-021-81805-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "A Comparison of Conventional and Tri-Polar EEG Electrodes for Decoding Real and Imaginary Finger Movements from One Hand",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Saleh I. Alzahrani; Charles W. Anderson",
+      "doi": "10.1142/s",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Mallet Finger",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Grey Giddins",
+      "doi": "10.1016/j.hcl.2022.02.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Wearable Ultrasound-Based Decoding of Simultaneous Wrist/Hand Kinematics",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Xingchen Yang; Yu Zhou; Honghai Liu",
+      "doi": "10.1109/tie.2020.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Optimized Model Selection for Concurrent Decoding of Finger Kinetics and Kinematics",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Rinku Roy; Derek G. Kamper; Xiaogang Hu",
+      "doi": "10.1109/access.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Robust neural decoding for dexterous control of robotic hand kinematics",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Jiahao Fan; Luis Vargas; Derek G. Kamper; Xiaogang Hu",
+      "doi": "10.1016/j.compbiomed.2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Reducing Hand Kinematics by Introducing Grasp-Oriented Intra-Finger Dependencies",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Tomislav Bazina; Goran Mau\u0161a; Sa\u0161a Zelenika; Ervin Kamenar",
+      "doi": "10.3390/robotics",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Internal Fixation of Finger Fractures",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Donald Lalonde; Colton Boudreau",
+      "doi": "10.1016/j.hcl.2022.02.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Ring Finger",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Youssef Gam; Rami Ben Salah; Mounira Khezami",
+      "doi": "10.1016/j.hansur.2022.09.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Concurrent Ring Finger Middle Phalanx Fracture and Jersey Finger in a Rugby Player",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Jill G. Putnam; Jeffrey Yao",
+      "doi": "10.1142/s",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Decoding Joint-Level Hand Movements With Intracortical Neural Signals in a Human Brain\u2013Computer Interface",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Huaqin Sun; Yu Qi; Xiaodi Wu; Junming Zhu; Jianmin Zhang; Yueming Wang",
+      "doi": "10.1109/tcds.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Regenerative Peripheral Nerve Interfaces for Advanced Control of Upper Extremity Prosthetic Devices",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Nishant Ganesh Kumar; Theodore A. Kung; Paul S. Cederna",
+      "doi": "10.1016/j.hcl.2021.04.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Stimulating peripheral nerve regrowth to preserve muscle tissue",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Mara Johnson-Groh",
+      "doi": "10.1063/10.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Regenerative Peripheral Nerve Interface and the Future of Intuitive Control",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Melanie J. Wang; Theodore A. Kung; Paul S. Cederna; Stephen W.P. Kemp",
+      "doi": "10.1016/j.hcl.2026.03.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Peripheral Nerve Reconstruction",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Sami Tuffaha; Kevin C. Chung",
+      "doi": "10.1016/s0749-0712(24)00034-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Sonography-Guided Peripheral Nerve Blocks for Hand Surgery",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Amr Mohamed Aly",
+      "doi": "10.1016/j.hcl.2021.08.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Peripheral nerve blocks of wrist and finger flexors can increase hand opening in chronic hemiparetic stroke",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Hendrik A. Dewald; Jun Yao; Julius P. A. Dewald; Antoun Nader; Robert F. Kirsch",
+      "doi": "10.3389/fneur.2024.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Rare peripheral nerve tumor of the median nerve",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Rub\u00e9n Mon\u00e1rrez; Zhongming Chen; Jeremy A. Dubin; John V. Ingari",
+      "doi": "10.1016/j.hansur.2023.05.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Hybrid peripheral nerve sheath tumor of the hand",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Inga Langner; Matthias M\u00fchler",
+      "doi": "10.3238/arztebl.m2023.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Bridging the Nerve Gap: Techniques and Technology for Success in Peripheral Nerve Surgery",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Brent R. DeGeorge",
+      "doi": "10.1016/j.jhsg.2024.02.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Nerve transfers and central nervous system control in brachial plexus and peripheral nerve injuries: towards a balanced reconstructive strategy",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "G\u00fcrsel Leblebicio\u011flu; Mariano Socolovsky; Tim Hems; \u00c7i\u011fdem Ayhan Kuru; Zeynep Tuna Emir; Ufuk \u00d6zcan",
+      "doi": "10.1177/",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Peripheral Nerve Research",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Michael W. Neumeister; Elvin G. Zook",
+      "doi": "10.1177/",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Optimizing continuous passive motion duration following arthroscopic release of elbow contracture: a retrospective study",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Xunhao Wang; Qianyuan Liu; Jiyang Tan; Jiani Wu; Haoyu Yang; Fei Xiong; Qiuwen Ying; Jingyi Mi",
+      "doi": "10.1186/s12891-024-08108-",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Communicating branch between the dorsal branch of the palmar ulnar proper digital nerve and the palmar ulnar proper digital nerve of the little finger",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Yoan-Kim De Almeida; Sylvie Collon",
+      "doi": "10.1016/j.hansur.2026.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Musician\u2019s Focal Hand Dystonia\u2013 A 40-Year Story: Case Control Study, Role of Peripheral Nerve Entrapment (S43.010)",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Christopher Stephen; Hang Lee; Michael Charness",
+      "doi": "10.1212/wnl.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Polyethylene Glycol-Fusion Repair of Peripheral Nerve Injuries",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "George D. Bittner; Sami Tuffaha; Jaimie T. Shores",
+      "doi": "10.1016/j.hcl.2024.05.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "Response to Letter to editor for \u201cRare peripheral nerve tumor of the median nerve\u201d",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Rub\u00e9n Mon\u00e1rrez; Zhongming Chen; Jeremy A. Dubin; John V. Ingari",
+      "doi": "10.1016/j.hansur.2023.08.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "CORRESPONDENCE TO: Mon\u00e1rrez R, Chen Z, Dubin JA, Ingari JV. Rare peripheral nerve tumor of the median nerve. Hand Surg Rehabil 2023",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Andres A. Maldonado; Christopher J. Klein; Robert J. Spinner",
+      "doi": "10.1016/j.hansur.2023.07.",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    },
+    {
+      "title": "History of peripheral nerve injuries",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Carlos Irisarri",
+      "doi": "10.1177/",
+      "verification_status": "FAKE",
+      "verification_details": "DOI not found in CrossRef"
+    }
+  ],
   "verified_papers": [
     {
       "title": "Decoding hand kinetics and kinematics using somatosensory cortex activity in non-human primates",
@@ -129,6 +580,98 @@
           "Charles M. Greenspon",
           "Giacomo Valle",
           "Natalya D. Shelchkova"
+        ]
+      }
+    },
+    {
+      "title": "Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective matched pair case-control study",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Fatma Kumbara; Asl\u0131 Turan; Berna Orhan; \u00d6zge Tezen; Zuhal \u00d6zi\u015fler; Elif Yal\u00e7\u0131n",
+      "doi": "10.1038/s41394-026-00748-y",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective ma",
+        "real_authors": [
+          "Fatma Kumbara",
+          "Asl\u0131 Turan",
+          "Berna Orhan"
+        ]
+      }
+    },
+    {
+      "title": "Plasticity of the Injured Spinal Cord",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Nicolas Gu\u00e9rout",
+      "doi": "10.3390/cells",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Cells",
+        "real_authors": []
+      }
+    },
+    {
+      "title": "Assessment of Spinal Cord Injured Patients' Adherence toward Clean Intermittent Self-Catheterization in Baghdad City",
+      "category": "Emg Decoding On Spinal Cord Injured Patients",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "M. A Hussein; W. Mohammed",
+      "doi": "10.53350/pjmhs",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Pakistan Journal of Medical and Health Sciences",
+        "real_authors": []
+      }
+    },
+    {
+      "title": "Venous flap for immediate reconstruction of finger soft tissue defect",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Yakup Cil",
+      "doi": "10.5455/handmicrosurg.",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Hand and Microsurgery",
+        "real_authors": []
+      }
+    },
+    {
+      "title": "Ultrasound-Guided Intervention for Acute Finger Calcific Tendinitis",
+      "category": "Intracortical Decoding On Hand And Finger Kinematics",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Kubra Oktay; Behic Celik; Gokhan Meric",
+      "doi": "10.5455/handmicrosurg.",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Hand and Microsurgery",
+        "real_authors": []
+      }
+    },
+    {
+      "title": "Atypical Hypothenar Hammer Syndrome Mimicking A Peripheral Nerve Tumor",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "H zde; G ran; Kadir Ertem",
+      "doi": "10.5455/handmicrosurg.",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Hand and Microsurgery",
+        "real_authors": []
+      }
+    },
+    {
+      "title": "Malignant Peripheral Nerve Sheath Tumor of the Hand: A Case Report",
+      "category": "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control",
+      "source_file": "papers_2026-10-13.md",
+      "authors": "Sangita Jogdand; Rahul Rajendran",
+      "doi": "10.7759/cureus.",
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "A Review of the Current Literature on Cerebral Aneurysms",
+        "real_authors": [
+          "Tyler E Rice-Canetto",
+          "Arisa Ueno",
+          "Eric Whitney"
         ]
       }
     }

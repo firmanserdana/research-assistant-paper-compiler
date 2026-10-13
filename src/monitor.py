@@ -19,7 +19,7 @@ logger = logging.getLogger('literature_monitor')
 class LiteratureMonitor:
     """Monitor biorobotics literature and add new papers to Zotero library."""
     
-    def __init__(self, model="sonar-reasoning-pro", provider="perplexity"):
+    def __init__(self, model="sonar-reasoning-pro", provider="auto"):
         """
         Initialize the literature monitor.
         
@@ -28,7 +28,13 @@ class LiteratureMonitor:
             provider (str): AI provider - "perplexity", "anthropic", or "ollama"
         """
         # Check required environment variables
-        required_vars = ["ZOTERO_USER_ID", "ZOTERO_API_KEY"]
+        required_vars = []
+        # Crossref is a free, keyless fallback. This keeps discovery and site
+        # compilation running when an optional LLM credential expires.
+        if provider == "auto":
+            provider = "perplexity" if os.getenv("PPLX_API_KEY") else "crossref"
+        if provider == "perplexity" and not os.getenv("PPLX_API_KEY"):
+            provider = "crossref"
         if provider == "perplexity":
             required_vars.append("PPLX_API_KEY")
         elif provider == "anthropic":
@@ -38,20 +44,18 @@ class LiteratureMonitor:
             
         self._check_environment(required_vars)
         
-        self.client = self._get_client(provider)
+        self.provider = provider
+        self.client = None if provider == "crossref" else self._get_client(provider)
         self.model = model
         
-        try:
-            self.zot = zotero.Zotero(
-                os.getenv("ZOTERO_USER_ID"),
-                'user',
-                os.getenv("ZOTERO_API_KEY")
-            )
-            # Test connection
-            self.zot.collections()
-        except Exception as e:
-            logger.error(f"Failed to connect to Zotero: {str(e)}")
-            raise
+        self.zot = None
+        zotero_id, zotero_key = os.getenv("ZOTERO_USER_ID"), os.getenv("ZOTERO_API_KEY")
+        if zotero_id and zotero_key:
+            try:
+                self.zot = zotero.Zotero(zotero_id, 'user', zotero_key)
+                self.zot.collections()
+            except Exception as e:
+                logger.warning(f"Zotero unavailable; continuing without library sync: {e}")
         
         # Read search terms from search_terms.txt
         with open('search_terms.txt', 'r') as f:
@@ -217,6 +221,8 @@ class LiteratureMonitor:
         """
         try:
             logger.info(f"Researching term: {term}")
+            if self.provider == "crossref":
+                return (term, self._crossref_search(term))
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[{
@@ -241,8 +247,34 @@ class LiteratureMonitor:
             # Return both the term and the response content
             return (term, response.choices[0].message.content)
         except Exception as e:
-            logger.error(f"API request failed: {str(e)}")
-            return (term, "")  # Return empty string to handle gracefully
+            logger.warning(f"AI search failed for {term}; using Crossref: {e}")
+            try:
+                return (term, self._crossref_search(term))
+            except Exception as fallback_error:
+                logger.error(f"Crossref search failed for {term}: {fallback_error}")
+                return (term, "")
+
+    def _crossref_search(self, term):
+        """Find recent scholarly works through Crossref without an API key."""
+        response = requests.get(
+            "https://api.crossref.org/works",
+            params={"query": term, "filter": "from-pub-date:2021-01-01,type:journal-article", "rows": 20, "select": "title,author,DOI,published,subject,abstract"},
+            timeout=30,
+            headers={"User-Agent": "LiteratureMonitor/1.0 (mailto:contact@example.com)"},
+        )
+        response.raise_for_status()
+        items = response.json().get("message", {}).get("items", [])
+        records = []
+        for item in items:
+            title = (item.get("title") or [""])[0].strip()
+            doi = self._normalize_doi(item.get("DOI", ""))
+            authors = [" ".join(filter(None, [a.get("given"), a.get("family")])).strip() for a in item.get("author", [])]
+            authors = [a for a in authors if a]
+            if not title or not doi or not authors:
+                continue
+            keywords = item.get("subject", [])[:8] or [term]
+            records.extend([f"Title: {title}", f"Authors: {'; '.join(authors)}", f"DOI: {doi}", "TRL: 1", f"Keywords: {', '.join(keywords)}", ""])
+        return "\n".join(records)
             
     def _save_to_zotero(self, paper):
         """
@@ -251,6 +283,9 @@ class LiteratureMonitor:
         Args:
             paper (dict): Paper metadata
         """
+        if not self.zot:
+            logger.info("Skipping Zotero sync (credentials unavailable): %s", paper['title'])
+            return None
         try:
             # Parse authors more robustly
             creators = []
@@ -440,7 +475,9 @@ class LiteratureMonitor:
         
         # Verify DOI exists in CrossRef (skip for preprints like arXiv/bioRxiv)
         doi = paper.get('doi', '')
-        if doi and not any(prefix in doi for prefix in ['10.48550/', '10.1101/']):
+        # Crossref search results are already DOI records from Crossref; avoid
+        # re-querying the same service for every result in fallback mode.
+        if self.provider != "crossref" and doi and not any(prefix in doi for prefix in ['10.48550/', '10.1101/']):
             if not self._verify_doi(doi):
                 logger.warning(f"Rejecting paper with unverified DOI: {paper.get('title', 'Unknown')}")
                 return False
@@ -524,6 +561,8 @@ class LiteratureMonitor:
         Returns:
             str: Summary of the paper
         """
+        if not self.client:
+            return "Discovered through Crossref metadata search. Review the linked publication for the abstract and technical details."
         try:
             prompt = f"""Provide a concise 2-3 sentence technical summary of this paper:
             Title: {paper['title']}
@@ -612,12 +651,13 @@ class LiteratureMonitor:
         
         try:
             # Get existing DOIs to avoid duplicates
-            existing_items = self.zot.everything(self.zot.items())
+            existing_items = self.zot.everything(self.zot.items()) if self.zot else []
             existing_dois = {
                 item['data'].get('DOI', '').lower() 
                 for item in existing_items 
                 if 'DOI' in item['data']
             }
+            existing_dois.update(p.get('doi', '').lower() for p in self.load_papers_from_archives() if p.get('doi'))
             
             with ThreadPoolExecutor() as executor:
                 results = list(executor.map(self._deep_research_query, self.search_terms))

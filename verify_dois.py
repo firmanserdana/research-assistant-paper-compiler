@@ -40,8 +40,8 @@ def compute_title_similarity(t1, t2):
     c2 = re.sub(r'[^a-z0-9 ]', '', clean_title(t2).lower())
     if not c1 or not c2:
         return 0.0
-    # Perfect substring match (e.g. main title without subtitle)
-    if c1 in c2 or c2 in c1:
+    # Substring match (e.g. main title without subtitle) only if length ratio >= 0.50
+    if (c1 in c2 or c2 in c1) and (min(len(c1), len(c2)) / max(len(c1), len(c2)) >= 0.50):
         return 1.0
     w1 = set(c1.split())
     w2 = set(c2.split())
@@ -87,10 +87,14 @@ def verify_single_doi(doi):
                 with urllib.request.urlopen(req, timeout=12) as response:
                     data = json.loads(response.read().decode('utf-8'))
                     if 'message' in data:
-                        real_title = (data['message'].get('title') or [''])[0]
+                        msg = data['message']
+                        real_title = (msg.get('title') or [''])[0]
+                        sub = (msg.get('subtitle') or [''])[0]
+                        if sub and sub.lower() not in real_title.lower():
+                            real_title = f"{real_title}: {sub}"
                     else:
                         real_title = data['data']['attributes']['titles'][0]['title']
-                    return ("PREPRINT", {'real_title': real_title[:120]})
+                    return ("PREPRINT", {'real_title': re.sub(r'\s+', ' ', real_title).strip()})
             except Exception:
                 continue
         return ("FAKE", "Preprint DOI not found in Crossref or DataCite")
@@ -107,13 +111,16 @@ def verify_single_doi(doi):
                 data = json.loads(response.read().decode('utf-8'))
                 message = data.get('message', {})
                 real_title = (message.get('title') or [''])[0]
+                sub = (message.get('subtitle') or [''])[0]
+                if sub and sub.lower() not in real_title.lower():
+                    real_title = f"{real_title}: {sub}"
                 real_authors = message.get('author', [])
                 author_names = [
                     f"{a.get('given', '')} {a.get('family', '')}".strip()
                     for a in real_authors[:3]
                 ]
                 return ("VERIFIED", {
-                    'real_title': real_title[:120],
+                    'real_title': re.sub(r'\s+', ' ', real_title).strip(),
                     'real_authors': author_names
                 })
     except urllib.error.HTTPError as e:
@@ -197,12 +204,12 @@ def main():
         for p in papers_group:
             p_status = status
             p_details = details
-            if status == "VERIFIED" and isinstance(details, dict):
+            if status in ("VERIFIED", "PREPRINT") and isinstance(details, dict):
                 real_title = details.get('real_title', '')
                 claimed_title = p.get('title', '')
                 sim = compute_title_similarity(claimed_title, real_title)
                 p['title_similarity'] = round(sim, 3)
-                if sim < 0.40:
+                if sim < 0.70:
                     p_status = "FAKE"
                     p_details = {
                         'error': f"Title mismatch with CrossRef record (similarity: {sim:.2f})",

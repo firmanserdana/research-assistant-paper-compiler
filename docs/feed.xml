@@ -5,7 +5,7 @@
     <link>https://firmanserdana.github.io/research-assistant-paper-compiler/</link>
     <description>Automated academic literature tracking, verification, and web portal compilation for biorobotics, neural decoding, and neuroprosthetics research.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Oct 2026 19:01:30 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2026 19:03:27 GMT</lastBuildDate>
     <atom:link href="https://firmanserdana.github.io/research-assistant-paper-compiler/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients admitted to the intensive care unit: A retrospective study of 28 patients</title>
@@ -128,12 +128,28 @@
       <description><![CDATA[<p><strong>Authors:</strong> Kubra Oktay; Behic Celik; Gokhan Meric</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Clinical assessment of targeted ultrasound-guided percutaneous needle barbotage and corticosteroid injection for treating acute calcific tendinitis in digits.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.5455/handmicrosurg.216297">10.5455/handmicrosurg.216297</a></p>]]></description>
     </item>
     <item>
+      <title>Plasticity of the Injured Spinal Cord</title>
+      <link>https://doi.org/10.3390/cells10081886</link>
+      <guid isPermaLink="true">https://doi.org/10.3390/cells10081886</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>EMG Decoding on Spinal Cord Injured Patients</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Nicolas Guérout</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Comprehensive review examining cellular and molecular plasticity mechanisms following spinal cord injury, focusing on spontaneous remodeling and therapeutic strategies to promote functional motor recovery.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3390/cells10081886">10.3390/cells10081886</a></p>]]></description>
+    </item>
+    <item>
       <title>Malignant Peripheral Nerve Sheath Tumor of the Hand: A Case Report</title>
       <link>https://doi.org/10.7759/cureus.39205</link>
       <guid isPermaLink="true">https://doi.org/10.7759/cureus.39205</guid>
       <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
       <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
       <description><![CDATA[<p><strong>Authors:</strong> Sangita Jogdand; Rahul Rajendran</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Detailed clinical report describing presentation, diagnostic imaging, histopathology, and multidisciplinary surgical management of rare malignant peripheral nerve sheath tumors in the hand.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.7759/cureus.39205">10.7759/cureus.39205</a></p>]]></description>
+    </item>
+    <item>
+      <title>Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective matched pair case-control study</title>
+      <link>https://doi.org/10.1038/s41394-026-00748-y</link>
+      <guid isPermaLink="true">https://doi.org/10.1038/s41394-026-00748-y</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>EMG Decoding on Spinal Cord Injured Patients</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Fatma Kumbara; Aslı Turan; Berna Orhan; Özge Tezen; Zuhal Özişler; Elif Yalçın</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Retrospective matched pair case-control study examining clinical and biomechanical factors affecting patient falls during spinal cord injury rehabilitation to optimize safety protocols.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1038/s41394-026-00748-y">10.1038/s41394-026-00748-y</a></p>]]></description>
     </item>
     <item>
       <title>Atypical Hypothenar Hammer Syndrome Mimicking A Peripheral Nerve Tumor</title>
@@ -390,22 +406,6 @@
       <pubDate>Mon, 15 Sep 2025 00:00:00 GMT</pubDate>
       <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
       <description><![CDATA[<p><strong>Authors:</strong> [Not specified in summary; see PMC11927668 for full list]</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 5</p><p><strong>Summary:</strong> The key innovation of this pilot study is the development and clinical testing of an **AI-controlled transcutaneous peripheral nerve stimulation (TPNS) wearable device** that dynamically modulates neural activity to reduce essential tremor, using real-time neural signals and multimodal data to personalize therapy for each patient[1][2][3]. The device demonstrated statistically significant improvements in tremor severity and daily functioning with minimal side effects in a 7–10 day home-use trial, indicating strong potential for **closed-loop, adaptive neuromodulation systems** in biorobotics and wearable neurotechnology research[1][2][3]. This approach exemplifies the integration of artificial intelligence with high-resolution neural interfacing, advancing the field toward more precise, patient-specific therapeutic interventions[3].</p><p><strong>DOI:</strong> <a href="https://doi.org/10.5334/tohm.991">10.5334/tohm.991</a></p>]]></description>
-    </item>
-    <item>
-      <title>Decoding Handwriting Trajectories from Intracortical Brain Signals</title>
-      <link>https://doi.org/10.1002/advs.202505492</link>
-      <guid isPermaLink="true">https://doi.org/10.1002/advs.202505492</guid>
-      <pubDate>Mon, 25 Aug 2025 00:00:00 GMT</pubDate>
-      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Y. Zhang; J. Wang; et al.</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper introduces a method for **decoding precise handwriting trajectories from intracortical neural signals** recorded during attempted handwriting in a human participant[3][4]. The key innovation is the reconstruction of detailed hand kinematics directly from brain activity, enabling accurate and temporally-resolved tracking of handwriting movements, which advances neural signal processing for brain-computer interfaces[3][4]. This approach has significant implications for biorobotics, as it provides a foundation for developing neuroprosthetic devices capable of restoring fine motor control and naturalistic handwriting in individuals with paralysis[3][4].</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1002/advs.202505492">10.1002/advs.202505492</a></p>]]></description>
-    </item>
-    <item>
-      <title>Dynamic peripheral nerve stimulation can produce cortical responses that resemble natural touch</title>
-      <link>https://doi.org/10.3389/fnhum.2023.1083307</link>
-      <guid isPermaLink="true">https://doi.org/10.3389/fnhum.2023.1083307</guid>
-      <pubDate>Mon, 11 Aug 2025 00:00:00 GMT</pubDate>
-      <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
-      <description><![CDATA[<p><strong>Authors:</strong> J. Tanner; et al.</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> The paper’s key innovation is a **dynamic, biomimetic peripheral nerve stimulation** strategy—using time-varying, charge-balanced pulse trains—that drives somatosensory cortical activity patterns closely resembling those from natural punctate and vibrotactile touch.[1] By showing that peripheral biomimetic encoding can reproduce naturalistic spatiotemporal dynamics upstream in the CNS, it supports next‑generation **biorobotic neuroprostheses** that deliver more intuitive, low‑effort, real‑time sensory feedback for control and mobility.[1][2] For biorobotics, this implies improved embodiment and performance when sensor signals (e.g., from prosthetic feet or hands) are converted on‑the‑fly into **physiologically plausible** stimulation patterns, which has already yielded higher mobility and reduced cognitive load compared with discrete or linear encoders in neuro‑robotic implementations.[1][2]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3389/fnhum.2023.1083307">10.3389/fnhum.2023.1083307</a></p>]]></description>
     </item>
   </channel>
 </rss>

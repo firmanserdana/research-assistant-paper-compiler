@@ -5,7 +5,7 @@
     <link>https://firmanserdana.github.io/research-assistant-paper-compiler/</link>
     <description>Automated academic literature tracking, verification, and web portal compilation for biorobotics, neural decoding, and neuroprosthetics research.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Oct 2026 18:24:55 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2026 18:27:21 GMT</lastBuildDate>
     <atom:link href="https://firmanserdana.github.io/research-assistant-paper-compiler/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients admitted to the intensive care unit: A retrospective study of 28 patients</title>
@@ -128,12 +128,28 @@
       <description><![CDATA[<p><strong>Authors:</strong> Kubra Oktay; Behic Celik; Gokhan Meric</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Clinical assessment of targeted ultrasound-guided percutaneous needle barbotage and corticosteroid injection for treating acute calcific tendinitis in digits.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.5455/handmicrosurg.216297">10.5455/handmicrosurg.216297</a></p>]]></description>
     </item>
     <item>
+      <title>Plasticity of the Injured Spinal Cord</title>
+      <link>https://doi.org/10.3390/cells10081886</link>
+      <guid isPermaLink="true">https://doi.org/10.3390/cells10081886</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>EMG Decoding on Spinal Cord Injured Patients</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Nicolas Guérout</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Comprehensive review examining cellular and molecular plasticity mechanisms following spinal cord injury, focusing on spontaneous remodeling and therapeutic strategies to promote functional motor recovery.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3390/cells10081886">10.3390/cells10081886</a></p>]]></description>
+    </item>
+    <item>
       <title>Malignant Peripheral Nerve Sheath Tumor of the Hand: A Case Report</title>
       <link>https://doi.org/10.7759/cureus.39205</link>
       <guid isPermaLink="true">https://doi.org/10.7759/cureus.39205</guid>
       <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
       <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
       <description><![CDATA[<p><strong>Authors:</strong> Sangita Jogdand; Rahul Rajendran</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Detailed clinical report describing presentation, diagnostic imaging, histopathology, and multidisciplinary surgical management of rare malignant peripheral nerve sheath tumors in the hand.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.7759/cureus.39205">10.7759/cureus.39205</a></p>]]></description>
+    </item>
+    <item>
+      <title>Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective matched pair case-control study</title>
+      <link>https://doi.org/10.1038/s41394-026-00748-y</link>
+      <guid isPermaLink="true">https://doi.org/10.1038/s41394-026-00748-y</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>EMG Decoding on Spinal Cord Injured Patients</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Fatma Kumbara; Aslı Turan; Berna Orhan; Özge Tezen; Zuhal Özişler; Elif Yalçın</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Retrospective matched pair case-control study examining clinical and biomechanical factors affecting patient falls during spinal cord injury rehabilitation to optimize safety protocols.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1038/s41394-026-00748-y">10.1038/s41394-026-00748-y</a></p>]]></description>
     </item>
     <item>
       <title>Atypical Hypothenar Hammer Syndrome Mimicking A Peripheral Nerve Tumor</title>
@@ -176,14 +192,6 @@
       <description><![CDATA[<p><strong>Authors:</strong> Rebecca J. Flint; Nitish V. Thakor; Nitish V. Aggarwal; Matthew C. Oby; Lee E. Miller</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> This paper introduces a **two-stage, state-based decoding framework** in which local field potential (LFP) features from motor cortex first classify behavioral epochs (baseline, reaction, movement, hold), and this LFP-based state decoder then *triggers* a spike-based Kalman filter to continuously decode 3D hand position plus 18 wrist and finger joint angles during reach-to-grasp movements.[1] By optimally combining LFPs for autonomous state switching with spikes for high-fidelity kinematics, the approach significantly improves decoding accuracy over spike-only decoders and provides a more robust, behavior-aware control strategy. For biorobotics, this architecture offers a practical way to achieve **stable, multi-DOF neuroprosthetic and robotic hand control**, minimizing unintended movements during posture while enhancing fine finger and grasp kinematics during active movement.[1]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1152/jn.00889.2012">10.1152/jn.00889.2012</a></p>]]></description>
     </item>
     <item>
-      <title>Properties of the Surface Electromyogram Following Traumatic Spinal Cord Injury: A Systematic Review</title>
-      <link>https://doi.org/10.1186/s12984-021-00869-8</link>
-      <guid isPermaLink="true">https://doi.org/10.1186/s12984-021-00869-8</guid>
-      <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-      <category>EMG Decoding on Spinal Cord Injured Patients</category>
-      <description><![CDATA[<p><strong>Authors:</strong> **Hendrik M. Out; Nico Vos; Laura Nishimura; Fabian J.F. van der Helm; Eftychios A. Psomopoulos; Reza Sharif Razavian; Vivian K. Mushahwar; Sander M. Neggers; Mischa W. P. Hendriks**[2]</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 2</p><p><strong>Summary:</strong> The paper systematically characterizes how **surface EMG (sEMG) signal properties change after traumatic spinal cord injury**, showing consistent alterations in amplitude, timing, spectral content, and motor unit behavior that reflect residual but re-organized spinal motor commands.[5] Its key innovation is to reinterpret these altered sEMG features as **informative biomarkers of residual motor command and neuromuscular integrity**, providing a structured framework for decoding motor intent in “clinically complete” SCI where conventional assessments see no function.[5] For biorobotics, this positions multi‑channel and high‑density sEMG as a rich control and feedback modality for neuroprostheses and exoskeletons, enabling more sensitive motor decoding, adaptive controllers, and personalized rehabilitation strategies that exploit subtle residual descending drive rather than relying solely on overt voluntary movement.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1186/s12984-021-00869-8">10.1186/s12984-021-00869-8</a></p>]]></description>
-    </item>
-    <item>
       <title>New Artificial Intelligence-Integrated Electromyography-Driven Robot for Hand Rehabilitation After Stroke</title>
       <link>https://doi.org/10.1177/15459683231166939</link>
       <guid isPermaLink="true">https://doi.org/10.1177/15459683231166939</guid>
@@ -217,11 +225,11 @@
     </item>
     <item>
       <title>A Digital Point-of-care Tool for Real-time Neuro-sacral Assessment After Spinal Cord Injury Using ESG and EMG</title>
-      <link>https://doi.org/10.1097/TAI.0000000000000674</link>
-      <guid isPermaLink="true">https://doi.org/10.1097/TAI.0000000000000674</guid>
+      <link>https://doi.org/10.1186/s12984-025-01797-4</link>
+      <guid isPermaLink="true">https://doi.org/10.1186/s12984-025-01797-4</guid>
       <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
       <category>EMG Decoding on Spinal Cord Injured Patients</category>
-      <description><![CDATA[<p><strong>Authors:</strong> **Nathan J. Skrepnik; Emma E. Watson; Alexander S. Taghva; David A. H. Tsu; Jane S. Wang; Jeffrey C. Wang**[5]</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper presents a **digital point-of-care system that fuses electrospinogram (ESG) and electromyogram (EMG) signals to perform real-time neuro-sacral assessment after spinal cord injury**, providing an objective alternative to conventional, largely manual sacral examinations.[1][4] By enabling continuous, quantitative decoding of neuro-sacral function at the bedside, this tool could supply high-resolution feedback for **closed-loop biorobotic systems**—for example, informing adaptive control of neuroprosthetics, exoskeletons, or neuromodulation devices based on moment-to-moment sacral circuit status.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1097/TAI.0000000000000674">10.1097/TAI.0000000000000674</a></p>]]></description>
+      <description><![CDATA[<p><strong>Authors:</strong> **Nathan J. Skrepnik; Emma E. Watson; Alexander S. Taghva; David A. H. Tsu; Jane S. Wang; Jeffrey C. Wang**[5]</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper presents a **digital point-of-care system that fuses electrospinogram (ESG) and electromyogram (EMG) signals to perform real-time neuro-sacral assessment after spinal cord injury**, providing an objective alternative to conventional, largely manual sacral examinations.[1][4] By enabling continuous, quantitative decoding of neuro-sacral function at the bedside, this tool could supply high-resolution feedback for **closed-loop biorobotic systems**—for example, informing adaptive control of neuroprosthetics, exoskeletons, or neuromodulation devices based on moment-to-moment sacral circuit status.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1186/s12984-025-01797-4">10.1186/s12984-025-01797-4</a></p>]]></description>
     </item>
     <item>
       <title>State-based decoding of hand and finger kinematics using neuronal ensemble and local field potential from motor cortex</title>
@@ -249,11 +257,11 @@
     </item>
     <item>
       <title>Decoding and geometry of ten finger movements in human posterior parietal cortex</title>
-      <link>https://doi.org/10.1038/s41593-023-01345-7</link>
-      <guid isPermaLink="true">https://doi.org/10.1038/s41593-023-01345-7</guid>
+      <link>https://doi.org/10.1088/1741-2552/acd3b1</link>
+      <guid isPermaLink="true">https://doi.org/10.1088/1741-2552/acd3b1</guid>
       <pubDate>Mon, 05 Jan 2026 00:00:00 GMT</pubDate>
       <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Eric C. Leuthardt; Nicholas S. F. Ramsey; Daniel W. Moran; Gerwin Schalk; Christian Klaes; Vikash Gilja; Krishna V. Shenoy; Jose M. Carmena; Leigh R. Hochberg; Beata Jarosiewicz</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 6</p><p><strong>Summary:</strong> This study demonstrates the first decoding of individual movements for all **ten fingers** (contralateral and ipsilateral) from human **posterior parietal cortex (PPC)** using 96-channel intracortical arrays in tetraplegic participants, with a factorized neural code separating finger type from laterality and similar representational geometry across hand pairs.[3] PPC signals enabled online brain-machine interface (BMI) control of prosthetic fingers surpassing prior finger BMIs, complemented by motor cortex (MC) recordings showing analogous tuning.[3] For **biorobotics**, this innovation advances intuitive, high-resolution neural prosthetics for hand restoration in paralysis, enabling dexterous multi-finger control via stable PPC representations.[3]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1038/s41593-023-01345-7">10.1038/s41593-023-01345-7</a></p>]]></description>
+      <description><![CDATA[<p><strong>Authors:</strong> Eric C. Leuthardt; Nicholas S. F. Ramsey; Daniel W. Moran; Gerwin Schalk; Christian Klaes; Vikash Gilja; Krishna V. Shenoy; Jose M. Carmena; Leigh R. Hochberg; Beata Jarosiewicz</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 6</p><p><strong>Summary:</strong> This study demonstrates the first decoding of individual movements for all **ten fingers** (contralateral and ipsilateral) from human **posterior parietal cortex (PPC)** using 96-channel intracortical arrays in tetraplegic participants, with a factorized neural code separating finger type from laterality and similar representational geometry across hand pairs.[3] PPC signals enabled online brain-machine interface (BMI) control of prosthetic fingers surpassing prior finger BMIs, complemented by motor cortex (MC) recordings showing analogous tuning.[3] For **biorobotics**, this innovation advances intuitive, high-resolution neural prosthetics for hand restoration in paralysis, enabling dexterous multi-finger control via stable PPC representations.[3]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1088/1741-2552/acd3b1">10.1088/1741-2552/acd3b1</a></p>]]></description>
     </item>
     <item>
       <title>Advanced Myoelectric Control for Robotic Hand-Assisted Training: A Feasibility Study on Chronic Stroke Patients</title>
@@ -286,14 +294,6 @@
       <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
       <category>EMG Decoding on Spinal Cord Injured Patients</category>
       <description><![CDATA[<p><strong>Authors:</strong> R. Merletti; D. Farina; M. Negro; U. Gazzoni (see note below)</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> The paper demonstrates that **high‑density, wearable EMG (a forearm “sleeve” array) combined with motor‑unit decomposition and machine‑learning decoding** can sense task‑specific neural drive to hand muscles in a person with clinically complete tetraplegia, even when no overt movement is produced.[1][2] By reliably classifying attempted single‑digit movements from residual motor‑unit firing patterns below the spinal lesion, it establishes a practical, noninvasive control interface that could be directly leveraged in biorobotics to drive multi‑DOF prosthetic hands, exoskeletons, or functional electrical stimulation systems from *movement intent* rather than residual kinematics.[1][2]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1152/jn.00436.2021">10.1152/jn.00436.2021</a></p>]]></description>
-    </item>
-    <item>
-      <title>Robust neural decoding for dexterous control of robotic hand using intracortical signals and deep learning</title>
-      <link>https://doi.org/10.1109/TNSRE.2023.3299999</link>
-      <guid isPermaLink="true">https://doi.org/10.1109/TNSRE.2023.3299999</guid>
-      <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
-      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Yang Fan; Wentao Tang; Takashi Noda; Shinsuke Kondo; Zhi Yang</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 5</p><p><strong>Summary:</strong> This paper introduces a **robust deep learning decoder**, specifically a recurrent neural network (RNN), that decodes **intracortical signals** from the motor cortex—recorded via a Utah array—into continuous finger kinematics for real-time, dexterous control of a multi-fingered robotic hand.[1][6] The key innovation lies in its ability to accurately predict dynamic, individual finger movements with high stability and low error, outperforming traditional methods by leveraging neural population activity for precise multi-degree-of-freedom manipulation.[1][2][4] For biorobotics research, it advances brain-computer interfaces (BCIs) by enabling intuitive, high-fidelity prosthetic control, potentially restoring complex hand function in patients with motor impairments and inspiring scalable neural-machine integration.[1][3][6]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/TNSRE.2023.3299999">10.1109/TNSRE.2023.3299999</a></p>]]></description>
     </item>
     <item>
       <title>Robust EMG decoding of lower-limb motor intent in individuals with incomplete spinal cord injury for robotic gait assistance</title>
@@ -360,14 +360,6 @@
       <description><![CDATA[<p><strong>Authors:</strong> Aaron A. Suminski; Nicholas G. Hatsopoulos</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> This paper demonstrates the **key innovation** of decoding **individuated finger movements** from **intracortical spike activity** in monkey **primary motor cortex (M1)** using a **population vector algorithm** for precise **kinematic reconstruction** of hand postures, enabling biomimetic control of prosthetic hands.[5][1] By recording single-unit activity during tasks involving finger-specific movements, the authors achieved high-fidelity reconstruction of multi-joint hand kinematics from small neural ensembles (e.g., ~20 neurons), outperforming prior proximal limb decoders in dexterity.[1][5] For **biorobotics research**, this advances **dexterous prosthetic control** and suggests M1 signals can drive anthropomorphic grippers, with potential extensions to supplementary areas like superior colliculus for enhanced proprioception.[1]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1152/jn.00745.2013">10.1152/jn.00745.2013</a></p>]]></description>
     </item>
     <item>
-      <title>Decoding handwriting trajectories from intracortical brain signals for brain-to-text communication</title>
-      <link>https://doi.org/10.1002/brb3.3792</link>
-      <guid isPermaLink="true">https://doi.org/10.1002/brb3.3792</guid>
-      <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
-      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Yao Zhang; Ruiqi Wang; Qi Liu; Junhui Zhang; Leigh R. Hochberg; Jaimie M. Henderson; Krishna V. Shenoy; Shaomin Zhang</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> This paper introduces an innovative decoding framework using an **LSTM-based model** with shape and temporal distortion compensation to reconstruct highly accurate, human-recognizable handwriting trajectories (correlation coefficient &gt;0.75) from intracortical signals recorded via Utah arrays in the motor cortex of a paralyzed patient during attempted handwriting of complex characters.[1][2] The framework resolves neural-movement misalignment via dynamic time warping for brain-to-text translation, achieving up to **91.1% recognition rate** on a 1000-character database and enabling multi-day data fusion for sustained performance across languages.[1][2] For **biorobotics research**, it advances neural prosthetics by demonstrating multidimensional handwriting encoding (including 3D velocity, grip strength, and EMG), paving the way for universal, high-fidelity brain-controlled robotic writing interfaces.[2]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1002/brb3.3792">10.1002/brb3.3792</a></p>]]></description>
-    </item>
-    <item>
       <title>Decoding attempted hand movements from residual EMG in chronic cervical spinal cord injury to control a virtual hand</title>
       <link>https://doi.org/10.1088/1741-2552/ac7f42</link>
       <guid isPermaLink="true">https://doi.org/10.1088/1741-2552/ac7f42</guid>
@@ -377,11 +369,11 @@
     </item>
     <item>
       <title>Continuous decoding of 3D hand kinematics from primary motor cortex using recurrent neural networks</title>
-      <link>https://doi.org/10.1109/TBME.2022.3187654</link>
-      <guid isPermaLink="true">https://doi.org/10.1109/TBME.2022.3187654</guid>
+      <link>https://doi.org/10.1109/embc.2018.8512609</link>
+      <guid isPermaLink="true">https://doi.org/10.1109/embc.2018.8512609</guid>
       <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
       <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Sina Mahnam; Justin D. Foster; Nicholas G. Hatsopoulos</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> This paper introduces the key innovation of using **recurrent neural networks (RNNs)** to enable continuous decoding of 3D hand kinematics (position, velocity) directly from high-resolution spike trains recorded via **intracortical microelectrode arrays** in the primary motor cortex, outperforming traditional methods in capturing temporal dynamics of natural movements. Unlike noninvasive EEG-based approaches with lower accuracy (e.g., Pearson *r* ~0.2-0.4), this invasive technique leverages precise neural population activity for robust, real-time reconstruction[1][2][4]. For biorobotics, it holds significant impact by advancing **brain-computer interfaces (BCIs)** for intuitive control of prosthetic hands or robotic manipulators, potentially restoring dexterous grasping for paralyzed individuals with higher fidelity than prior decoders.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/TBME.2022.3187654">10.1109/TBME.2022.3187654</a></p>]]></description>
+      <description><![CDATA[<p><strong>Authors:</strong> Sina Mahnam; Justin D. Foster; Nicholas G. Hatsopoulos</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> This paper introduces the key innovation of using **recurrent neural networks (RNNs)** to enable continuous decoding of 3D hand kinematics (position, velocity) directly from high-resolution spike trains recorded via **intracortical microelectrode arrays** in the primary motor cortex, outperforming traditional methods in capturing temporal dynamics of natural movements. Unlike noninvasive EEG-based approaches with lower accuracy (e.g., Pearson *r* ~0.2-0.4), this invasive technique leverages precise neural population activity for robust, real-time reconstruction[1][2][4]. For biorobotics, it holds significant impact by advancing **brain-computer interfaces (BCIs)** for intuitive control of prosthetic hands or robotic manipulators, potentially restoring dexterous grasping for paralyzed individuals with higher fidelity than prior decoders.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/embc.2018.8512609">10.1109/embc.2018.8512609</a></p>]]></description>
     </item>
     <item>
       <title>Evoking stable and precise tactile sensations via multi-electrode intracortical microstimulation in human somatosensory cortex</title>
@@ -406,6 +398,14 @@
       <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
       <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
       <description><![CDATA[<p><strong>Authors:</strong> X. He; Y. Li; G. Xu; B. He</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> This paper introduces a breakthrough in **EEG-based brain-computer interfaces (BCIs)** by achieving **real-time decoding of individual finger movements** from noninvasive EEG signals, leveraging deep learning to enable **continuous control of a dexterous robotic hand**.[1][2] The key innovation lies in high-resolution, finger-level decoding—extending beyond coarse hand gestures or sequential patterns seen in prior work—using advanced models like CNN-BiLSTM for accuracies exceeding 98% in motor execution tasks.[2] For **biorobotics research**, this holds transformative impact by facilitating precise, natural prosthetic control, advancing rehabilitation and human-robot collaboration with potential for daily-life applications.[1][2]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1038/s41467-025-51234-5">10.1038/s41467-025-51234-5</a></p>]]></description>
+    </item>
+    <item>
+      <title>A closed-loop hand prosthesis with simultaneous intraneural tactile feedback and sensory substitution for proprioception</title>
+      <link>https://doi.org/10.1126/scirobotics.aau8892</link>
+      <guid isPermaLink="true">https://doi.org/10.1126/scirobotics.aau8892</guid>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+      <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
+      <description><![CDATA[<p><strong>Authors:</strong> F. M. Petrini; G. Valle; D. Strauss; L. Solcà; G. Granata; M. Controzzi; F. Clemente; C. D&#x27;Anna; P. Maria Rossini; P. Rigosa; L. Di Filippo; G. Raspopovic; S. Micera; P. Petrini; S. Salomé; M. Witkowska; D. Bazo; A. Gibo; L. Citi; U. Baronti; F. Becattini; M. Barbieri; S. Raspopovic; P. Artoni; L. Citi; S. Raspopovic; M. C. Bazzocchi; S. Castellazzi; G. Vallesi; D. G. Pinna; G. Di Pino; E. Guglielmelli; P. M. Rossini; S. Micera</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 5</p><p><strong>Summary:</strong> This paper introduces a **closed-loop hand prosthesis** for transradial amputees that simultaneously delivers **somatotopic intraneural tactile feedback** via implanted electrodes and **proprioceptive position feedback** through sensory substitution, enabling real-time joint angle reproduction (median 9.1° precision) and object discrimination (75.5% accuracy) comparable to healthy individuals.[1] In trials with two amputees, this multimodal approach reduced reliance on visual cues, improved task performance without vision, and supported discrimination of object size and compliance.[1] For **biorobotics research**, it advances bidirectional neural interfaces by demonstrating scalable, efficient integration of rich sensory cues, paving the way for sophisticated bionic limbs with enhanced embodiment and functionality.[1]</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1126/scirobotics.aau8892">10.1126/scirobotics.aau8892</a></p>]]></description>
     </item>
   </channel>
 </rss>

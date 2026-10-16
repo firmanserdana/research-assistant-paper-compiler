@@ -1891,5 +1891,473 @@
       ]
     },
     "checked_at": 1792104148.7106314
+  },
+  "10.1017/wtc.2020.9": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Improvement of hand functions of spinal cord injury patients with electromyography-driven hand exoskeleton: A feasibilit",
+      "real_authors": [
+        "Youngmok Yun",
+        "Youngjin Na",
+        "Paria Esmatloo"
+      ]
+    },
+    "checked_at": 1792175494.6398702
+  },
+  "10.1109/iembs.2009.5334129": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Cortical decoding of individual finger and wrist kinematics for an upper-limb neuroprosthesis",
+      "real_authors": [
+        "V. Aggarwal",
+        "F. Tenore",
+        "S. Acharya"
+      ]
+    },
+    "checked_at": 1792175495.1887774
+  },
+  "10.1101/2022.12.07.22283227": {
+    "status": "PREPRINT",
+    "details": "Preprint - accepted without remote lookup",
+    "checked_at": 1792175495.3890471
+  },
+  "10.1109/tcds.2024.3409555/mm1": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding Joint-Level Hand Movements with Intracortical Neural Signals in a Human Brain-Computer Interface_supp1-3409555.",
+      "real_authors": [
+        "Yu Qi"
+      ]
+    },
+    "checked_at": 1792175495.9293785
+  },
+  "10.1088/1741-2560/13/3/036001": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Restoring motor control and sensory feedback in people with upper extremity amputations using arrays of 96 microelectrod",
+      "real_authors": [
+        "T S Davis",
+        "H A C Wark",
+        "D T Hutchinson"
+      ]
+    },
+    "checked_at": 1792175496.5665543
+  },
+  "10.1088/1741-2552/aae398": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Biomimetic encoding model for restoring touch in bionic hands through a nerve interface",
+      "real_authors": [
+        "Elizaveta V Okorokova",
+        "Qinpu He",
+        "Sliman J Bensmaia"
+      ]
+    },
+    "checked_at": 1792175497.102636
+  },
+  "10.1109/cne.2007.369723": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding grasp aperture from motor-cortical population activity",
+      "real_authors": [
+        "Panagiotis K. Artemiadis",
+        "Gregory Shakhnarovich",
+        "Carlos Vargas-Irwin"
+      ]
+    },
+    "checked_at": 1792175497.6385012
+  },
+  "10.1088/1741-2552/aa80bd": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neural control of finger movement via intracortical brain\u2013machine interface",
+      "real_authors": [
+        "Z T Irwin",
+        "K E Schroeder",
+        "P P Vu"
+      ]
+    },
+    "checked_at": 1792175498.2841687
+  },
+  "10.1016/b978-0-12-420045-6.00005-5": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Electrical Stimulation for Promoting Peripheral Nerve Regeneration",
+      "real_authors": [
+        "Kirsten Haastert-Talini",
+        "Claudia Grothe"
+      ]
+    },
+    "checked_at": 1792175498.9276488
+  },
+  "10.1016/j.compbiomed.2023.107139": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Robust neural decoding for dexterous control of robotic hand kinematics",
+      "real_authors": [
+        "Jiahao Fan",
+        "Luis Vargas",
+        "Derek G. Kamper"
+      ]
+    },
+    "checked_at": 1792175499.5804248
+  },
+  "10.1016/j.xpro.2024.103503": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Protocol for state-based decoding of hand movement parameters using neural signals",
+      "real_authors": [
+        "Mohammad Taghi Ghodrati",
+        "Sajedeh Aghababaei",
+        "Alavie Mirfathollahi"
+      ]
+    },
+    "checked_at": 1792175500.122047
+  },
+  "10.1038/sc.2014.115": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Response to \u2018Preserved corticospinal conduction without voluntary movement after spinal cord injury\u2019",
+      "real_authors": [
+        "B Calancie",
+        "N Alexeeva"
+      ]
+    },
+    "checked_at": 1792175500.6647568
+  },
+  "10.3389/fnhum.2025.1532783": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding the brain-machine interaction for upper limb assistive technologies: advances and challenges",
+      "real_authors": [
+        "Sutirtha Ghosh",
+        "Rohit Kumar Yadav",
+        "Sunaina Soni"
+      ]
+    },
+    "checked_at": 1792175501.3009343
+  },
+  "10.1152/jn.00220.2021": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements of a person with tetraplegia using",
+      "real_authors": [
+        "Jordyn E. Ting",
+        "Alessandro Del Vecchio",
+        "Devapratim Sarma"
+      ]
+    },
+    "checked_at": 1792175501.8363385
+  },
+  "10.5334/tohm.991": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Essential Tremor",
+      "real_authors": [
+        "Richard Dewey",
+        "Stuart Isaacson",
+        "Richard Dewey"
+      ]
+    },
+    "checked_at": 1792175502.4280524
+  },
+  "10.1016/j.brs.2018.12.221": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Proceedings #52: Development of surface EMG- triggered closed loop stimulation for individuals with spinal cord injury",
+      "real_authors": [
+        "Yu-Kuang Wu",
+        "Sana Saeed",
+        "James M. Limonta"
+      ]
+    },
+    "checked_at": 1792175502.9528074
+  },
+  "10.1101/2024.04.22.590630": {
+    "status": "PREPRINT",
+    "details": "Preprint - accepted without remote lookup",
+    "checked_at": 1792175503.1531925
+  },
+  "10.3390/biomimetics11020104": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Review of Soft Robotic Gloves and Functional Electrical Stimulation Affecting Hand Function Rehabilitation for Stroke Pa",
+      "real_authors": [
+        "Xiaohui Wang",
+        "Yilin Fang",
+        "Zhaowei Zhang"
+      ]
+    },
+    "checked_at": 1792175504.0275562
+  },
+  "10.1101/2021.02.24.21250962": {
+    "status": "PREPRINT",
+    "details": "Preprint - accepted without remote lookup",
+    "checked_at": 1792175504.2277274
+  },
+  "10.3389/fnins.2025.1623380": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Convolutional neural networks decode finger movements in motor sequence learning from MEG data",
+      "real_authors": [
+        "Aleksey Zabolotniy",
+        "Russell Weili Chan",
+        "Victoria Moiseeva"
+      ]
+    },
+    "checked_at": 1792175504.901747
+  },
+  "10.1109/embc.2018.8512609": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding hindlimb kinematics from primate motor cortex using long short-term memory recurrent neural networks",
+      "real_authors": [
+        "Y. Wang",
+        "W. Truccolo",
+        "D. A. Borton"
+      ]
+    },
+    "checked_at": 1792175505.4419007
+  },
+  "10.1088/1741-2552/acd3b1": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding and geometry of ten finger movements in human posterior parietal cortex and motor cortex",
+      "real_authors": [
+        "Charles Guan",
+        "Tyson Aflalo",
+        "Kelly Kadlec"
+      ]
+    },
+    "checked_at": 1792175506.0974617
+  },
+  "10.1186/s12984-025-01797-4": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Development and validation of the electrosacrogram (ESG): a digital point-of-care tool for real-time neuro-sacral assess",
+      "real_authors": [
+        "Maude Duguay",
+        "Jean-Marc Mac-Thiong",
+        "Juan-David Cifuentes-Hernandez"
+      ]
+    },
+    "checked_at": 1792175506.723784
+  },
+  "10.1109/icra40945.2020.9196629": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "High-Density Electromyography Based Control of Robotic Devices: On the Execution of Dexterous Manipulation Tasks",
+      "real_authors": [
+        "Anany Dwivedi",
+        "Jaime Lara",
+        "Leo K. Cheng"
+      ]
+    },
+    "checked_at": 1792175832.7592363
+  },
+  "10.1016/j.isci.2023.107808": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding hand kinetics and kinematics using somatosensory cortex activity in active and passive movement",
+      "real_authors": [
+        "Alavie Mirfathollahi",
+        "Mohammad Taghi Ghodrati",
+        "Vahid Shalchyan"
+      ]
+    },
+    "checked_at": 1792175833.4060717
+  },
+  "10.1109/ner52421.2023.10123762": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Closed-Loop Control of Grasp Force With Biorealistic Hand Prosthesis",
+      "real_authors": [
+        "Zhuozhi Zhang",
+        "Chih-Hong Chou",
+        "Ning Lan"
+      ]
+    },
+    "checked_at": 1792175833.9516628
+  },
+  "10.1088/1741-2552/ab95ea": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding hand kinematics from population responses in sensorimotor cortex during grasping",
+      "real_authors": [
+        "Elizaveta V Okorokova",
+        "James M Goodman",
+        "Nicholas G Hatsopoulos"
+      ]
+    },
+    "checked_at": 1792175834.6066477
+  },
+  "10.1109/tbme.2010.2047015": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding 3-D Reach and Grasp Kinematics From High-Frequency Local Field Potentials in Primate Primary Motor Cortex",
+      "real_authors": [
+        "Jun Zhuang",
+        "Wilson Truccolo",
+        "Carlos Vargas-Irwin"
+      ]
+    },
+    "checked_at": 1792175835.1366484
+  },
+  "10.1371/journal.pone.0085192": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding Individual Finger Movements from One Hand Using Human EEG Signals",
+      "real_authors": [
+        "Ke Liao",
+        "Ran Xiao",
+        "Jania Gonzalez"
+      ]
+    },
+    "checked_at": 1792175835.7709637
+  },
+  "10.1088/1741-2560/13/1/016001": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Sensory feedback by peripheral nerve stimulation improves task performance in individuals with upper limb loss using a m",
+      "real_authors": [
+        "Matthew Schiefer",
+        "Daniel Tan",
+        "Steven M Sidek"
+      ]
+    },
+    "checked_at": 1792175836.411377
+  },
+  "10.1088/1741-2552/ad331f": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding of unimanual and bimanual reach-and-grasp actions from EMG and IMU signals in persons with cervical spinal cord",
+      "real_authors": [
+        "Marvin Wolf",
+        "R\u00fcdiger Rupp",
+        "Andreas Schwarz"
+      ]
+    },
+    "checked_at": 1792175837.0647726
+  },
+  "10.3390/biomimetics10030130": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "The Next Frontier in Neuroprosthetics: Integration of Biomimetic Somatosensory Feedback",
+      "real_authors": [
+        "Yucheng Tian",
+        "Giacomo Valle",
+        "Paul Cederna"
+      ]
+    },
+    "checked_at": 1792175837.8330185
+  },
+  "10.1109/tro.2022.3170720": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Surgically Implanted Electrodes Enable Real-Time Finger and Grasp Pattern Recognition for Prosthetic Hands",
+      "real_authors": [
+        "Alex K. Vaskov",
+        "Philip P. Vu",
+        "Naia North"
+      ]
+    },
+    "checked_at": 1792175838.3727565
+  },
+  "10.1109/embc.2012.6346283": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding of finger, hand and arm kinematics using switching linear dynamical systems with pre-motor cortical ensembles",
+      "real_authors": [
+        "Xiaoxu Kang",
+        "M. H. Schieber",
+        "N. V. Thakor"
+      ]
+    },
+    "checked_at": 1792175838.920803
+  },
+  "10.1186/s12984-022-01043-1": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Soft robotics and functional electrical stimulation advances for restoring hand function in people with SCI: a narrative",
+      "real_authors": [
+        "Lucas R. L. Cardoso",
+        "Vanesa Bochkezanian",
+        "Arturo Forner-Cordero"
+      ]
+    },
+    "checked_at": 1792175839.6603444
+  },
+  "10.1109/mrai65197.2025.11135678": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A Review of Electrode Technology in Functional Electrical Stimulation (FES) Hand Rehabilitation Systems",
+      "real_authors": [
+        "Xinyu Zhao",
+        "Mingxu Sun",
+        "Haidi Wu"
+      ]
+    },
+    "checked_at": 1792175840.1917384
+  },
+  "10.1007/978-1-4471-2277-7_7": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Functional Electrical Stimulation Therapy: Recovery of Function Following Spinal Cord Injury and Stroke",
+      "real_authors": [
+        "Milos R. Popovic",
+        "Kei Masani",
+        "Silvestro Micera"
+      ]
+    },
+    "checked_at": 1792175840.849404
+  },
+  "10.1016/b978-012759440-8/50008-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Individuated Finger Movements",
+      "real_authors": [
+        "Marc H. Schieber"
+      ]
+    },
+    "checked_at": 1792175841.3936927
+  },
+  "10.3389/conf.fncom.2012.55.00111": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding of reach and grasp kinematics from primate premotor, motor, and parietal cortex",
+      "real_authors": [
+        "Scherberger Hans"
+      ]
+    },
+    "checked_at": 1792175841.9265876
+  },
+  "10.1101/2024.11.20.624514": {
+    "status": "PREPRINT",
+    "details": "Preprint - accepted without remote lookup",
+    "checked_at": 1792175842.1268835
+  },
+  "10.1136/rapm-2018-100121": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Ultrasound-guided percutaneous peripheral nerve stimulation: neuromodulation of the suprascapular nerve and brachial ple",
+      "real_authors": [
+        "Brian M Ilfeld",
+        "John J Finneran",
+        "Rodney A Gabriel"
+      ]
+    },
+    "checked_at": 1792175842.795684
+  },
+  "10.1093/brain/awae088": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A direct spinal cord\u2013computer interface enables the control of the paralysed hand in spinal cord injury",
+      "real_authors": [
+        "Daniela Souza Oliveira",
+        "Matthias Ponfick",
+        "Dominik I Braun"
+      ]
+    },
+    "checked_at": 1792176024.5820708
   }
 }

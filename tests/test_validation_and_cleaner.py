@@ -61,3 +61,17 @@ def test_normalize_category(monitor):
     assert monitor._normalize_category("intracortical decoding on hand and finger kinematics") == "Intracortical Decoding on Hand and Finger Kinematics"
     assert monitor._normalize_category("") == "General Biorobotics"
     assert monitor._normalize_category(None) == "General Biorobotics"
+
+
+def test_title_similarity_matching():
+    from verify_dois import compute_title_similarity
+    t1 = "Fusion of EEG and EMG signals for detecting pre-movement intentions in sitting and standing"
+    t2 = "Fusion of EEG and EMG signals for detecting pre-movement intention of sitting and standing in healthy individuals and patients with spinal cord injury"
+    sim = compute_title_similarity(t1, t2)
+    assert sim >= 0.70
+
+    # Test hallucinated mismatch (e.g. soil mechanics vs neural prosthetics)
+    fake_t = "Estimation of soil water characteristics using neural networks"
+    sim_fake = compute_title_similarity(t1, fake_t)
+    assert sim_fake < 0.40
+

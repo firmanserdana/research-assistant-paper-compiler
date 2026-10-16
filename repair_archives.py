@@ -33,8 +33,32 @@ if not PPLX_API_KEY and Path('.env').exists():
         pass
 
 
-def verify_doi(doi):
-    """Verify a DOI against CrossRef API."""
+def clean_title(t):
+    if not t:
+        return ""
+    t = t.strip().strip('*').strip()
+    t = re.sub(r'\[\d+\]', '', t)
+    return re.sub(r'\s+', ' ', t).strip()
+
+
+def compute_title_similarity(t1, t2):
+    c1 = re.sub(r'[^a-z0-9 ]', '', clean_title(t1).lower())
+    c2 = re.sub(r'[^a-z0-9 ]', '', clean_title(t2).lower())
+    if not c1 or not c2:
+        return 0.0
+    if c1 in c2 or c2 in c1:
+        return 1.0
+    w1 = set(c1.split())
+    w2 = set(c2.split())
+    if not w1 or not w2:
+        return 0.0
+    jaccard = len(w1 & w2) / len(w1 | w2)
+    seq = difflib.SequenceMatcher(None, c1, c2).ratio()
+    return max(jaccard, seq)
+
+
+def verify_doi(doi, paper_title=None):
+    """Verify a DOI against CrossRef API, optionally validating title similarity."""
     if not doi:
         return ("INVALID", None)
 
@@ -52,6 +76,10 @@ def verify_doi(doi):
                 data = json.loads(response.read().decode('utf-8'))
                 msg = data.get('message', {})
                 title = (msg.get('title') or [''])[0]
+                if paper_title:
+                    sim = compute_title_similarity(paper_title, title)
+                    if sim < 0.40:
+                        return ("MISMATCH", title)
                 return ("VERIFIED", title)
     except urllib.error.HTTPError as e:
         if e.code == 404:
@@ -180,7 +208,7 @@ def main():
             doi = monitor._normalize_doi(paper.get('doi', ''))
             paper['doi'] = doi
 
-            status, _ = verify_doi(doi)
+            status, _ = verify_doi(doi, paper_title=paper['title'])
             if status in ("VERIFIED", "PREPRINT"):
                 results['verified'] += 1
                 continue
@@ -191,7 +219,7 @@ def main():
             new_doi = find_doi_crossref(paper['title'], '; '.join(paper.get('authors', [])))
 
             if new_doi:
-                v_status, _ = verify_doi(new_doi)
+                v_status, _ = verify_doi(new_doi, paper_title=paper['title'])
                 if v_status in ("VERIFIED", "PREPRINT"):
                     print(f"  ✓ Crossref Repaired: {new_doi}")
                     paper['doi'] = new_doi
@@ -204,7 +232,7 @@ def main():
                 time.sleep(0.2)
                 pplx_doi = find_doi_perplexity(paper['title'], '; '.join(paper.get('authors', [])))
                 if pplx_doi:
-                    v_status, _ = verify_doi(pplx_doi)
+                    v_status, _ = verify_doi(pplx_doi, paper_title=paper['title'])
                     if v_status in ("VERIFIED", "PREPRINT"):
                         print(f"  ✓ Perplexity Repaired: {pplx_doi}")
                         paper['doi'] = pplx_doi

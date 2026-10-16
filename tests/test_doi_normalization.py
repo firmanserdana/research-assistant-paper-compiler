@@ -61,3 +61,10 @@ def test_placeholder_dois_return_empty(monitor):
 def test_embedded_doi_extraction(monitor):
     text = "Available online at 10.1109/ICRA.2020.9196629 in proceedings"
     assert monitor._normalize_doi(text) == "10.1109/ICRA.2020.9196629"
+
+
+def test_doi_with_brain_journal(monitor):
+    # Tests that DOIs containing 'brain/a...' do not get falsely matched by 'n/a'
+    doi = "10.1093/brain/awae088"
+    assert monitor._normalize_doi(doi) == "10.1093/brain/awae088"
+

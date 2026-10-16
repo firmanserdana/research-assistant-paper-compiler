@@ -206,12 +206,13 @@ class LiteratureMonitor:
         doi = doi.strip()
 
         # Reject common placeholder texts
-        lower_doi = doi.lower()
-        placeholders = [
-            'not provided', 'not specified', 'not available', 'see article',
-            'unknown', 'n/a', 'none', '[not'
+        lower_doi = doi.lower().strip()
+        if lower_doi in {'n/a', 'none', 'unknown', 'na', 'null'}:
+            return ""
+        phrase_placeholders = [
+            'not provided', 'not specified', 'not available', 'see article', '[not'
         ]
-        if any(p in lower_doi for p in placeholders):
+        if any(p in lower_doi for p in phrase_placeholders):
             return ""
 
         # Remove bracketed placeholders like [DOI] or [Not provided in search results]

@@ -13,10 +13,43 @@ import urllib.error
 from pathlib import Path
 from src.monitor import LiteratureMonitor
 
+import difflib
+import re
+
 ARCHIVE_DIR = "src/archive"
 REPORT_FILE = "doi_verification_report.json"
 CACHE_FILE = "doi_verification_cache.json"
 USER_AGENT = "LiteratureMonitor/1.0 (mailto:contact@example.com)"
+
+
+def clean_title(t):
+    """Normalize paper title for fuzzy comparison."""
+    if not t:
+        return ""
+    t = t.strip().strip('*').strip()
+    t = re.sub(r'\[\d+\]', '', t)  # strip citation brackets like [1]
+    return re.sub(r'\s+', ' ', t).strip()
+
+
+def compute_title_similarity(t1, t2):
+    """
+    Compute title similarity score between claimed title and CrossRef title.
+    Returns a float between 0.0 and 1.0.
+    """
+    c1 = re.sub(r'[^a-z0-9 ]', '', clean_title(t1).lower())
+    c2 = re.sub(r'[^a-z0-9 ]', '', clean_title(t2).lower())
+    if not c1 or not c2:
+        return 0.0
+    # Perfect substring match (e.g. main title without subtitle)
+    if c1 in c2 or c2 in c1:
+        return 1.0
+    w1 = set(c1.split())
+    w2 = set(c2.split())
+    if not w1 or not w2:
+        return 0.0
+    jaccard = len(w1 & w2) / len(w1 | w2)
+    seq = difflib.SequenceMatcher(None, c1, c2).ratio()
+    return max(jaccard, seq)
 
 
 def load_cache():
@@ -149,9 +182,25 @@ def main():
             time.sleep(0.2)  # Polite rate limiting
 
         for p in papers_group:
-            p['verification_status'] = status
-            p['verification_details'] = details
-            results.setdefault(status, []).append(p)
+            p_status = status
+            p_details = details
+            if status == "VERIFIED" and isinstance(details, dict):
+                real_title = details.get('real_title', '')
+                claimed_title = p.get('title', '')
+                sim = compute_title_similarity(claimed_title, real_title)
+                p['title_similarity'] = round(sim, 3)
+                if sim < 0.40:
+                    p_status = "FAKE"
+                    p_details = {
+                        'error': f"Title mismatch with CrossRef record (similarity: {sim:.2f})",
+                        'claimed_title': claimed_title,
+                        'real_title': real_title,
+                        'similarity': round(sim, 3)
+                    }
+                    print(f"  [MISMATCH] {claimed_title[:30]} != {real_title[:30]} (sim: {sim:.2f})")
+            p['verification_status'] = p_status
+            p['verification_details'] = p_details
+            results.setdefault(p_status, []).append(p)
 
     save_cache(cache)
 
@@ -167,7 +216,7 @@ def main():
     print("=" * 60)
     print(f"  Verified:      {verified_count}")
     print(f"  Preprints:     {preprint_count}")
-    print(f"  Fake:          {fake_count}")
+    print(f"  Fake/Mismatch: {fake_count}")
     print(f"  Invalid/Empty: {invalid_count}")
     print(f"  Errors:        {error_count}")
     print(f"  Cache hits:    {cached_hits}")
@@ -194,7 +243,7 @@ def main():
         json.dump(report, f, indent=2)
 
     print(f"\nDetailed report saved to: {REPORT_FILE}")
-    return 0
+    return 1 if (fake_count > 0 or invalid_count > 0) else 0
 
 
 if __name__ == "__main__":

@@ -28,7 +28,8 @@ jobs:
       - name: Run test suite
         run: pytest -v
 
-      - name: Run literature monitor
+      - name: Run literature monitor (scheduled or manual dispatch)
+        if: github.event_name != 'push'
         env:
           ZOTERO_USER_ID: ${{ secrets.ZOTERO_USER_ID }}
           ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
@@ -44,6 +45,7 @@ jobs:
           python verify_dois.py || echo "Verification completed with issues"
 
       - name: Repair Archives (Fix DOIs)
+        if: github.event_name != 'push'
         env:
           PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
         run: |

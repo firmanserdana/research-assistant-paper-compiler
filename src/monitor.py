@@ -10,6 +10,7 @@ import email.utils
 import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from difflib import SequenceMatcher
 from concurrent.futures import ThreadPoolExecutor
 from jinja2 import Environment, FileSystemLoader
 
@@ -22,6 +23,26 @@ logger = logging.getLogger('literature_monitor')
 
 # DOI regex pattern for standard DOIs
 DOI_REGEX = re.compile(r'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')
+
+# Core technical terms required for Crossref fallback relevance filtering
+BIOROBOTICS_CORE_TERMS = (
+    'emg', 'electromyograph', 'myoelectric', 'intracortical', 'cortical',
+    'brain-computer', 'brain–computer', 'brain machine', 'bci', 'neural interface',
+    'neural decod', 'motor decod', 'prosthe', 'neuroprosthe', 'robot',
+    'exoskeleton', 'bionic', 'orthos', 'orthotic', 'biohybrid', 'soft actuator',
+    'artificial muscle', 'functional electrical stimulation', 'nerve stimulation',
+    'neurostimulat', 'peripheral nerve interface', 'cuff electrode', 'microelectrode',
+    'intrafascicular', 'kinematic', 'motor unit', 'hand control', 'finger control',
+    'grasp', 'spinal cord stimulation', 'epidural stimulation', 'neurorehabilitation'
+)
+
+OFF_TOPIC_CLINICAL_TERMS = (
+    'self-catheterization', 'catheterization', 'bowel dysfunction', 'acute kidney injury',
+    'midodrine', 'vasopressor', 'mental burden among caregivers', 'venous flap',
+    'calcific tendinitis', 'hypothenar hammer', 'malignant peripheral nerve sheath',
+    'forgotten contributions', 'heterotopic ossification resection'
+)
+
 
 
 class LiteratureMonitor:
@@ -250,10 +271,56 @@ class LiteratureMonitor:
 
         return ""
 
-    def _verify_doi(self, doi):
+    def _compute_title_similarity(self, title1, title2):
+        """Compute normalized similarity between two paper titles (0.0 to 1.0)."""
+        if not title1 or not title2:
+            return 0.0
+
+        def norm(s):
+            s = html.unescape(s).lower()
+            s = re.sub(r'<[^>]+>', ' ', s)
+            s = re.sub(r'[^\w\s]', ' ', s)
+            return re.sub(r'\s+', ' ', s).strip()
+
+        n1, n2 = norm(title1), norm(title2)
+        if not n1 or not n2:
+            return 0.0
+        if n1 == n2:
+            return 1.0
+
+        shorter, longer = (n1, n2) if len(n1) <= len(n2) else (n2, n1)
+        if len(shorter) >= 25 and (len(shorter) / len(longer)) >= 0.50 and shorter in longer:
+            return 0.90
+
+        seq_ratio = SequenceMatcher(None, n1, n2).ratio()
+        stop = {'the', 'a', 'an', 'of', 'in', 'on', 'for', 'and', 'to', 'with', 'by', 'from', 'at', 'using', 'via', 'based'}
+        w1 = {w for w in n1.split() if w not in stop and len(w) > 2}
+        w2 = {w for w in n2.split() if w not in stop and len(w) > 2}
+        if not w1 or not w2:
+            return seq_ratio
+        overlap = len(w1 & w2) / max(len(w1), len(w2))
+        return max(seq_ratio, overlap * 0.95)
+
+    def _clean_citation_artifacts(self, text):
+        """Remove LLM reference brackets such as [1], [2, 3] from text."""
+        if not text or not isinstance(text, str):
+            return ""
+        cleaned = re.sub(r'\s*\[\d+(?:\s*,\s*\d+)*\]', '', text)
+        return re.sub(r'\s+', ' ', cleaned).strip()
+
+    def _is_relevant_to_biorobotics(self, title, abstract="", subjects=None):
         """
-        Verify that a DOI exists by checking against CrossRef API.
-        Preprints (arXiv, bioRxiv, medRxiv, OSF) are accepted without remote query.
+        Check whether a scholarly work is relevant to biorobotics, neural decoding,
+        or neuroprosthetics, filtering out unrelated clinical case reports.
+        """
+        combined = f"{title} {abstract} {' '.join(subjects or [])}".lower()
+        if any(bad in combined for bad in OFF_TOPIC_CLINICAL_TERMS):
+            return False
+        return any(term in combined for term in BIOROBOTICS_CORE_TERMS)
+
+    def _verify_doi(self, doi, expected_title=None):
+        """
+        Verify that a DOI exists by checking against CrossRef API (and optionally verifying title similarity).
         """
         if not doi:
             return False
@@ -274,8 +341,18 @@ class LiteratureMonitor:
             )
             if response.status_code == 200:
                 data = response.json().get('message', {})
+                titles = data.get('title', [])
+                cr_title = titles[0] if titles else ""
                 # Ensure it has a title or work type to avoid bare publisher prefixes
-                if data.get('title') or data.get('type'):
+                if cr_title or data.get('type'):
+                    if expected_title and cr_title:
+                        sim = self._compute_title_similarity(expected_title, cr_title)
+                        if sim < 0.65:
+                            logger.warning(
+                                f"DOI title mismatch for {doi} (sim={sim:.2f}): "
+                                f"expected '{expected_title[:60]}' vs Crossref '{cr_title[:60]}'"
+                            )
+                            return False
                     logger.info(f"DOI verified: {doi}")
                     return True
             logger.warning(f"DOI verification failed (status {response.status_code}): {doi}")
@@ -410,13 +487,13 @@ IMPORTANT:
             logger.error(f"arXiv query error for {term}: {e}")
             return ""
 
-    def _crossref_search(self, term, rows=15):
-        """Find recent scholarly works through Crossref without an API key."""
+    def _crossref_search(self, term, rows=20):
+        """Find recent scholarly works through Crossref without an API key, filtered for biorobotics relevance."""
         try:
             response = requests.get(
                 "https://api.crossref.org/works",
                 params={
-                    "query": term,
+                    "query.bibliographic": term,
                     "filter": "from-pub-date:2021-01-01,type:journal-article",
                     "rows": rows,
                     "select": "title,author,DOI,published,subject,abstract,link"
@@ -428,7 +505,7 @@ IMPORTANT:
             items = response.json().get("message", {}).get("items", [])
             records = []
             for item in items:
-                title = (item.get("title") or [""])[0].strip()
+                title = self._clean_jats_abstract((item.get("title") or [""])[0].strip())
                 doi = self._normalize_doi(item.get("DOI", ""))
                 authors = [
                     " ".join(filter(None, [a.get("given"), a.get("family")])).strip()
@@ -438,9 +515,19 @@ IMPORTANT:
                 if not title or not doi or not authors:
                     continue
 
-                keywords = item.get("subject", [])[:6] or [term]
+                subjects = item.get("subject", [])[:6]
+                keywords = subjects or [term]
                 raw_abstract = item.get("abstract", "")
                 clean_abstract = self._clean_jats_abstract(raw_abstract)
+
+                # Filter out off-topic clinical case reports that lack biorobotics relevance
+                if not self._is_relevant_to_biorobotics(title, clean_abstract, subjects):
+                    logger.debug(f"Skipping off-topic Crossref item: {title}")
+                    continue
+
+                # Skip items that have no abstract unless the title itself is strongly technical
+                if not clean_abstract and not self._is_relevant_to_biorobotics(title):
+                    continue
 
                 # Attempt Open Access / direct PDF URL detection
                 pdf_url = ""
@@ -459,12 +546,12 @@ IMPORTANT:
                     f"Title: {title}",
                     f"Authors: {'; '.join(authors)}",
                     f"DOI: {doi}",
-                    "TRL: 1",
+                    "TRL: 2",
                     f"Keywords: {', '.join(keywords)}"
                 ]
                 if clean_abstract:
                     # Use abstract as summary if available
-                    snippet = clean_abstract[:400] + ("..." if len(clean_abstract) > 400 else "")
+                    snippet = clean_abstract[:450] + ("..." if len(clean_abstract) > 450 else "")
                     record_lines.append(f"Summary: {snippet}")
                 if pdf_url:
                     record_lines.append(f"PDF: {pdf_url}")
@@ -500,13 +587,13 @@ IMPORTANT:
                     papers.append(current)
                     current = {}
                 in_summary = False
-                current['title'] = t_match.group(1).strip().strip('*').strip()
+                current['title'] = self._clean_citation_artifacts(t_match.group(1).strip().strip('*').strip())
                 continue
 
             a_match = authors_re.match(line_str)
             if a_match:
                 in_summary = False
-                authors_raw = a_match.group(1).strip().strip('*').strip()
+                authors_raw = self._clean_citation_artifacts(a_match.group(1).strip().strip('*').strip())
                 if ';' in authors_raw:
                     current['authors'] = [a.strip() for a in authors_raw.split(';') if a.strip()]
                 else:
@@ -534,13 +621,17 @@ IMPORTANT:
             k_match = keywords_re.match(line_str)
             if k_match:
                 in_summary = False
-                current['keywords'] = [k.strip().strip('*').strip() for k in k_match.group(1).split(',') if k.strip()]
+                current['keywords'] = [
+                    self._clean_citation_artifacts(k.strip().strip('*').strip())
+                    for k in k_match.group(1).split(',')
+                    if self._clean_citation_artifacts(k.strip().strip('*').strip())
+                ]
                 continue
 
             s_match = summary_re.match(line_str)
             if s_match:
                 in_summary = True
-                current['summary'] = s_match.group(1).strip().strip('*').strip()
+                current['summary'] = self._clean_citation_artifacts(s_match.group(1).strip().strip('*').strip())
                 continue
 
             p_match = pdf_re.match(line_str)
@@ -551,7 +642,7 @@ IMPORTANT:
 
             # Multi-line summary continuation
             if in_summary and line_str and not line_str.startswith('---'):
-                current['summary'] = (current.get('summary', '') + ' ' + line_str).strip()
+                current['summary'] = self._clean_citation_artifacts((current.get('summary', '') + ' ' + line_str).strip())
 
         if current.get('title'):
             papers.append(current)
@@ -599,10 +690,10 @@ IMPORTANT:
                 logger.warning(f"Rejecting paper with placeholder author: {title}")
                 return False
 
-        # Verify DOI against Crossref when using AI provider
+        # Verify DOI and title match against Crossref when using AI provider
         if self.provider not in ("crossref", "arxiv") and not any(pre in doi for pre in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
-            if not self._verify_doi(doi):
-                logger.warning(f"Rejecting paper with unverified DOI: {title} ({doi})")
+            if not self._verify_doi(doi, expected_title=title):
+                logger.warning(f"Rejecting paper with unverified or mismatched DOI: {title} ({doi})")
                 return False
 
         return True
@@ -668,14 +759,18 @@ IMPORTANT:
 
                 elif line_stripped.startswith('**Keywords:**'):
                     in_summary = False
-                    current_paper['keywords'] = [k.strip() for k in line_stripped[13:].split(',') if k.strip()]
+                    current_paper['keywords'] = [
+                        self._clean_citation_artifacts(k.strip())
+                        for k in line_stripped[13:].split(',')
+                        if self._clean_citation_artifacts(k.strip())
+                    ]
 
                 elif line_stripped.startswith('**Summary:**'):
                     in_summary = True
                     sum_text = line_stripped[12:].strip()
                     if sum_text.endswith('---'):
                         sum_text = sum_text[:-3].strip()
-                    current_paper['summary'] = sum_text
+                    current_paper['summary'] = self._clean_citation_artifacts(sum_text)
 
                 elif line_stripped.startswith('**PDF:**'):
                     in_summary = False
@@ -691,7 +786,9 @@ IMPORTANT:
                         clean_line = clean_line[:-3].strip()
                         in_summary = False
                     if clean_line:
-                        current_paper['summary'] = (current_paper['summary'] + ' ' + clean_line).strip()
+                        current_paper['summary'] = self._clean_citation_artifacts(
+                            (current_paper['summary'] + ' ' + clean_line).strip()
+                        )
 
         if current_paper and current_paper.get('title'):
             papers.append(current_paper)
@@ -993,17 +1090,45 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
             historical_papers = self.load_papers_from_archives()
             all_papers = new_papers + historical_papers
 
-            # Deduplicate papers based on DOI (case-insensitive)
-            # Prefer papers with non-empty summaries and valid TRL
-            unique_papers = []
-            seen_dois = set()
+            # Deduplicate papers based on DOI (case-insensitive) and merge metadata across archives
+            papers_by_doi = {}
             for paper in all_papers:
                 doi = self._normalize_doi(paper.get('doi', ''))
-                if doi and doi.lower() not in seen_dois:
-                    paper['doi'] = doi
-                    paper['category'] = self._categorize(paper)
-                    unique_papers.append(paper)
-                    seen_dois.add(doi.lower())
+                if not doi:
+                    continue
+                doi_key = doi.lower()
+                if doi_key not in papers_by_doi:
+                    merged = dict(paper)
+                    merged['doi'] = doi
+                    merged['category'] = self._categorize(merged)
+                    papers_by_doi[doi_key] = merged
+                else:
+                    existing = papers_by_doi[doi_key]
+                    # Keep highest TRL across digests
+                    existing['trl'] = max(int(existing.get('trl') or 1), int(paper.get('trl') or 1))
+                    # Keep most recent archive_date
+                    if (paper.get('archive_date') or '') > (existing.get('archive_date') or ''):
+                        existing['archive_date'] = paper['archive_date']
+                    # Prefer non-filler technical summary
+                    ex_sum = existing.get('summary') or ''
+                    new_sum = paper.get('summary') or ''
+                    if (not ex_sum or ex_sum.startswith('Recent research in ')) and new_sum and not new_sum.startswith('Recent research in '):
+                        existing['summary'] = new_sum
+                    elif new_sum and not new_sum.startswith('Recent research in ') and not ex_sum.startswith('Summary for ') and len(new_sum) > len(ex_sum) + 40:
+                        existing['summary'] = new_sum
+                    # Preserve Open Access PDF link if present
+                    if not existing.get('pdf_url') and paper.get('pdf_url'):
+                        existing['pdf_url'] = paper['pdf_url']
+                    # Merge unique keywords (up to 8)
+                    ex_kw = list(existing.get('keywords') or [])
+                    seen_kw = {k.lower() for k in ex_kw if isinstance(k, str)}
+                    for kw in (paper.get('keywords') or []):
+                        if isinstance(kw, str) and kw.lower() not in seen_kw and len(ex_kw) < 8:
+                            ex_kw.append(kw)
+                            seen_kw.add(kw.lower())
+                    existing['keywords'] = ex_kw
+
+            unique_papers = list(papers_by_doi.values())
 
             # Sort papers: newest archive date first, then by title
             unique_papers.sort(

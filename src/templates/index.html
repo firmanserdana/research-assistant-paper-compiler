@@ -97,6 +97,14 @@
             background-color: var(--bs-tertiary-bg);
             color: var(--bs-secondary-color);
             border: 1px solid var(--bs-border-color);
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .keyword-pill:hover {
+            background-color: var(--bs-primary-bg-subtle);
+            color: var(--bs-primary-text-emphasis);
+            border-color: var(--bs-primary-border-subtle);
         }
 
         .paper-summary {
@@ -269,8 +277,10 @@
             {% for paper in papers %}
             <div class="col-lg-6 paper-card"
                 data-category="{{ (paper.category or 'general biorobotics')|lower }}"
+                data-category-raw="{{ (paper.category or 'General Biorobotics')|replace('"', '&quot;') }}"
                 data-trl="{{ paper.trl or 1 }}"
                 data-title="{{ (paper.title or '')|lower }}"
+                data-title-raw="{{ (paper.title or '')|replace('"', '&quot;') }}"
                 data-date="{{ paper.archive_date or '2025-01-01' }}"
                 data-doi="{{ paper.doi or '' }}"
                 data-authors="{% if paper.authors is string %}{{ paper.authors }}{% else %}{{ paper.authors|join('; ') }}{% endif %}"
@@ -284,6 +294,11 @@
                                 <i class="bi bi-tag me-1"></i>{{ paper.category or 'General Biorobotics' }}
                             </span>
                             <div class="d-flex align-items-center gap-2">
+                                {% if paper.archive_date %}
+                                <span class="badge bg-body-secondary text-secondary border fw-normal" title="Compilation Archive Date">
+                                    <i class="bi bi-calendar3 me-1"></i>{{ paper.archive_date }}
+                                </span>
+                                {% endif %}
                                 <span class="badge trl-badge {% if (paper.trl|int) >= 7 %}bg-success{% elif (paper.trl|int) >= 4 %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}"
                                       title="Technology Readiness Level (1-9)">
                                     TRL {{ paper.trl or 1 }}
@@ -300,6 +315,11 @@
                             <i class="bi bi-person me-1"></i>
                             {% if paper.authors is string %}
                                 {{ paper.authors }}
+                            {% elif paper.authors|length > 4 %}
+                                {{ paper.authors[:4]|join('; ') }}
+                                <span class="badge bg-secondary-subtle text-secondary-emphasis ms-1" title="{{ paper.authors|join('; ') }}">
+                                    +{{ (paper.authors|length) - 4 }} more
+                                </span>
                             {% else %}
                                 {{ paper.authors|join('; ') }}
                             {% endif %}
@@ -314,10 +334,10 @@
                         <div class="mt-auto pt-2">
                             <div class="d-flex flex-wrap mb-3">
                                 {% if paper.keywords is string %}
-                                    <span class="keyword-pill">{{ paper.keywords }}</span>
+                                    <span class="keyword-pill" title="Filter by keyword">{{ paper.keywords }}</span>
                                 {% else %}
                                     {% for kw in paper.keywords %}
-                                        <span class="keyword-pill">{{ kw }}</span>
+                                        <span class="keyword-pill" title="Filter by keyword">{{ kw }}</span>
                                     {% endfor %}
                                 {% endif %}
                             </div>
@@ -569,7 +589,8 @@
                 const category = card.dataset.category || '';
                 const trl = parseInt(card.dataset.trl) || 1;
                 const doi = (card.dataset.doi || '').toLowerCase();
-                const cardText = card.textContent.toLowerCase();
+                const fullAuthors = (card.dataset.authors || '').toLowerCase();
+                const cardText = card.textContent.toLowerCase() + ' ' + fullAuthors;
 
                 let categoryMatch = (selectedCategory === 'all') || category.includes(selectedCategory);
 
@@ -630,6 +651,18 @@
             searchInput.value = '';
             searchQuery = '';
             filterAndSortPapers();
+        });
+
+        // Interactive Keyword Pill Filtering
+        document.querySelectorAll('.keyword-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const kw = pill.textContent.trim();
+                if (!kw) return;
+                searchInput.value = kw;
+                searchQuery = kw.toLowerCase();
+                filterAndSortPapers();
+                searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
         });
 
         sortSelect.addEventListener('change', (e) => {
@@ -712,11 +745,11 @@
                 let bibtex = `% Biorobotics Literature Monitor Export\n% Date: ${today}\n% Papers: ${visible.length}\n\n`;
 
                 visible.forEach((card, idx) => {
-                    const title = card.dataset.title || '';
+                    const title = card.dataset.titleRaw || card.dataset.title || '';
                     const authors = (card.dataset.authors || 'Unknown').replace(/;/g, ' and ');
                     const doi = card.dataset.doi || '';
                     const year = (card.dataset.date || today).slice(0, 4);
-                    const category = card.dataset.category || 'General Biorobotics';
+                    const category = card.dataset.categoryRaw || card.dataset.category || 'General Biorobotics';
                     const citeKey = (authors.split(' ')[0] + year + (idx + 1)).replace(/[^a-zA-Z0-9]/g, '').toLowerCase() || `paper${idx}`;
 
                     bibtex += `@article{${citeKey},\n  title={${title}},\n  author={${authors}},\n  year={${year}},\n  journal={${category}}${doi ? `,\n  doi={${doi}}` : ''}\n}\n\n`;
@@ -740,7 +773,7 @@
                 let ris = "";
 
                 visible.forEach(card => {
-                    const title = card.dataset.title || '';
+                    const title = card.dataset.titleRaw || card.dataset.title || '';
                     const authorsRaw = card.dataset.authors || '';
                     const authors = authorsRaw.includes(';') ? authorsRaw.split(';') : authorsRaw.split(',');
                     const doi = card.dataset.doi || '';
@@ -778,11 +811,11 @@
 
                 visible.forEach(card => {
                     csv += [
-                        escapeCsv(card.dataset.title),
+                        escapeCsv(card.dataset.titleRaw || card.dataset.title),
                         escapeCsv(card.dataset.authors),
                         escapeCsv(card.dataset.doi),
                         escapeCsv(card.dataset.trl),
-                        escapeCsv(card.dataset.category),
+                        escapeCsv(card.dataset.categoryRaw || card.dataset.category),
                         escapeCsv(card.dataset.keywords),
                         escapeCsv(card.dataset.date),
                         escapeCsv(card.dataset.summary),

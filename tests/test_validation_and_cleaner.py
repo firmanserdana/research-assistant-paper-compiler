@@ -75,3 +75,36 @@ def test_title_similarity_matching():
     sim_fake = compute_title_similarity(t1, fake_t)
     assert sim_fake < 0.40
 
+
+def test_is_relevant_to_biorobotics(monitor):
+    assert monitor._is_relevant_to_biorobotics(
+        "Surface EMG in Subacute and Chronic Care after Traumatic Spinal Cord Injuries",
+        "Examines surface electromyography and motor recovery."
+    ) is True
+    assert monitor._is_relevant_to_biorobotics(
+        "Intracortical neural decoding of dexterous finger kinematics",
+        "Brain-computer interface for prosthetic hand control."
+    ) is True
+    # Off-topic clinical case reports must be rejected
+    assert monitor._is_relevant_to_biorobotics(
+        "Assessment of Spinal Cord Injured Patients' Adherence toward Clean Intermittent Self-Catheterization",
+        "Clinical survey on urinary self-catheterization."
+    ) is False
+    assert monitor._is_relevant_to_biorobotics(
+        "Venous flap for immediate reconstruction of finger soft tissue defect",
+        "Surgical reconstruction of finger trauma."
+    ) is False
+    assert monitor._is_relevant_to_biorobotics(
+        "Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients",
+        "Retrospective ICU study."
+    ) is False
+
+
+def test_clean_citation_artifacts(monitor):
+    raw = "High-density EMG decoding achieved 94.2% accuracy [1][2] in tetraplegic participants [3, 4]."
+    cleaned = monitor._clean_citation_artifacts(raw)
+    assert "[1]" not in cleaned
+    assert "[3, 4]" not in cleaned
+    assert "94.2% accuracy in tetraplegic participants." in cleaned
+
+

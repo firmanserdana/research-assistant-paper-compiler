@@ -42,6 +42,7 @@ def test_site_generation(monitor, tmp_path):
 
     assert "Test Paper Alpha" in html
     assert "Test Paper Beta" in html
+    assert 'data-title-raw="Test Paper Alpha"' in html
     assert "data-bs-theme" in html
     assert "copy-bibtex-btn" in html
     assert "btn-filter" in html
@@ -55,3 +56,4 @@ def test_site_generation(monitor, tmp_path):
 
     assert update_data['total_count'] >= 2
     assert "categories" in update_data
+

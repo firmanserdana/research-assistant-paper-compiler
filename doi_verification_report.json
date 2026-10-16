@@ -1,13 +1,13 @@
 {
   "summary": {
     "total": 203,
-    "unique_dois": 114,
-    "verified": 193,
-    "preprints": 10,
+    "unique_dois": 113,
+    "verified": 194,
+    "preprints": 9,
     "fake": 0,
     "invalid": 0,
     "errors": 0,
-    "cache_hits": 114
+    "cache_hits": 0
   },
   "verified_papers": [
     {
@@ -1539,6 +1539,42 @@
       "source_file": "papers_2025-11-24.md",
       "normalized_doi": "10.1152/jn.01038.2011",
       "title_similarity": 1.0,
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-gr",
+        "real_authors": [
+          "Vikram Aggarwal",
+          "Mohsen Mollazadeh",
+          "Adam G. Davidson"
+        ]
+      }
+    },
+    {
+      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and local field potential from motor cortex",
+      "category": "Intracortical Decoding on Hand and Finger Kinematics",
+      "authors": [
+        "V. Aggarwal",
+        "S. N. Katyal",
+        "M. V. gombolay",
+        "B. E. Gale",
+        "M. H. Schieber",
+        "M. A. L. Nicolelis",
+        "N. V. Thakor"
+      ],
+      "doi": "10.1152/jn.01038.2011",
+      "trl": 4,
+      "keywords": [
+        "state decoding",
+        "kinematic decoding",
+        "local field potentials",
+        "reach-to-grasp",
+        "neuroprosthesis[3]"
+      ],
+      "summary": "This paper introduces a **state-based decoding approach** that first classifies motor cortex neuronal ensemble spikes and local field potentials (LFPs) into discrete behavioral states (baseline, reaction, movement, hold) during reach-to-grasp tasks, then applies state-specific kinematic decoders to predict hand and finger positions, velocities, and orientations.[4] The key innovation lies in leveraging state segmentation to enhance decoding precision over continuous methods, capitalizing on the structured dynamics of motor cortex activity for more accurate trajectory reconstruction.[4][6] For biorobotics, this advances neuroprostheses by enabling finer-grained control of dexterous hand movements, potentially improving brain-machine interfaces for prosthetic limbs with real-time, state-aware responsiveness.[4]",
+      "pdf_url": "",
+      "source_file": "papers_2026-01-05.md",
+      "normalized_doi": "10.1152/jn.01038.2011",
+      "title_similarity": 0.778,
       "verification_status": "VERIFIED",
       "verification_details": {
         "real_title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-gr",
@@ -6473,7 +6509,9 @@
       "source_file": "papers_2025-03-03.md",
       "normalized_doi": "10.1101/2024.09.05.24313041",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "Reclaiming Hand Functions after Complete Spinal Cord Injury with Epidural Brain-Computer Interface"
+      }
     },
     {
       "title": "Decoding and geometry of ten finger movements in human posterior parietal and motor cortex",
@@ -6498,7 +6536,9 @@
       "source_file": "papers_2025-03-03.md",
       "normalized_doi": "10.1101/2022.12.07.22283227",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "Compositional coding of individual finger movements in human posterior parietal cortex and motor cortex enables ten-fing"
+      }
     },
     {
       "title": "A flexible intracortical brain-computer interface for typing using attempted finger movements",
@@ -6522,7 +6562,9 @@
       "source_file": "papers_2025-03-31.md",
       "normalized_doi": "10.1101/2024.04.22.590630",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "A flexible intracortical brain-computer interface for typing using finger movements"
+      }
     },
     {
       "title": "A flexible intracortical brain-computer interface for typing using attempted finger movements",
@@ -6545,7 +6587,9 @@
       "source_file": "papers_2025-04-28.md",
       "normalized_doi": "10.1101/2024.04.22.590630",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "A flexible intracortical brain-computer interface for typing using finger movements"
+      }
     },
     {
       "title": "**A flexible intracortical brain-computer interface for typing using attempted finger movements**",
@@ -6569,7 +6613,9 @@
       "source_file": "papers_2025-09-15.md",
       "normalized_doi": "10.1101/2024.04.22.590630",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "A flexible intracortical brain-computer interface for typing using finger movements"
+      }
     },
     {
       "title": "**A flexible intracortical brain\u2013computer interface for typing using attempted finger movements**",
@@ -6593,7 +6639,9 @@
       "source_file": "papers_2025-10-06.md",
       "normalized_doi": "10.1101/2024.04.22.590630",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "A flexible intracortical brain-computer interface for typing using finger movements"
+      }
     },
     {
       "title": "Sensing and Decoding the Neural Drive to Paralyzed Muscles During Spinal Cord Injury",
@@ -6618,7 +6666,9 @@
       "source_file": "papers_2025-10-27.md",
       "normalized_doi": "10.1101/2021.02.24.21250962",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements of a person with tetraplegia using"
+      }
     },
     {
       "title": "Decoding hand kinematics from population responses towards a dexterous brain-machine interface",
@@ -6645,35 +6695,9 @@
       "source_file": "papers_2026-01-05.md",
       "normalized_doi": "10.48550/arXiv.1904.03531",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
-    },
-    {
-      "title": "State-based decoding of hand and finger kinematics using neuronal ensemble and local field potential from motor cortex",
-      "category": "Intracortical Decoding on Hand and Finger Kinematics",
-      "authors": [
-        "V. Aggarwal",
-        "S. N. Katyal",
-        "M. V. gombolay",
-        "B. E. Gale",
-        "M. H. Schieber",
-        "M. A. L. Nicolelis",
-        "N. V. Thakor"
-      ],
-      "doi": "10.1101/368081",
-      "trl": 4,
-      "keywords": [
-        "state decoding",
-        "kinematic decoding",
-        "local field potentials",
-        "reach-to-grasp",
-        "neuroprosthesis[3]"
-      ],
-      "summary": "This paper introduces a **state-based decoding approach** that first classifies motor cortex neuronal ensemble spikes and local field potentials (LFPs) into discrete behavioral states (baseline, reaction, movement, hold) during reach-to-grasp tasks, then applies state-specific kinematic decoders to predict hand and finger positions, velocities, and orientations.[4] The key innovation lies in leveraging state segmentation to enhance decoding precision over continuous methods, capitalizing on the structured dynamics of motor cortex activity for more accurate trajectory reconstruction.[4][6] For biorobotics, this advances neuroprostheses by enabling finer-grained control of dexterous hand movements, potentially improving brain-machine interfaces for prosthetic limbs with real-time, state-aware responsiveness.[4]",
-      "pdf_url": "https://www.biorxiv.org/content/10.1101/368081.full.pdf",
-      "source_file": "papers_2026-01-05.md",
-      "normalized_doi": "10.1101/368081",
-      "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "Decoding hand kinematics from population responses in sensorimotor cortex during grasping"
+      }
     },
     {
       "title": "Neural correlates of kinematic features of passive finger movement in the human sensorimotor network",
@@ -6698,7 +6722,9 @@
       "source_file": "papers_2026-01-12.md",
       "normalized_doi": "10.1101/2024.11.20.624514",
       "verification_status": "PREPRINT",
-      "verification_details": "Preprint - accepted without remote lookup"
+      "verification_details": {
+        "real_title": "Neural correlates of kinematic features of passive finger movement revealed by univariate and multivariate fMRI analyses"
+      }
     }
   ],
   "fake_papers": [],

@@ -78,9 +78,22 @@ def verify_single_doi(doi):
     if not doi:
         return ("INVALID", "Empty or missing DOI")
 
-    # Skip preprints
+    # Preprints: must still resolve (Crossref, or DataCite for arXiv)
     if any(prefix in doi for prefix in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
-        return ("PREPRINT", "Preprint - accepted without remote lookup")
+        for url in (f"https://api.crossref.org/works/{doi}",
+                    f"https://api.datacite.org/dois/{doi}"):
+            try:
+                req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+                with urllib.request.urlopen(req, timeout=12) as response:
+                    data = json.loads(response.read().decode('utf-8'))
+                    if 'message' in data:
+                        real_title = (data['message'].get('title') or [''])[0]
+                    else:
+                        real_title = data['data']['attributes']['titles'][0]['title']
+                    return ("PREPRINT", {'real_title': real_title[:120]})
+            except Exception:
+                continue
+        return ("FAKE", "Preprint DOI not found in Crossref or DataCite")
 
     if not doi.startswith('10.'):
         return ("INVALID", "Does not follow standard DOI 10.xxxx prefix")

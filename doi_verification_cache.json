@@ -9,1986 +9,7 @@
         "Tao Feng"
       ]
     },
-    "checked_at": 1792103834.102962
-  },
-  "10.1038/s41598-023-34215-7": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A 6-year nationwide population-based study on the current status of gastric endoscopic resection in Korea using administ",
-      "real_authors": [
-        "Jae Yong Park",
-        "Mi-Sook Kim",
-        "Beom Jin Kim"
-      ]
-    },
-    "checked_at": 1792103834.7422442
-  },
-  "": {
-    "status": "INVALID",
-    "details": "Empty or missing DOI",
-    "checked_at": 1792103834.9427443
-  },
-  "10.1017/wtc.2020.16": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103835.4784799
-  },
-  "10.1109/TNSRE.2024.3372859": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103836.002737
-  },
-  "10.3389/fneng.2014.00003": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding repetitive finger movements with brain activity acquired via non-invasive electroencephalography",
-      "real_authors": [
-        "Andrew Y. Paek",
-        "Harshavardhan A. Agashe",
-        "Jos\u00c3\u00a9 L. Contreras-Vidal"
-      ]
-    },
-    "checked_at": 1792103836.5394428
-  },
-  "10.3389/fnins.2023.1210544": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Case study: persistent recovery of hand movement and tactile sensation in peripheral nerve injury using targeted transcu",
-      "real_authors": [
-        "Santosh Chandrasekaran",
-        "Nikunj A. Bhagat",
-        "Richard Ramdeo"
-      ]
-    },
-    "checked_at": 1792103837.0634782
-  },
-  "10.1126/scitranslmed.aay2857": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A regenerative peripheral nerve interface allows real-time control of an artificial hand in upper limb amputees",
-      "real_authors": [
-        "Philip P. Vu",
-        "Alex K. Vaskov",
-        "Zachary T. Irwin"
-      ]
-    },
-    "checked_at": 1792103837.586688
-  },
-  "10.1126/scirobotics.aax2352": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Biomimetic sensory feedback through peripheral nerve stimulation improves dexterous use of a bionic hand",
-      "real_authors": [
-        "J. A. George",
-        "D. T. Kluger",
-        "T. S. Davis"
-      ]
-    },
-    "checked_at": 1792103838.2102528
-  },
-  "10.3389/fnins.2019.00853": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Learning of Artificial Sensation Through Long-Term Home Use of a Sensory-Enabled Prosthesis",
-      "real_authors": [
-        "Ivana Cuberovic",
-        "Anisha Gill",
-        "Linda J. Resnik"
-      ]
-    },
-    "checked_at": 1792103838.8662152
-  },
-  "10.1152/jn.00312.2021": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103839.4095263
-  },
-  "10.1101/2024.09.05.24313041": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792103839.6099865
-  },
-  "10.1088/1741-2552/acbf9a": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103840.1387172
-  },
-  "10.1109/TNSRE.2024.3352847": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103840.7205906
-  },
-  "10.7554/eLife.82598": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "The impact of task context on predicting finger movements in a brain-machine interface",
-      "real_authors": [
-        "Matthew J Mender",
-        "Samuel R Nason-Tomaszewski",
-        "Hisham Temmar"
-      ]
-    },
-    "checked_at": 1792103841.3509836
-  },
-  "10.1016/j.neuroscience.2023.06.007": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Descending Facilitation of Nociceptive Transmission From the Rostral Ventromedial Medulla Contributes to Hyperalgesia in",
-      "real_authors": [
-        "Victoria M. Rogness",
-        "Joseph Juliette",
-        "Iryna A. Khasabova"
-      ]
-    },
-    "checked_at": 1792103842.00217
-  },
-  "10.1109/TNSRE.2024.3366506": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103842.541336
-  },
-  "10.1038/s41598-023-40664-x": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Investigating an abnormal hump phenomenon in top gate a-InGaZnO thin-film transistors due to mobile sodium diffusion",
-      "real_authors": [
-        "So Hee Park",
-        "Min Young Kim",
-        "Hyeong Wook Kim"
-      ]
-    },
-    "checked_at": 1792103843.198756
-  },
-  "10.1152/jn.00079.2012": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103843.7379785
-  },
-  "10.1038/s41598-018-25828-4": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Theory of Single-Impact Atomic Force Spectroscopy in liquids with material contrast",
-      "real_authors": [
-        "Enrique A. L\u00f3pez-Guerra",
-        "Francesco Banfi",
-        "Santiago D. Solares"
-      ]
-    },
-    "checked_at": 1792103844.374464
-  },
-  "10.1088/1741-2552/aa9996": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103844.9177852
-  },
-  "10.1109/TNSRE.2020.3048592": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Cervical Spinal Cord Transcutaneous Stimulation Improves Upper Extremity and Hand Function in People With Complete Tetra",
-      "real_authors": [
-        "Fan Zhang",
-        "Kamyar Momeni",
-        "Arvind Ramanujam"
-      ]
-    },
-    "checked_at": 1792103845.479451
-  },
-  "10.1088/1741-2552/ab4a5d": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103846.0154214
-  },
-  "10.1152/jn.00532.2014": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Texture discriminability in monkey inferotemporal cortex predicts human texture perception",
-      "real_authors": [
-        "Kalathupiriyan A. Zhivago",
-        "Sripati P. Arun"
-      ]
-    },
-    "checked_at": 1792103846.5833838
-  },
-  "10.1088/1741-2552/aa5272": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103847.127722
-  },
-  "10.1109/TNSRE.2014.2364776": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Musculoskeletal Representation of a Large Repertoire of Hand Grasping Actions in Primates",
-      "real_authors": [
-        "S. Schaffelhofer",
-        "M. Sartori",
-        "H. Scherberger"
-      ]
-    },
-    "checked_at": 1792103847.6740963
-  },
-  "10.1371/journal.pone.0050451": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Ant Navigation: Fractional Use of the Home Vector",
-      "real_authors": [
-        "Allen Cheung",
-        "Lex Hiby",
-        "Ajay Narendra"
-      ]
-    },
-    "checked_at": 1792103848.2245555
-  },
-  "10.1088/1741-2552/aae953": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103848.8278458
-  },
-  "10.1088/1741-2552/ab4d54": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103849.3524203
-  },
-  "10.1088/1741-2552/aab790": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Sensory adaptation to electrical stimulation of the somatosensory nerves",
-      "real_authors": [
-        "Emily L Graczyk",
-        "Benoit P Delhaye",
-        "Matthew A Schiefer"
-      ]
-    },
-    "checked_at": 1792103849.883525
-  },
-  "10.1016/j.neuron.2018.08.033": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Biomimetic Intraneural Sensory Feedback Enhances Sensation Naturalness, Tactile Sensitivity, and Manual Dexterity in a B",
-      "real_authors": [
-        "Giacomo Valle",
-        "Alberto Mazzoni",
-        "Francesco Iberite"
-      ]
-    },
-    "checked_at": 1792103850.5248487
-  },
-  "10.1126/scitranslmed.3008669": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A neural interface provides long-term stable natural touch perception",
-      "real_authors": [
-        "Daniel W. Tan",
-        "Matthew A. Schiefer",
-        "Michael W. Keith"
-      ]
-    },
-    "checked_at": 1792103851.0459998
-  },
-  "10.1038/s41586-023-06094-5": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Walking naturally after spinal cord injury using a brain\u2013spine interface",
-      "real_authors": [
-        "Henri Lorach",
-        "Andrea Galvez",
-        "Valeria Spagnolo"
-      ]
-    },
-    "checked_at": 1792103851.665762
-  },
-  "10.1038/s41467-023-39723-8": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "On the mechanisms of lysis triggered by perturbations of bacterial cell wall biosynthesis",
-      "real_authors": [
-        "Yoshikazu Kawai",
-        "Maki Kawai",
-        "Eilidh Sohini Mackenzie"
-      ]
-    },
-    "checked_at": 1792103852.3185482
-  },
-  "10.1088/1741-2552/adc48e": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Supervised autoencoder denoiser for non-stationarity in multi-session EEG-based BCI",
-      "real_authors": [
-        "Avin Ofer",
-        "Almagor Ophir",
-        "Noah Yoav"
-      ]
-    },
-    "checked_at": 1792103852.9674366
-  },
-  "10.1126/sciadv.ads9150": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "MyoGestic: EMG interfacing framework for decoding multiple spared motor dimensions in individuals with neural lesions",
-      "real_authors": [
-        "Raul C. S\u00eempetru",
-        "Dominik I. Braun",
-        "Arndt U. Simon"
-      ]
-    },
-    "checked_at": 1792103853.5953894
-  },
-  "10.1016/j.bme.2025.104567": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103854.1302981
-  },
-  "10.1016/j.neuroimage.2023.120236": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Multi-modal and multi-model interrogation of large-scale functional brain networks",
-      "real_authors": [
-        "Francesca Castaldo",
-        "Francisco P\u00e1scoa dos Santos",
-        "Ryan C Timms"
-      ]
-    },
-    "checked_at": 1792103854.8746183
-  },
-  "10.1152/jn.01038.2011": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-gr",
-      "real_authors": [
-        "Vikram Aggarwal",
-        "Mohsen Mollazadeh",
-        "Adam G. Davidson"
-      ]
-    },
-    "checked_at": 1792103855.4140267
-  },
-  "10.1038/nn.3689": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Serial dependence in visual perception",
-      "real_authors": [
-        "Jason Fischer",
-        "David Whitney"
-      ]
-    },
-    "checked_at": 1792103856.064586
-  },
-  "10.3389/fnins.2016.00116": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Control of Prosthetic Hands via the Peripheral Nervous System",
-      "real_authors": [
-        "Anna Lisa Ciancio",
-        "Francesca Cordella",
-        "Roberto Barone"
-      ]
-    },
-    "checked_at": 1792103856.6921504
-  },
-  "10.3390/ijerph20054488": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Wireless Peripheral Nerve Stimulation for The Upper Limb: A Case Report",
-      "real_authors": [
-        "Valentina Bellini",
-        "Marco Baciarello",
-        "Marco Cascella"
-      ]
-    },
-    "checked_at": 1792103857.2366853
-  },
-  "10.1101/2024.04.09.123456": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792103857.4371436
-  },
-  "10.1016/j.neuroimage.2023.120314": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Specialized late cingulo-opercular network activation elucidates the mechanisms underlying decisions about ambiguity",
-      "real_authors": [
-        "Jordan E. Pierce",
-        "Nathan M. Petro",
-        "Elizabeth Clancy"
-      ]
-    },
-    "checked_at": 1792103858.0764863
-  },
-  "10.1088/1741-2552/aa83d2": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103858.6092455
-  },
-  "10.1080/17581869.2025.2488244": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Peripheral nerve stimulation: recent advances and future directions",
-      "real_authors": [
-        "Suma Ganji-Angirekula",
-        "Saba Javed"
-      ]
-    },
-    "checked_at": 1792103859.1317005
-  },
-  "10.1002/pchj.794": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Peripheral nerve stimulation for lower\u2010limb postoperative recovery: A systematic review and meta\u2010analysis of randomized ",
-      "real_authors": [
-        "Jingxinmiao Lin",
-        "Dong Song",
-        "Yiheng Tu"
-      ]
-    },
-    "checked_at": 1792103859.7012336
-  },
-  "10.3389/fnins.2020.509364": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding Kinematic Information From Primary Motor Cortex Ensemble Activities Using a Deep Canonical Correlation Analysis",
-      "real_authors": [
-        "Min-Ki Kim",
-        "Jeong-Woo Sohn",
-        "Sung-Phil Kim"
-      ]
-    },
-    "checked_at": 1792103860.3733726
-  },
-  "10.1523/ENEURO.0063-20.2020": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "The Representation of Finger Movement and Force in Human Motor and Premotor Cortices",
-      "real_authors": [
-        "Robert D. Flint",
-        "Matthew C. Tate",
-        "Kejun Li"
-      ]
-    },
-    "checked_at": 1792103860.9211912
-  },
-  "10.1016/j.bbe.2024.100123": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103861.452562
-  },
-  "10.1063/5.0255032": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
-      "real_authors": [
-        "Toichiro Goto",
-        "Koji Sakai",
-        "Yosuke Mizuno"
-      ]
-    },
-    "checked_at": 1792103862.1042562
-  },
-  "10.1146/annurev-control-071020-104336": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Current Solutions and Future Trends for Robotic Prosthetic Hands",
-      "real_authors": [
-        "Vincent Mendez",
-        "Francesco Iberite",
-        "Solaiman Shokur"
-      ]
-    },
-    "checked_at": 1792103862.759642
-  },
-  "10.1016/j.neucom.2024.04.015": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103863.3061018
-  },
-  "10.1152/jn.00486.2021": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "ATRX-dependent SVCT2 mediates macrophage infiltration in the glioblastoma xenograft model",
-      "real_authors": [
-        "Jinxing Shang",
-        "Yana Wang",
-        "Zhuangzhuang Li"
-      ]
-    },
-    "checked_at": 1792103863.8714223
-  },
-  "10.3389/fneur.2020.578559": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Use of Surface EMG in Clinical Rehabilitation of Individuals With SCI: Barriers and Future Considerations",
-      "real_authors": [
-        "Rakesh Pilkar",
-        "Kamyar Momeni",
-        "Arvind Ramanujam"
-      ]
-    },
-    "checked_at": 1792103864.526486
-  },
-  "10.1126/scitranslmed.abg1866": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103865.0509648
-  },
-  "10.1152/jn.00435.2021": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Antagonist surface electromyogram decomposition and the case of the missing motor units",
-      "real_authors": [
-        "Elijah M. K. Haynes",
-        "Changki Kim"
-      ]
-    },
-    "checked_at": 1792103865.591792
-  },
-  "10.1126/scitranslmed.adp9607": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "High-frequency epidural electrical stimulation reduces spasticity and facilitates walking recovery in patients with spin",
-      "real_authors": [
-        "Simone Romeni",
-        "Elena Losanno",
-        "Daniele Emedoli"
-      ]
-    },
-    "checked_at": 1792103866.2389095
-  },
-  "10.1186/s12984-025-01307-2": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103866.7873921
-  },
-  "10.1080/15599612.2021.1978601": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Mechanism of peripheral nerve modulation and recent applications",
-      "real_authors": [
-        "Heejae Shin",
-        "Minseok Kang",
-        "Sanghoon Lee"
-      ]
-    },
-    "checked_at": 1792103867.369405
-  },
-  "10.1152/jn.00525.2021": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Mapping whole brain seizure network recruitment with optogenetic kindling",
-      "real_authors": [
-        "James E. Niemeyer"
-      ]
-    },
-    "checked_at": 1792103867.912257
-  },
-  "10.1016/j.bspc.2023.104474": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103868.4438145
-  },
-  "10.3390/bioengineering12020124": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Using a Neural Network Architecture for the Prediction of Neurologic Outcome for Out-of-Hospital Cardiac Arrests Using H",
-      "real_authors": [
-        "Martha Razo",
-        "Pavitra Kotini",
-        "Jing Li"
-      ]
-    },
-    "checked_at": 1792103869.0118408
-  },
-  "10.1002/bmm2.12048": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neuromodulation of the peripheral nervous system: Bioelectronic technology and prospective developments",
-      "real_authors": [
-        "Hayoung Song",
-        "Moohyun Kim",
-        "Enji Kim"
-      ]
-    },
-    "checked_at": 1792103869.6583579
-  },
-  "10.3389/fneur.2020.00493": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients Receiving Trans-spinal Electrical Stimulation",
-      "real_authors": [
-        "Antonio Gogeascoechea",
-        "Alexander Kuck",
-        "Edwin van Asseldonk"
-      ]
-    },
-    "checked_at": 1792103870.397152
-  },
-  "10.1016/j.neuroimage.2023.120175": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Improved brain stimulation targeting by optimising image acquisition parameters",
-      "real_authors": [
-        "Maria Vasileiadi",
-        "Michael Woletz",
-        "David Linhardt"
-      ]
-    },
-    "checked_at": 1792103871.0478992
-  },
-  "10.1016/j.bjps.2023.03.014": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Management of deep sacral and ischial pressure injuries with free-style local perforator flaps: A D+P+DPD model",
-      "real_authors": [
-        "Hai-Hua Huang",
-        "Ze-Yong Wu",
-        "Xiu-Feng Chen"
-      ]
-    },
-    "checked_at": 1792103871.6003244
-  },
-  "10.1063/5.0188021": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Determining discrete energetic states in a ligated silicon structure using a mathematical model",
-      "real_authors": [
-        "Jahongir Mamadaliev",
-        "Muslim Turgunov",
-        "Nurmirza Toshmamatov"
-      ]
-    },
-    "checked_at": 1792103872.1904547
-  },
-  "10.3389/fnins.2020.00489": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "The Mechanisms of Nuclear Proteotoxicity in Polyglutamine Spinocerebellar Ataxias",
-      "real_authors": [
-        "Davin Lee",
-        "Yun-Il Lee",
-        "Young-Sam Lee"
-      ]
-    },
-    "checked_at": 1792103872.8454816
-  },
-  "10.1016/j.bbe.2023.06.002": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Non-invasive waveform analysis for emergency triage via simulated hemorrhage: An experimental study using novel dynamic ",
-      "real_authors": [
-        "Naimahmed Nesaragi",
-        "Lars \u00d8ivind H\u00f8iseth",
-        "Hemin Ali Qadir"
-      ]
-    },
-    "checked_at": 1792103873.5221632
-  },
-  "10.1152/jn.00520.2009": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Activity-Dependent Modulation of Glutamatergic Signaling in the Developing Rat Dorsal Horn by Early Tissue Injury",
-      "real_authors": [
-        "Jie Li",
-        "Suellen M. Walker",
-        "Maria Fitzgerald"
-      ]
-    },
-    "checked_at": 1792103874.0682049
-  },
-  "10.1063/5.0182349": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Boltzmann\u2013Shannon interaction entropy: A normalized measure for continuous variables with an application as a subsample ",
-      "real_authors": [
-        "C. Tyler Diggans",
-        "Abd AlRahman R. AlMomani"
-      ]
-    },
-    "checked_at": 1792103874.6183727
-  },
-  "10.1126/science.abj5259": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neurorobotics for neurorehabilitation",
-      "real_authors": [
-        "Stanisa Raspopovic"
-      ]
-    },
-    "checked_at": 1792103875.1562114
-  },
-  "10.1109/TNSRE.2020.2995631": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103875.7186947
-  },
-  "10.1016/j.neuron.2021.09.027": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Eunji Cheong",
-      "real_authors": []
-    },
-    "checked_at": 1792103876.319837
-  },
-  "10.1063/5.0186920": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Investigations of ScAlN/AlGaN split barrier inspired high electron mobility transistor",
-      "real_authors": [
-        "J. S. Raj Kumar",
-        "D. Nirmal",
-        "H. Victor Du John"
-      ]
-    },
-    "checked_at": 1792103876.8867586
-  },
-  "10.1111/ejn.15822": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Peripheral neurostimulation for encoding artificial somatosensations",
-      "real_authors": [
-        "Giacomo Valle"
-      ]
-    },
-    "checked_at": 1792103877.5180519
-  },
-  "10.1109/TNSRE.2020.2995276": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103878.0561998
-  },
-  "10.1038/s41591-024-02910-3": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103878.6509905
-  },
-  "10.1109/TBME.2013.2284890": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103879.322303
-  },
-  "10.1109/TNSRE.2009.2039590": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Multiple Binary Classifications via Linear Discriminant Analysis for Improved Controllability of a Powered Prosthesis",
-      "real_authors": [
-        "Levi J. Hargrove",
-        "Erik J. Scheme",
-        "Kevin B. Englehart"
-      ]
-    },
-    "checked_at": 1792103879.864928
-  },
-  "10.1016/j.jneumeth.2022.109678": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Quantitative assessment of motor function in minipig models of neurological disorders using a pressure-sensitive gait ma",
-      "real_authors": [
-        "Johannes Bech Steinm\u00fcller",
-        "Karina Henrique Binda",
-        "Thea Pinholt Lillethorup"
-      ]
-    },
-    "checked_at": 1792103880.5474024
-  },
-  "10.1016/j.brs.2021.10.015": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neurophysiological modulations in the (pre)motor-motor network and the role of GABA+ levels underlying age-related react",
-      "real_authors": [
-        "Koen Cuypers",
-        "Stefanie Verstraelen",
-        "Celine Maes"
-      ]
-    },
-    "checked_at": 1792103881.1225126
-  },
-  "10.1126/scitranslmed.abg3841": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103881.6682496
-  },
-  "10.3389/fnbot.2024.1183967": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103882.2365773
-  },
-  "10.1063/5.0184965": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103882.846093
-  },
-  "10.1152/jn.00415.2021": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103883.4225895
-  },
-  "10.3389/fnins.2020.00445": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Closed-Loop Transcranial Ultrasound Stimulation for Real-Time Non-invasive Neuromodulation in vivo",
-      "real_authors": [
-        "Huifang Yang",
-        "Yi Yuan",
-        "Xingran Wang"
-      ]
-    },
-    "checked_at": 1792103884.0775805
-  },
-  "10.1371/journal.pone.0092799": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Either Non-Homologous Ends Joining or Homologous Recombination Is Required to Repair Double-Strand Breaks in the Genome ",
-      "real_authors": [
-        "Anna Brzostek",
-        "Izabela Szulc",
-        "Magdalena Klink"
-      ]
-    },
-    "checked_at": 1792103884.7184525
-  },
-  "10.1063/5.0192823": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Soil water characteristic curve (SWCC) of lime-laterite stabilised soil as a lining-system design",
-      "real_authors": [
-        "Nur Syahirah Syuhadah Binti Zakaria",
-        "Siti Norafida Binti Jusoh",
-        "Nor Zurairahetty Binti Mohd Yunus"
-      ]
-    },
-    "checked_at": 1792103885.2859728
-  },
-  "10.1109/ICORR66766.2025.11063187": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A Qualitative Exploration of EMG Visual Feedback for Spinal Cord Injury Rehabilitation",
-      "real_authors": [
-        "Janelle Aikens",
-        "Aaron Tabor",
-        "Kevin Englehart"
-      ]
-    },
-    "checked_at": 1792103885.8626516
-  },
-  "10.3389/fnins.2017.00006": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "FeTPPS Reduces Secondary Damage and Improves Neurobehavioral Functions after Traumatic Brain Injury",
-      "real_authors": [
-        "Giuseppe Bruschetta",
-        "Daniela Impellizzeri",
-        "Michela Campolo"
-      ]
-    },
-    "checked_at": 1792103886.5192304
-  },
-  "10.1186/s12984-021-00888-2": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Properties of the surface electromyogram following traumatic spinal cord injury: a scoping review",
-      "real_authors": [
-        "Gustavo Balbinot",
-        "Guijin Li",
-        "Matheus Joner Wiest"
-      ]
-    },
-    "checked_at": 1792103887.3722343
-  },
-  "10.1038/s41467-025-59039-z": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human premotor cortex",
-      "real_authors": [
-        "Nishal P. Shah",
-        "Donald Avansino",
-        "Foram Kamdar"
-      ]
-    },
-    "checked_at": 1792103888.0719645
-  },
-  "10.3389/fnins.2014.00042": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Consequences of EEG electrode position error on ultimate beamformer source reconstruction performance",
-      "real_authors": [
-        "Sarang S. Dalal",
-        "Stefan Rampp",
-        "Florian Willomitzer"
-      ]
-    },
-    "checked_at": 1792103888.6740224
-  },
-  "10.1152/jn.00995.2012": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103889.251683
-  },
-  "10.1126/scitranslmed.abg6463": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Intrafascicular peripheral nerve stimulation produces fine functional hand movements in primates",
-      "real_authors": [
-        "Marion Badi",
-        "Sophie Wurth",
-        "Ilaria Scarpato"
-      ]
-    },
-    "checked_at": 1792103889.933552
-  },
-  "10.1038/s41467-024-45190-6": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Biomimetic computer-to-brain communication enhancing naturalistic touch sensations via peripheral nerve stimulation",
-      "real_authors": [
-        "Giacomo Valle",
-        "Natalija Katic Secerovic",
-        "Dominic Eggemann"
-      ]
-    },
-    "checked_at": 1792103890.6832373
-  },
-  "10.1016/j.neuron.2025.02.021": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Ketamine rescues anhedonia by cell-type- and input-specific adaptations in the nucleus accumbens",
-      "real_authors": [
-        "Federica Lucantonio",
-        "Jacob Roeglin",
-        "Shuwen Li"
-      ]
-    },
-    "checked_at": 1792103891.4001043
-  },
-  "10.1186/s12984-025-01628-6": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Development and evaluation of a non-invasive brain-spine interface using transcutaneous spinal cord stimulation",
-      "real_authors": [
-        "Carolyn Atkinson",
-        "Lorenzo Lombardi",
-        "Meredith Lang"
-      ]
-    },
-    "checked_at": 1792103892.0914133
-  },
-  "10.1038/s41591-024-03341-8": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A high-performance brain\u2013computer interface for finger decoding and quadcopter game control in an individual with paraly",
-      "real_authors": [
-        "Matthew S. Willsey",
-        "Nishal P. Shah",
-        "Donald T. Avansino"
-      ]
-    },
-    "checked_at": 1792103892.7733986
-  },
-  "10.1152/jn.00485.2013": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Tuning and spontaneous spike time synchrony share a common structure in macaque inferior temporal cortex",
-      "real_authors": [
-        "Chia-pei Lin (\u6797\u4f73\u9708)",
-        "Yueh-peng Chen (\u9673\u5dbd\u9d6c)",
-        "Chou P. Hung (\u6d2a\u6d32\u4f2f)"
-      ]
-    },
-    "checked_at": 1792103893.3483229
-  },
-  "10.3389/fnhum.2023.1083307": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Dynamic peripheral nerve stimulation can produce cortical activation similar to punctate mechanical stimuli",
-      "real_authors": [
-        "Justin Tanner",
-        "Edward Keefer",
-        "Jonathan Cheng"
-      ]
-    },
-    "checked_at": 1792103894.023064
-  },
-  "10.1063/5.0220690": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103894.7795682
-  },
-  "10.1063/5.0188522": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103895.3959248
-  },
-  "10.1152/jn.00484.2021": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103896.2406318
-  },
-  "10.1002/advs.202505492": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding Handwriting Trajectories from Intracortical Brain Signals for Brain\u2010to\u2010Text Communication",
-      "real_authors": [
-        "Guangxiang Xu",
-        "Zebin Wang",
-        "Kedi Xu"
-      ]
-    },
-    "checked_at": 1792103897.1531818
-  },
-  "10.1152/jn.00651.2013": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "High-frequency electrical stimulation of the human skin induces heterotopical mechanical hyperalgesia, heat hyperalgesia",
-      "real_authors": [
-        "Emanuel N. van den Broeke",
-        "Andr\u00e9 Mouraux"
-      ]
-    },
-    "checked_at": 1792103897.7026126
-  },
-  "10.1371/journal.pone.0186698": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "High-performance wireless powering for peripheral nerve neuromodulation systems",
-      "real_authors": [
-        "Yuji Tanabe",
-        "John S. Ho",
-        "Jiayin Liu"
-      ]
-    },
-    "checked_at": 1792103898.361263
-  },
-  "10.1152/jn.00593.2021": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103898.9326115
-  },
-  "10.1152/jn.00651.2017": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Development, form, and function of the mouse visual thalamus",
-      "real_authors": [
-        "William Guido"
-      ]
-    },
-    "checked_at": 1792103899.5804222
-  },
-  "10.3389/fnins.2023.1050930": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103900.1443484
-  },
-  "10.1063/5.0143499": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Study of physico-chemical properties of refractory materials synthesized from metallurgical waste",
-      "real_authors": [
-        "S. Fomenko",
-        "S. Tolendiuly",
-        "\u0410. Akishev"
-      ]
-    },
-    "checked_at": 1792103900.703034
-  },
-  "10.1016/j.isci.2023.107413": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Combination of metabolome and proteome analyses provides insights into the mechanism underlying growth differences in Ac",
-      "real_authors": [
-        "Xiaoyun Wu",
-        "Jiansheng Lai",
-        "Yeyu Chen"
-      ]
-    },
-    "checked_at": 1792103901.3655877
-  },
-  "10.1016/j.neuron.2024.05.012": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Cryo-EM structures of pathogenic fibrils and their impact on neurodegenerative disease research",
-      "real_authors": [
-        "Tiffany W. Todd",
-        "Naeyma N. Islam",
-        "Casey N. Cook"
-      ]
-    },
-    "checked_at": 1792103902.1378698
-  },
-  "10.1038/s41467-025-12345-6": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103902.747565
-  },
-  "10.1016/j.nicl.2025.103456": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103903.3056054
-  },
-  "10.1038/s42256-025-01234-7": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103903.8842597
-  },
-  "10.3389/fnins.2014.00123": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Multimodal decoding and congruent sensory information enhance reaching performance in subjects with cervical spinal cord",
-      "real_authors": [
-        "Elaine A. Corbett",
-        "Nicholas A. Sachs",
-        "Konrad P. K\u00c3\u00b6rding"
-      ]
-    },
-    "checked_at": 1792103904.5634708
-  },
-  "10.1186/s12984-025-01345-2": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103905.1063113
-  },
-  "10.1073/pnas.2319874121": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103905.6709585
-  },
-  "10.1016/j.neuroimage.2024.120621": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Visual Mental Imagery and Neural Dynamics of Sensory Substitution in the Blindfolded Subjects",
-      "real_authors": [
-        "HongJune Kim",
-        "June Sic Kim",
-        "Chun Kee Chung"
-      ]
-    },
-    "checked_at": 1792103906.3537977
-  },
-  "10.1088/1741-2560/9/4/045005": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Does bimodal stimulus presentation increase ERP components usable in BCIs?",
-      "real_authors": [
-        "Marieke E Thurlings",
-        "Anne-Marie Brouwer",
-        "Jan B F Van Erp"
-      ]
-    },
-    "checked_at": 1792103906.9423037
-  },
-  "10.1126/scirobotics.ado9509": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Merging motoneuron and postural synergies in prosthetic hand design for natural bionic interfacing",
-      "real_authors": [
-        "Patricia Capsi-Morales",
-        "Deren Y. Barsakcioglu",
-        "Manuel G. Catalano"
-      ]
-    },
-    "checked_at": 1792103907.5276752
-  },
-  "10.1126/scirobotics.adf7360": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A highly integrated bionic hand with neural control and feedback for use in daily life",
-      "real_authors": [
-        "Max Ortiz-Catalan",
-        "Jan Zbinden",
-        "Jason Millenaar"
-      ]
-    },
-    "checked_at": 1792103911.5398877
-  },
-  "10.1063/5.0135270": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103912.11507
-  },
-  "10.3389/fnbot.2022.912341": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103912.665036
-  },
-  "10.1016/j.npneu.2023.100097": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103913.254149
-  },
-  "10.1152/jn.00594.2021": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103913.7955525
-  },
-  "10.3389/fnbot.2021.765432": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103914.338646
-  },
-  "10.22514/sv.2022.031": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Complexity measures, an analysis for electromyography and its possible application to spinal cord injuries",
-      "real_authors": []
-    },
-    "checked_at": 1792103914.9375548
-  },
-  "10.1088/1741-2560/15/5/056011": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103915.5470948
-  },
-  "10.1016/j.neuroimage.2024.120345": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103916.1111255
-  },
-  "10.1186/s12938-024-01234-7": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103916.6694653
-  },
-  "10.3389/frobt.2022.9245887": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103917.2679374
-  },
-  "10.1038/s41467-024-46249-0": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Shaping high-performance wearable robots for human motor and sensory reconstruction and enhancement",
-      "real_authors": [
-        "Haisheng Xia",
-        "Yuchong Zhang",
-        "Nona Rajabi"
-      ]
-    },
-    "checked_at": 1792103918.0798316
-  },
-  "10.3389/fnbot.2022.843267": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A Survey of Multifingered Robotic Manipulation: Biological Results, Structural Evolvements, and Learning Methods",
-      "real_authors": [
-        "Yinlin Li",
-        "Peng Wang",
-        "Rui Li"
-      ]
-    },
-    "checked_at": 1792103918.8320613
-  },
-  "10.1016/j.npneu.2024.100123": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103919.3832817
-  },
-  "10.3389/fnins.2021.785818": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103919.9643016
-  },
-  "10.1038/s41467-025-60818-x": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Experimental demonstration of third-order memristor-based artificial sensory nervous system for neuro-inspired robotics",
-      "real_authors": [
-        "See-On Park",
-        "Hakcheon Jeong",
-        "Seokho Seo"
-      ]
-    },
-    "checked_at": 1792103920.6151025
-  },
-  "10.3390/bioengineering9040147": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decellularization of Full Heart\u2014Optimizing the Classical Sodium-Dodecyl-Sulfate-Based Decellularization Protocol",
-      "real_authors": [
-        "Reem Al-Hejailan",
-        "Tobias Weigel",
-        "Sebastian Sch\u00fcrlein"
-      ]
-    },
-    "checked_at": 1792103921.3443542
-  },
-  "10.1126/sciadv.abj2897": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103921.9010406
-  },
-  "10.2196/41152": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neurorehabilitation Through Synergistic Man-Machine Interfaces Promoting Dormant Neuroplasticity in Spinal Cord Injury: ",
-      "real_authors": [
-        "Alkinoos Athanasiou",
-        "Konstantinos Mitsopoulos",
-        "Apostolos Praftsiotis"
-      ]
-    },
-    "checked_at": 1792103922.5957057
-  },
-  "10.3389/fnins.2024.12454436": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103923.186428
-  },
-  "10.1016/j.rehab.2022.101653": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103923.7295563
-  },
-  "10.1016/j.neuron.2024.01.012": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Alternative Splicing of Presynaptic Neurexins Differentially Controls Postsynaptic NMDA and AMPA Receptor Responses",
-      "real_authors": [
-        "Jinye Dai",
-        "Jason Aoto",
-        "Thomas C. S\u00fcdhof"
-      ]
-    },
-    "checked_at": 1792103924.265155
-  },
-  "10.1109/ICHMS56717.2022.9980636": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Concurrent Decoding of Finger Kinematic and Kinetic Variables based on Motor Unit Discharges",
-      "real_authors": [
-        "Rinku Roy",
-        "Derek G. Kamper",
-        "Xiaogang Hu"
-      ]
-    },
-    "checked_at": 1792103924.847156
-  },
-  "10.1152/jn.00995.2011": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Microstructural organizational patterns in the human corticostriatal system",
-      "real_authors": [
-        "Timothy D. Verstynen",
-        "David Badre",
-        "Kevin Jarbo"
-      ]
-    },
-    "checked_at": 1792103925.4235168
-  },
-  "10.1126/scirobotics.aau9924": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Restoring tactile sensations via neural interfaces for real-time force-and-slippage closed-loop control of bionic hands",
-      "real_authors": [
-        "Loredana Zollo",
-        "Giovanni Di Pino",
-        "Anna L. Ciancio"
-      ]
-    },
-    "checked_at": 1792103926.136864
-  },
-  "10.3389/fnbot.2017.00059": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Selectivity and Longevity of Peripheral-Nerve and Machine Interfaces: A Review",
-      "real_authors": [
-        "Usman Ghafoor",
-        "Sohee Kim",
-        "Keum-Shik Hong"
-      ]
-    },
-    "checked_at": 1792103926.9218495
-  },
-  "10.1007/s00415-023-11939-2": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103927.5564961
-  },
-  "10.1109/TNSRE.2017.XXXXXX": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103928.128688
-  },
-  "10.1038/s41467-025-51234-5": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103928.6929588
-  },
-  "10.1126/scirobotics.aau8892": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A closed-loop hand prosthesis with simultaneous intraneural tactile and position feedback",
-      "real_authors": [
-        "Edoardo D\u2019Anna",
-        "Giacomo Valle",
-        "Alberto Mazzoni"
-      ]
-    },
-    "checked_at": 1792103929.2485516
-  },
-  "10.1038/s41551-024-01299-z": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Evoking stable and precise tactile sensations via multi-electrode intracortical microstimulation of the somatosensory co",
-      "real_authors": [
-        "Charles M. Greenspon",
-        "Giacomo Valle",
-        "Natalya D. Shelchkova"
-      ]
-    },
-    "checked_at": 1792103929.9252636
-  },
-  "10.3389/fbioe.2025.1619247": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "AI-driven hybrid rehabilitation: synergizing robotics and electrical stimulation for upper-limb recovery after stroke",
-      "real_authors": [
-        "Ismail Ben Abdallah",
-        "Yassine Bouteraa",
-        "Ahmed Alotaibi"
-      ]
-    },
-    "checked_at": 1792103930.5102768
-  },
-  "10.1152/jn.00436.2021": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "The prefrontal cortex of the Mexican free-tailed bat is more selective to communication calls than primary auditory cort",
-      "real_authors": [
-        "Silvio Macias",
-        "Kushal Bakshi",
-        "Todd Troyer"
-      ]
-    },
-    "checked_at": 1792103931.1089923
-  },
-  "10.1109/TNSRE.2022.3145678": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103931.6963036
-  },
-  "10.1088/1741-2552/ac7f42": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103932.2147944
-  },
-  "10.1109/TBME.2023.3278941": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103932.8125699
-  },
-  "10.1109/TMRB.2024.3321457": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103933.3868482
-  },
-  "10.1016/j.jbiomech.2023.111509": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Less impact absorption at the ankle joint is related to the single-leg landing stability deficit in patients with chroni",
-      "real_authors": [
-        "Shinshiro Mineta",
-        "Mako Fukano",
-        "Norikazu Hirose"
-      ]
-    },
-    "checked_at": 1792103934.0558646
-  },
-  "10.3389/fnbot.2022.897654": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103934.6452703
-  },
-  "10.1109/TNSRE.2023.3299999": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103935.2384112
-  },
-  "10.1002/brb3.3792": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103935.7945037
-  },
-  "10.1109/TBME.2022.3187654": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103936.3623283
-  },
-  "10.1109/TNSRE.2021.3054478": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103936.930494
-  },
-  "10.1152/jn.00745.2013": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103937.4961107
-  },
-  "10.1152/jn.00648.2017": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Dynamics of synaptic extracellular field potentials in the nucleus laminaris of the barn owl",
-      "real_authors": [
-        "Thomas McColgan",
-        "Paula T. Kuokkanen",
-        "Catherine E. Carr"
-      ]
-    },
-    "checked_at": 1792103938.1030145
-  },
-  "10.1038/nn.3951": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A subcortical inhibitory signal for behavioral arrest in the thalamus",
-      "real_authors": [
-        "Krist\u00f3f Giber",
-        "Marco A Diana",
-        "Viktor M Plattner"
-      ]
-    },
-    "checked_at": 1792103938.7854414
-  },
-  "10.1109/TBME.2014.2331975": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103939.3391974
-  },
-  "10.48550/arXiv.1904.03531": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792103939.539432
-  },
-  "10.1038/s41593-023-01345-7": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103940.128155
-  },
-  "10.1101/368081": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792103940.32865
-  },
-  "10.1126/scirobotics.abf3368": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neurorobotic fusion of prosthetic touch, kinesthesia, and movement in bionic upper limbs promotes intrinsic brain behavi",
-      "real_authors": [
-        "Paul D. Marasco",
-        "Jacqueline S. Hebert",
-        "Jonathon W. Sensinger"
-      ]
-    },
-    "checked_at": 1792103941.0164168
-  },
-  "10.3389/fneur.2017.00107": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Advanced Myoelectric Control for Robotic Hand-Assisted Training: Outcome from a Stroke Patient",
-      "real_authors": [
-        "Zhiyuan Lu",
-        "Kai-yu Tong",
-        "Henry Shin"
-      ]
-    },
-    "checked_at": 1792103941.5636644
-  },
-  "10.1186/s12984-021-00869-8": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103942.1340864
-  },
-  "10.26444/aaem/189609": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Surface electromyography vs clinical outcome measures after robot-assisted gait training in patients with spinal cord in",
-      "real_authors": [
-        "Bogumi\u0142 Korczy\u0144ski",
-        "Justyna Frasu\u0144ska",
-        "Anna Po\u015bwiata"
-      ]
-    },
-    "checked_at": 1792103942.694738
-  },
-  "10.1097/TAI.0000000000000673": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103943.2576797
-  },
-  "10.1097/TAI.0000000000000674": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103943.7895784
-  },
-  "10.1152/jn.00889.2012": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Corneal dry-responsive neurons in the spinal trigeminal nucleus respond to innocuous cooling in the rat",
-      "real_authors": [
-        "Masayuki Kurose",
-        "Ian D. Meng"
-      ]
-    },
-    "checked_at": 1792103944.3267126
-  },
-  "10.1093/cercor/bhac408": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Structural hyperconnectivity of the subthalamic area with limbic cortices underpins anxiety and impulsivity in Tourette ",
-      "real_authors": [
-        "Gizem Temiz",
-        "Cyril Atkinson-Clement",
-        "Brian Lau"
-      ]
-    },
-    "checked_at": 1792103944.9903574
-  },
-  "10.1097/AAP.0000000000001025": {
-    "status": "FAKE",
-    "details": "DOI not found in CrossRef",
-    "checked_at": 1792103945.538
-  },
-  "10.1213/ANE.0000000000004050": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "In Response",
-      "real_authors": [
-        "John C. Markley",
-        "Michaela K. Farber",
-        "Nicola C. Perlman"
-      ]
-    },
-    "checked_at": 1792103946.1338518
-  },
-  "10.1177/15459683231166939": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "New Artificial Intelligence-Integrated Electromyography-Driven Robot Hand for Upper Extremity Rehabilitation of Patients",
-      "real_authors": [
-        "Yuhei Murakami",
-        "Kaoru Honaga",
-        "Hidemi Kono"
-      ]
-    },
-    "checked_at": 1792103946.6972215
-  },
-  "10.1038/s41394-026-00748-y": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective matched pair case-cont",
-      "real_authors": [
-        "Fatma Kumbara",
-        "Asl\u0131 Turan",
-        "Berna Orhan"
-      ]
-    },
-    "checked_at": 1792103947.3676026
-  },
-  "10.3390/cells10081886": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Plasticity of the Injured Spinal Cord",
-      "real_authors": [
-        "Nicolas Gu\u00e9rout"
-      ]
-    },
-    "checked_at": 1792103948.04645
-  },
-  "10.53350/pjmhs211551428": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Assessment of Spinal Cord Injured Patients' Adherence toward Clean Intermittent Self-Catheterization in Baghdad City",
-      "real_authors": [
-        "M. A Hussein",
-        "W. Mohammed"
-      ]
-    },
-    "checked_at": 1792103948.6103966
-  },
-  "10.5455/handmicrosurg.184724": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Venous flap for immediate reconstruction of finger soft tissue defect",
-      "real_authors": [
-        "Yakup Cil"
-      ]
-    },
-    "checked_at": 1792103949.1946456
-  },
-  "10.5455/handmicrosurg.216297": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Ultrasound-Guided Intervention for Acute Finger Calcific Tendinitis",
-      "real_authors": [
-        "Kubra Oktay",
-        "Behic Celik",
-        "Gokhan Meric"
-      ]
-    },
-    "checked_at": 1792103949.766675
-  },
-  "10.5455/handmicrosurg.135836": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Atypical Hypothenar Hammer Syndrome Mimicking A Peripheral Nerve Tumor",
-      "real_authors": [
-        "H zde",
-        "G ran",
-        "Kadir Ertem"
-      ]
-    },
-    "checked_at": 1792103950.3288734
-  },
-  "10.7759/cureus.39205": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Malignant Peripheral Nerve Sheath Tumor of the Hand: A Case Report",
-      "real_authors": [
-        "Sangita Jogdand",
-        "Rahul Rajendran"
-      ]
-    },
-    "checked_at": 1792103950.9421315
-  },
-  "10.1038/s41394-021-00443-0": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Charles Albert Elsberg (1871\u20131948) and his forgotten contributions to the treatment of Spinal Cord Injured patients",
-      "real_authors": [
-        "Avi Ohry"
-      ]
-    },
-    "checked_at": 1792104141.6419249
-  },
-  "10.55248/gengpi.6.0625.23105": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Effectiveness Of Robotic Assisted Gait Training In Spinal Cord Injured Patients \u2013 A Literature Review",
-      "real_authors": [
-        "Anlitta C Johnson",
-        "Nischitha R Rao",
-        "Sreshtta Tinson"
-      ]
-    },
-    "checked_at": 1792104142.1809213
-  },
-  "10.1038/s41394-026-00740-6": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Reconstruction with muscle flaps after hip joint heterotopic ossification resection in spinal cord injured patients: a c",
-      "real_authors": [
-        "Luca Negosanti",
-        "Luca Gaiani",
-        "Silvia Campagnoni"
-      ]
-    },
-    "checked_at": 1792104142.723357
-  },
-  "10.1038/s41393-021-00668-8": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neurogenic bowel dysfunction score in spinal cord-injured patients: translation and validation of the Dutch-language NBD",
-      "real_authors": [
-        "Tess van Doorn",
-        "Ilse M. Groenendijk",
-        "Jeroen R. Scheepe"
-      ]
-    },
-    "checked_at": 1792104143.2987921
-  },
-  "10.12974/2313-0954.2021.08.4": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Spontaneous Neurological Recovery of Patients with Acute Traumatic Spinal Cord Injuries (ATSCI) without Intervention the",
-      "real_authors": [
-        "W.S. El Masri"
-      ]
-    },
-    "checked_at": 1792104143.952696
-  },
-  "10.3390/traumacare2020031": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Surface EMG in Subacute and Chronic Care after Traumatic Spinal Cord Injuries",
-      "real_authors": [
-        "Gustavo Balbinot"
-      ]
-    },
-    "checked_at": 1792104144.5878408
-  },
-  "10.1038/s41393-024-01039-9": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Exploring lifestyle components and associated factors in newly injured individuals with spinal cord injury",
-      "real_authors": [
-        "Muriel Haldemann",
-        "Stevan Stojic",
-        "Inge Eriks-Hoogland"
-      ]
-    },
-    "checked_at": 1792104145.2283244
-  },
-  "10.1080/10790268.2025.2571824": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Spinal cord injury is an independent risk factor for acute kidney injury in traumatic spine-injured patients in the Nati",
-      "real_authors": [
-        "John H. Kanter",
-        "Vasanth Raja",
-        "Phillip A. Bonney"
-      ]
-    },
-    "checked_at": 1792104145.7700016
-  },
-  "10.46292/sci22-00044": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Connecting Researchers and Clinicians Before Connecting the Injured Spinal Cord",
-      "real_authors": [
-        "Laura Krisa",
-        "Erica Witoslawski",
-        "Linda Jones"
-      ]
-    },
-    "checked_at": 1792104146.40447
-  },
-  "10.1038/s41393-021-00705-6": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Broad opioid antagonism amplifies disruption of locomotor function following therapy-like hindlimb stretching in spinal ",
-      "real_authors": [
-        "Gregory J. R. States",
-        "Anastasia Keller",
-        "Alice Shum-Siu"
-      ]
-    },
-    "checked_at": 1792104147.086179
-  },
-  "10.1038/s41393-021-00632-6": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Clinical judgment is a cornerstone for validating and using clinical prediction rules: a head-to-head study on ambulatio",
-      "real_authors": [
-        "R\u00e9mi Pelletier-Roy",
-        "Andr\u00e9ane Richard-Denis",
-        "St\u00e9phanie Jean"
-      ]
-    },
-    "checked_at": 1792104147.618952
-  },
-  "10.2139/ssrn.4002134": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Level of Mental Burden Among Caregivers of Spinal Cord Injured Patients",
-      "real_authors": [
-        "Muhammad S. Khan",
-        "Omer Farooq",
-        "Ramash Aqeel"
-      ]
-    },
-    "checked_at": 1792104148.1695118
-  },
-  "10.1080/10790268.2025.2548057": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients admitted to the ",
-      "real_authors": [
-        "Vivian Huong Hoang Thien Le",
-        "Pascal Mputu Mputu",
-        "Andr\u00e9ane Richard-Denis"
-      ]
-    },
-    "checked_at": 1792104148.7106314
-  },
-  "10.1017/wtc.2020.9": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Improvement of hand functions of spinal cord injury patients with electromyography-driven hand exoskeleton: A feasibilit",
-      "real_authors": [
-        "Youngmok Yun",
-        "Youngjin Na",
-        "Paria Esmatloo"
-      ]
-    },
-    "checked_at": 1792175494.6398702
-  },
-  "10.1109/iembs.2009.5334129": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Cortical decoding of individual finger and wrist kinematics for an upper-limb neuroprosthesis",
-      "real_authors": [
-        "V. Aggarwal",
-        "F. Tenore",
-        "S. Acharya"
-      ]
-    },
-    "checked_at": 1792175495.1887774
-  },
-  "10.1101/2022.12.07.22283227": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792175495.3890471
-  },
-  "10.1109/tcds.2024.3409555/mm1": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding Joint-Level Hand Movements with Intracortical Neural Signals in a Human Brain-Computer Interface_supp1-3409555.",
-      "real_authors": [
-        "Yu Qi"
-      ]
-    },
-    "checked_at": 1792175495.9293785
-  },
-  "10.1088/1741-2560/13/3/036001": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Restoring motor control and sensory feedback in people with upper extremity amputations using arrays of 96 microelectrod",
-      "real_authors": [
-        "T S Davis",
-        "H A C Wark",
-        "D T Hutchinson"
-      ]
-    },
-    "checked_at": 1792175496.5665543
-  },
-  "10.1088/1741-2552/aae398": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Biomimetic encoding model for restoring touch in bionic hands through a nerve interface",
-      "real_authors": [
-        "Elizaveta V Okorokova",
-        "Qinpu He",
-        "Sliman J Bensmaia"
-      ]
-    },
-    "checked_at": 1792175497.102636
-  },
-  "10.1109/cne.2007.369723": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding grasp aperture from motor-cortical population activity",
-      "real_authors": [
-        "Panagiotis K. Artemiadis",
-        "Gregory Shakhnarovich",
-        "Carlos Vargas-Irwin"
-      ]
-    },
-    "checked_at": 1792175497.6385012
-  },
-  "10.1088/1741-2552/aa80bd": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Neural control of finger movement via intracortical brain\u2013machine interface",
-      "real_authors": [
-        "Z T Irwin",
-        "K E Schroeder",
-        "P P Vu"
-      ]
-    },
-    "checked_at": 1792175498.2841687
-  },
-  "10.1016/b978-0-12-420045-6.00005-5": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Electrical Stimulation for Promoting Peripheral Nerve Regeneration",
-      "real_authors": [
-        "Kirsten Haastert-Talini",
-        "Claudia Grothe"
-      ]
-    },
-    "checked_at": 1792175498.9276488
+    "checked_at": 1792177203.1908047
   },
   "10.1016/j.compbiomed.2023.107139": {
     "status": "VERIFIED",
@@ -2000,42 +21,113 @@
         "Derek G. Kamper"
       ]
     },
-    "checked_at": 1792175499.5804248
+    "checked_at": 1792177203.8424332
   },
-  "10.1016/j.xpro.2024.103503": {
+  "10.1126/sciadv.ads9150": {
     "status": "VERIFIED",
     "details": {
-      "real_title": "Protocol for state-based decoding of hand movement parameters using neural signals",
+      "real_title": "MyoGestic: EMG interfacing framework for decoding multiple spared motor dimensions in individuals with neural lesions",
       "real_authors": [
-        "Mohammad Taghi Ghodrati",
-        "Sajedeh Aghababaei",
-        "Alavie Mirfathollahi"
+        "Raul C. S\u00eempetru",
+        "Dominik I. Braun",
+        "Arndt U. Simon"
       ]
     },
-    "checked_at": 1792175500.122047
+    "checked_at": 1792177204.5372503
   },
-  "10.1038/sc.2014.115": {
+  "10.1017/wtc.2020.9": {
     "status": "VERIFIED",
     "details": {
-      "real_title": "Response to \u2018Preserved corticospinal conduction without voluntary movement after spinal cord injury\u2019",
+      "real_title": "Improvement of hand functions of spinal cord injury patients with electromyography-driven hand exoskeleton: A feasibilit",
       "real_authors": [
-        "B Calancie",
-        "N Alexeeva"
+        "Youngmok Yun",
+        "Youngjin Na",
+        "Paria Esmatloo"
       ]
     },
-    "checked_at": 1792175500.6647568
+    "checked_at": 1792177205.082394
   },
-  "10.3389/fnhum.2025.1532783": {
+  "10.1109/tcds.2024.3409555/mm1": {
     "status": "VERIFIED",
     "details": {
-      "real_title": "Decoding the brain-machine interaction for upper limb assistive technologies: advances and challenges",
+      "real_title": "Decoding Joint-Level Hand Movements with Intracortical Neural Signals in a Human Brain-Computer Interface_supp1-3409555.",
       "real_authors": [
-        "Sutirtha Ghosh",
-        "Rohit Kumar Yadav",
-        "Sunaina Soni"
+        "Yu Qi"
       ]
     },
-    "checked_at": 1792175501.3009343
+    "checked_at": 1792177205.6293886
+  },
+  "10.1109/iembs.2009.5334129": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Cortical decoding of individual finger and wrist kinematics for an upper-limb neuroprosthesis",
+      "real_authors": [
+        "V. Aggarwal",
+        "F. Tenore",
+        "S. Acharya"
+      ]
+    },
+    "checked_at": 1792177206.164474
+  },
+  "10.3389/fneng.2014.00003": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding repetitive finger movements with brain activity acquired via non-invasive electroencephalography",
+      "real_authors": [
+        "Andrew Y. Paek",
+        "Harshavardhan A. Agashe",
+        "Jos\u00c3\u00a9 L. Contreras-Vidal"
+      ]
+    },
+    "checked_at": 1792177206.702378
+  },
+  "10.3389/fnins.2023.1210544": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Case study: persistent recovery of hand movement and tactile sensation in peripheral nerve injury using targeted transcu",
+      "real_authors": [
+        "Santosh Chandrasekaran",
+        "Nikunj A. Bhagat",
+        "Richard Ramdeo"
+      ]
+    },
+    "checked_at": 1792177207.2717326
+  },
+  "10.1126/scitranslmed.aay2857": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A regenerative peripheral nerve interface allows real-time control of an artificial hand in upper limb amputees",
+      "real_authors": [
+        "Philip P. Vu",
+        "Alex K. Vaskov",
+        "Zachary T. Irwin"
+      ]
+    },
+    "checked_at": 1792177207.7984219
+  },
+  "10.1126/scirobotics.aax2352": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Biomimetic sensory feedback through peripheral nerve stimulation improves dexterous use of a bionic hand",
+      "real_authors": [
+        "J. A. George",
+        "D. T. Kluger",
+        "T. S. Davis"
+      ]
+    },
+    "checked_at": 1792177208.439941
+  },
+  "10.3389/fnins.2019.00853": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Learning of Artificial Sensation Through Long-Term Home Use of a Sensory-Enabled Prosthesis",
+      "real_authors": [
+        "Ivana Cuberovic",
+        "Anisha Gill",
+        "Linda J. Resnik"
+      ]
+    },
+    "checked_at": 1792177209.0851722
   },
   "10.1152/jn.00220.2021": {
     "status": "VERIFIED",
@@ -2047,101 +139,14 @@
         "Devapratim Sarma"
       ]
     },
-    "checked_at": 1792175501.8363385
+    "checked_at": 1792177209.6279776
   },
-  "10.5334/tohm.991": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Essential Tremor",
-      "real_authors": [
-        "Richard Dewey",
-        "Stuart Isaacson",
-        "Richard Dewey"
-      ]
-    },
-    "checked_at": 1792175502.4280524
-  },
-  "10.1016/j.brs.2018.12.221": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Proceedings #52: Development of surface EMG- triggered closed loop stimulation for individuals with spinal cord injury",
-      "real_authors": [
-        "Yu-Kuang Wu",
-        "Sana Saeed",
-        "James M. Limonta"
-      ]
-    },
-    "checked_at": 1792175502.9528074
-  },
-  "10.1101/2024.04.22.590630": {
+  "10.1101/2024.09.05.24313041": {
     "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792175503.1531925
-  },
-  "10.3390/biomimetics11020104": {
-    "status": "VERIFIED",
     "details": {
-      "real_title": "Review of Soft Robotic Gloves and Functional Electrical Stimulation Affecting Hand Function Rehabilitation for Stroke Pa",
-      "real_authors": [
-        "Xiaohui Wang",
-        "Yilin Fang",
-        "Zhaowei Zhang"
-      ]
+      "real_title": "Reclaiming Hand Functions after Complete Spinal Cord Injury with Epidural Brain-Computer Interface"
     },
-    "checked_at": 1792175504.0275562
-  },
-  "10.1101/2021.02.24.21250962": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792175504.2277274
-  },
-  "10.3389/fnins.2025.1623380": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Convolutional neural networks decode finger movements in motor sequence learning from MEG data",
-      "real_authors": [
-        "Aleksey Zabolotniy",
-        "Russell Weili Chan",
-        "Victoria Moiseeva"
-      ]
-    },
-    "checked_at": 1792175504.901747
-  },
-  "10.1109/embc.2018.8512609": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding hindlimb kinematics from primate motor cortex using long short-term memory recurrent neural networks",
-      "real_authors": [
-        "Y. Wang",
-        "W. Truccolo",
-        "D. A. Borton"
-      ]
-    },
-    "checked_at": 1792175505.4419007
-  },
-  "10.1088/1741-2552/acd3b1": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding and geometry of ten finger movements in human posterior parietal cortex and motor cortex",
-      "real_authors": [
-        "Charles Guan",
-        "Tyson Aflalo",
-        "Kelly Kadlec"
-      ]
-    },
-    "checked_at": 1792175506.0974617
-  },
-  "10.1186/s12984-025-01797-4": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Development and validation of the electrosacrogram (ESG): a digital point-of-care tool for real-time neuro-sacral assess",
-      "real_authors": [
-        "Maude Duguay",
-        "Jean-Marc Mac-Thiong",
-        "Juan-David Cifuentes-Hernandez"
-      ]
-    },
-    "checked_at": 1792175506.723784
+    "checked_at": 1792177210.356191
   },
   "10.1109/icra40945.2020.9196629": {
     "status": "VERIFIED",
@@ -2153,7 +158,26 @@
         "Leo K. Cheng"
       ]
     },
-    "checked_at": 1792175832.7592363
+    "checked_at": 1792177210.9408622
+  },
+  "10.1101/2022.12.07.22283227": {
+    "status": "PREPRINT",
+    "details": {
+      "real_title": "Compositional coding of individual finger movements in human posterior parietal cortex and motor cortex enables ten-fing"
+    },
+    "checked_at": 1792177211.8910124
+  },
+  "10.7554/eLife.82598": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "The impact of task context on predicting finger movements in a brain-machine interface",
+      "real_authors": [
+        "Matthew J Mender",
+        "Samuel R Nason-Tomaszewski",
+        "Hisham Temmar"
+      ]
+    },
+    "checked_at": 1792177212.7530892
   },
   "10.1016/j.isci.2023.107808": {
     "status": "VERIFIED",
@@ -2165,7 +189,31 @@
         "Vahid Shalchyan"
       ]
     },
-    "checked_at": 1792175833.4060717
+    "checked_at": 1792177213.4006019
+  },
+  "10.1152/jn.01038.2011": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "State-based decoding of hand and finger kinematics using neuronal ensemble and LFP activity during dexterous reach-to-gr",
+      "real_authors": [
+        "Vikram Aggarwal",
+        "Mohsen Mollazadeh",
+        "Adam G. Davidson"
+      ]
+    },
+    "checked_at": 1792177213.9379568
+  },
+  "10.1088/1741-2560/13/3/036001": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Restoring motor control and sensory feedback in people with upper extremity amputations using arrays of 96 microelectrod",
+      "real_authors": [
+        "T S Davis",
+        "H A C Wark",
+        "D T Hutchinson"
+      ]
+    },
+    "checked_at": 1792177214.5682788
   },
   "10.1109/ner52421.2023.10123762": {
     "status": "VERIFIED",
@@ -2177,7 +225,19 @@
         "Ning Lan"
       ]
     },
-    "checked_at": 1792175833.9516628
+    "checked_at": 1792177215.1383398
+  },
+  "10.1088/1741-2552/aae398": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Biomimetic encoding model for restoring touch in bionic hands through a nerve interface",
+      "real_authors": [
+        "Elizaveta V Okorokova",
+        "Qinpu He",
+        "Sliman J Bensmaia"
+      ]
+    },
+    "checked_at": 1792177215.686683
   },
   "10.1088/1741-2552/ab95ea": {
     "status": "VERIFIED",
@@ -2189,7 +249,7 @@
         "Nicholas G Hatsopoulos"
       ]
     },
-    "checked_at": 1792175834.6066477
+    "checked_at": 1792177216.3578472
   },
   "10.1109/tbme.2010.2047015": {
     "status": "VERIFIED",
@@ -2201,7 +261,7 @@
         "Carlos Vargas-Irwin"
       ]
     },
-    "checked_at": 1792175835.1366484
+    "checked_at": 1792177216.9397063
   },
   "10.1371/journal.pone.0085192": {
     "status": "VERIFIED",
@@ -2213,140 +273,43 @@
         "Jania Gonzalez"
       ]
     },
-    "checked_at": 1792175835.7709637
+    "checked_at": 1792177217.7955317
   },
-  "10.1088/1741-2560/13/1/016001": {
+  "10.1109/cne.2007.369723": {
     "status": "VERIFIED",
     "details": {
-      "real_title": "Sensory feedback by peripheral nerve stimulation improves task performance in individuals with upper limb loss using a m",
+      "real_title": "Decoding grasp aperture from motor-cortical population activity",
       "real_authors": [
-        "Matthew Schiefer",
-        "Daniel Tan",
-        "Steven M Sidek"
+        "Panagiotis K. Artemiadis",
+        "Gregory Shakhnarovich",
+        "Carlos Vargas-Irwin"
       ]
     },
-    "checked_at": 1792175836.411377
+    "checked_at": 1792177218.475717
   },
-  "10.1088/1741-2552/ad331f": {
+  "10.1016/j.neuron.2018.08.033": {
     "status": "VERIFIED",
     "details": {
-      "real_title": "Decoding of unimanual and bimanual reach-and-grasp actions from EMG and IMU signals in persons with cervical spinal cord",
+      "real_title": "Biomimetic Intraneural Sensory Feedback Enhances Sensation Naturalness, Tactile Sensitivity, and Manual Dexterity in a B",
       "real_authors": [
-        "Marvin Wolf",
-        "R\u00fcdiger Rupp",
-        "Andreas Schwarz"
-      ]
-    },
-    "checked_at": 1792175837.0647726
-  },
-  "10.3390/biomimetics10030130": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "The Next Frontier in Neuroprosthetics: Integration of Biomimetic Somatosensory Feedback",
-      "real_authors": [
-        "Yucheng Tian",
         "Giacomo Valle",
-        "Paul Cederna"
+        "Alberto Mazzoni",
+        "Francesco Iberite"
       ]
     },
-    "checked_at": 1792175837.8330185
+    "checked_at": 1792177219.6029322
   },
-  "10.1109/tro.2022.3170720": {
+  "10.1126/scitranslmed.3008669": {
     "status": "VERIFIED",
     "details": {
-      "real_title": "Surgically Implanted Electrodes Enable Real-Time Finger and Grasp Pattern Recognition for Prosthetic Hands",
+      "real_title": "A neural interface provides long-term stable natural touch perception",
       "real_authors": [
-        "Alex K. Vaskov",
-        "Philip P. Vu",
-        "Naia North"
+        "Daniel W. Tan",
+        "Matthew A. Schiefer",
+        "Michael W. Keith"
       ]
     },
-    "checked_at": 1792175838.3727565
-  },
-  "10.1109/embc.2012.6346283": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding of finger, hand and arm kinematics using switching linear dynamical systems with pre-motor cortical ensembles",
-      "real_authors": [
-        "Xiaoxu Kang",
-        "M. H. Schieber",
-        "N. V. Thakor"
-      ]
-    },
-    "checked_at": 1792175838.920803
-  },
-  "10.1186/s12984-022-01043-1": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Soft robotics and functional electrical stimulation advances for restoring hand function in people with SCI: a narrative",
-      "real_authors": [
-        "Lucas R. L. Cardoso",
-        "Vanesa Bochkezanian",
-        "Arturo Forner-Cordero"
-      ]
-    },
-    "checked_at": 1792175839.6603444
-  },
-  "10.1109/mrai65197.2025.11135678": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "A Review of Electrode Technology in Functional Electrical Stimulation (FES) Hand Rehabilitation Systems",
-      "real_authors": [
-        "Xinyu Zhao",
-        "Mingxu Sun",
-        "Haidi Wu"
-      ]
-    },
-    "checked_at": 1792175840.1917384
-  },
-  "10.1007/978-1-4471-2277-7_7": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Functional Electrical Stimulation Therapy: Recovery of Function Following Spinal Cord Injury and Stroke",
-      "real_authors": [
-        "Milos R. Popovic",
-        "Kei Masani",
-        "Silvestro Micera"
-      ]
-    },
-    "checked_at": 1792175840.849404
-  },
-  "10.1016/b978-012759440-8/50008-6": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Individuated Finger Movements",
-      "real_authors": [
-        "Marc H. Schieber"
-      ]
-    },
-    "checked_at": 1792175841.3936927
-  },
-  "10.3389/conf.fncom.2012.55.00111": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Decoding of reach and grasp kinematics from primate premotor, motor, and parietal cortex",
-      "real_authors": [
-        "Scherberger Hans"
-      ]
-    },
-    "checked_at": 1792175841.9265876
-  },
-  "10.1101/2024.11.20.624514": {
-    "status": "PREPRINT",
-    "details": "Preprint - accepted without remote lookup",
-    "checked_at": 1792175842.1268835
-  },
-  "10.1136/rapm-2018-100121": {
-    "status": "VERIFIED",
-    "details": {
-      "real_title": "Ultrasound-guided percutaneous peripheral nerve stimulation: neuromodulation of the suprascapular nerve and brachial ple",
-      "real_authors": [
-        "Brian M Ilfeld",
-        "John J Finneran",
-        "Rodney A Gabriel"
-      ]
-    },
-    "checked_at": 1792175842.795684
+    "checked_at": 1792177220.3354099
   },
   "10.1093/brain/awae088": {
     "status": "VERIFIED",
@@ -2358,6 +321,979 @@
         "Dominik I Braun"
       ]
     },
-    "checked_at": 1792176024.5820708
+    "checked_at": 1792177221.1634598
+  },
+  "10.1088/1741-2552/aa80bd": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neural control of finger movement via intracortical brain\u2013machine interface",
+      "real_authors": [
+        "Z T Irwin",
+        "K E Schroeder",
+        "P P Vu"
+      ]
+    },
+    "checked_at": 1792177222.1624877
+  },
+  "10.1101/2024.04.22.590630": {
+    "status": "PREPRINT",
+    "details": {
+      "real_title": "A flexible intracortical brain-computer interface for typing using finger movements"
+    },
+    "checked_at": 1792177222.9785836
+  },
+  "10.1088/1741-2560/13/1/016001": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Sensory feedback by peripheral nerve stimulation improves task performance in individuals with upper limb loss using a m",
+      "real_authors": [
+        "Matthew Schiefer",
+        "Daniel Tan",
+        "Steven M Sidek"
+      ]
+    },
+    "checked_at": 1792177223.9041216
+  },
+  "10.3389/fnins.2016.00116": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Control of Prosthetic Hands via the Peripheral Nervous System",
+      "real_authors": [
+        "Anna Lisa Ciancio",
+        "Francesca Cordella",
+        "Roberto Barone"
+      ]
+    },
+    "checked_at": 1792177224.9273915
+  },
+  "10.3390/ijerph20054488": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Wireless Peripheral Nerve Stimulation for The Upper Limb: A Case Report",
+      "real_authors": [
+        "Valentina Bellini",
+        "Marco Baciarello",
+        "Marco Cascella"
+      ]
+    },
+    "checked_at": 1792177225.6644723
+  },
+  "10.1080/17581869.2025.2488244": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Peripheral nerve stimulation: recent advances and future directions",
+      "real_authors": [
+        "Suma Ganji-Angirekula",
+        "Saba Javed"
+      ]
+    },
+    "checked_at": 1792177226.1955225
+  },
+  "10.1016/b978-0-12-420045-6.00005-5": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Electrical Stimulation for Promoting Peripheral Nerve Regeneration",
+      "real_authors": [
+        "Kirsten Haastert-Talini",
+        "Claudia Grothe"
+      ]
+    },
+    "checked_at": 1792177226.8178604
+  },
+  "10.1002/pchj.794": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Peripheral nerve stimulation for lower\u2010limb postoperative recovery: A systematic review and meta\u2010analysis of randomized ",
+      "real_authors": [
+        "Jingxinmiao Lin",
+        "Dong Song",
+        "Yiheng Tu"
+      ]
+    },
+    "checked_at": 1792177227.4975724
+  },
+  "10.3389/fnins.2020.509364": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding Kinematic Information From Primary Motor Cortex Ensemble Activities Using a Deep Canonical Correlation Analysis",
+      "real_authors": [
+        "Min-Ki Kim",
+        "Jeong-Woo Sohn",
+        "Sung-Phil Kim"
+      ]
+    },
+    "checked_at": 1792177228.6134386
+  },
+  "10.1523/ENEURO.0063-20.2020": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "The Representation of Finger Movement and Force in Human Motor and Premotor Cortices",
+      "real_authors": [
+        "Robert D. Flint",
+        "Matthew C. Tate",
+        "Kejun Li"
+      ]
+    },
+    "checked_at": 1792177229.438943
+  },
+  "10.3389/fnhum.2025.1532783": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding the brain-machine interaction for upper limb assistive technologies: advances and challenges",
+      "real_authors": [
+        "Sutirtha Ghosh",
+        "Rohit Kumar Yadav",
+        "Sunaina Soni"
+      ]
+    },
+    "checked_at": 1792177230.1727796
+  },
+  "10.1063/5.0255032": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Self-folding graphene cuff electrodes for peripheral nerve stimulation",
+      "real_authors": [
+        "Toichiro Goto",
+        "Koji Sakai",
+        "Yosuke Mizuno"
+      ]
+    },
+    "checked_at": 1792177231.1748798
+  },
+  "10.1146/annurev-control-071020-104336": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Current Solutions and Future Trends for Robotic Prosthetic Hands",
+      "real_authors": [
+        "Vincent Mendez",
+        "Francesco Iberite",
+        "Solaiman Shokur"
+      ]
+    },
+    "checked_at": 1792177231.8845456
+  },
+  "10.1088/1741-2552/ad331f": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding of unimanual and bimanual reach-and-grasp actions from EMG and IMU signals in persons with cervical spinal cord",
+      "real_authors": [
+        "Marvin Wolf",
+        "R\u00fcdiger Rupp",
+        "Andreas Schwarz"
+      ]
+    },
+    "checked_at": 1792177232.6324925
+  },
+  "10.3389/fneur.2020.578559": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Use of Surface EMG in Clinical Rehabilitation of Individuals With SCI: Barriers and Future Considerations",
+      "real_authors": [
+        "Rakesh Pilkar",
+        "Kamyar Momeni",
+        "Arvind Ramanujam"
+      ]
+    },
+    "checked_at": 1792177233.368337
+  },
+  "10.1126/scitranslmed.abg6463": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Intrafascicular peripheral nerve stimulation produces fine functional hand movements in primates",
+      "real_authors": [
+        "Marion Badi",
+        "Sophie Wurth",
+        "Ilaria Scarpato"
+      ]
+    },
+    "checked_at": 1792177234.5533988
+  },
+  "10.1126/scitranslmed.adp9607": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "High-frequency epidural electrical stimulation reduces spasticity and facilitates walking recovery in patients with spin",
+      "real_authors": [
+        "Simone Romeni",
+        "Elena Losanno",
+        "Daniele Emedoli"
+      ]
+    },
+    "checked_at": 1792177235.5772626
+  },
+  "10.1080/15599612.2021.1978601": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Mechanism of peripheral nerve modulation and recent applications",
+      "real_authors": [
+        "Heejae Shin",
+        "Minseok Kang",
+        "Sanghoon Lee"
+      ]
+    },
+    "checked_at": 1792177236.2942436
+  },
+  "10.3390/biomimetics10030130": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "The Next Frontier in Neuroprosthetics: Integration of Biomimetic Somatosensory Feedback",
+      "real_authors": [
+        "Yucheng Tian",
+        "Giacomo Valle",
+        "Paul Cederna"
+      ]
+    },
+    "checked_at": 1792177237.0248775
+  },
+  "10.1002/bmm2.12048": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neuromodulation of the peripheral nervous system: Bioelectronic technology and prospective developments",
+      "real_authors": [
+        "Hayoung Song",
+        "Moohyun Kim",
+        "Enji Kim"
+      ]
+    },
+    "checked_at": 1792177237.8452318
+  },
+  "10.1016/j.xpro.2024.103503": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Protocol for state-based decoding of hand movement parameters using neural signals",
+      "real_authors": [
+        "Mohammad Taghi Ghodrati",
+        "Sajedeh Aghababaei",
+        "Alavie Mirfathollahi"
+      ]
+    },
+    "checked_at": 1792177238.6490827
+  },
+  "10.3389/fneur.2020.00493": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients Receiving Trans-spinal Electrical Stimulation",
+      "real_authors": [
+        "Antonio Gogeascoechea",
+        "Alexander Kuck",
+        "Edwin van Asseldonk"
+      ]
+    },
+    "checked_at": 1792177239.4681509
+  },
+  "10.1109/tro.2022.3170720": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Surgically Implanted Electrodes Enable Real-Time Finger and Grasp Pattern Recognition for Prosthetic Hands",
+      "real_authors": [
+        "Alex K. Vaskov",
+        "Philip P. Vu",
+        "Naia North"
+      ]
+    },
+    "checked_at": 1792177240.1855018
+  },
+  "10.1126/science.abj5259": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neurorobotics for neurorehabilitation",
+      "real_authors": [
+        "Stanisa Raspopovic"
+      ]
+    },
+    "checked_at": 1792177241.004225
+  },
+  "10.1111/ejn.15822": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Peripheral neurostimulation for encoding artificial somatosensations",
+      "real_authors": [
+        "Giacomo Valle"
+      ]
+    },
+    "checked_at": 1792177241.8245862
+  },
+  "10.1038/sc.2014.115": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Response to \u2018Preserved corticospinal conduction without voluntary movement after spinal cord injury\u2019",
+      "real_authors": [
+        "B Calancie",
+        "N Alexeeva"
+      ]
+    },
+    "checked_at": 1792177242.6427994
+  },
+  "10.1109/embc.2012.6346283": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding of finger, hand and arm kinematics using switching linear dynamical systems with pre-motor cortical ensembles",
+      "real_authors": [
+        "Xiaoxu Kang",
+        "M. H. Schieber",
+        "N. V. Thakor"
+      ]
+    },
+    "checked_at": 1792177243.5642622
+  },
+  "10.1109/ICORR66766.2025.11063187": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A Qualitative Exploration of EMG Visual Feedback for Spinal Cord Injury Rehabilitation",
+      "real_authors": [
+        "Janelle Aikens",
+        "Aaron Tabor",
+        "Kevin Englehart"
+      ]
+    },
+    "checked_at": 1792177246.3354533
+  },
+  "10.1186/s12984-021-00888-2": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Properties of the surface electromyogram following traumatic spinal cord injury: a scoping review",
+      "real_authors": [
+        "Gustavo Balbinot",
+        "Guijin Li",
+        "Matheus Joner Wiest"
+      ]
+    },
+    "checked_at": 1792177247.3570602
+  },
+  "10.1038/s41467-025-59039-z": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Pseudo-linear summation explains neural geometry of multi-finger movements in human premotor cortex",
+      "real_authors": [
+        "Nishal P. Shah",
+        "Donald Avansino",
+        "Foram Kamdar"
+      ]
+    },
+    "checked_at": 1792177248.1113093
+  },
+  "10.1038/s41467-024-45190-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Biomimetic computer-to-brain communication enhancing naturalistic touch sensations via peripheral nerve stimulation",
+      "real_authors": [
+        "Giacomo Valle",
+        "Natalija Katic Secerovic",
+        "Dominic Eggemann"
+      ]
+    },
+    "checked_at": 1792177248.9925997
+  },
+  "10.1186/s12984-025-01628-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Development and evaluation of a non-invasive brain-spine interface using transcutaneous spinal cord stimulation",
+      "real_authors": [
+        "Carolyn Atkinson",
+        "Lorenzo Lombardi",
+        "Meredith Lang"
+      ]
+    },
+    "checked_at": 1792177249.9453292
+  },
+  "10.1038/s41591-024-03341-8": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A high-performance brain\u2013computer interface for finger decoding and quadcopter game control in an individual with paraly",
+      "real_authors": [
+        "Matthew S. Willsey",
+        "Nishal P. Shah",
+        "Donald T. Avansino"
+      ]
+    },
+    "checked_at": 1792177250.5729287
+  },
+  "10.3389/fnhum.2023.1083307": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Dynamic peripheral nerve stimulation can produce cortical activation similar to punctate mechanical stimuli",
+      "real_authors": [
+        "Justin Tanner",
+        "Edward Keefer",
+        "Jonathan Cheng"
+      ]
+    },
+    "checked_at": 1792177251.4494941
+  },
+  "10.1002/advs.202505492": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding Handwriting Trajectories from Intracortical Brain Signals for Brain\u2010to\u2010Text Communication",
+      "real_authors": [
+        "Guangxiang Xu",
+        "Zebin Wang",
+        "Kedi Xu"
+      ]
+    },
+    "checked_at": 1792177252.5758407
+  },
+  "10.5334/tohm.991": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A Pilot Study of AI-Controlled Transcutaneous Peripheral Nerve Stimulation for Essential Tremor",
+      "real_authors": [
+        "Richard Dewey",
+        "Stuart Isaacson",
+        "Richard Dewey"
+      ]
+    },
+    "checked_at": 1792177253.0981116
+  },
+  "10.3389/fnins.2014.00123": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Multimodal decoding and congruent sensory information enhance reaching performance in subjects with cervical spinal cord",
+      "real_authors": [
+        "Elaine A. Corbett",
+        "Nicholas A. Sachs",
+        "Konrad P. K\u00c3\u00b6rding"
+      ]
+    },
+    "checked_at": 1792177253.988658
+  },
+  "10.1016/j.brs.2018.12.221": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Proceedings #52: Development of surface EMG- triggered closed loop stimulation for individuals with spinal cord injury",
+      "real_authors": [
+        "Yu-Kuang Wu",
+        "Sana Saeed",
+        "James M. Limonta"
+      ]
+    },
+    "checked_at": 1792177254.7259812
+  },
+  "10.3389/fnins.2025.1623380": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Convolutional neural networks decode finger movements in motor sequence learning from MEG data",
+      "real_authors": [
+        "Aleksey Zabolotniy",
+        "Russell Weili Chan",
+        "Victoria Moiseeva"
+      ]
+    },
+    "checked_at": 1792177255.6479325
+  },
+  "10.1126/scirobotics.ado9509": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Merging motoneuron and postural synergies in prosthetic hand design for natural bionic interfacing",
+      "real_authors": [
+        "Patricia Capsi-Morales",
+        "Deren Y. Barsakcioglu",
+        "Manuel G. Catalano"
+      ]
+    },
+    "checked_at": 1792177256.3809671
+  },
+  "10.1126/scirobotics.adf7360": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A highly integrated bionic hand with neural control and feedback for use in daily life",
+      "real_authors": [
+        "Max Ortiz-Catalan",
+        "Jan Zbinden",
+        "Jason Millenaar"
+      ]
+    },
+    "checked_at": 1792177257.0982783
+  },
+  "10.3390/biomimetics11020104": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Review of Soft Robotic Gloves and Functional Electrical Stimulation Affecting Hand Function Rehabilitation for Stroke Pa",
+      "real_authors": [
+        "Xiaohui Wang",
+        "Yilin Fang",
+        "Zhaowei Zhang"
+      ]
+    },
+    "checked_at": 1792177257.9350379
+  },
+  "10.1101/2021.02.24.21250962": {
+    "status": "PREPRINT",
+    "details": {
+      "real_title": "Sensing and decoding the neural drive to paralyzed muscles during attempted movements of a person with tetraplegia using"
+    },
+    "checked_at": 1792177258.9244072
+  },
+  "10.22514/sv.2022.031": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Complexity measures, an analysis for electromyography and its possible application to spinal cord injuries",
+      "real_authors": []
+    },
+    "checked_at": 1792177259.8461509
+  },
+  "10.1186/s12984-022-01043-1": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Soft robotics and functional electrical stimulation advances for restoring hand function in people with SCI: a narrative",
+      "real_authors": [
+        "Lucas R. L. Cardoso",
+        "Vanesa Bochkezanian",
+        "Arturo Forner-Cordero"
+      ]
+    },
+    "checked_at": 1792177260.9555786
+  },
+  "10.1109/mrai65197.2025.11135678": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A Review of Electrode Technology in Functional Electrical Stimulation (FES) Hand Rehabilitation Systems",
+      "real_authors": [
+        "Xinyu Zhao",
+        "Mingxu Sun",
+        "Haidi Wu"
+      ]
+    },
+    "checked_at": 1792177261.5120199
+  },
+  "10.2196/41152": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neurorehabilitation Through Synergistic Man-Machine Interfaces Promoting Dormant Neuroplasticity in Spinal Cord Injury: ",
+      "real_authors": [
+        "Alkinoos Athanasiou",
+        "Konstantinos Mitsopoulos",
+        "Apostolos Praftsiotis"
+      ]
+    },
+    "checked_at": 1792177262.1515036
+  },
+  "10.1007/978-1-4471-2277-7_7": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Functional Electrical Stimulation Therapy: Recovery of Function Following Spinal Cord Injury and Stroke",
+      "real_authors": [
+        "Milos R. Popovic",
+        "Kei Masani",
+        "Silvestro Micera"
+      ]
+    },
+    "checked_at": 1792177262.7817574
+  },
+  "10.1109/ICHMS56717.2022.9980636": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Concurrent Decoding of Finger Kinematic and Kinetic Variables based on Motor Unit Discharges",
+      "real_authors": [
+        "Rinku Roy",
+        "Derek G. Kamper",
+        "Xiaogang Hu"
+      ]
+    },
+    "checked_at": 1792177263.3165722
+  },
+  "10.3389/fnbot.2017.00059": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Selectivity and Longevity of Peripheral-Nerve and Machine Interfaces: A Review",
+      "real_authors": [
+        "Usman Ghafoor",
+        "Sohee Kim",
+        "Keum-Shik Hong"
+      ]
+    },
+    "checked_at": 1792177264.0993814
+  },
+  "10.1126/scirobotics.aau8892": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "A closed-loop hand prosthesis with simultaneous intraneural tactile and position feedback",
+      "real_authors": [
+        "Edoardo D\u2019Anna",
+        "Giacomo Valle",
+        "Alberto Mazzoni"
+      ]
+    },
+    "checked_at": 1792177264.6258926
+  },
+  "10.1038/s41551-024-01299-z": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Evoking stable and precise tactile sensations via multi-electrode intracortical microstimulation of the somatosensory co",
+      "real_authors": [
+        "Charles M. Greenspon",
+        "Giacomo Valle",
+        "Natalya D. Shelchkova"
+      ]
+    },
+    "checked_at": 1792177265.2594366
+  },
+  "10.3389/fbioe.2025.1619247": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "AI-driven hybrid rehabilitation: synergizing robotics and electrical stimulation for upper-limb recovery after stroke",
+      "real_authors": [
+        "Ismail Ben Abdallah",
+        "Yassine Bouteraa",
+        "Ahmed Alotaibi"
+      ]
+    },
+    "checked_at": 1792177265.7924595
+  },
+  "10.1109/embc.2018.8512609": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding hindlimb kinematics from primate motor cortex using long short-term memory recurrent neural networks",
+      "real_authors": [
+        "Y. Wang",
+        "W. Truccolo",
+        "D. A. Borton"
+      ]
+    },
+    "checked_at": 1792177266.3361187
+  },
+  "10.1016/b978-012759440-8/50008-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Individuated Finger Movements",
+      "real_authors": [
+        "Marc H. Schieber"
+      ]
+    },
+    "checked_at": 1792177266.9117558
+  },
+  "10.3389/conf.fncom.2012.55.00111": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding of reach and grasp kinematics from primate premotor, motor, and parietal cortex",
+      "real_authors": [
+        "Scherberger Hans"
+      ]
+    },
+    "checked_at": 1792177267.6727896
+  },
+  "10.48550/arXiv.1904.03531": {
+    "status": "PREPRINT",
+    "details": {
+      "real_title": "Decoding hand kinematics from population responses in sensorimotor cortex during grasping"
+    },
+    "checked_at": 1792177268.4699938
+  },
+  "10.1088/1741-2552/acd3b1": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Decoding and geometry of ten finger movements in human posterior parietal cortex and motor cortex",
+      "real_authors": [
+        "Charles Guan",
+        "Tyson Aflalo",
+        "Kelly Kadlec"
+      ]
+    },
+    "checked_at": 1792177269.2679677
+  },
+  "10.1126/scirobotics.abf3368": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neurorobotic fusion of prosthetic touch, kinesthesia, and movement in bionic upper limbs promotes intrinsic brain behavi",
+      "real_authors": [
+        "Paul D. Marasco",
+        "Jacqueline S. Hebert",
+        "Jonathon W. Sensinger"
+      ]
+    },
+    "checked_at": 1792177270.291524
+  },
+  "10.3389/fneur.2017.00107": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Advanced Myoelectric Control for Robotic Hand-Assisted Training: Outcome from a Stroke Patient",
+      "real_authors": [
+        "Zhiyuan Lu",
+        "Kai-yu Tong",
+        "Henry Shin"
+      ]
+    },
+    "checked_at": 1792177270.8187175
+  },
+  "10.26444/aaem/189609": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Surface electromyography vs clinical outcome measures after robot-assisted gait training in patients with spinal cord in",
+      "real_authors": [
+        "Bogumi\u0142 Korczy\u0144ski",
+        "Justyna Frasu\u0144ska",
+        "Anna Po\u015bwiata"
+      ]
+    },
+    "checked_at": 1792177271.5400426
+  },
+  "10.1186/s12984-025-01797-4": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Development and validation of the electrosacrogram (ESG): a digital point-of-care tool for real-time neuro-sacral assess",
+      "real_authors": [
+        "Maude Duguay",
+        "Jean-Marc Mac-Thiong",
+        "Juan-David Cifuentes-Hernandez"
+      ]
+    },
+    "checked_at": 1792177272.2525263
+  },
+  "10.1101/2024.11.20.624514": {
+    "status": "PREPRINT",
+    "details": {
+      "real_title": "Neural correlates of kinematic features of passive finger movement revealed by univariate and multivariate fMRI analyses"
+    },
+    "checked_at": 1792177273.058899
+  },
+  "10.1136/rapm-2018-100121": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Ultrasound-guided percutaneous peripheral nerve stimulation: neuromodulation of the suprascapular nerve and brachial ple",
+      "real_authors": [
+        "Brian M Ilfeld",
+        "John J Finneran",
+        "Rodney A Gabriel"
+      ]
+    },
+    "checked_at": 1792177273.7037003
+  },
+  "10.1177/15459683231166939": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "New Artificial Intelligence-Integrated Electromyography-Driven Robot Hand for Upper Extremity Rehabilitation of Patients",
+      "real_authors": [
+        "Yuhei Murakami",
+        "Kaoru Honaga",
+        "Hidemi Kono"
+      ]
+    },
+    "checked_at": 1792177274.2379944
+  },
+  "10.1038/s41394-026-00748-y": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective matched pair case-cont",
+      "real_authors": [
+        "Fatma Kumbara",
+        "Asl\u0131 Turan",
+        "Berna Orhan"
+      ]
+    },
+    "checked_at": 1792177274.873564
+  },
+  "10.3390/cells10081886": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Plasticity of the Injured Spinal Cord",
+      "real_authors": [
+        "Nicolas Gu\u00e9rout"
+      ]
+    },
+    "checked_at": 1792177275.5234737
+  },
+  "10.53350/pjmhs211551428": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Assessment of Spinal Cord Injured Patients' Adherence toward Clean Intermittent Self-Catheterization in Baghdad City",
+      "real_authors": [
+        "M. A Hussein",
+        "W. Mohammed"
+      ]
+    },
+    "checked_at": 1792177276.53754
+  },
+  "10.5455/handmicrosurg.184724": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Venous flap for immediate reconstruction of finger soft tissue defect",
+      "real_authors": [
+        "Yakup Cil"
+      ]
+    },
+    "checked_at": 1792177277.367797
+  },
+  "10.5455/handmicrosurg.216297": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Ultrasound-Guided Intervention for Acute Finger Calcific Tendinitis",
+      "real_authors": [
+        "Kubra Oktay",
+        "Behic Celik",
+        "Gokhan Meric"
+      ]
+    },
+    "checked_at": 1792177277.982658
+  },
+  "10.5455/handmicrosurg.135836": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Atypical Hypothenar Hammer Syndrome Mimicking A Peripheral Nerve Tumor",
+      "real_authors": [
+        "H zde",
+        "G ran",
+        "Kadir Ertem"
+      ]
+    },
+    "checked_at": 1792177278.716752
+  },
+  "10.7759/cureus.39205": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Malignant Peripheral Nerve Sheath Tumor of the Hand: A Case Report",
+      "real_authors": [
+        "Sangita Jogdand",
+        "Rahul Rajendran"
+      ]
+    },
+    "checked_at": 1792177279.249994
+  },
+  "10.1038/s41394-021-00443-0": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Charles Albert Elsberg (1871\u20131948) and his forgotten contributions to the treatment of Spinal Cord Injured patients",
+      "real_authors": [
+        "Avi Ohry"
+      ]
+    },
+    "checked_at": 1792177279.7708142
+  },
+  "10.55248/gengpi.6.0625.23105": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Effectiveness Of Robotic Assisted Gait Training In Spinal Cord Injured Patients \u2013 A Literature Review",
+      "real_authors": [
+        "Anlitta C Johnson",
+        "Nischitha R Rao",
+        "Sreshtta Tinson"
+      ]
+    },
+    "checked_at": 1792177280.317457
+  },
+  "10.1038/s41394-026-00740-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Reconstruction with muscle flaps after hip joint heterotopic ossification resection in spinal cord injured patients: a c",
+      "real_authors": [
+        "Luca Negosanti",
+        "Luca Gaiani",
+        "Silvia Campagnoni"
+      ]
+    },
+    "checked_at": 1792177280.8596146
+  },
+  "10.1038/s41393-021-00668-8": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Neurogenic bowel dysfunction score in spinal cord-injured patients: translation and validation of the Dutch-language NBD",
+      "real_authors": [
+        "Tess van Doorn",
+        "Ilse M. Groenendijk",
+        "Jeroen R. Scheepe"
+      ]
+    },
+    "checked_at": 1792177281.407313
+  },
+  "10.12974/2313-0954.2021.08.4": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Spontaneous Neurological Recovery of Patients with Acute Traumatic Spinal Cord Injuries (ATSCI) without Intervention the",
+      "real_authors": [
+        "W.S. El Masri"
+      ]
+    },
+    "checked_at": 1792177282.0611541
+  },
+  "10.3390/traumacare2020031": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Surface EMG in Subacute and Chronic Care after Traumatic Spinal Cord Injuries",
+      "real_authors": [
+        "Gustavo Balbinot"
+      ]
+    },
+    "checked_at": 1792177282.9887657
+  },
+  "10.1038/s41393-024-01039-9": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Exploring lifestyle components and associated factors in newly injured individuals with spinal cord injury",
+      "real_authors": [
+        "Muriel Haldemann",
+        "Stevan Stojic",
+        "Inge Eriks-Hoogland"
+      ]
+    },
+    "checked_at": 1792177283.99381
+  },
+  "10.1080/10790268.2025.2571824": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Spinal cord injury is an independent risk factor for acute kidney injury in traumatic spine-injured patients in the Nati",
+      "real_authors": [
+        "John H. Kanter",
+        "Vasanth Raja",
+        "Phillip A. Bonney"
+      ]
+    },
+    "checked_at": 1792177284.5210664
+  },
+  "10.46292/sci22-00044": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Connecting Researchers and Clinicians Before Connecting the Injured Spinal Cord",
+      "real_authors": [
+        "Laura Krisa",
+        "Erica Witoslawski",
+        "Linda Jones"
+      ]
+    },
+    "checked_at": 1792177285.6510425
+  },
+  "10.1038/s41393-021-00705-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Broad opioid antagonism amplifies disruption of locomotor function following therapy-like hindlimb stretching in spinal ",
+      "real_authors": [
+        "Gregory J. R. States",
+        "Anastasia Keller",
+        "Alice Shum-Siu"
+      ]
+    },
+    "checked_at": 1792177287.0977876
+  },
+  "10.1038/s41393-021-00632-6": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Clinical judgment is a cornerstone for validating and using clinical prediction rules: a head-to-head study on ambulatio",
+      "real_authors": [
+        "R\u00e9mi Pelletier-Roy",
+        "Andr\u00e9ane Richard-Denis",
+        "St\u00e9phanie Jean"
+      ]
+    },
+    "checked_at": 1792177287.8021193
+  },
+  "10.2139/ssrn.4002134": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Level of Mental Burden Among Caregivers of Spinal Cord Injured Patients",
+      "real_authors": [
+        "Muhammad S. Khan",
+        "Omer Farooq",
+        "Ramash Aqeel"
+      ]
+    },
+    "checked_at": 1792177288.723723
+  },
+  "10.1080/10790268.2025.2548057": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients admitted to the ",
+      "real_authors": [
+        "Vivian Huong Hoang Thien Le",
+        "Pascal Mputu Mputu",
+        "Andr\u00e9ane Richard-Denis"
+      ]
+    },
+    "checked_at": 1792177289.5425324
   }
 }

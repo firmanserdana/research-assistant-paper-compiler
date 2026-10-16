@@ -2,11 +2,15 @@ import os
 import re
 import json
 import logging
+import html
 import requests
+import argparse
+import sys
+import email.utils
+import urllib.parse
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
-from openai import OpenAI
-from pyzotero import zotero
 from jinja2 import Environment, FileSystemLoader
 
 # Setup logging
@@ -16,55 +20,101 @@ logging.basicConfig(
 )
 logger = logging.getLogger('literature_monitor')
 
+# DOI regex pattern for standard DOIs
+DOI_REGEX = re.compile(r'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+')
+
+
 class LiteratureMonitor:
-    """Monitor biorobotics literature and add new papers to Zotero library."""
-    
-    def __init__(self, model="sonar-reasoning-pro", provider="auto"):
+    """Monitor biorobotics literature and add new papers to Zotero library and web portal."""
+
+    PROVIDER_DEFAULT_MODELS = {
+        "perplexity": "sonar-pro",
+        "gemini": "gemini-2.5-flash",
+        "anthropic": "claude-3-5-sonnet-latest",
+        "openai": "gpt-4o-mini",
+        "ollama": "llama3",
+        "crossref": None,
+        "arxiv": None,
+    }
+
+    def __init__(self, model=None, provider="auto", dry_run=False, limit=None, skip_zotero=False, include_arxiv=False):
         """
         Initialize the literature monitor.
-        
+
         Args:
-            model (str): The AI model to use
-            provider (str): AI provider - "perplexity", "anthropic", or "ollama"
+            model (str, optional): The AI model to use. Defaults to provider default.
+            provider (str): AI provider - "auto", "perplexity", "gemini", "anthropic", "openai", "ollama", "crossref", or "arxiv"
+            dry_run (bool): Run without modifying archive files or syncing to Zotero.
+            limit (int, optional): Maximum papers to retrieve per search term.
+            skip_zotero (bool): Skip Zotero syncing even if credentials exist.
+            include_arxiv (bool): Query arXiv in addition to primary provider.
         """
-        # Check required environment variables
-        required_vars = []
-        # Crossref is a free, keyless fallback. This keeps discovery and site
-        # compilation running when an optional LLM credential expires.
+        self.dry_run = dry_run
+        self.limit = limit
+        self.skip_zotero = skip_zotero
+        self.include_arxiv = include_arxiv
+        self.generate_site_only = False
+
+        # Resolve "auto" provider based on available environment variables
         if provider == "auto":
-            provider = "perplexity" if os.getenv("PPLX_API_KEY") else "crossref"
+            if os.getenv("PPLX_API_KEY"):
+                provider = "perplexity"
+            elif os.getenv("GEMINI_API_KEY"):
+                provider = "gemini"
+            elif os.getenv("ANTHROPIC_API_KEY"):
+                provider = "anthropic"
+            elif os.getenv("OPENAI_API_KEY"):
+                provider = "openai"
+            else:
+                provider = "crossref"
+
+        # Check required environment variables for specific provider
+        required_vars = []
         if provider == "perplexity" and not os.getenv("PPLX_API_KEY"):
+            logger.warning("PPLX_API_KEY not found; falling back to keyless Crossref provider.")
             provider = "crossref"
-        if provider == "perplexity":
-            required_vars.append("PPLX_API_KEY")
-        elif provider == "anthropic":
-            required_vars.append("ANTHROPIC_API_KEY")
         elif provider == "gemini":
             required_vars.append("GEMINI_API_KEY")
-            
+        elif provider == "anthropic":
+            required_vars.append("ANTHROPIC_API_KEY")
+        elif provider == "openai":
+            required_vars.append("OPENAI_API_KEY")
+
         self._check_environment(required_vars)
-        
+
         self.provider = provider
-        self.client = None if provider == "crossref" else self._get_client(provider)
-        self.model = model
-        
+        self.model = model or self.PROVIDER_DEFAULT_MODELS.get(provider, "sonar-pro")
+        self.client = None if provider in ("crossref", "arxiv") else self._get_client(provider)
+
+        # Setup Zotero client if credentials exist and sync is not skipped
         self.zot = None
-        zotero_id, zotero_key = os.getenv("ZOTERO_USER_ID"), os.getenv("ZOTERO_API_KEY")
-        if zotero_id and zotero_key:
-            try:
-                self.zot = zotero.Zotero(zotero_id, 'user', zotero_key)
-                self.zot.collections()
-            except Exception as e:
-                logger.warning(f"Zotero unavailable; continuing without library sync: {e}")
-        
+        if not self.skip_zotero and not self.dry_run:
+            zotero_id, zotero_key = os.getenv("ZOTERO_USER_ID"), os.getenv("ZOTERO_API_KEY")
+            if zotero_id and zotero_key:
+                try:
+                    from pyzotero import zotero
+                    self.zot = zotero.Zotero(zotero_id, 'user', zotero_key)
+                    self.zot.collections()
+                except Exception as e:
+                    logger.warning(f"Zotero unavailable; continuing without library sync: {e}")
+
         # Read search terms from search_terms.txt
-        with open('search_terms.txt', 'r') as f:
-            self.search_terms = [line.strip() for line in f if line.strip()]
+        terms_file = 'search_terms.txt'
+        if os.path.exists(terms_file):
+            with open(terms_file, 'r', encoding='utf-8') as f:
+                self.search_terms = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+        else:
+            self.search_terms = [
+                "EMG decoding on Spinal Cord Injured patients",
+                "Intracortical Decoding on Hand and Finger kinematics",
+                "Stimulating peripheral nerve to enable hand and/or finger control"
+            ]
 
         # Setup template engine
-        self.template_env = Environment(
-            loader=FileSystemLoader('src/templates')
-        )
+        templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
+        if not os.path.exists(templates_dir):
+            templates_dir = 'src/templates'
+        self.template_env = Environment(loader=FileSystemLoader(templates_dir))
 
     def _check_environment(self, required_vars):
         """Check if all required environment variables are set."""
@@ -75,27 +125,26 @@ class LiteratureMonitor:
             raise EnvironmentError(error_msg)
 
     def _get_client(self, provider):
-        """
-        Get the appropriate API client based on the provider.
-        
-        Args:
-            provider (str): The AI provider to use
-            
-        Returns:
-            The initialized client
-        """
+        """Get the appropriate API client based on the provider."""
         try:
             if provider == "anthropic":
                 from anthropic import Anthropic
                 return Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-            elif provider == "ollama":
-                return OpenAI(base_url="http://localhost:11434/v1")
             elif provider == "gemini":
+                from openai import OpenAI
                 return OpenAI(
                     api_key=os.getenv("GEMINI_API_KEY"),
                     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
                 )
+            elif provider == "ollama":
+                from openai import OpenAI
+                base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+                return OpenAI(base_url=base_url)
+            elif provider == "openai":
+                from openai import OpenAI
+                return OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
             else:
+                from openai import OpenAI
                 return OpenAI(
                     api_key=os.getenv("PPLX_API_KEY"),
                     base_url="https://api.perplexity.ai"
@@ -103,198 +152,680 @@ class LiteratureMonitor:
         except Exception as e:
             logger.error(f"Failed to initialize {provider} client: {str(e)}")
             raise
-    
-    def load_papers_from_archives(self):
-        """
-        Load papers from all archive Markdown files.
-        
-        Returns:
-            list: All historical papers found in archive files
-        """
-        all_papers = []
-        archive_dir = 'src/archive'
-        
-        if not os.path.exists(archive_dir):
-            return all_papers
-            
-        # Find all markdown files in the archive directory
-        archive_files = [f for f in os.listdir(archive_dir) if f.endswith('.md')]
-        
-        for filename in archive_files:
-            try:
-                filepath = os.path.join(archive_dir, filename)
-                with open(filepath, 'r') as f:
-                    content = f.read()
-                    
-                # Parse papers from the markdown file
-                papers = self._parse_archive_markdown(content)
-                all_papers.extend(papers)
-                
-            except Exception as e:
-                logger.error(f"Failed to load papers from {filename}: {str(e)}")
-                
-        return all_papers
 
-    def _parse_archive_markdown(self, content):
-        """
-        Parse papers from an archive markdown file.
-        
-        Args:
-            content (str): Markdown file content
-            
-        Returns:
-            list: Extracted paper dictionaries
-        """
-        papers = []
-        current_paper = None
-        current_category = "General Biorobotics"
-        
-        for line in content.split('\n'):
-            # Detect category headers
-            if line.startswith('## ') and ' papers)' in line:
-                current_category = line[3:].split(' (')[0].strip()
-                
-            # Start of a new paper
-            elif line.startswith('### '):
-                if current_paper:
-                    papers.append(current_paper)
-                current_paper = {'title': line[4:].strip(), 'category': current_category}
-                
-            # Paper metadata
-            elif current_paper and line.startswith('**Authors:**'):
-                current_paper['authors'] = line[12:].strip().split('; ')
-            elif current_paper and line.startswith('**DOI:**'):
-                current_paper['doi'] = self._normalize_doi(line[8:].strip())
-            elif current_paper and line.startswith('**TRL:**'):
-                try:
-                    current_paper['trl'] = int(line[8:].strip())
-                except ValueError:
-                    current_paper['trl'] = 1
-            elif current_paper and line.startswith('**Keywords:**'):
-                current_paper['keywords'] = [k.strip() for k in line[13:].split(',')]
-            elif current_paper and line.startswith('**Summary:**'):
-                current_paper['summary'] = line[12:].strip()
-        
-        # Add the last paper if there is one
-        if current_paper:
-            papers.append(current_paper)
-            
-        return papers
+    def _call_llm(self, prompt, system_prompt=None, max_tokens=1500, temperature=0.2):
+        """Unified LLM call supporting Anthropic and OpenAI-compatible APIs."""
+        if not self.client:
+            return None
 
-    def _categorize(self, paper):
-        """
-        Categorize a paper based on its source search term.
-        
-        Args:
-            paper (dict): Paper metadata
-            
-        Returns:
-            str: Category name
-        """
-        # If we have a category from the source term, use that
-        if 'category' in paper:
-            return paper['category']
-        
-        # Fall back to the old method if needed
-        text = f"{paper['title']} {' '.join(paper['keywords'])}".lower()
-        
-        # Check for specific categories
-        if 'emg' in text:
-            return 'EMG Decoding'
-        elif 'intracortical' in text:
-            return 'Intracortical Decoding'
-        elif 'stimulation' in text:
-            return 'Nerve Stimulation'
-        
-        # Default category
-        return 'General Biorobotics'
-
-    def _deep_research_query(self, term):
-        """
-        Query the AI provider for papers on a specific term.
-        
-        Args:
-            term (str): The search term
-            
-        Returns:
-            tuple: (search_term, AI-generated research results)
-        """
-        try:
-            logger.info(f"Researching term: {term}")
-            if self.provider == "crossref":
-                return (term, self._crossref_search(term))
+        if self.provider == "anthropic":
+            messages = [{"role": "user", "content": prompt}]
+            kwargs = {
+                "model": self.model,
+                "messages": messages,
+                "max_tokens": max_tokens,
+                "temperature": temperature,
+            }
+            if system_prompt:
+                kwargs["system"] = system_prompt
+            response = self.client.messages.create(**kwargs)
+            return response.content[0].text
+        else:
+            messages = []
+            if system_prompt:
+                messages.append({"role": "system", "content": system_prompt})
+            messages.append({"role": "user", "content": prompt})
             response = self.client.chat.completions.create(
                 model=self.model,
-                messages=[{
-                    "role": "user",
-                    "content": f"""Provide recent peer-reviewed papers about {term} 
-                    in biomedical engineering and robotics. Include DOI (without URL prefix), TRL (1-9), and technical 
-                    keywords. Format:
-                    Title: [Title]
-                    Authors: [Author1; Author2; Author3]
-                    DOI: [DOI number only, e.g., 10.1234/example]
-                    TRL: [Number]
-                    Keywords: [Keyword1, Keyword2]
-                    
-                    IMPORTANT: 
-                    - Provide actual author names, not placeholders like "Not specified" or "See article"
-                    - Provide only the DOI number (e.g., 10.1234/example), not the full URL
-                    - Skip papers where author information is unavailable"""
-                }],
+                messages=messages,
+                temperature=temperature,
+                max_tokens=max_tokens
+            )
+            return response.choices[0].message.content
+
+    def _clean_jats_abstract(self, raw_abstract):
+        """Clean JATS XML / HTML tags and decode entities from Crossref abstracts."""
+        if not raw_abstract:
+            return ""
+        # Remove XML/HTML tags
+        clean = re.sub(r'<[^>]+>', ' ', raw_abstract)
+        # Unescape HTML entities
+        clean = html.unescape(clean)
+        # Normalize whitespace
+        clean = re.sub(r'\s+', ' ', clean).strip()
+        return clean
+
+    def _normalize_doi(self, doi):
+        """
+        Normalize a DOI by removing URL prefixes, reference citation brackets, and trailing artifacts.
+        Preserves valid trailing digits in the DOI suffix.
+        """
+        if not doi or not isinstance(doi, str):
+            return ""
+
+        doi = doi.strip()
+
+        # Reject common placeholder texts
+        lower_doi = doi.lower()
+        placeholders = [
+            'not provided', 'not specified', 'not available', 'see article',
+            'unknown', 'n/a', 'none', '[not'
+        ]
+        if any(p in lower_doi for p in placeholders):
+            return ""
+
+        # Remove bracketed placeholders like [DOI] or [Not provided in search results]
+        if doi.startswith('[') and doi.endswith(']'):
+            return ""
+
+        # Remove common URL and scheme prefixes
+        prefixes = [
+            'https://doi.org/', 'http://doi.org/', 'doi.org/',
+            'https://dx.doi.org/', 'http://dx.doi.org/', 'dx.doi.org/',
+            'doi:', 'DOI: ', 'DOI:'
+        ]
+        for prefix in prefixes:
+            if doi.lower().startswith(prefix.lower()):
+                doi = doi[len(prefix):].strip()
+
+        # Remove citation numbers with brackets like [1], [2], [12] ONLY
+        # DO NOT use optional brackets (\[?\d+\]?) which strips valid digits!
+        doi = re.sub(r'\[\d+\]$', '', doi).strip()
+
+        # Remove parenthetical info at the very end
+        doi = re.sub(r'\s*\([^)]*\)$', '', doi).strip()
+
+        # Remove trailing periods, slashes, or commas that are often punctuation
+        doi = doi.rstrip('./,; ')
+
+        # If a valid DOI is embedded in remaining text, extract it
+        match = DOI_REGEX.search(doi)
+        if match:
+            return match.group(0)
+
+        # Fallback: check if it looks like a DOI prefix
+        if doi.startswith('10.'):
+            return doi
+
+        return ""
+
+    def _verify_doi(self, doi):
+        """
+        Verify that a DOI exists by checking against CrossRef API.
+        Preprints (arXiv, bioRxiv, medRxiv, OSF) are accepted without remote query.
+        """
+        if not doi:
+            return False
+
+        # Preprints don't always resolve via Crossref works API
+        if any(prefix in doi for prefix in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
+            return True
+
+        if not DOI_REGEX.match(doi):
+            return False
+
+        try:
+            url = f"https://api.crossref.org/works/{doi}"
+            response = requests.get(
+                url,
+                timeout=10,
+                headers={'User-Agent': 'LiteratureMonitor/1.0 (mailto:contact@example.com)'}
+            )
+            if response.status_code == 200:
+                data = response.json().get('message', {})
+                # Ensure it has a title or work type to avoid bare publisher prefixes
+                if data.get('title') or data.get('type'):
+                    logger.info(f"DOI verified: {doi}")
+                    return True
+            logger.warning(f"DOI verification failed (status {response.status_code}): {doi}")
+            return False
+        except requests.RequestException as e:
+            logger.warning(f"DOI verification request failed for {doi}: {str(e)}")
+            # On transient network failure, don't drop papers with valid DOI patterns
+            return True
+
+    def _deep_research_query(self, term):
+        """Query AI provider, arXiv, or Crossref for recent papers on a specific term."""
+        try:
+            logger.info(f"Researching term: {term}")
+            if self.provider == "arxiv":
+                return (term, self._arxiv_search(term, max_results=self.limit or 10))
+            elif self.provider == "crossref":
+                return (term, self._crossref_search(term, rows=self.limit or 15))
+
+            prompt = f"""Provide recent peer-reviewed papers about {term} 
+in biomedical engineering and robotics. Include DOI (without URL prefix), TRL (1-9), and technical keywords.
+Format each paper exactly as:
+Title: [Title]
+Authors: [Author1; Author2; Author3]
+DOI: [DOI number only, e.g., 10.1234/example]
+TRL: [Number 1-9]
+Keywords: [Keyword1, Keyword2]
+Summary: [2-3 sentence technical summary]
+
+IMPORTANT:
+- Provide actual author names, not placeholders
+- Provide only the DOI number (e.g., 10.1234/example), not the full URL
+- Skip papers where author information or DOI is unavailable"""
+
+            response_content = self._call_llm(
+                prompt=prompt,
+                system_prompt="You are an expert biorobotics and biomedical engineering research assistant.",
                 temperature=0.2,
                 max_tokens=2000
             )
-            # Return both the term and the response content
-            return (term, response.choices[0].message.content)
+
+            if not response_content:
+                logger.warning(f"Empty AI response for {term}; falling back to Crossref.")
+                return (term, self._crossref_search(term))
+
+            return (term, response_content)
         except Exception as e:
-            logger.warning(f"AI search failed for {term}; using Crossref: {e}")
+            logger.warning(f"AI search failed for {term}; using Crossref fallback: {e}")
             try:
                 return (term, self._crossref_search(term))
             except Exception as fallback_error:
                 logger.error(f"Crossref search failed for {term}: {fallback_error}")
                 return (term, "")
 
-    def _crossref_search(self, term):
-        """Find recent scholarly works through Crossref without an API key."""
-        response = requests.get(
-            "https://api.crossref.org/works",
-            params={"query": term, "filter": "from-pub-date:2021-01-01,type:journal-article", "rows": 20, "select": "title,author,DOI,published,subject,abstract"},
-            timeout=30,
-            headers={"User-Agent": "LiteratureMonitor/1.0 (mailto:contact@example.com)"},
-        )
-        response.raise_for_status()
-        items = response.json().get("message", {}).get("items", [])
-        records = []
-        for item in items:
-            title = (item.get("title") or [""])[0].strip()
-            doi = self._normalize_doi(item.get("DOI", ""))
-            authors = [" ".join(filter(None, [a.get("given"), a.get("family")])).strip() for a in item.get("author", [])]
-            authors = [a for a in authors if a]
-            if not title or not doi or not authors:
-                continue
-            keywords = item.get("subject", [])[:8] or [term]
-            records.extend([f"Title: {title}", f"Authors: {'; '.join(authors)}", f"DOI: {doi}", "TRL: 1", f"Keywords: {', '.join(keywords)}", ""])
-        return "\n".join(records)
-            
-    def _save_to_zotero(self, paper):
-        """
-        Save a paper to the Zotero library.
-        
-        Args:
-            paper (dict): Paper metadata
-        """
-        if not self.zot:
-            logger.info("Skipping Zotero sync (credentials unavailable): %s", paper['title'])
-            return None
+    def _arxiv_search(self, term, max_results=10):
+        """Find recent preprints via arXiv API without an API key."""
         try:
-            # Parse authors more robustly
+            clean_term = term.replace('"', '').strip()
+            encoded_term = urllib.parse.quote(clean_term)
+            url = (
+                f"https://export.arxiv.org/api/query?"
+                f"search_query=all:{encoded_term}&start=0&max_results={max_results}"
+                f"&sortBy=submittedDate&sortOrder=descending"
+            )
+            response = requests.get(
+                url,
+                timeout=20,
+                headers={"User-Agent": "LiteratureMonitor/1.0 (mailto:contact@example.com)"}
+            )
+            response.raise_for_status()
+
+            root = ET.fromstring(response.content)
+            ns = {
+                'atom': 'http://www.w3.org/2005/Atom',
+                'arxiv': 'http://arxiv.org/schemas/atom'
+            }
+
+            records = []
+            for entry in root.findall('atom:entry', ns):
+                raw_title = entry.find('atom:title', ns)
+                title = re.sub(r'\s+', ' ', raw_title.text.strip()) if raw_title is not None and raw_title.text else ""
+
+                authors = [
+                    a.find('atom:name', ns).text.strip()
+                    for a in entry.findall('atom:author', ns)
+                    if a.find('atom:name', ns) is not None and a.find('atom:name', ns).text
+                ]
+
+                # Extract arXiv ID (e.g., http://arxiv.org/abs/2401.12345v1 -> 2401.12345)
+                id_elem = entry.find('atom:id', ns)
+                raw_id = id_elem.text.strip() if id_elem is not None and id_elem.text else ""
+                arxiv_id = raw_id.split('/abs/')[-1].strip() if '/abs/' in raw_id else raw_id
+                base_arxiv_id = re.sub(r'v\d+$', '', arxiv_id)
+
+                doi_elem = entry.find('arxiv:doi', ns)
+                if doi_elem is not None and doi_elem.text:
+                    doi = self._normalize_doi(doi_elem.text.strip())
+                else:
+                    doi = f"10.48550/arXiv.{base_arxiv_id}" if base_arxiv_id else ""
+
+                pdf_url = f"https://arxiv.org/pdf/{base_arxiv_id}.pdf" if base_arxiv_id else ""
+
+                summary_elem = entry.find('atom:summary', ns)
+                summary = re.sub(r'\s+', ' ', summary_elem.text.strip()) if summary_elem is not None and summary_elem.text else ""
+
+                keywords = [
+                    c.attrib.get('term', '')
+                    for c in entry.findall('atom:category', ns)
+                    if c.attrib.get('term')
+                ][:5] or [term]
+
+                if not title or not doi or not authors:
+                    continue
+
+                record_lines = [
+                    f"Title: {title}",
+                    f"Authors: {'; '.join(authors)}",
+                    f"DOI: {doi}",
+                    "TRL: 2",
+                    f"Keywords: {', '.join(keywords)}",
+                ]
+                if summary:
+                    record_lines.append(f"Summary: {summary[:500]}")
+                if pdf_url:
+                    record_lines.append(f"PDF: {pdf_url}")
+
+                record_lines.append("")
+                records.extend(record_lines)
+
+            logger.info(f"Retrieved {len(root.findall('atom:entry', ns))} entries from arXiv for: {term}")
+            return "\n".join(records)
+        except Exception as e:
+            logger.error(f"arXiv query error for {term}: {e}")
+            return ""
+
+    def _crossref_search(self, term, rows=15):
+        """Find recent scholarly works through Crossref without an API key."""
+        try:
+            response = requests.get(
+                "https://api.crossref.org/works",
+                params={
+                    "query": term,
+                    "filter": "from-pub-date:2021-01-01,type:journal-article",
+                    "rows": rows,
+                    "select": "title,author,DOI,published,subject,abstract,link"
+                },
+                timeout=25,
+                headers={"User-Agent": "LiteratureMonitor/1.0 (mailto:contact@example.com)"},
+            )
+            response.raise_for_status()
+            items = response.json().get("message", {}).get("items", [])
+            records = []
+            for item in items:
+                title = (item.get("title") or [""])[0].strip()
+                doi = self._normalize_doi(item.get("DOI", ""))
+                authors = [
+                    " ".join(filter(None, [a.get("given"), a.get("family")])).strip()
+                    for a in item.get("author", [])
+                ]
+                authors = [a for a in authors if a]
+                if not title or not doi or not authors:
+                    continue
+
+                keywords = item.get("subject", [])[:6] or [term]
+                raw_abstract = item.get("abstract", "")
+                clean_abstract = self._clean_jats_abstract(raw_abstract)
+
+                # Attempt Open Access / direct PDF URL detection
+                pdf_url = ""
+                for link_item in item.get("link", []):
+                    if "pdf" in link_item.get("content-type", "").lower():
+                        pdf_url = link_item.get("URL", "")
+                        break
+                if not pdf_url:
+                    if doi.lower().startswith("10.48550/arxiv."):
+                        arx_id = doi.lower().split("arxiv.")[-1]
+                        pdf_url = f"https://arxiv.org/pdf/{arx_id}.pdf"
+                    elif doi.startswith("10.1101/"):
+                        pdf_url = f"https://www.biorxiv.org/content/{doi}.full.pdf"
+
+                record_lines = [
+                    f"Title: {title}",
+                    f"Authors: {'; '.join(authors)}",
+                    f"DOI: {doi}",
+                    "TRL: 1",
+                    f"Keywords: {', '.join(keywords)}"
+                ]
+                if clean_abstract:
+                    # Use abstract as summary if available
+                    snippet = clean_abstract[:400] + ("..." if len(clean_abstract) > 400 else "")
+                    record_lines.append(f"Summary: {snippet}")
+                if pdf_url:
+                    record_lines.append(f"PDF: {pdf_url}")
+
+                record_lines.append("")
+                records.extend(record_lines)
+
+            return "\n".join(records)
+        except Exception as e:
+            logger.error(f"Crossref query error for {term}: {e}")
+            return ""
+
+    def _parse_response(self, content):
+        """Parse papers from AI, arXiv, or Crossref formatted response text."""
+        papers = []
+        current = {}
+        in_summary = False
+
+        title_re = re.compile(r'^\s*(?:\d+[\.\)]|\*|-)?\s*\*{0,2}Title(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+        authors_re = re.compile(r'^\s*(?:\*|-)?\s*\*{0,2}Authors?(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+        doi_re = re.compile(r'^\s*(?:\*|-)?\s*\*{0,2}DOI(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+        trl_re = re.compile(r'^\s*(?:\*|-)?\s*\*{0,2}TRL(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+        keywords_re = re.compile(r'^\s*(?:\*|-)?\s*\*{0,2}Keywords?(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+        summary_re = re.compile(r'^\s*(?:\*|-)?\s*\*{0,2}Summary(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+        pdf_re = re.compile(r'^\s*(?:\*|-)?\s*\*{0,2}PDF(?:\*{0,2}\s*:\s*\*{0,2}|:\s*)\s*(.*?)(?:\*{2})?$', re.IGNORECASE)
+
+        for line in content.split('\n'):
+            line_str = line.strip()
+
+            t_match = title_re.match(line_str)
+            if t_match:
+                if current.get('title'):
+                    papers.append(current)
+                    current = {}
+                in_summary = False
+                current['title'] = t_match.group(1).strip().strip('*').strip()
+                continue
+
+            a_match = authors_re.match(line_str)
+            if a_match:
+                in_summary = False
+                authors_raw = a_match.group(1).strip().strip('*').strip()
+                if ';' in authors_raw:
+                    current['authors'] = [a.strip() for a in authors_raw.split(';') if a.strip()]
+                else:
+                    current['authors'] = [a.strip() for a in authors_raw.split(',') if a.strip()]
+                continue
+
+            d_match = doi_re.match(line_str)
+            if d_match:
+                in_summary = False
+                current['doi'] = self._normalize_doi(d_match.group(1).strip().strip('*').strip())
+                continue
+
+            trl_match = trl_re.match(line_str)
+            if trl_match:
+                in_summary = False
+                trl_text = trl_match.group(1).strip().strip('*').strip()
+                nums = re.findall(r'\d+', trl_text)
+                if nums:
+                    val = int(nums[0])
+                    current['trl'] = val if 1 <= val <= 9 else 1
+                else:
+                    current['trl'] = 1
+                continue
+
+            k_match = keywords_re.match(line_str)
+            if k_match:
+                in_summary = False
+                current['keywords'] = [k.strip().strip('*').strip() for k in k_match.group(1).split(',') if k.strip()]
+                continue
+
+            s_match = summary_re.match(line_str)
+            if s_match:
+                in_summary = True
+                current['summary'] = s_match.group(1).strip().strip('*').strip()
+                continue
+
+            p_match = pdf_re.match(line_str)
+            if p_match:
+                in_summary = False
+                current['pdf_url'] = p_match.group(1).strip().strip('*').strip()
+                continue
+
+            # Multi-line summary continuation
+            if in_summary and line_str and not line_str.startswith('---'):
+                current['summary'] = (current.get('summary', '') + ' ' + line_str).strip()
+
+        if current.get('title'):
+            papers.append(current)
+
+        # Set sensible defaults for missing fields
+        for p in papers:
+            if 'trl' not in p:
+                p['trl'] = 1
+            if 'keywords' not in p:
+                p['keywords'] = ['biorobotics']
+            if 'summary' not in p:
+                p['summary'] = ''
+            if not p.get('pdf_url'):
+                p_doi = p.get('doi', '').lower()
+                if p_doi.startswith('10.48550/arxiv.'):
+                    p['pdf_url'] = f"https://arxiv.org/pdf/{p_doi.split('arxiv.')[-1]}.pdf"
+                elif p_doi.startswith('10.1101/'):
+                    p['pdf_url'] = f"https://www.biorxiv.org/content/{p.get('doi')}.full.pdf"
+
+        return [p for p in papers if self._validate(p)]
+
+    def _validate(self, paper):
+        """Validate that a paper has required fields and valid DOI."""
+        title = paper.get('title', '').strip()
+        doi = self._normalize_doi(paper.get('doi', ''))
+        authors = paper.get('authors', [])
+
+        if not title or len(title) < 5:
+            return False
+
+        if not doi:
+            logger.warning(f"Rejecting paper with missing/invalid DOI: {title}")
+            return False
+
+        if not authors:
+            return False
+
+        # Filter out placeholder authors
+        placeholder_authors = [
+            'not specified', 'not provided', 'not available', 'see article',
+            'full author list', 'et al.', 'and others', 'review article', '[not'
+        ]
+        for a in authors:
+            if any(p in a.lower() for p in placeholder_authors) and len(authors) == 1:
+                logger.warning(f"Rejecting paper with placeholder author: {title}")
+                return False
+
+        # Verify DOI against Crossref when using AI provider
+        if self.provider not in ("crossref", "arxiv") and not any(pre in doi for pre in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
+            if not self._verify_doi(doi):
+                logger.warning(f"Rejecting paper with unverified DOI: {title} ({doi})")
+                return False
+
+        return True
+
+    def _parse_archive_markdown(self, content):
+        """
+        Parse papers from an archive markdown file.
+        Robust against multi-line summaries, category headers, and various formats.
+        """
+        papers = []
+        current_paper = None
+        current_category = "General Biorobotics"
+        in_summary = False
+
+        for line in content.split('\n'):
+            line_stripped = line.strip()
+
+            # Detect category headers (e.g. ## Category Name (N papers) or ## Category Name)
+            if line_stripped.startswith('## ') and not any(
+                line_stripped.startswith(skip) for skip in [
+                    '## Summary', '## Removed Papers', '## Verified Papers'
+                ]
+            ):
+                in_summary = False
+                cat = line_stripped[3:].strip()
+                if '(' in cat and cat.endswith(')'):
+                    cat = cat.rsplit('(', 1)[0].strip()
+                current_category = cat
+
+            # Detect paper title (### Title)
+            elif line_stripped.startswith('### '):
+                if current_paper and current_paper.get('title'):
+                    papers.append(current_paper)
+                in_summary = False
+                current_paper = {
+                    'title': line_stripped[4:].strip(),
+                    'category': current_category,
+                    'authors': [],
+                    'doi': '',
+                    'trl': 1,
+                    'keywords': [],
+                    'summary': '',
+                    'pdf_url': ''
+                }
+
+            elif current_paper:
+                if line_stripped.startswith('**Authors:**'):
+                    in_summary = False
+                    authors_str = line_stripped[12:].strip()
+                    if ';' in authors_str:
+                        current_paper['authors'] = [a.strip() for a in authors_str.split(';') if a.strip()]
+                    else:
+                        current_paper['authors'] = [a.strip() for a in authors_str.split(',') if a.strip()]
+
+                elif line_stripped.startswith('**DOI:**'):
+                    in_summary = False
+                    current_paper['doi'] = self._normalize_doi(line_stripped[8:].strip())
+
+                elif line_stripped.startswith('**TRL:**'):
+                    in_summary = False
+                    nums = re.findall(r'\d+', line_stripped[8:])
+                    current_paper['trl'] = int(nums[0]) if nums else 1
+
+                elif line_stripped.startswith('**Keywords:**'):
+                    in_summary = False
+                    current_paper['keywords'] = [k.strip() for k in line_stripped[13:].split(',') if k.strip()]
+
+                elif line_stripped.startswith('**Summary:**'):
+                    in_summary = True
+                    sum_text = line_stripped[12:].strip()
+                    if sum_text.endswith('---'):
+                        sum_text = sum_text[:-3].strip()
+                    current_paper['summary'] = sum_text
+
+                elif line_stripped.startswith('**PDF:**'):
+                    in_summary = False
+                    current_paper['pdf_url'] = line_stripped[8:].strip()
+
+                elif line_stripped.startswith('---'):
+                    in_summary = False
+
+                elif in_summary and line_stripped:
+                    # Multi-line summary continuation
+                    clean_line = line_stripped
+                    if clean_line.endswith('---'):
+                        clean_line = clean_line[:-3].strip()
+                        in_summary = False
+                    if clean_line:
+                        current_paper['summary'] = (current_paper['summary'] + ' ' + clean_line).strip()
+
+        if current_paper and current_paper.get('title'):
+            papers.append(current_paper)
+
+        for p in papers:
+            if not p.get('pdf_url'):
+                p_doi = p.get('doi', '').lower()
+                if p_doi.startswith('10.48550/arxiv.'):
+                    p['pdf_url'] = f"https://arxiv.org/pdf/{p_doi.split('arxiv.')[-1]}.pdf"
+                elif p_doi.startswith('10.1101/'):
+                    p['pdf_url'] = f"https://www.biorxiv.org/content/{p.get('doi')}.full.pdf"
+
+        return papers
+
+    def load_papers_from_archives(self):
+        """Load papers from all archive Markdown files in src/archive."""
+        all_papers = []
+        archive_dir = 'src/archive'
+
+        if not os.path.exists(archive_dir):
+            return all_papers
+
+        archive_files = sorted(
+            [f for f in os.listdir(archive_dir) if f.startswith('papers_') and f.endswith('.md')]
+        )
+
+        for filename in archive_files:
+            try:
+                filepath = os.path.join(archive_dir, filename)
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+
+                papers = self._parse_archive_markdown(content)
+                # Attach archive source date for sorting
+                archive_date = filename.replace('papers_', '').replace('.md', '')
+                for p in papers:
+                    p['archive_date'] = archive_date
+                all_papers.extend(papers)
+            except Exception as e:
+                logger.error(f"Failed to load papers from {filename}: {str(e)}")
+
+        return all_papers
+
+    def _normalize_category(self, cat):
+        """Canonicalize category name for consistent display and filtering."""
+        if not cat:
+            return "General Biorobotics"
+        cat = re.sub(r'\bEmg\b', 'EMG', cat, flags=re.IGNORECASE)
+        words = cat.split()
+        normalized = []
+        for w in words:
+            if w.upper() in ('EMG', 'EEG', 'TRL', 'AI', 'DOI'):
+                normalized.append(w.upper())
+            elif w.lower() in ('on', 'and', 'or', 'to', 'in', 'the', 'for', 'with', 'of'):
+                normalized.append(w.lower())
+            else:
+                normalized.append(w.capitalize())
+        if normalized:
+            if normalized[0].upper() == 'EMG':
+                normalized[0] = 'EMG'
+            else:
+                normalized[0] = normalized[0].capitalize()
+        return ' '.join(normalized)
+
+    def _categorize(self, paper):
+        """Categorize a paper based on its category, source term, or text contents."""
+        raw_cat = paper.get('category')
+        if raw_cat and raw_cat != "Unknown":
+            return self._normalize_category(raw_cat)
+
+        text = f"{paper.get('title', '')} {' '.join(paper.get('keywords', []))}".lower()
+
+        if 'emg' in text or 'electromyograph' in text:
+            return 'EMG Decoding on Spinal Cord Injured Patients'
+        elif 'intracortical' in text or 'cortical' in text:
+            return 'Intracortical Decoding on Hand and Finger Kinematics'
+        elif 'stimulation' in text or 'stimulat' in text or 'cuff' in text:
+            return 'Stimulating Peripheral Nerve to Enable Hand and/or Finger Control'
+        elif 'biohybrid' in text:
+            return 'Biohybrid Systems'
+        elif 'prosthet' in text:
+            return 'Neuroprosthetics'
+        elif 'soft robot' in text:
+            return 'Soft Robotics'
+
+        return 'General Biorobotics'
+
+    def _format_category_name(self, term):
+        """Format a search term as a category name."""
+        return self._normalize_category(term)
+
+    def _generate_paper_summary(self, paper):
+        """Generate an informative summary for a paper using AI or metadata fallback."""
+        if not self.client:
+            if paper.get('summary'):
+                return paper['summary']
+            kw = ', '.join(paper.get('keywords', [])[:3])
+            return f"Recent research in {paper.get('category', 'biorobotics')} addressing {paper.get('title', '').rstrip('.')}. Key topics: {kw}."
+
+        try:
+            prompt = f"""Provide a concise 2-3 sentence technical summary of this biorobotics research paper:
+Title: {paper['title']}
+Authors: {'; '.join(paper['authors'])}
+DOI: {paper['doi']}
+Keywords: {', '.join(paper['keywords'])}
+
+Focus on the core engineering innovation, method, and impact for biomedical robotics. Do not repeat the title verbatim."""
+
+            summary = self._call_llm(
+                prompt=prompt,
+                system_prompt="You are a research summarizer specializing in biorobotics and neuroengineering.",
+                max_tokens=250,
+                temperature=0.3
+            )
+            return summary.strip() if summary else paper.get('summary', '')
+        except Exception as e:
+            logger.error(f"Failed to generate summary: {str(e)}")
+            if paper.get('summary'):
+                return paper['summary']
+            return f"Technical research in {paper.get('category', 'biorobotics')} examining {paper.get('title', '').rstrip('.')}."
+
+    def _save_to_zotero(self, paper):
+        """Save a paper to the Zotero library if credentials are configured."""
+        if not self.zot:
+            logger.info(f"Skipping Zotero sync (credentials unavailable): {paper['title']}")
+            return None
+
+        try:
             creators = []
-            for author in paper['authors']:
+            for author in paper.get('authors', []):
                 parts = author.split()
                 if len(parts) > 1:
                     creators.append({
-                        'creatorType': 'author', 
-                        'firstName': ' '.join(parts[:-1]), 
+                        'creatorType': 'author',
+                        'firstName': ' '.join(parts[:-1]),
                         'lastName': parts[-1]
                     })
                 else:
@@ -303,21 +834,20 @@ class LiteratureMonitor:
                         'lastName': author,
                         'firstName': ''
                     })
-            
-            # Get or create collection
+
             category_name = self._categorize(paper)
             collection_id = self._get_or_create_collection(category_name)
-            
-            # Create item
-            result = self.zot.create_items([{
+
+            item = {
                 'itemType': 'journalArticle',
                 'title': paper['title'],
                 'creators': creators,
                 'DOI': paper['doi'],
-                'tags': [{'tag': k} for k in paper['keywords']],
+                'tags': [{'tag': k} for k in paper.get('keywords', [])],
                 'collections': [collection_id] if collection_id else [],
-                'extra': f"TRL: {paper['trl']} | Added: {datetime.now().isoformat()}"
-            }])
+                'extra': f"TRL: {paper.get('trl', 1)} | Added: {datetime.now().isoformat()}"
+            }
+            result = self.zot.create_items([item])
             logger.info(f"Added paper to Zotero: {paper['title']}")
             return result
         except Exception as e:
@@ -325,388 +855,306 @@ class LiteratureMonitor:
             return None
 
     def _get_or_create_collection(self, category_name):
-        """
-        Get or create a Zotero collection by name.
-        
-        Args:
-            category_name (str): The name of the category/collection
-            
-        Returns:
-            str: The collection ID
-        """
+        """Get or create a Zotero collection by name."""
+        if not self.zot:
+            return None
         try:
             collections = self.zot.collections()
-            
-            # Look for existing collection
-            for collection in collections:
-                if collection['data']['name'] == category_name:
-                    return collection['key']
-            
-            # Create new collection if not found
-            result = self.zot.create_collections([{'name': category_name}])
-            if result and 'successful' in result and result['successful']:
-                return result['successful']['0']
-            
-            # Return None if we couldn't create or find collection
+            for col in collections:
+                if col.get('data', {}).get('name') == category_name:
+                    return col['key']
+
+            res = self.zot.create_collections([{'name': category_name}])
+            if res and 'successful' in res and res['successful']:
+                return res['successful']['0']
             return None
         except Exception as e:
             logger.error(f"Error with Zotero collection: {str(e)}")
             return None
 
-    def _parse_response(self, content):
-        papers = []
-        current = {}
-        
-        for line in content.split('\n'):
-            if line.startswith('Title:'):
-                if current.get('title'):  # We've hit a new paper
-                    papers.append(current)
-                    current = {}
-                current['title'] = line[6:].strip()
-            elif line.startswith('Authors:'):
-                current['authors'] = line[8:].strip().split('; ')
-            elif line.startswith('DOI:'):
-                current['doi'] = self._normalize_doi(line[4:].strip())
-            elif line.startswith('TRL:'):
-                # Extract the first number found or default to 5
-                trl_text = line[4:].strip()
-                try:
-                    # Try direct conversion first
-                    current['trl'] = int(trl_text)
-                except ValueError:
-                    # Look for any numbers in the string
-                    numbers = re.findall(r'\d+', trl_text)
-                    if numbers:
-                        # Use the first number found
-                        current['trl'] = int(numbers[0])
-                    else:
-                        # Default to 5 (middle of the TRL scale)
-                        current['trl'] = 5
-                        logger.warning(f"Could not parse TRL value '{trl_text}', defaulting to 5")
-            elif line.startswith('Keywords:'):
-                current['keywords'] = [k.strip() for k in line[9:].split(',')]
-                
-        # Add the last paper if not already added
-        if current.get('title'):
-            papers.append(current)
-                
-        return [p for p in papers if self._validate(p)]
-
-    def _normalize_doi(self, doi):
-        """
-        Normalize a DOI by removing any URL prefix, reference numbers, and other artifacts.
-        
-        Args:
-            doi (str): The DOI string which may include URL prefix, reference numbers, or other artifacts
-            
-        Returns:
-            str: The normalized DOI without URL prefix, reference numbers, or artifacts
-        """
-        if not doi:
-            return doi
-        
-        # Remove common URL prefixes
-        doi = doi.strip()
-        prefixes = ['https://doi.org/', 'http://doi.org/', 'doi.org/', 'DOI: ', 'doi:']
-        for prefix in prefixes:
-            if doi.startswith(prefix):
-                doi = doi[len(prefix):]
-            elif doi.lower().startswith(prefix.lower()):
-                doi = doi[len(prefix):]
-        
-        # Remove reference numbers like [1], [2], [3], etc.
-        doi = re.sub(r'\[\d+\]$', '', doi)
-        
-        # Remove parenthetical information at the end (e.g., journal names, dates)
-        # Only if it's at the very end and in parentheses
-        doi = re.sub(r'\s*\([^)]*\)\s*\[\d+\]$', '', doi)
-        doi = re.sub(r'\s*\([^)]*\)$', '', doi)
-        
-        # Remove placeholder text if present
-        if doi.startswith('[') and doi.endswith(']'):
-            return ""  # Return empty string for placeholder DOIs like [Not provided in search results]
-        
-        return doi.strip()
-
-    def _validate(self, paper):
-        """
-        Validate that a paper has all required fields and valid data.
-        
-        Args:
-            paper (dict): Paper metadata
-            
-        Returns:
-            bool: True if paper is valid
-        """
-        # Check DOI validity
-        doi = paper.get('doi', '')
-        if not doi or '[' in doi or 'not provided' in doi.lower() or 'not available' in doi.lower():
-            logger.warning(f"Rejecting paper with invalid DOI: {paper.get('title', 'Unknown')}")
-            return False
-        
-        # Check basic requirements
-        if not all([
-            paper.get('title'),
-            len(paper.get('authors', [])) > 0,
-            1 <= paper.get('trl', 0) <= 9
-        ]):
-            return False
-        
-        # Filter out invalid author entries
-        authors = paper.get('authors', [])
-        for author in authors:
-            author_lower = author.lower()
-            # Check for placeholder text that indicates missing author information
-            if any(phrase in author_lower for phrase in [
-                'not specified',
-                'not provided',
-                'not available',
-                'see article',
-                'full author list',
-                'et al.',
-                'and others',
-                'review article',
-                '[not',  # Catches [Not provided], [Not specified], etc.
-            ]):
-                # If it's the only author, reject the paper
-                if len(authors) == 1:
-                    logger.warning(f"Rejecting paper with invalid author: {paper.get('title', 'Unknown')}")
-                    return False
-        
-        # Verify DOI exists in CrossRef (skip for preprints like arXiv/bioRxiv)
-        doi = paper.get('doi', '')
-        # Crossref search results are already DOI records from Crossref; avoid
-        # re-querying the same service for every result in fallback mode.
-        if self.provider != "crossref" and doi and not any(prefix in doi for prefix in ['10.48550/', '10.1101/']):
-            if not self._verify_doi(doi):
-                logger.warning(f"Rejecting paper with unverified DOI: {paper.get('title', 'Unknown')}")
-                return False
-        
-        return True
-
-    def _verify_doi(self, doi):
-        """
-        Verify that a DOI exists by checking against CrossRef API.
-        
-        Args:
-            doi (str): The DOI to verify
-            
-        Returns:
-            bool: True if the DOI exists in CrossRef
-        """
-        if not doi:
-            return False
-        
-        try:
-            url = f"https://api.crossref.org/works/{doi}"
-            response = requests.get(url, timeout=10, headers={
-                'User-Agent': 'LiteratureMonitor/1.0 (mailto:contact@example.com)'
-            })
-            if response.status_code == 200:
-                logger.info(f"DOI verified: {doi}")
-                return True
-            else:
-                logger.warning(f"DOI verification failed (status {response.status_code}): {doi}")
-                return False
-        except requests.RequestException as e:
-            logger.warning(f"DOI verification request failed for {doi}: {str(e)}")
-            return False
-
-    def generate_site(self, new_papers):
-        """Generate the HTML site with all papers."""
-        try:
-            os.makedirs('docs', exist_ok=True)
-            
-            # Load historical papers from archives
-            historical_papers = self.load_papers_from_archives()
-            
-            # Combine with new papers
-            all_papers = historical_papers + new_papers
-            
-            # Remove duplicates based on DOI
-            unique_papers = []
-            seen_dois = set()
-            for paper in all_papers:
-                if paper.get('doi') and paper['doi'].lower() not in seen_dois:
-                    unique_papers.append(paper)
-                    seen_dois.add(paper['doi'].lower())
-            
-            # Add category to each paper before rendering
-            for paper in unique_papers:
-                if 'category' not in paper:
-                    paper['category'] = self._categorize(paper)
-            
-            # Use the Jinja2 template
-            template = self.template_env.get_template('index.html')
-            
-            with open('docs/index.html', 'w') as f:
-                f.write(template.render(
-                    papers=unique_papers,
-                    updated=datetime.now().strftime("%Y-%m-%d %H:%M"),
-                    count=len(new_papers),  # Only count new papers in the update message
-                    total=len(unique_papers)  # Total papers displayed
-                ))
-            
-            logger.info(f"Generated site with {len(new_papers)} new papers and {len(unique_papers)} total papers")
-        except Exception as e:
-            logger.error(f"Failed to generate site: {str(e)}")
-            
-    def _generate_paper_summary(self, paper):
-        """
-        Generate an AI summary for a paper.
-        
-        Args:
-            paper (dict): Paper metadata
-            
-        Returns:
-            str: Summary of the paper
-        """
-        if not self.client:
-            return "Discovered through Crossref metadata search. Review the linked publication for the abstract and technical details."
-        try:
-            prompt = f"""Provide a concise 2-3 sentence technical summary of this paper:
-            Title: {paper['title']}
-            Authors: {'; '.join(paper['authors'])}
-            DOI: {paper['doi']}
-            Keywords: {', '.join(paper['keywords'])}
-            
-            Focus on the key innovation and potential impact for biorobotics research.
-            """
-            
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.3,
-                max_tokens=200
-            )
-            return response.choices[0].message.content.strip()
-        except Exception as e:
-            logger.error(f"Failed to generate summary: {str(e)}")
-            return "Summary unavailable due to technical error."
-
     def _create_archive_file(self, papers_with_summaries):
-        """
-        Create a markdown archive file with paper summaries.
-        
-        Args:
-            papers_with_summaries (list): List of paper dictionaries with summaries
-        """
+        """Create a markdown archive file with paper summaries."""
         try:
-            # Create archive directory if it doesn't exist
             archive_dir = 'src/archive'
             os.makedirs(archive_dir, exist_ok=True)
-            
-            # Create filename with current date
-            filename = f"{archive_dir}/papers_{datetime.now().strftime('%Y-%m-%d')}.md"
-            
-            with open(filename, 'w') as f:
+            today_str = datetime.now().strftime('%Y-%m-%d')
+            filename = f"{archive_dir}/papers_{today_str}.md"
+
+            # Group papers by category
+            categories = {}
+            for paper in papers_with_summaries:
+                cat = self._categorize(paper)
+                categories.setdefault(cat, []).append(paper)
+
+            with open(filename, 'w', encoding='utf-8') as f:
                 f.write(f"# Research Papers Compilation - {datetime.now().strftime('%B %d, %Y')}\n\n")
-                f.write(f"## Summary\n")
+                f.write("## Summary\n")
                 f.write(f"This compilation contains {len(papers_with_summaries)} new papers in biorobotics research.\n\n")
-                
-                # Group papers by category
-                categories = {}
-                for paper in papers_with_summaries:
-                    category = self._categorize(paper)
-                    if category not in categories:
-                        categories[category] = []
-                    categories[category].append(paper)
-                
-                # Write papers by category
-                for category, cat_papers in categories.items():
-                    f.write(f"## {category} ({len(cat_papers)} papers)\n\n")
-                    
-                    for paper in cat_papers:
-                        f.write(f"### {paper['title']}\n\n")
-                        f.write(f"**Authors:** {'; '.join(paper['authors'])}\n\n")
-                        f.write(f"**DOI:** {paper['doi']}\n\n")
-                        f.write(f"**TRL:** {paper['trl']}\n\n")
-                        f.write(f"**Keywords:** {', '.join(paper['keywords'])}\n\n")
-                        f.write(f"**Summary:** {paper['summary']}\n\n")
+
+                for cat, plist in categories.items():
+                    f.write(f"## {cat} ({len(plist)} papers)\n\n")
+                    for paper in plist:
+                        f.write(f"### {paper['title']}\n")
+                        f.write(f"**Authors:** {'; '.join(paper.get('authors', []))}\n")
+                        f.write(f"**DOI:** {paper.get('doi', '')}\n")
+                        f.write(f"**TRL:** {paper.get('trl', 1)}\n")
+                        f.write(f"**Keywords:** {', '.join(paper.get('keywords', []))}\n")
+                        f.write(f"**Summary:** {paper.get('summary', '')}\n")
+                        if paper.get('pdf_url'):
+                            f.write(f"**PDF:** {paper['pdf_url']}\n")
                         f.write("---\n\n")
-            
+
             logger.info(f"Created archive file: {filename}")
             return filename
         except Exception as e:
             logger.error(f"Failed to create archive file: {str(e)}")
             return None
 
-    def _format_category_name(self, term):
-        """
-        Format a search term as a category name.
-        
-        Args:
-            term (str): The search term
-            
-        Returns:
-            str: Formatted category name
-        """
-        # Capitalize each word and remove extra whitespace
-        words = term.strip().split()
-        return ' '.join(word.capitalize() for word in words)
-    
-    def execute(self):
-        """Execute the literature monitoring process."""
-        new_papers = []
-        
+    def _generate_rss_feed(self, papers, output_path="docs/feed.xml", max_items=50):
+        """Generate an RSS 2.0 feed of the most recent papers."""
         try:
-            # Get existing DOIs to avoid duplicates
-            existing_items = self.zot.everything(self.zot.items()) if self.zot else []
-            existing_dois = {
-                item['data'].get('DOI', '').lower() 
-                for item in existing_items 
-                if 'DOI' in item['data']
-            }
-            existing_dois.update(p.get('doi', '').lower() for p in self.load_papers_from_archives() if p.get('doi'))
-            
-            with ThreadPoolExecutor() as executor:
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+            site_url = "https://firmanserdana.github.io/research-assistant-paper-compiler/"
+            feed_url = f"{site_url.rstrip('/')}/feed.xml"
+            build_date = email.utils.formatdate(usegmt=True)
+
+            items_xml = []
+            for paper in papers[:max_items]:
+                title = html.escape(paper.get('title', 'Untitled Paper'))
+                doi = paper.get('doi', '')
+                link = f"https://doi.org/{doi}" if doi else site_url
+                guid = link
+                category = html.escape(paper.get('category', 'General Biorobotics'))
+                authors = html.escape('; '.join(paper.get('authors', [])))
+                summary = html.escape(paper.get('summary', ''))
+                trl = paper.get('trl', 1)
+                pdf_url = paper.get('pdf_url', '')
+
+                archive_date = paper.get('archive_date', '')
+                pub_date = build_date
+                if archive_date:
+                    try:
+                        dt = datetime.strptime(archive_date, '%Y-%m-%d')
+                        pub_date = dt.strftime('%a, %d %b %Y 00:00:00 GMT')
+                    except Exception:
+                        pass
+
+                description_parts = [
+                    f"<p><strong>Authors:</strong> {authors}</p>",
+                    f"<p><strong>Category:</strong> {category} | <strong>TRL:</strong> {trl}</p>"
+                ]
+                if summary:
+                    description_parts.append(f"<p><strong>Summary:</strong> {summary}</p>")
+                if doi:
+                    description_parts.append(f"<p><strong>DOI:</strong> <a href=\"https://doi.org/{doi}\">{doi}</a></p>")
+                if pdf_url:
+                    description_parts.append(f"<p><strong>PDF:</strong> <a href=\"{pdf_url}\">Open Access PDF</a></p>")
+
+                desc_cdata = f"<![CDATA[{''.join(description_parts)}]]>"
+
+                item_xml = f"""    <item>
+      <title>{title}</title>
+      <link>{link}</link>
+      <guid isPermaLink="true">{guid}</guid>
+      <pubDate>{pub_date}</pubDate>
+      <category>{category}</category>
+      <description>{desc_cdata}</description>
+    </item>"""
+                items_xml.append(item_xml)
+
+            rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Biorobotics Literature Monitor</title>
+    <link>{site_url}</link>
+    <description>Automated academic literature tracking, verification, and web portal compilation for biorobotics, neural decoding, and neuroprosthetics research.</description>
+    <language>en-us</language>
+    <lastBuildDate>{build_date}</lastBuildDate>
+    <atom:link href="{feed_url}" rel="self" type="application/rss+xml"/>
+{chr(10).join(items_xml)}
+  </channel>
+</rss>
+"""
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(rss_content)
+
+            logger.info(f"Generated RSS feed at {output_path} with {len(items_xml)} items")
+            return output_path
+        except Exception as e:
+            logger.error(f"Failed to generate RSS feed: {e}")
+            return None
+
+    def generate_site(self, new_papers):
+        """Generate the HTML site, update.json, and RSS feed with all papers."""
+        try:
+            os.makedirs('docs', exist_ok=True)
+
+            historical_papers = self.load_papers_from_archives()
+            all_papers = new_papers + historical_papers
+
+            # Deduplicate papers based on DOI (case-insensitive)
+            # Prefer papers with non-empty summaries and valid TRL
+            unique_papers = []
+            seen_dois = set()
+            for paper in all_papers:
+                doi = self._normalize_doi(paper.get('doi', ''))
+                if doi and doi.lower() not in seen_dois:
+                    paper['doi'] = doi
+                    paper['category'] = self._categorize(paper)
+                    unique_papers.append(paper)
+                    seen_dois.add(doi.lower())
+
+            # Sort papers: newest archive date first, then by title
+            unique_papers.sort(
+                key=lambda p: (p.get('archive_date', '0000-00-00'), p.get('title', '')),
+                reverse=True
+            )
+
+            # Compute category counts
+            categories_map = {}
+            for p in unique_papers:
+                cat = p.get('category', 'General Biorobotics')
+                categories_map[cat] = categories_map.get(cat, 0) + 1
+
+            # Render template
+            template = self.template_env.get_template('index.html')
+            html_content = template.render(
+                papers=unique_papers,
+                categories=categories_map,
+                updated=datetime.now().strftime("%Y-%m-%d %H:%M"),
+                count=len(new_papers),
+                total=len(unique_papers)
+            )
+
+            with open('docs/index.html', 'w', encoding='utf-8') as f:
+                f.write(html_content)
+
+            # Write update.json
+            with open('docs/update.json', 'w', encoding='utf-8') as f:
+                json.dump({
+                    "timestamp": datetime.now().isoformat(),
+                    "new_count": len(new_papers),
+                    "total_count": len(unique_papers),
+                    "categories": categories_map
+                }, f, indent=2)
+
+            # Generate RSS feed
+            self._generate_rss_feed(unique_papers, output_path='docs/feed.xml')
+
+            logger.info(f"Generated site with {len(new_papers)} new papers and {len(unique_papers)} total papers")
+            return len(unique_papers)
+        except Exception as e:
+            logger.error(f"Failed to generate site: {str(e)}")
+            raise
+
+    def execute(self):
+        """Execute the complete literature monitoring process."""
+        if getattr(self, 'generate_site_only', False):
+            logger.info("Executing site regeneration only...")
+            self.generate_site([])
+            return []
+
+        new_papers = []
+
+        try:
+            # Build set of existing DOIs to prevent duplicates
+            existing_dois = set()
+            if self.zot:
+                try:
+                    existing_items = self.zot.everything(self.zot.items())
+                    for item in existing_items:
+                        item_doi = self._normalize_doi(item.get('data', {}).get('DOI', ''))
+                        if item_doi:
+                            existing_dois.add(item_doi.lower())
+                except Exception as e:
+                    logger.warning(f"Could not fetch Zotero items: {e}")
+
+            for p in self.load_papers_from_archives():
+                p_doi = self._normalize_doi(p.get('doi', ''))
+                if p_doi:
+                    existing_dois.add(p_doi.lower())
+
+            # Query papers for all search terms concurrently
+            with ThreadPoolExecutor(max_workers=3) as executor:
                 results = list(executor.map(self._deep_research_query, self.search_terms))
-                
-                for term, response in results:
-                    if not response:
+
+                # If include_arxiv requested alongside another provider
+                if self.include_arxiv and self.provider != "arxiv":
+                    arxiv_results = list(executor.map(
+                        lambda t: (t, self._arxiv_search(t, max_results=self.limit or 5)),
+                        self.search_terms
+                    ))
+                    results.extend(arxiv_results)
+
+                for term, response_text in results:
+                    if not response_text:
                         continue
-                    
-                    papers = self._parse_response(response)
-                    for paper in papers:
+
+                    parsed_papers = self._parse_response(response_text)
+                    if self.limit:
+                        parsed_papers = parsed_papers[:self.limit]
+
+                    for paper in parsed_papers:
                         paper_doi = paper.get('doi', '').lower()
                         if paper_doi and paper_doi not in existing_dois:
-                            # Store the source search term as the category
                             paper['source_term'] = term
-                            # Format the term for use as a category name
                             paper['category'] = self._format_category_name(term)
-                            
-                            # Generate summary for the paper
                             paper['summary'] = self._generate_paper_summary(paper)
-                            self._save_to_zotero(paper)
+
+                            if not self.dry_run:
+                                self._save_to_zotero(paper)
                             new_papers.append(paper)
-                            existing_dois.add(paper_doi)  # Prevent duplicates within batch
-            
+                            existing_dois.add(paper_doi)
+
+            if self.dry_run:
+                logger.info(f"[DRY RUN] Discovered {len(new_papers)} new papers. Skipping archive writing and Zotero sync.")
+                return new_papers
+
             if new_papers:
-                # Create archive file with summaries
                 self._create_archive_file(new_papers)
-                
-                # Generate the website
                 self.generate_site(new_papers)
-                logger.info(f"Added {len(new_papers)} papers")
-                
-                # Get unique categories from the papers
-                categories = list(set(paper['category'] for paper in new_papers))
-                
-                # Create update.json with dynamic categories
-                with open('docs/update.json', 'w') as f:
-                    json.dump({
-                        "timestamp": datetime.now().isoformat(),
-                        "count": len(new_papers),
-                        "categories": {cat: sum(1 for p in new_papers if p['category'] == cat) 
-                                    for cat in categories}
-                    }, f, indent=2)
+                logger.info(f"Successfully added and compiled {len(new_papers)} new papers.")
             else:
-                logger.info("No new papers found")
-                self.generate_site([])  # Generate site with no new papers
-                
+                logger.info("No new papers found in this run.")
+                self.generate_site([])
+
+            return new_papers
+
         except Exception as e:
             logger.error(f"Execution error: {str(e)}")
             raise
 
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Biorobotics Literature Monitor & Paper Compiler")
+    parser.add_argument(
+        "--provider", "-p",
+        choices=["auto", "crossref", "arxiv", "perplexity", "gemini", "anthropic", "openai", "ollama"],
+        default="auto",
+        help="Scholarly data source or AI provider (default: auto)"
+    )
+    parser.add_argument("--model", "-m", help="AI model override (e.g. sonar-pro, gemini-2.5-flash)")
+    parser.add_argument("--term", "-t", action="append", help="Specific search term to query (can be specified multiple times)")
+    parser.add_argument("--limit", "-l", type=int, default=None, help="Maximum number of papers per search term")
+    parser.add_argument("--dry-run", action="store_true", help="Run search without writing archive files or syncing to Zotero")
+    parser.add_argument("--skip-zotero", action="store_true", help="Skip Zotero syncing even if credentials exist")
+    parser.add_argument("--include-arxiv", action="store_true", help="Query arXiv in addition to primary provider")
+    parser.add_argument("--generate-site-only", action="store_true", help="Regenerate website, update.json, and RSS feed from existing archives without searching")
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    LiteratureMonitor().execute()
+    args = parse_args()
+    monitor = LiteratureMonitor(
+        model=args.model,
+        provider=args.provider,
+        dry_run=args.dry_run,
+        limit=args.limit,
+        skip_zotero=args.skip_zotero,
+        include_arxiv=args.include_arxiv,
+    )
+    if args.term:
+        monitor.search_terms = args.term
+    if args.generate_site_only:
+        monitor.generate_site_only = True
+    monitor.execute()

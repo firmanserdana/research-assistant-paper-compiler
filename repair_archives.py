@@ -1,308 +1,260 @@
 #!/usr/bin/env python3
 """
-Repair archive papers by verifying DOIs and using Perplexity to find correct ones.
-Uses standard library only (no external dependencies like openai/requests).
+Repair archive papers by verifying DOIs and looking up correct DOIs
+using Crossref bibliographic search (free, keyless) and Perplexity API (optional fallback).
+Never destroys or wipes out historical archive files.
 """
 
 import os
 import re
 import json
 import time
+import difflib
 import urllib.request
+import urllib.parse
 import urllib.error
 from pathlib import Path
+from src.monitor import LiteratureMonitor
 
 ARCHIVE_DIR = "src/archive"
 REPORT_FILE = "repair_report.json"
+CACHE_FILE = "doi_verification_cache.json"
+USER_AGENT = "LiteratureMonitor/1.0 (mailto:contact@example.com)"
 
-# Perplexity API Config
 PPLX_API_KEY = os.getenv("PPLX_API_KEY")
+if not PPLX_API_KEY and Path('.env').exists():
+    try:
+        with open('.env', 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip().startswith('PPLX_API_KEY='):
+                    PPLX_API_KEY = line.strip().split('=', 1)[1].strip().strip("'\"")
+                    break
+    except Exception:
+        pass
 
-# Manually read .env if key not in env
-if not PPLX_API_KEY:
-    env_path = Path('.env')
-    if env_path.exists():
-        try:
-            with open(env_path, 'r') as f:
-                for line in f:
-                    if line.strip().startswith('PPLX_API_KEY='):
-                        PPLX_API_KEY = line.strip().split('=', 1)[1].strip().strip("'").strip('"')
-                        print("Loaded PPLX_API_KEY from .env")
-                        break
-        except Exception as e:
-            print(f"Failed to read .env: {e}")
 
-PPLX_BASE_URL = "https://api.perplexity.ai/chat/completions"
+def verify_doi(doi):
+    """Verify a DOI against CrossRef API."""
+    if not doi:
+        return ("INVALID", None)
 
-def call_perplexity(prompt):
-    """Call Perplexity API using urllib."""
+    if any(prefix in doi for prefix in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
+        return ("PREPRINT", None)
+
+    if not doi.startswith('10.'):
+        return ("INVALID", None)
+
+    try:
+        url = f"https://api.crossref.org/works/{doi}"
+        req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+        with urllib.request.urlopen(req, timeout=10) as response:
+            if response.status == 200:
+                data = json.loads(response.read().decode('utf-8'))
+                msg = data.get('message', {})
+                title = (msg.get('title') or [''])[0]
+                return ("VERIFIED", title)
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return ("FAKE", None)
+        return ("ERROR", None)
+    except Exception:
+        return ("ERROR", None)
+
+    return ("ERROR", None)
+
+
+def find_doi_crossref(title, authors=""):
+    """Search Crossref for the correct DOI based on paper title and authors."""
+    if not title or len(title) < 8:
+        return None
+
+    try:
+        query_str = title
+        if authors and authors != 'Unknown':
+            first_author = authors.split(';')[0].split(',')[0].strip()
+            query_str = f"{title} {first_author}"
+
+        encoded_query = urllib.parse.quote(query_str)
+        url = f"https://api.crossref.org/works?query.bibliographic={encoded_query}&rows=2"
+        req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+
+        with urllib.request.urlopen(req, timeout=10) as response:
+            if response.status == 200:
+                data = json.loads(response.read().decode('utf-8'))
+                items = data.get('message', {}).get('items', [])
+                for item in items:
+                    candidate_doi = item.get('DOI', '').strip()
+                    candidate_title = (item.get('title') or [''])[0].strip()
+
+                    # Check title similarity
+                    ratio = difflib.SequenceMatcher(
+                        None, title.lower(), candidate_title.lower()
+                    ).ratio()
+
+                    if ratio > 0.65 and candidate_doi:
+                        return candidate_doi
+    except Exception as e:
+        logger_debug = str(e)
+
+    return None
+
+
+def find_doi_perplexity(title, authors=""):
+    """Fallback search using Perplexity API if configured."""
     if not PPLX_API_KEY:
         return None
-        
-    headers = {
-        "Authorization": f"Bearer {PPLX_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    
-    data = {
-        "model": "sonar-pro",
-        "messages": [
-            {"role": "system", "content": "You are a helpful research assistant. You only output the DOI and nothing else. No markdown, no text."},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.1
-    }
-    
+
     try:
+        url = "https://api.perplexity.ai/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {PPLX_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "model": "sonar-pro",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a research assistant. Output ONLY the exact DOI (e.g. 10.xxxx/yyyy) for the paper, or 'NOT FOUND'. No markdown or extra text."
+                },
+                {
+                    "role": "user",
+                    "content": f"Find the DOI for: \"{title}\" by {authors}"
+                }
+            ],
+            "temperature": 0.1,
+            "max_tokens": 60
+        }
         req = urllib.request.Request(
-            PPLX_BASE_URL, 
+            url,
             data=json.dumps(data).encode('utf-8'),
             headers=headers,
             method="POST"
         )
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            return result['choices'][0]['message']['content'].strip()
-    except Exception as e:
-        print(f"  Perplexity API error: {e}")
-        return None
+        with urllib.request.urlopen(req, timeout=12) as response:
+            res = json.loads(response.read().decode('utf-8'))
+            doi_candidate = res['choices'][0]['message']['content'].strip()
+            doi_candidate = re.sub(r'^(?:DOI:\s*|doi:\s*)', '', doi_candidate).strip()
+            match = re.search(r'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+', doi_candidate)
+            if match:
+                return match.group(0)
+    except Exception:
+        pass
 
-def parse_archive_file(filepath):
-    """Parse papers from a markdown archive file."""
-    papers = []
-    current_paper = None
-    current_category = "Unknown"
-    
-    with open(filepath, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
-    
-    for line in lines:
-        line = line.strip()
-        # Detect category headers
-        if line.startswith('## ') and not line.startswith('## Summary'):
-            if '(' in line and 'papers)' in line:
-                current_category = line[3:].split(' (')[0].strip()
-            else:
-                current_category = line[3:].strip()
-            
-        # Start of a new paper
-        elif line.startswith('### '):
-            if current_paper and current_paper.get('doi'):
-                papers.append(current_paper)
-            current_paper = {
-                'title': line[4:].strip(), 
-                'category': current_category,
-                'source_file': os.path.basename(filepath),
-                'authors': '',
-                'doi': '',
-                'trl': '',
-                'keywords': '',
-                'summary': ''
-            }
-            
-        # Collect metadata
-        if current_paper:
-            if line.startswith('**Authors:**'):
-                current_paper['authors'] = line[12:].strip()
-            elif line.startswith('**DOI:**'):
-                doi = line[8:].strip()
-                # Clean up the DOI
-                doi = re.sub(r'\[?\d+\]?$', '', doi).strip()
-                prefixes = ['https://doi.org/', 'http://doi.org/', 'doi.org/', 'DOI: ', 'doi:']
-                for prefix in prefixes:
-                    if doi.lower().startswith(prefix.lower()):
-                        doi = doi[len(prefix):]
-                current_paper['doi'] = doi.strip()
-            elif line.startswith('**TRL:**'):
-                current_paper['trl'] = line[8:].strip()
-            elif line.startswith('**Keywords:**'):
-                current_paper['keywords'] = line[13:].strip()
-            elif line.startswith('**Summary:**'):
-                current_paper['summary'] = line[12:].strip()
-            elif line and not line.startswith('**') and not line.startswith('###'):
-                # Append to summary if it's a continuation
-                if current_paper.get('summary'):
-                    current_paper['summary'] += " " + line
-    
-    # Add the last paper
-    if current_paper and current_paper.get('doi'):
-        papers.append(current_paper)
-        
-    return papers
+    return None
 
-def verify_doi(doi):
-    """Verify a DOI against CrossRef API. Returns (status, details)."""
-    if not doi:
-        return ("INVALID", "Empty DOI")
-    
-    # Skip preprints
-    if any(prefix in doi for prefix in ['10.48550/', '10.1101/', 'arXiv']):
-        return ("PREPRINT", "Preprint - not verified")
-    
-    try:
-        url = f"https://api.crossref.org/works/{doi}"
-        req = urllib.request.Request(url, headers={
-            'User-Agent': 'DOIVerifier/1.0 (mailto:contact@example.com)'
-        })
-        
-        with urllib.request.urlopen(req, timeout=10) as response:
-            if response.status == 200:
-                data = json.loads(response.read().decode('utf-8'))
-                real_title = data.get('message', {}).get('title', [''])[0]
-                real_authors_list = data.get('message', {}).get('author', [])
-                author_names = [f"{a.get('given', '')} {a.get('family', '')}".strip() for a in real_authors_list[:3]]
-                return ("VERIFIED", {
-                    'real_title': real_title,
-                    'real_authors': ", ".join(author_names)
-                })
-                
-    except urllib.error.HTTPError as e:
-        if e.code == 404:
-            return ("FAKE", "DOI not found in CrossRef")
-    except Exception as e:
-        return ("ERROR", str(e))
-    
-    return ("ERROR", "Unknown error")
-
-def find_correct_doi(paper):
-    """Use Perplexity to find the correct DOI."""
-    if not PPLX_API_KEY:
-        return None
-
-    print(f"  Attempting repair for: {paper['title']}")
-    
-    prompt = (
-        f"Find the correct DOI for the research paper titled: \"{paper['title']}\" "
-        f"by authors: \"{paper['authors']}\". "
-        "Return ONLY the DOI string (e.g., 10.xxxx/yyyy) or a JSON object with correct info. "
-        "If you cannot find the exact paper, return 'NOT FOUND'."
-    )
-    
-    result = call_perplexity(prompt)
-    
-    if not result:
-        return None
-        
-    # Clean up result
-    result = result.replace('DOI:', '').replace('doi:', '').strip()
-    if result.endswith('.'):
-            result = result[:-1]
-
-    if "NOT FOUND" in result or len(result) < 5 or " " in result:
-        print(f"  Result: Not found ({result})")
-        return None
-        
-    print(f"  Result: {result}")
-    return result
 
 def main():
     print("=" * 60)
-    print("ARCHIVE REPAIR STARTED")
-    if not PPLX_API_KEY:
-        print("WARNING: PPLX_API_KEY not found. Repair functionality disabled.")
+    print("ARCHIVE DOI REPAIR UTILITY")
     print("=" * 60)
-    
+
+    monitor = LiteratureMonitor(provider="crossref")
     archive_path = Path(ARCHIVE_DIR)
     archive_files = sorted(archive_path.glob("papers_*.md"))
-    
+
     results = {
         'total': 0,
-        'verified_initial': 0,
-        'repaired': 0,
-        'failed_repair': 0,
-        'preprints': 0
+        'verified': 0,
+        'repaired_crossref': 0,
+        'repaired_pplx': 0,
+        'unrepaired': 0
     }
-    
+
     for filepath in archive_files:
-        print(f"\nProcessing {filepath.name}...")
         try:
-            papers = parse_archive_file(filepath)
+            with open(filepath, 'r', encoding='utf-8') as f:
+                content = f.read()
+            papers = monitor._parse_archive_markdown(content)
         except Exception as e:
             print(f"Error parsing {filepath.name}: {e}")
             continue
 
-        valid_papers = []
-        
+        if not papers:
+            continue
+
+        file_changed = False
+
         for paper in papers:
             results['total'] += 1
-            doi = paper.get('doi', '')
-            status, details = verify_doi(doi)
-            
-            if status == "VERIFIED":
-                results['verified_initial'] += 1
-                valid_papers.append(paper)
-            elif status == "PREPRINT":
-                results['preprints'] += 1
-                valid_papers.append(paper)
-            elif status in ["FAKE", "INVALID"]:
-                # Attempt repair
-                new_doi = find_correct_doi(paper)
-                if new_doi:
-                    # Verify the new DOI
-                    new_status, new_details = verify_doi(new_doi)
-                    if new_status == "VERIFIED":
-                        print(f"  ✓ REPAIRED! {doi} -> {new_doi}")
-                        paper['doi'] = new_doi
-                        # Update title/authors if provided by CrossRef to match reality
-                        if isinstance(new_details, dict):
-                            if new_details.get('real_title'):
-                                paper['title'] = new_details['real_title']
-                            if new_details.get('real_authors'):
-                                paper['authors'] = new_details['real_authors']
-                        
-                        results['repaired'] += 1
-                        valid_papers.append(paper)
-                    else:
-                        print(f"  ✗ Repair failed (invalid new DOI): {new_doi}")
-                        results['failed_repair'] += 1
-                else:
-                    results['failed_repair'] += 1
-            else:
-                print(f"  Skipping error/unknown status: {status}")
-                results['failed_repair'] += 1
+            doi = monitor._normalize_doi(paper.get('doi', ''))
+            paper['doi'] = doi
 
-        # Reconstruct file content
-        if valid_papers:
+            status, _ = verify_doi(doi)
+            if status in ("VERIFIED", "PREPRINT"):
+                results['verified'] += 1
+                continue
+
+            # Attempt repair via Crossref
+            print(f"Repairing [{filepath.name}]: {paper['title'][:40]}... (old: {doi})")
+            time.sleep(0.2)
+            new_doi = find_doi_crossref(paper['title'], '; '.join(paper.get('authors', [])))
+
+            if new_doi:
+                v_status, _ = verify_doi(new_doi)
+                if v_status in ("VERIFIED", "PREPRINT"):
+                    print(f"  ✓ Crossref Repaired: {new_doi}")
+                    paper['doi'] = new_doi
+                    results['repaired_crossref'] += 1
+                    file_changed = True
+                    continue
+
+            # Attempt repair via Perplexity if configured
+            if PPLX_API_KEY:
+                time.sleep(0.2)
+                pplx_doi = find_doi_perplexity(paper['title'], '; '.join(paper.get('authors', [])))
+                if pplx_doi:
+                    v_status, _ = verify_doi(pplx_doi)
+                    if v_status in ("VERIFIED", "PREPRINT"):
+                        print(f"  ✓ Perplexity Repaired: {pplx_doi}")
+                        paper['doi'] = pplx_doi
+                        results['repaired_pplx'] += 1
+                        file_changed = True
+                        continue
+
+            print(f"  - Unresolved DOI for: {paper['title'][:40]}")
+            results['unrepaired'] += 1
+
+        # Re-save file if any DOIs were repaired
+        if file_changed:
+            date_part = filepath.stem.replace('papers_', '')
+            categories = {}
+            for p in papers:
+                cat = monitor._categorize(p)
+                categories.setdefault(cat, []).append(p)
+
             with open(filepath, 'w', encoding='utf-8') as f:
-                f.write(f"# Biorobotics and Artificial Intelligence Papers\n")
-                f.write(f"Generated on {filepath.stem.replace('papers_', '')}\n\n")
-                
-                # Group by category
-                by_category = {}
-                for p in valid_papers:
-                    cat = p['category']
-                    if cat not in by_category:
-                        by_category[cat] = []
-                    by_category[cat].append(p)
-                
-                f.write(f"## Summary\nTotal Papers: {len(valid_papers)}\n\n")
-                
-                for cat, plist in by_category.items():
+                f.write(f"# Research Papers Compilation - {date_part}\n\n")
+                f.write("## Summary\n")
+                f.write(f"This compilation contains {len(papers)} papers in biorobotics research.\n\n")
+
+                for cat, plist in categories.items():
                     f.write(f"## {cat} ({len(plist)} papers)\n\n")
                     for p in plist:
                         f.write(f"### {p['title']}\n")
-                        f.write(f"**Authors:** {p['authors']}\n")
-                        f.write(f"**DOI:** {p['doi']}\n")
-                        f.write(f"**TRL:** {p['trl']}\n")
-                        f.write(f"**Keywords:** {p['keywords']}\n")
-                        f.write(f"**Summary:** {p['summary']}\n\n")
-            print(f"  Rewrote {filepath.name} with {len(valid_papers)} papers")
-        else:
-            print(f"  {filepath.name} has NO valid papers. Adding placeholder.")
-            with open(filepath, 'w', encoding='utf-8') as f:
-                 f.write(f"# Biorobotics and Artificial Intelligence Papers\n")
-                 f.write(f"Generated on {filepath.stem.replace('papers_', '')}\n\n")
-                 f.write("## Summary\nNo verified papers found in this archive.\n")
+                        f.write(f"**Authors:** {'; '.join(p.get('authors', []))}\n")
+                        f.write(f"**DOI:** {p.get('doi', '')}\n")
+                        f.write(f"**TRL:** {p.get('trl', 1)}\n")
+                        f.write(f"**Keywords:** {', '.join(p.get('keywords', []))}\n")
+                        f.write(f"**Summary:** {p.get('summary', '')}\n")
+                        f.write("---\n\n")
+
+            print(f"  Updated {filepath.name} with repaired DOIs.")
 
     print("\n" + "=" * 60)
     print("REPAIR SUMMARY")
     print("=" * 60)
-    print(f"Total Papers Processed: {results['total']}")
-    print(f"Initially Verified:     {results['verified_initial']}")
-    print(f"Repaired:               {results['repaired']}")
-    print(f"Preprints:              {results['preprints']}")
-    print(f"Still Fake/removed:     {results['failed_repair']}")
+    print(f"Total Papers Processed:    {results['total']}")
+    print(f"Already Verified:          {results['verified']}")
+    print(f"Repaired via Crossref:     {results['repaired_crossref']}")
+    print(f"Repaired via Perplexity:   {results['repaired_pplx']}")
+    print(f"Unrepaired (retained):     {results['unrepaired']}")
+
+    with open(REPORT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(results, f, indent=2)
+
+    return 0
+
 
 if __name__ == "__main__":
     main()
-

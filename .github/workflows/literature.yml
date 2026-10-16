@@ -7,46 +7,56 @@ on:
     - cron: "0 0 * * 1" # Run weekly on Mondays
   workflow_dispatch: # Allow manual trigger
 
-# Add this permissions block
 permissions:
-  contents: write # Grants write access to repository contents
+  contents: write
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.11"
+          cache: "pip"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Run test suite
+        run: pytest -v
 
       - name: Run literature monitor
         env:
           ZOTERO_USER_ID: ${{ secrets.ZOTERO_USER_ID }}
           ZOTERO_API_KEY: ${{ secrets.ZOTERO_API_KEY }}
           PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python src/monitor.py
 
-      - name: Verify DOIs in new archive
+      - name: Verify DOIs in archives
         run: |
-          echo "Running DOI verification on new papers..."
-          python verify_dois.py || echo "Verification completed with some issues"
+          echo "Running DOI verification on archive papers..."
+          python verify_dois.py || echo "Verification completed with issues"
 
       - name: Repair Archives (Fix DOIs)
         env:
           PPLX_API_KEY: ${{ secrets.PPLX_API_KEY }}
         run: |
           echo "Running Archive Repair..."
-          python repair_archives.py || echo "Repair script encountered errors but continuing..."
+          python repair_archives.py || echo "Repair script encountered warnings but continuing..."
+
+      - name: Regenerate portal site
+        run: |
+          python regenerate_site.py
 
       - name: Deploy to GitHub Pages
         if: success()
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
@@ -57,6 +67,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add src/archive/ doi_verification_report.json
+          git add src/archive/ docs/ doi_verification_report.json doi_verification_cache.json
           git commit -m "Update archived paper compilations with DOI verification" || echo "No changes to commit"
           git push

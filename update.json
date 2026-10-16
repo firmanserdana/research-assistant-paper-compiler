@@ -1,9 +1,11 @@
 {
-  "timestamp": "2026-10-13T20:18:17.982038",
-  "count": 57,
+  "timestamp": "2026-10-16T18:27:21.183914",
+  "new_count": 0,
+  "total_count": 190,
   "categories": {
-    "Emg Decoding On Spinal Cord Injured Patients": 18,
-    "Stimulating Peripheral Nerve To Enable Hand And/or Finger Control": 20,
-    "Intracortical Decoding On Hand And Finger Kinematics": 19
+    "EMG Decoding on Spinal Cord Injured Patients": 56,
+    "Intracortical Decoding on Hand and Finger Kinematics": 62,
+    "Stimulating Peripheral Nerve to Enable Hand And/or Finger Control": 61,
+    "General Biorobotics": 11
   }
 }

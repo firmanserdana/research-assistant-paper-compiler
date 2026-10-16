@@ -5,7 +5,7 @@
     <link>https://firmanserdana.github.io/research-assistant-paper-compiler/</link>
     <description>Automated academic literature tracking, verification, and web portal compilation for biorobotics, neural decoding, and neuroprosthetics research.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Oct 2026 19:12:36 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2026 19:14:18 GMT</lastBuildDate>
     <atom:link href="https://firmanserdana.github.io/research-assistant-paper-compiler/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Using midodrine to accelerate weaning of intravenous vasopressors in acute spinal cord injured patients admitted to the intensive care unit: A retrospective study of 28 patients</title>
@@ -128,12 +128,28 @@
       <description><![CDATA[<p><strong>Authors:</strong> Kubra Oktay; Behic Celik; Gokhan Meric</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Clinical assessment of targeted ultrasound-guided percutaneous needle barbotage and corticosteroid injection for treating acute calcific tendinitis in digits.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.5455/handmicrosurg.216297">10.5455/handmicrosurg.216297</a></p>]]></description>
     </item>
     <item>
+      <title>Plasticity of the Injured Spinal Cord</title>
+      <link>https://doi.org/10.3390/cells10081886</link>
+      <guid isPermaLink="true">https://doi.org/10.3390/cells10081886</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>EMG Decoding on Spinal Cord Injured Patients</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Nicolas Guérout</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Comprehensive review examining cellular and molecular plasticity mechanisms following spinal cord injury, focusing on spontaneous remodeling and therapeutic strategies to promote functional motor recovery.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3390/cells10081886">10.3390/cells10081886</a></p>]]></description>
+    </item>
+    <item>
       <title>Malignant Peripheral Nerve Sheath Tumor of the Hand: A Case Report</title>
       <link>https://doi.org/10.7759/cureus.39205</link>
       <guid isPermaLink="true">https://doi.org/10.7759/cureus.39205</guid>
       <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
       <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
       <description><![CDATA[<p><strong>Authors:</strong> Sangita Jogdand; Rahul Rajendran</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Detailed clinical report describing presentation, diagnostic imaging, histopathology, and multidisciplinary surgical management of rare malignant peripheral nerve sheath tumors in the hand.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.7759/cureus.39205">10.7759/cureus.39205</a></p>]]></description>
+    </item>
+    <item>
+      <title>Factors affecting falls in spinal cord injured in-patients during rehabilitation, a retrospective matched pair case-control study</title>
+      <link>https://doi.org/10.1038/s41394-026-00748-y</link>
+      <guid isPermaLink="true">https://doi.org/10.1038/s41394-026-00748-y</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <category>EMG Decoding on Spinal Cord Injured Patients</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Fatma Kumbara; Aslı Turan; Berna Orhan; Özge Tezen; Zuhal Özişler; Elif Yalçın</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 1</p><p><strong>Summary:</strong> Retrospective matched pair case-control study examining clinical and biomechanical factors affecting patient falls during spinal cord injury rehabilitation to optimize safety protocols.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1038/s41394-026-00748-y">10.1038/s41394-026-00748-y</a></p>]]></description>
     </item>
     <item>
       <title>Atypical Hypothenar Hammer Syndrome Mimicking A Peripheral Nerve Tumor</title>
@@ -390,22 +406,6 @@
       <pubDate>Mon, 28 Jul 2025 00:00:00 GMT</pubDate>
       <category>EMG Decoding on Spinal Cord Injured Patients</category>
       <description><![CDATA[<p><strong>Authors:</strong> Janelle Aikens; Aaron Tabor; Kevin Englehart; Erik Scheme</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> The key innovation of this paper is the development and qualitative evaluation of an **EMG-based visual feedback tool** designed to enhance motivation and motor learning in spinal cord injury (SCI) hand function rehabilitation. By providing real-time, tangible indicators of muscle activity, the tool acts as both an extrinsic and intrinsic motivator, supporting patient engagement and communication with therapists across various stages of recovery. This approach highlights a promising direction for **biorobotics research**, suggesting that integrating EMG visual feedback into human-machine interfaces could bridge subfunctional and functional movement, thereby advancing personalized rehabilitation strategies for individuals with SCI.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/ICORR66766.2025.11063187">10.1109/ICORR66766.2025.11063187</a></p>]]></description>
-    </item>
-    <item>
-      <title>Decoding of finger, hand and arm kinematics using switching linear dynamical systems with pre-motor cortical ensembles</title>
-      <link>https://doi.org/10.1109/embc.2012.6346283</link>
-      <guid isPermaLink="true">https://doi.org/10.1109/embc.2012.6346283</guid>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
-      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Xiaoxu Kang; M. H. Schieber; N. V. Thakor</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper introduces a **switching linear dynamical systems (S-LDS) framework** for decoding finger, hand, and arm kinematics from intracortical neural signals, offering a significant advance over traditional single Kalman filter approaches by modeling motion as a sequence of discrete states, each with its own linear dynamics. The key innovation is leveraging the observability of both discrete and continuous states during training, which simplifies inference and enables **motion-state-dependent adaptive decoding** with higher accuracy, making it highly promising for real-time brain–machine interfaces and adaptive control in biorobotics and prosthetic devices.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/embc.2012.6346283">10.1109/embc.2012.6346283</a></p>]]></description>
-    </item>
-    <item>
-      <title>Peripheral neurostimulation for encoding artificial somatosensations</title>
-      <link>https://doi.org/10.1111/ejn.15822</link>
-      <guid isPermaLink="true">https://doi.org/10.1111/ejn.15822</guid>
-      <pubDate>Mon, 23 Jun 2025 00:00:00 GMT</pubDate>
-      <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Giacomo Valle</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> The paper by Oddo CM presents advances in peripheral nerve stimulation techniques for encoding artificial somatosensations, focusing on how precise modulation of stimulation parameters (such as pulse width, amplitude, and frequency) can generate tailored tactile feedback in neuroprosthetic devices. The key innovation lies in real-time, personalized sensory encoding strategies that enable more natural and functional sensory feedback for users of hand prostheses, significantly enhancing prosthetic control and user experience. This work has substantial implications for biorobotics, as it paves the way for more intuitive and effective integration of artificial sensory feedback in robotic limbs, improving the quality of life for individuals with sensorimotor disabilities.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1111/ejn.15822">10.1111/ejn.15822</a></p>]]></description>
     </item>
   </channel>
 </rss>

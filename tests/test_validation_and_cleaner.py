@@ -108,3 +108,53 @@ def test_clean_citation_artifacts(monitor):
     assert "94.2% accuracy in tetraplegic participants." in cleaned
 
 
+def test_estimate_trl_from_evidence(monitor):
+    # Literature review -> TRL 2
+    assert monitor._estimate_trl("A Literature Review of Soft Robotic Gloves", "Scoping review of soft actuators.") == 2
+    # Closed-loop human prosthesis in amputees -> TRL 6
+    assert monitor._estimate_trl(
+        "Closed-loop bionic hand with biomimetic sensory feedback in amputees",
+        "Demonstrated real-time prosthetic control in human participants with upper-limb amputation."
+    ) == 6
+    # Take-home clinical trial -> TRL 7
+    assert monitor._estimate_trl(
+        "Long-term home use of a peripheral nerve interface in amputees",
+        "Take-home clinical trial during daily life activities."
+    ) == 7
+    # Preserve explicit high TRL (> 2)
+    assert monitor._estimate_trl("Any title", "Any summary", current_trl=8) == 8
+
+
+def test_extract_modalities_and_related_papers(monitor):
+    p1 = {
+        "title": "High-density surface EMG decoding in tetraplegic spinal cord injured patients",
+        "summary": "Convolutional neural network for myoelectric hand control.",
+        "keywords": ["sEMG", "spinal cord injury", "deep learning"],
+        "category": "EMG Decoding on Spinal Cord Injured Patients",
+        "doi": "10.1000/test1",
+        "trl": 6
+    }
+    p2 = {
+        "title": "Surface electromyography motor unit decomposition after spinal cord injury",
+        "summary": "Real-time sEMG decoding in patients with tetraplegia.",
+        "keywords": ["sEMG", "spinal cord injury", "motor units"],
+        "category": "EMG Decoding on Spinal Cord Injured Patients",
+        "doi": "10.1000/test2",
+        "trl": 5
+    }
+    p1["modalities"] = monitor._extract_modalities(p1)
+    p2["modalities"] = monitor._extract_modalities(p2)
+    assert "Human / Clinical" in p1["modalities"]
+    assert "Surface / HD-sEMG" in p1["modalities"]
+
+    monitor._compute_related_papers([p1, p2], top_k=2)
+    assert len(p1["related_papers"]) == 1
+    assert p1["related_papers"][0]["doi"] == "10.1000/test2"
+
+
+def test_reconstruct_openalex_abstract(monitor):
+    inv = {"Neural": [0], "decoding": [1], "enables": [2], "dexterous": [3], "control.": [4]}
+    assert monitor._reconstruct_openalex_abstract(inv) == "Neural decoding enables dexterous control."
+
+
+

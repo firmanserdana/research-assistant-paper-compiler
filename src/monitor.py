@@ -56,6 +56,7 @@ class LiteratureMonitor:
         "ollama": "llama3",
         "crossref": None,
         "arxiv": None,
+        "openalex": None,
     }
 
     def __init__(self, model=None, provider="auto", dry_run=False, limit=None, skip_zotero=False, include_arxiv=False):
@@ -64,7 +65,7 @@ class LiteratureMonitor:
 
         Args:
             model (str, optional): The AI model to use. Defaults to provider default.
-            provider (str): AI provider - "auto", "perplexity", "gemini", "anthropic", "openai", "ollama", "crossref", or "arxiv"
+            provider (str): AI provider - "auto", "perplexity", "gemini", "anthropic", "openai", "ollama", "crossref", "arxiv", or "openalex"
             dry_run (bool): Run without modifying archive files or syncing to Zotero.
             limit (int, optional): Maximum papers to retrieve per search term.
             skip_zotero (bool): Skip Zotero syncing even if credentials exist.
@@ -105,7 +106,7 @@ class LiteratureMonitor:
 
         self.provider = provider
         self.model = model or self.PROVIDER_DEFAULT_MODELS.get(provider, "sonar-pro")
-        self.client = None if provider in ("crossref", "arxiv") else self._get_client(provider)
+        self.client = None if provider in ("crossref", "arxiv", "openalex") else self._get_client(provider)
 
         # Setup Zotero client if credentials exist and sync is not skipped
         self.zot = None
@@ -362,12 +363,137 @@ class LiteratureMonitor:
             # On transient network failure, don't drop papers with valid DOI patterns
             return True
 
+    def _estimate_trl(self, title, summary="", keywords=None, current_trl=None):
+        """
+        Estimate Technology Readiness Level (TRL 1-8) from clinical, preclinical,
+        and engineering evidence in the paper's title, summary, and keywords.
+        """
+        if current_trl and int(current_trl) > 2:
+            return int(current_trl)
+
+        kw_str = " ".join(keywords or []) if isinstance(keywords, list) else str(keywords or "")
+        title_l = (title or "").lower()
+        text = f"{title_l} {(summary or '').lower()} {kw_str.lower()}"
+
+        # Review / Survey / Perspective -> TRL 2
+        if any(w in title_l for w in ("review", "survey", "meta-analysis", "perspective", "overview", "scoping")):
+            return 2
+
+        # Long-term home / clinical trial -> TRL 7
+        if any(w in text for w in ("home use", "take-home", "daily life", "home-use", "multi-center clinical trial", "clinical trial")) and any(
+            c in text for c in ("patient", "tetraplegi", "paraplegi", "amputee", "participant", "human")
+        ):
+            return 7
+
+        # Closed-loop / implanted / real-time human clinical validation -> TRL 6
+        if any(c in text for c in ("tetraplegi", "paraplegi", "amputee", "spinal cord injur", "sci patient", "human participant", "in humans", "patients with")) and any(
+            s in text for s in ("closed-loop", "prosthe", "bionic", "intracortical", "implanted", "epidural", "neuroprosthe", "real-time", "exoskeleton", "sensory feedback", "functional electrical stimulation")
+        ):
+            return 6
+
+        # Human clinical feasibility / rehabilitation / surface EMG in patients -> TRL 5
+        if any(c in text for c in ("patient", "clinical", "tetraplegi", "paraplegi", "amputee", "rehabilitation", "subacute", "chronic care", "stroke")):
+            return 5
+
+        # Non-human primate / animal in-vivo / hardware prototype / real-time healthy human -> TRL 4
+        if any(p in text for p in ("macaque", "monkey", "primate", "rhesus", "in vivo", "in-vivo", "rat", "rodent", "porcine", "prototype", "real-time", "able-bodied", "healthy subject", "myoelectric control", "cuff electrode", "soft robotic")):
+            return 4
+
+        # Offline decoding / algorithm / simulation / dataset -> TRL 3
+        if any(a in text for a in ("decoding", "classification", "neural network", "convolutional", "kalman", "kinematic", "simulation", "algorithm", "dataset")):
+            return 3
+
+        return int(current_trl) if current_trl else 2
+
+    def _reconstruct_openalex_abstract(self, inverted_index):
+        """Reconstruct plain-text abstract from an OpenAlex abstract_inverted_index dictionary."""
+        if not inverted_index or not isinstance(inverted_index, dict):
+            return ""
+        positions = {}
+        for word, pos_list in inverted_index.items():
+            if isinstance(pos_list, list):
+                for p in pos_list:
+                    if isinstance(p, int):
+                        positions[p] = word
+        if not positions:
+            return ""
+        ordered_words = [positions[idx] for idx in sorted(positions.keys())]
+        return self._clean_jats_abstract(" ".join(ordered_words))
+
+    def _openalex_search(self, term, rows=15):
+        """Find recent scholarly works via the keyless OpenAlex API with abstracts, citations, and OA PDFs."""
+        try:
+            response = requests.get(
+                "https://api.openalex.org/works",
+                params={
+                    "search": term,
+                    "filter": "from_publication_date:2021-01-01,type:article",
+                    "per-page": rows,
+                    "mailto": "literature-monitor@example.com"
+                },
+                timeout=25,
+                headers={"User-Agent": "LiteratureMonitor/2.0 (mailto:literature-monitor@example.com)"},
+            )
+            response.raise_for_status()
+            items = response.json().get("results", [])
+            records = []
+            for item in items:
+                title = self._clean_jats_abstract((item.get("title") or "").strip())
+                raw_doi = (item.get("doi") or "").replace("https://doi.org/", "").strip()
+                doi = self._normalize_doi(raw_doi)
+                authors = [
+                    (a.get("author") or {}).get("display_name", "").strip()
+                    for a in item.get("authorships", [])
+                ]
+                authors = [a for a in authors if a]
+                if not title or not doi or not authors:
+                    continue
+
+                clean_abstract = self._reconstruct_openalex_abstract(item.get("abstract_inverted_index"))
+                concepts = [
+                    c.get("display_name", "")
+                    for c in (item.get("concepts") or [])[:6]
+                    if c.get("display_name")
+                ]
+                keywords = concepts or [term]
+
+                if not self._is_relevant_to_biorobotics(title, clean_abstract, keywords):
+                    continue
+
+                trl = self._estimate_trl(title, clean_abstract, keywords)
+                loc = item.get("primary_location") or {}
+                oa = item.get("open_access") or {}
+                pdf_url = loc.get("pdf_url") or oa.get("oa_url") or ""
+
+                record_lines = [
+                    f"Title: {title}",
+                    f"Authors: {'; '.join(authors)}",
+                    f"DOI: {doi}",
+                    f"TRL: {trl}",
+                    f"Keywords: {', '.join(keywords)}"
+                ]
+                if clean_abstract:
+                    snippet = clean_abstract[:450] + ("..." if len(clean_abstract) > 450 else "")
+                    record_lines.append(f"Summary: {snippet}")
+                if pdf_url:
+                    record_lines.append(f"PDF: {pdf_url}")
+
+                record_lines.append("")
+                records.extend(record_lines)
+
+            return "\n".join(records)
+        except Exception as e:
+            logger.error(f"OpenAlex query error for {term}: {e}")
+            return ""
+
     def _deep_research_query(self, term):
-        """Query AI provider, arXiv, or Crossref for recent papers on a specific term."""
+        """Query AI provider, arXiv, OpenAlex, or Crossref for recent papers on a specific term."""
         try:
             logger.info(f"Researching term: {term}")
             if self.provider == "arxiv":
                 return (term, self._arxiv_search(term, max_results=self.limit or 10))
+            elif self.provider == "openalex":
+                return (term, self._openalex_search(term, rows=self.limit or 15))
             elif self.provider == "crossref":
                 return (term, self._crossref_search(term, rows=self.limit or 15))
 
@@ -542,11 +668,13 @@ IMPORTANT:
                     elif doi.startswith("10.1101/"):
                         pdf_url = f"https://www.biorxiv.org/content/{doi}.full.pdf"
 
+                est_trl = self._estimate_trl(title, clean_abstract, keywords, current_trl=2)
+
                 record_lines = [
                     f"Title: {title}",
                     f"Authors: {'; '.join(authors)}",
                     f"DOI: {doi}",
-                    "TRL: 2",
+                    f"TRL: {est_trl}",
                     f"Keywords: {', '.join(keywords)}"
                 ]
                 if clean_abstract:
@@ -1082,10 +1210,167 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
             logger.error(f"Failed to generate RSS feed: {e}")
             return None
 
-    def generate_site(self, new_papers):
+    def _load_scholarly_cache(self, cache_path="scholarly_metadata_cache.json"):
+        """Load cached OpenAlex / Crossref bibliometric metadata (pub_year, venue, citations, oa_url)."""
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                logger.warning(f"Failed to load scholarly metadata cache: {e}")
+        return {}
+
+    def _extract_modalities(self, paper):
+        """
+        Classify a paper into up to 3 structured study modality and subject tags
+        based on its title, summary, and keywords.
+        """
+        title_l = (paper.get("title") or "").lower()
+        sum_l = (paper.get("summary") or "").lower()
+        kw_l = " ".join(paper.get("keywords") or []).lower()
+        text = f"{title_l} {sum_l} {kw_l}"
+
+        tags = []
+
+        # 1. Subject / Study Design
+        if any(w in title_l for w in ("review", "survey", "meta-analysis", "overview", "perspective")):
+            tags.append("Review / Survey")
+        elif any(w in text for w in ("tetraplegi", "paraplegi", "amputee", "spinal cord injur", "sci patient", "human participant", "patients with", "clinical trial", "in humans", "prosthesis user")):
+            tags.append("Human / Clinical")
+        elif any(w in text for w in ("macaque", "monkey", "non-human primate", "rhesus")):
+            tags.append("Non-Human Primate")
+        elif any(w in text for w in ("rat", "rodent", "mouse", "porcine", "animal model", "in vivo")):
+            tags.append("Preclinical / In Vivo")
+
+        # 2. Neural Interface Modality
+        if any(w in text for w in ("intracortical", "motor cortex", "microelectrode array", "cortical decoding", "ecog", "electrocorticograph", "brain-computer", "brain–computer")):
+            tags.append("Intracortical / Brain")
+        elif any(w in text for w in ("surface emg", "semg", "hd-emg", "high-density electromyography", "electromyograph", "myoelectric", "motor unit")):
+            tags.append("Surface / HD-sEMG")
+        elif any(w in text for w in ("peripheral nerve", "intraneural", "intrafascicular", "cuff electrode", "regenerative peripheral", "nerve stimulation", "neurostimulation")):
+            tags.append("Peripheral Nerve")
+        elif any(w in text for w in ("epidural electrical", "spinal cord stimulation", "transcutaneous spinal", "spinal cord–computer")):
+            tags.append("Spinal Stimulation")
+
+        # 3. Engineering / Algorithmic Focus
+        if any(w in text for w in ("sensory feedback", "tactile", "biomimetic", "bidirectional", "artificial sensation")):
+            tags.append("Closed-Loop Sensory")
+        elif any(w in text for w in ("exoskeleton", "soft robot", "robotic glove", "orthos", "gait training", "wearable robot")):
+            tags.append("Exoskeleton / Soft Robot")
+        elif any(w in text for w in ("prosthetic hand", "bionic hand", "hand prosthesis", "neuroprosthe")):
+            tags.append("Bionic / Prosthetic Hand")
+        elif any(w in text for w in ("deep learning", "convolutional", "lstm", "recurrent neural", "transformer", "kalman", "neural network")):
+            tags.append("Deep Learning / AI")
+
+        if not tags:
+            tags.append("Neural Engineering")
+
+        return tags[:3]
+
+    def _compute_related_papers(self, unique_papers, top_k=3):
+        """
+        Precompute the top-K most related papers in the corpus for each paper
+        using weighted title/keyword token overlap, category match, and shared modalities.
+        """
+        stop = {
+            'the', 'a', 'an', 'of', 'in', 'on', 'for', 'and', 'to', 'with', 'by', 'from',
+            'at', 'using', 'via', 'based', 'study', 'analysis', 'after', 'during', 'control',
+            'research', 'patients', 'hand', 'finger', 'decoding', 'spinal', 'cord', 'injured'
+        }
+
+        paper_tokens = []
+        for p in unique_papers:
+            raw = f"{p.get('title', '')} {' '.join(p.get('keywords') or [])} {(p.get('summary') or '')[:200]}".lower()
+            words = {w for w in re.findall(r'[a-z0-9]{3,}', raw) if w not in stop}
+            paper_tokens.append(words)
+
+        for i, p1 in enumerate(unique_papers):
+            scores = []
+            t1 = paper_tokens[i]
+            m1 = set(p1.get('modalities') or [])
+            c1 = p1.get('category', '')
+            for j, p2 in enumerate(unique_papers):
+                if i == j:
+                    continue
+                t2 = paper_tokens[j]
+                union_len = len(t1 | t2)
+                jaccard = (len(t1 & t2) / union_len) if union_len else 0.0
+                cat_bonus = 0.12 if c1 and c1 == p2.get('category', '') else 0.0
+                mod_bonus = 0.08 * len(m1 & set(p2.get('modalities') or []))
+                total_score = jaccard + cat_bonus + mod_bonus
+                if total_score > 0.05:
+                    scores.append((total_score, p2))
+
+            scores.sort(key=lambda x: (x[0], int(x[1].get('citations') or 0)), reverse=True)
+            p1['related_papers'] = [
+                {
+                    'title': item.get('title', ''),
+                    'doi': item.get('doi', ''),
+                    'pub_year': item.get('pub_year') or (item.get('archive_date') or '2025')[:4],
+                    'venue': item.get('venue', ''),
+                    'trl': item.get('trl', 1)
+                }
+                for _, item in scores[:top_k]
+            ]
+
+    def _write_github_step_summary(self, new_papers, unique_papers, categories_map, analytics):
+        """Write a Markdown execution summary to $GITHUB_STEP_SUMMARY when running in GitHub Actions."""
+        summary_path = os.getenv("GITHUB_STEP_SUMMARY")
+        if not summary_path:
+            return
+        try:
+            lines = [
+                "## 🤖 Biorobotics Literature Monitor — Run Summary\n",
+                f"- **Total Verified Papers in Portal**: **{len(unique_papers)}**",
+                f"- **Newly Discovered Papers This Run**: **{len(new_papers)}**",
+                f"- **Total Corpus Citations (OpenAlex)**: **{analytics.get('total_citations', 0):,}**",
+                f"- **Open Access PDF Coverage**: **{analytics.get('oa_count', 0)} / {len(unique_papers)} papers**\n",
+                "### 📊 Category Breakdown\n",
+                "| Research Category | Papers |",
+                "| :--- | :---: |",
+            ]
+            for cat, cnt in sorted(categories_map.items(), key=lambda x: x[1], reverse=True):
+                lines.append(f"| {cat} | {cnt} |")
+
+            if new_papers:
+                lines.append("\n### 🆕 Newly Added Papers\n")
+                lines.append("| Title | DOI | Category | TRL |")
+                lines.append("| :--- | :--- | :--- | :---: |")
+                for p in new_papers:
+                    d = p.get('doi', '')
+                    lines.append(f"| {p.get('title', '')} | [`{d}`](https://doi.org/{d}) | {p.get('category', '')} | TRL {p.get('trl', 1)} |")
+
+            with open(summary_path, "a", encoding="utf-8") as f:
+                f.write("\n".join(lines) + "\n")
+        except Exception as e:
+            logger.warning(f"Could not write GITHUB_STEP_SUMMARY: {e}")
+
+    def _send_webhook_notification(self, new_papers):
+        """Send an optional Slack or Discord webhook alert when new papers are discovered."""
+        if not new_papers:
+            return
+        webhook_url = os.getenv("SLACK_WEBHOOK_URL") or os.getenv("DISCORD_WEBHOOK_URL")
+        if not webhook_url:
+            return
+        try:
+            bullet_lines = [
+                f"• *{p.get('title', 'Untitled')}* (TRL {p.get('trl', 1)}) — https://doi.org/{p.get('doi', '')}"
+                for p in new_papers[:10]
+            ]
+            text = (
+                f"🤖 *Biorobotics Literature Monitor*: Discovered *{len(new_papers)}* new verified paper(s):\n"
+                + "\n".join(bullet_lines)
+            )
+            payload = {"content": text} if "discord" in webhook_url.lower() else {"text": text}
+            requests.post(webhook_url, json=payload, timeout=10)
+        except Exception as e:
+            logger.warning(f"Webhook notification failed: {e}")
+
+    def generate_site(self, new_papers, output_dir='docs'):
         """Generate the HTML site, update.json, and RSS feed with all papers."""
         try:
-            os.makedirs('docs', exist_ok=True)
+            os.makedirs(output_dir, exist_ok=True)
+            scholarly_cache = self._load_scholarly_cache()
 
             historical_papers = self.load_papers_from_archives()
             all_papers = new_papers + historical_papers
@@ -1130,9 +1415,60 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
 
             unique_papers = list(papers_by_doi.values())
 
-            # Sort papers: newest archive date first, then by title
+            # Enrich every unique paper with OpenAlex/Crossref bibliometrics, evidence TRL, and study modalities
+            trl_buckets = {"basic": 0, "prototype": 0, "clinical": 0}
+            modality_counts = {}
+            venue_counts = {}
+            total_citations = 0
+            oa_count = 0
+
+            for p in unique_papers:
+                doi_key = p['doi'].lower()
+                meta = scholarly_cache.get(doi_key, {})
+
+                # Enrich publication year, venue, citations, and Open Access PDF
+                fallback_year = (p.get('archive_date') or '2025')[:4]
+                if doi_key.startswith('10.1101/202'):
+                    fallback_year = doi_key.split('/')[1][:4]
+                p['pub_year'] = meta.get('pub_year') or p.get('pub_year') or fallback_year
+                p['venue'] = meta.get('venue') or p.get('venue') or ('bioRxiv' if doi_key.startswith('10.1101/') else '')
+                p['citations'] = int(meta.get('citations') if meta.get('citations') is not None else (p.get('citations') or 0))
+                if not p.get('pdf_url') and meta.get('oa_url'):
+                    p['pdf_url'] = meta['oa_url']
+
+                # Upgrade generic fallback TRL (1 or 2) using clinical/engineering evidence
+                raw_trl = int(p.get('trl') or 1)
+                if raw_trl <= 2:
+                    p['trl'] = self._estimate_trl(p.get('title', ''), p.get('summary', ''), p.get('keywords'), current_trl=raw_trl)
+                else:
+                    p['trl'] = raw_trl
+
+                # Extract structured study modalities
+                p['modalities'] = self._extract_modalities(p)
+
+                # Aggregate analytics metrics
+                trl_val = int(p['trl'])
+                if trl_val >= 7:
+                    trl_buckets["clinical"] += 1
+                elif trl_val >= 4:
+                    trl_buckets["prototype"] += 1
+                else:
+                    trl_buckets["basic"] += 1
+
+                for mod in p['modalities']:
+                    modality_counts[mod] = modality_counts.get(mod, 0) + 1
+                if p['venue']:
+                    venue_counts[p['venue']] = venue_counts.get(p['venue'], 0) + 1
+                total_citations += p['citations']
+                if p.get('pdf_url'):
+                    oa_count += 1
+
+            # Compute top-3 related papers per card
+            self._compute_related_papers(unique_papers, top_k=3)
+
+            # Sort papers: newest archive date first, then publication year, then title
             unique_papers.sort(
-                key=lambda p: (p.get('archive_date', '0000-00-00'), p.get('title', '')),
+                key=lambda p: (p.get('archive_date', '0000-00-00'), str(p.get('pub_year', '0000')), p.get('title', '')),
                 reverse=True
             )
 
@@ -1142,30 +1478,53 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                 cat = p.get('category', 'General Biorobotics')
                 categories_map[cat] = categories_map.get(cat, 0) + 1
 
+            top_venues = sorted(venue_counts.items(), key=lambda x: x[1], reverse=True)[:8]
+            sorted_modalities = sorted(modality_counts.items(), key=lambda x: x[1], reverse=True)
+
+            analytics = {
+                "trl_buckets": trl_buckets,
+                "modalities": sorted_modalities,
+                "top_venues": top_venues,
+                "total_citations": total_citations,
+                "oa_count": oa_count,
+            }
+
             # Render template
             template = self.template_env.get_template('index.html')
             html_content = template.render(
                 papers=unique_papers,
                 categories=categories_map,
+                analytics=analytics,
                 updated=datetime.now().strftime("%Y-%m-%d %H:%M"),
                 count=len(new_papers),
                 total=len(unique_papers)
             )
 
-            with open('docs/index.html', 'w', encoding='utf-8') as f:
+            index_path = os.path.join(output_dir, 'index.html')
+            update_path = os.path.join(output_dir, 'update.json')
+            rss_path = os.path.join(output_dir, 'feed.xml')
+
+            with open(index_path, 'w', encoding='utf-8') as f:
                 f.write(html_content)
 
             # Write update.json
-            with open('docs/update.json', 'w', encoding='utf-8') as f:
+            with open(update_path, 'w', encoding='utf-8') as f:
                 json.dump({
                     "timestamp": datetime.now().isoformat(),
                     "new_count": len(new_papers),
                     "total_count": len(unique_papers),
-                    "categories": categories_map
+                    "total_citations": total_citations,
+                    "oa_count": oa_count,
+                    "categories": categories_map,
+                    "trl_buckets": trl_buckets
                 }, f, indent=2)
 
             # Generate RSS feed
-            self._generate_rss_feed(unique_papers, output_path='docs/feed.xml')
+            self._generate_rss_feed(unique_papers, output_path=rss_path)
+
+            # Emit GitHub Actions Job Summary if running in CI
+            if output_dir == 'docs':
+                self._write_github_step_summary(new_papers, unique_papers, categories_map, analytics)
 
             logger.info(f"Generated site with {len(new_papers)} new papers and {len(unique_papers)} total papers")
             return len(unique_papers)
@@ -1239,6 +1598,7 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
             if new_papers:
                 self._create_archive_file(new_papers)
                 self.generate_site(new_papers)
+                self._send_webhook_notification(new_papers)
                 logger.info(f"Successfully added and compiled {len(new_papers)} new papers.")
             else:
                 logger.info("No new papers found in this run.")
@@ -1255,7 +1615,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Biorobotics Literature Monitor & Paper Compiler")
     parser.add_argument(
         "--provider", "-p",
-        choices=["auto", "crossref", "arxiv", "perplexity", "gemini", "anthropic", "openai", "ollama"],
+        choices=["auto", "crossref", "arxiv", "openalex", "perplexity", "gemini", "anthropic", "openai", "ollama"],
         default="auto",
         help="Scholarly data source or AI provider (default: auto)"
     )

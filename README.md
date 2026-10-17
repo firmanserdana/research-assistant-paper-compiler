@@ -15,23 +15,22 @@ Live web portal: [firmanserdana.github.io/research-assistant-paper-compiler](htt
   - **Google Gemini** (`gemini-2.5-flash`, `gemini-1.5-pro`) via OpenAI-compatible SDK.
   - **Anthropic Claude** (`claude-3-5-sonnet`) with native message API support.
   - **OpenAI** (`gpt-4o-mini`) and **Ollama** (local offline models).
-  - **arXiv API Integration**: 100% keyless, free discovery of latest neural engineering & biorobotics preprints with direct PDF resolution.
-  - **Crossref Public API**: 100% keyless fallback with JATS XML abstract and Open Access link extraction.
-- **Accurate DOI Verification & Safe Normalization**:
-  - Non-destructive DOI normalization preserving suffix numbers (`10.xxxx/yyyy`).
-  - Remote verification against the Crossref API with local caching (`doi_verification_cache.json`) for near-instant repeated runs.
-  - Automatic DOI repair via Crossref bibliographic title lookup.
+  - **OpenAlex API Integration (`--provider openalex`)**: 100% keyless discovery and bibliometric enrichment (official Journal/Venue name, true Publication Year, Citation Counts, inverted-index abstract recovery, and Open Access PDF resolution).
+  - **arXiv API Integration (`--provider arxiv`)**: 100% keyless discovery of neural engineering & biorobotics preprints with direct PDF resolution.
+  - **Crossref Public API (`--provider crossref`)**: Keyless bibliographic search with biorobotics relevance filtering and JATS XML abstract extraction.
+- **Accurate DOI Verification, Canonicalization & Evidence-Based TRL**:
+  - Remote verification against Crossref, DataCite, and bioRxiv APIs with title similarity validation ($\ge 0.70$) and local caching (`doi_verification_cache.json`).
+  - Evidence-grounded **TRL Estimator (`TRL 1–8`)** evaluating clinical, preclinical, and engineering maturity indicators.
 - **Modern Interactive Research Portal (`docs/index.html`)**:
-  - Dark / Light mode toggle with persistent local storage.
-  - Instant client-side search across title, authors, keywords, summary, and DOI.
-  - Dynamic category pills and Technology Readiness Level (TRL 1-9) filters with real-time paper counts.
-  - **Personal Reading List / Favorites**: Star (`★`) papers to save in browser local storage and filter at any time.
-  - **Batch Citation Export**: 1-click export of currently filtered papers as **BibTeX (`.bib`)**, **RIS (`.ris`)** (for EndNote/Mendeley/Zotero), or **CSV (`.csv`)**.
-  - **Shareable Deep Links**: Real-time URL query parameter synchronization (`?q=...&cat=...&trl=...`).
-  - **Open Access Direct PDF Buttons**: 1-click access to open-access PDFs and arXiv preprints.
-  - **RSS 2.0 / Atom Feed (`docs/feed.xml`)**: Live feed for RSS readers (NetNewsWire, Feedly, Slack RSS).
-- **Zotero Integration**: Automatic library sync, collection management, and duplicate prevention.
-- **Automated CI/CD**: Weekly GitHub Actions schedule compiles new papers, verifies DOIs, and publishes to GitHub Pages.
+  - **Interactive Analytics & Insights Drawer**: Visualizes the TRL Readiness Pipeline, Study Modality breakdown, and Top Publishing Journals/Venues (click any chart segment or chip to filter).
+  - **Structured Study Modality Badges**: Auto-tags papers (`Human / Clinical`, `Non-Human Primate`, `Intracortical / Brain`, `Surface / HD-sEMG`, `Peripheral Nerve`, `Closed-Loop Sensory`, `Exoskeleton / Soft Robot`, `Deep Learning / AI`).
+  - **Related Papers in Archive**: Precomputes the top 3 most similar papers per card with 1-click smooth navigation and card highlighting.
+  - **Bibliometric Badges & Sorting**: Displays Journal/Venue, Publication Year, and OpenAlex Citation Counts; sort by **Most Cited**, **Publication Year**, **Archive Date**, **TRL**, or **Title**.
+  - **Personal Reading List / Favorites**: Star (`★`) papers to save in browser local storage.
+  - **Batch Citation Export**: 1-click export of filtered papers as **BibTeX (`.bib`)**, **RIS (`.ris`)**, or **CSV (`.csv`)** with full venue, year, and citation metadata.
+  - **Shareable Deep Links**: Real-time URL query parameter synchronization (`?q=...&cat=...&trl=...&mod=...`).
+  - **Open Access Direct PDF Buttons** & **RSS 2.0 Feed (`docs/feed.xml`)**.
+- **Zotero Integration & CI/CD Reporting**: Automatic Zotero sync, GitHub Actions Job Summary (`$GITHUB_STEP_SUMMARY`), and optional Slack/Discord webhook alerts.
 
 ---
 

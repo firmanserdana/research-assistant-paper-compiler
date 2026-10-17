@@ -1,0 +1,505 @@
+{
+  "10.1002/advs.202505492": {
+    "citations": 5,
+    "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/advs.202505492",
+    "pub_year": 2025,
+    "venue": "Advanced Science"
+  },
+  "10.1002/pchj.794": {
+    "citations": 1,
+    "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/pchj.794",
+    "pub_year": 2024,
+    "venue": "PsyCh Journal"
+  },
+  "10.1016/b978-0-12-420045-6.00005-5": {
+    "citations": 57,
+    "oa_url": "",
+    "pub_year": 2013,
+    "venue": "International review of neurobiology"
+  },
+  "10.1016/j.brs.2018.12.221": {
+    "citations": 1,
+    "oa_url": "https://doaj.org/article/198565b61dfd4720aa09c62c92a0ff11",
+    "pub_year": 2019,
+    "venue": "Brain stimulation"
+  },
+  "10.1016/j.compbiomed.2023.107139": {
+    "citations": 20,
+    "oa_url": "https://doi.org/10.1016/j.compbiomed.2023.107139",
+    "pub_year": 2023,
+    "venue": "Computers in Biology and Medicine"
+  },
+  "10.1016/j.isci.2023.107808": {
+    "citations": 8,
+    "oa_url": "https://doi.org/10.1016/j.isci.2023.107808",
+    "pub_year": 2023,
+    "venue": "iScience"
+  },
+  "10.1016/j.neuron.2018.08.033": {
+    "citations": 345,
+    "oa_url": "http://www.cell.com/article/S0896627318307384/pdf",
+    "pub_year": 2018,
+    "venue": "Neuron"
+  },
+  "10.1016/j.xpro.2024.103503": {
+    "citations": 0,
+    "oa_url": "https://doi.org/10.1016/j.xpro.2024.103503",
+    "pub_year": 2024,
+    "venue": "STAR Protocols"
+  },
+  "10.1017/wtc.2020.9": {
+    "citations": 17,
+    "oa_url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/1AF3D2E904C2C840488A98D0402AED9D/S2631717620000092a.pdf/div-class-title-improvement-of-hand-functions-of-spinal-cord-injury-patients-with-electromyography-driven-hand-exoskeleton-a-feasibility-study-div.pdf",
+    "pub_year": 2020,
+    "venue": "Wearable Technologies"
+  },
+  "10.1038/s41467-024-45190-6": {
+    "citations": 67,
+    "oa_url": "https://www.nature.com/articles/s41467-024-45190-6.pdf",
+    "pub_year": 2024,
+    "venue": "Nature Communications"
+  },
+  "10.1038/s41467-025-59039-z": {
+    "citations": 15,
+    "oa_url": "https://www.nature.com/articles/s41467-025-59039-z.pdf",
+    "pub_year": 2025,
+    "venue": "Nature Communications"
+  },
+  "10.1038/s41551-024-01299-z": {
+    "citations": 98,
+    "oa_url": "https://www.nature.com/articles/s41551-024-01299-z.pdf",
+    "pub_year": 2024,
+    "venue": "Nature Biomedical Engineering"
+  },
+  "10.1038/s41591-024-03341-8": {
+    "citations": 80,
+    "oa_url": "https://www.nature.com/articles/s41591-024-03341-8.pdf",
+    "pub_year": 2025,
+    "venue": "Nature Medicine"
+  },
+  "10.1063/5.0255032": {
+    "citations": 3,
+    "oa_url": "https://doi.org/10.1063/5.0255032",
+    "pub_year": 2025,
+    "venue": "APL Materials"
+  },
+  "10.1080/15599612.2021.1978601": {
+    "citations": 9,
+    "oa_url": "https://doi.org/10.1080/15599612.2021.1978601",
+    "pub_year": 2021,
+    "venue": "International Journal of Optomechatronics"
+  },
+  "10.1080/17581869.2025.2488244": {
+    "citations": 5,
+    "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12001542/pdf/IPMT_15_2488244.pdf",
+    "pub_year": 2025,
+    "venue": "Pain Management"
+  },
+  "10.1088/1741-2552/aa80bd": {
+    "citations": 53,
+    "oa_url": "https://iopscience.iop.org/article/10.1088/1741-2552/aa80bd/pdf",
+    "pub_year": 2017,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1088/1741-2552/aae398": {
+    "citations": 94,
+    "oa_url": "https://iopscience.iop.org/article/10.1088/1741-2552/aae398/pdf",
+    "pub_year": 2018,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1088/1741-2552/ab95ea": {
+    "citations": 41,
+    "oa_url": "https://iopscience.iop.org/article/10.1088/1741-2552/ab95ea/pdf",
+    "pub_year": 2020,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1088/1741-2552/acd3b1": {
+    "citations": 32,
+    "oa_url": "https://doi.org/10.1088/1741-2552/acd3b1",
+    "pub_year": 2023,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1088/1741-2552/ad331f": {
+    "citations": 7,
+    "oa_url": "https://doi.org/10.1088/1741-2552/ad331f",
+    "pub_year": 2024,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1088/1741-2560/13/1/016001": {
+    "citations": 255,
+    "oa_url": "https://iopscience.iop.org/article/10.1088/1741-2560/13/1/016001/pdf",
+    "pub_year": 2015,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1088/1741-2560/13/3/036001": {
+    "citations": 315,
+    "oa_url": "",
+    "pub_year": 2016,
+    "venue": "Journal of Neural Engineering"
+  },
+  "10.1093/brain/awae088": {
+    "citations": 43,
+    "oa_url": "https://doi.org/10.1093/brain/awae088",
+    "pub_year": 2024,
+    "venue": "Brain"
+  },
+  "10.1101/2024.04.22.590630": {
+    "citations": 12,
+    "oa_url": "https://www.biorxiv.org/content/biorxiv/early/2024/04/26/2024.04.22.590630.full.pdf",
+    "pub_year": 2024,
+    "venue": "bioRxiv (Cold Spring Harbor Laboratory)"
+  },
+  "10.1101/2024.09.05.24313041": {
+    "citations": 7,
+    "oa_url": "https://www.medrxiv.org/content/medrxiv/early/2025/07/15/2024.09.05.24313041.full.pdf",
+    "pub_year": 2024,
+    "venue": "medRxiv"
+  },
+  "10.1101/2024.11.20.624514": {
+    "citations": 0,
+    "pub_year": 2024,
+    "venue": "bioRxiv / medRxiv"
+  },
+  "10.1109/embc.2012.6346283": {
+    "citations": 5,
+    "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4216179",
+    "pub_year": 2012,
+    "venue": "2012 Annual International Conference of the IEEE Engineering in Medicine and Biology Society"
+  },
+  "10.1109/ichms56717.2022.9980636": {
+    "citations": 3,
+    "oa_url": "",
+    "pub_year": 2022,
+    "venue": "IEEE International Conference on Human-Machine Systems (ICHMS)"
+  },
+  "10.1109/icorr66766.2025.11063187": {
+    "citations": 0,
+    "oa_url": "",
+    "pub_year": 2025,
+    "venue": "International Conference on Rehabilitation Robotics"
+  },
+  "10.1109/icra40945.2020.9196629": {
+    "citations": 11,
+    "oa_url": "",
+    "pub_year": 2020,
+    "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+  },
+  "10.1109/iembs.2009.5334129": {
+    "citations": 26,
+    "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2875998",
+    "pub_year": 2009,
+    "venue": "2009 Annual International Conference of the IEEE Engineering in Medicine and Biology Society"
+  },
+  "10.1109/tcds.2024.3409555": {
+    "citations": 7,
+    "oa_url": "",
+    "pub_year": 2024,
+    "venue": "IEEE Transactions on Cognitive and Developmental Systems"
+  },
+  "10.1109/tro.2022.3170720": {
+    "citations": 38,
+    "oa_url": "https://www.medrxiv.org/content/medrxiv/early/2020/11/03/2020.10.28.20217273.full.pdf",
+    "pub_year": 2022,
+    "venue": "IEEE Transactions on Robotics"
+  },
+  "10.1111/ejn.15822": {
+    "citations": 14,
+    "oa_url": "https://doi.org/10.1111/ejn.15822",
+    "pub_year": 2022,
+    "venue": "European Journal of Neuroscience"
+  },
+  "10.1126/sciadv.ads9150": {
+    "citations": 10,
+    "oa_url": "https://www.science.org/doi/pdf/10.1126/sciadv.ads9150?download=true",
+    "pub_year": 2025,
+    "venue": "Science Advances"
+  },
+  "10.1126/science.abj5259": {
+    "citations": 29,
+    "oa_url": "http://infoscience.epfl.ch/record/288102",
+    "pub_year": 2021,
+    "venue": "Science"
+  },
+  "10.1126/scirobotics.aau8892": {
+    "citations": 321,
+    "oa_url": "https://www.biorxiv.org/content/biorxiv/early/2018/02/09/262741.full.pdf",
+    "pub_year": 2019,
+    "venue": "Science Robotics"
+  },
+  "10.1126/scirobotics.aax2352": {
+    "citations": 387,
+    "oa_url": "",
+    "pub_year": 2019,
+    "venue": "Science Robotics"
+  },
+  "10.1126/scirobotics.abf3368": {
+    "citations": 133,
+    "oa_url": "",
+    "pub_year": 2021,
+    "venue": "Science Robotics"
+  },
+  "10.1126/scirobotics.adf7360": {
+    "citations": 88,
+    "oa_url": "https://research.chalmers.se/publication/537965/file/537965_Fulltext.pdf",
+    "pub_year": 2023,
+    "venue": "Science Robotics"
+  },
+  "10.1126/scirobotics.ado9509": {
+    "citations": 23,
+    "oa_url": "",
+    "pub_year": 2025,
+    "venue": "Science Robotics"
+  },
+  "10.1126/scitranslmed.3008669": {
+    "citations": 751,
+    "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5517305",
+    "pub_year": 2014,
+    "venue": "Science Translational Medicine"
+  },
+  "10.1126/scitranslmed.aay2857": {
+    "citations": 288,
+    "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8082695",
+    "pub_year": 2020,
+    "venue": "Science Translational Medicine"
+  },
+  "10.1126/scitranslmed.abg6463": {
+    "citations": 65,
+    "oa_url": "https://infoscience.epfl.ch/handle/20.500.14299/183156",
+    "pub_year": 2021,
+    "venue": "Science Translational Medicine"
+  },
+  "10.1126/scitranslmed.adp9607": {
+    "citations": 40,
+    "oa_url": "https://hdl.handle.net/11380/1401663",
+    "pub_year": 2025,
+    "venue": "Science Translational Medicine"
+  },
+  "10.1136/rapm-2018-100121": {
+    "citations": 82,
+    "oa_url": "https://rapm.bmj.com/content/rapm/44/3/310.full.pdf",
+    "pub_year": 2019,
+    "venue": "Regional Anesthesia & Pain Medicine"
+  },
+  "10.1146/annurev-control-071020-104336": {
+    "citations": 112,
+    "oa_url": "http://infoscience.epfl.ch/record/286425",
+    "pub_year": 2021,
+    "venue": "Annual Review of Control Robotics and Autonomous Systems"
+  },
+  "10.1152/jn.00220.2021": {
+    "citations": 58,
+    "oa_url": "https://www.medrxiv.org/content/medrxiv/early/2021/02/26/2021.02.24.21250962.full.pdf",
+    "pub_year": 2021,
+    "venue": "Journal of Neurophysiology"
+  },
+  "10.1152/jn.01038.2011": {
+    "citations": 83,
+    "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3680811",
+    "pub_year": 2013,
+    "venue": "Journal of Neurophysiology"
+  },
+  "10.1162/imag.a.1083": {
+    "citations": 0,
+    "oa_url": "https://direct.mit.edu/imag/article-pdf/doi/10.1162/IMAG.a.1083/2570925/imag.a.1083.pdf",
+    "pub_year": 2025,
+    "venue": "Imaging Neuroscience"
+  },
+  "10.1177/15459683231166939": {
+    "citations": 46,
+    "oa_url": "https://journals.sagepub.com/doi/pdf/10.1177/15459683231166939?download=true",
+    "pub_year": 2023,
+    "venue": "Neurorehabilitation and neural repair"
+  },
+  "10.1186/s12984-021-00888-2": {
+    "citations": 51,
+    "oa_url": "https://jneuroengrehab.biomedcentral.com/counter/pdf/10.1186/s12984-021-00888-2",
+    "pub_year": 2021,
+    "venue": "Journal of NeuroEngineering and Rehabilitation"
+  },
+  "10.1186/s12984-022-01043-1": {
+    "citations": 36,
+    "oa_url": "https://jneuroengrehab.biomedcentral.com/counter/pdf/10.1186/s12984-022-01043-1",
+    "pub_year": 2022,
+    "venue": "Journal of NeuroEngineering and Rehabilitation"
+  },
+  "10.1186/s12984-025-01628-6": {
+    "citations": 7,
+    "oa_url": "https://jneuroengrehab.biomedcentral.com/counter/pdf/10.1186/s12984-025-01628-6",
+    "pub_year": 2025,
+    "venue": "Journal of NeuroEngineering and Rehabilitation"
+  },
+  "10.1186/s12984-025-01797-4": {
+    "citations": 1,
+    "oa_url": "https://doi.org/10.1186/s12984-025-01797-4",
+    "pub_year": 2025,
+    "venue": "Journal of NeuroEngineering and Rehabilitation"
+  },
+  "10.1523/eneuro.0063-20.2020": {
+    "citations": 40,
+    "oa_url": "https://doi.org/10.1523/eneuro.0063-20.2020",
+    "pub_year": 2020,
+    "venue": "eNeuro"
+  },
+  "10.2196/41152": {
+    "citations": 9,
+    "oa_url": "https://doi.org/10.2196/41152",
+    "pub_year": 2022,
+    "venue": "JMIR Research Protocols"
+  },
+  "10.22514/sv.2022.031": {
+    "citations": 2,
+    "oa_url": "https://doi.org/10.22514/sv.2022.031",
+    "pub_year": 2022,
+    "venue": "Signa Vitae"
+  },
+  "10.26444/aaem/189609": {
+    "citations": 3,
+    "oa_url": "https://www.aaem.pl/pdf-189609-112098?filename=Surface electromyography.pdf",
+    "pub_year": 2024,
+    "venue": "Annals of Agricultural and Environmental Medicine"
+  },
+  "10.3389/fbioe.2025.1619247": {
+    "citations": 16,
+    "oa_url": "https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2025.1619247/pdf",
+    "pub_year": 2025,
+    "venue": "Frontiers in Bioengineering and Biotechnology"
+  },
+  "10.3389/fnbot.2017.00059": {
+    "citations": 88,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fnbot.2017.00059/pdf",
+    "pub_year": 2017,
+    "venue": "Frontiers in Neurorobotics"
+  },
+  "10.3389/fneng.2014.00003": {
+    "citations": 67,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fneng.2014.00003/pdf",
+    "pub_year": 2014,
+    "venue": "Frontiers in Neuroengineering"
+  },
+  "10.3389/fneur.2017.00107": {
+    "citations": 54,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fneur.2017.00107/pdf",
+    "pub_year": 2017,
+    "venue": "Frontiers in Neurology"
+  },
+  "10.3389/fneur.2020.00493": {
+    "citations": 29,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fneur.2020.00493/pdf",
+    "pub_year": 2020,
+    "venue": "Frontiers in Neurology"
+  },
+  "10.3389/fneur.2020.578559": {
+    "citations": 63,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fneur.2020.578559/pdf",
+    "pub_year": 2020,
+    "venue": "Frontiers in Neurology"
+  },
+  "10.3389/fnhum.2023.1083307": {
+    "citations": 3,
+    "oa_url": "https://doi.org/10.3389/fnhum.2023.1083307",
+    "pub_year": 2023,
+    "venue": "Frontiers in Human Neuroscience"
+  },
+  "10.3389/fnhum.2025.1532783": {
+    "citations": 6,
+    "oa_url": "https://public-pages-files-2025.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2025.1532783/pdf",
+    "pub_year": 2025,
+    "venue": "Frontiers in Human Neuroscience"
+  },
+  "10.3389/fnins.2012.00091": {
+    "citations": 79,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fnins.2012.00091/pdf",
+    "pub_year": 2012,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2014.00123": {
+    "citations": 16,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fnins.2014.00123/pdf",
+    "pub_year": 2014,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2016.00116": {
+    "citations": 132,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fnins.2016.00116/pdf",
+    "pub_year": 2016,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2019.00853": {
+    "citations": 99,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fnins.2019.00853/pdf",
+    "pub_year": 2019,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2020.509364": {
+    "citations": 7,
+    "oa_url": "https://www.frontiersin.org/articles/10.3389/fnins.2020.509364/pdf",
+    "pub_year": 2020,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2023.1210544": {
+    "citations": 6,
+    "oa_url": "https://doi.org/10.3389/fnins.2023.1210544",
+    "pub_year": 2023,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2025.1532099": {
+    "citations": 11,
+    "oa_url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2025.1532099/pdf",
+    "pub_year": 2025,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3389/fnins.2025.1623380": {
+    "citations": 1,
+    "oa_url": "https://doi.org/10.3389/fnins.2025.1623380",
+    "pub_year": 2025,
+    "venue": "Frontiers in Neuroscience"
+  },
+  "10.3390/biomimetics10030130": {
+    "citations": 11,
+    "oa_url": "https://www.mdpi.com/2313-7673/10/3/130/pdf?version=1740131500",
+    "pub_year": 2025,
+    "venue": "Biomimetics"
+  },
+  "10.3390/biomimetics11020104": {
+    "citations": 3,
+    "oa_url": "https://www.mdpi.com/2313-7673/11/2/104/pdf?version=1771064293",
+    "pub_year": 2026,
+    "venue": "Biomimetics"
+  },
+  "10.3390/cells10081886": {
+    "citations": 27,
+    "oa_url": "https://www.mdpi.com/2073-4409/10/8/1886/pdf?version=1627272027",
+    "pub_year": 2021,
+    "venue": "Cells"
+  },
+  "10.3390/ijerph20054488": {
+    "citations": 2,
+    "oa_url": "https://www.mdpi.com/1660-4601/20/5/4488/pdf?version=1677812944",
+    "pub_year": 2023,
+    "venue": "International Journal of Environmental Research and Public Health"
+  },
+  "10.3390/traumacare2020031": {
+    "citations": 4,
+    "oa_url": "https://www.mdpi.com/2673-866X/2/2/31/pdf?version=1655275471",
+    "pub_year": 2022,
+    "venue": "Trauma Care"
+  },
+  "10.5334/tohm.991": {
+    "citations": 8,
+    "oa_url": "https://tremorjournal.org/articles/991/files/67dd66034d892.pdf",
+    "pub_year": 2025,
+    "venue": "Tremor and Other Hyperkinetic Movements"
+  },
+  "10.55248/gengpi.6.0625.23105": {
+    "citations": 0,
+    "oa_url": "https://doi.org/10.55248/gengpi.6.0625.23105",
+    "pub_year": 2025,
+    "venue": "International Journal of Research Publication and Reviews"
+  },
+  "10.7554/elife.82598": {
+    "citations": 7,
+    "oa_url": "https://doi.org/10.7554/elife.82598",
+    "pub_year": 2023,
+    "venue": "eLife"
+  }
+}

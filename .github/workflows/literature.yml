@@ -37,6 +37,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python src/monitor.py
 
       - name: Verify DOIs in archives
@@ -69,6 +71,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add src/archive/ docs/ doi_verification_report.json doi_verification_cache.json
+          git add src/archive/ docs/ doi_verification_report.json doi_verification_cache.json scholarly_metadata_cache.json
           git commit -m "Update archived paper compilations with DOI verification" || echo "No changes to commit"
           git push

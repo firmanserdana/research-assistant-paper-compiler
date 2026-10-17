@@ -30,19 +30,27 @@ def test_site_generation(monitor, tmp_path):
         }
     ]
 
-    total_count = monitor.generate_site(new_papers=dummy_papers)
+    out_dir = str(tmp_path)
+    total_count = monitor.generate_site(new_papers=dummy_papers, output_dir=out_dir)
     assert total_count >= 2
 
-    assert os.path.exists('docs/index.html')
-    assert os.path.exists('docs/update.json')
-    assert os.path.exists('docs/feed.xml')
+    index_file = os.path.join(out_dir, 'index.html')
+    update_file = os.path.join(out_dir, 'update.json')
+    rss_file = os.path.join(out_dir, 'feed.xml')
 
-    with open('docs/index.html', 'r', encoding='utf-8') as f:
+    assert os.path.exists(index_file)
+    assert os.path.exists(update_file)
+    assert os.path.exists(rss_file)
+
+    with open(index_file, 'r', encoding='utf-8') as f:
         html = f.read()
 
     assert "Test Paper Alpha" in html
     assert "Test Paper Beta" in html
     assert 'data-title-raw="Test Paper Alpha"' in html
+    assert "analytics-drawer" in html
+    assert "modality-pill" in html
+    assert "related-paper-link" in html
     assert "data-bs-theme" in html
     assert "copy-bibtex-btn" in html
     assert "btn-filter" in html
@@ -51,9 +59,12 @@ def test_site_generation(monitor, tmp_path):
     assert "star-btn" in html
     assert "feed.xml" in html
 
-    with open('docs/update.json', 'r', encoding='utf-8') as f:
+    with open(update_file, 'r', encoding='utf-8') as f:
         update_data = json.load(f)
 
     assert update_data['total_count'] >= 2
     assert "categories" in update_data
+    assert "trl_buckets" in update_data
+    assert "total_citations" in update_data
+
 

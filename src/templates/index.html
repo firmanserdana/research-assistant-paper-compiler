@@ -145,6 +145,62 @@
         .star-btn:hover {
             transform: scale(1.15);
         }
+
+        .modality-pill {
+            font-size: 0.72rem;
+            font-weight: 600;
+            margin-right: 0.3rem;
+            margin-bottom: 0.3rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background-color: var(--bs-info-bg-subtle);
+            color: var(--bs-info-text-emphasis);
+            border: 1px solid var(--bs-info-border-subtle);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .modality-pill:hover, .modality-pill.active {
+            background-color: var(--bs-info);
+            color: #000;
+            border-color: var(--bs-info);
+        }
+
+        .venue-line {
+            font-size: 0.82rem;
+            color: var(--bs-secondary-color);
+        }
+
+        .related-papers-box {
+            font-size: 0.8rem;
+            background-color: var(--bs-tertiary-bg);
+            border-radius: 6px;
+            padding: 0.55rem 0.75rem;
+            border: 1px dashed var(--bs-border-color);
+        }
+
+        .related-paper-link {
+            text-decoration: none;
+            color: var(--bs-body-color);
+            display: block;
+            padding: 0.2rem 0;
+            transition: color 0.15s ease;
+        }
+
+        .related-paper-link:hover {
+            color: var(--bs-primary);
+        }
+
+        @keyframes pulseHighlight {
+            0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(13, 110, 253, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); }
+        }
+
+        .card-highlight {
+            animation: pulseHighlight 1.6s ease-out;
+            border-color: var(--bs-primary) !important;
+        }
     </style>
     <link rel="alternate" type="application/rss+xml" title="Biorobotics Literature Monitor RSS Feed" href="feed.xml">
 </head>
@@ -161,6 +217,9 @@
                 </div>
             </div>
             <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#analytics-drawer" aria-expanded="false" aria-controls="analytics-drawer">
+                    <i class="bi bi-bar-chart-line me-1"></i> Analytics &amp; Insights
+                </button>
                 <button class="btn btn-outline-secondary btn-sm" id="theme-toggle" title="Toggle Dark/Light Mode">
                     <i class="bi bi-moon-stars" id="theme-icon"></i>
                 </button>
@@ -178,19 +237,19 @@
             <div class="col-6 col-md-3">
                 <div class="stat-card">
                     <div class="stat-value" id="stat-total">{{ total }}</div>
-                    <div class="stat-label">Total Papers</div>
+                    <div class="stat-label">Verified Papers</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="stat-card">
-                    <div class="stat-value" id="stat-categories">{{ categories|length if categories else 4 }}</div>
-                    <div class="stat-label">Categories Tracked</div>
+                    <div class="stat-value text-primary" id="stat-citations">{{ "{:,}".format(analytics.total_citations) if analytics and analytics.total_citations is defined else total }}</div>
+                    <div class="stat-label">Total Citations (OpenAlex)</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="stat-card">
-                    <div class="stat-value text-success" id="stat-new">{{ count }}</div>
-                    <div class="stat-label">Latest Batch Added</div>
+                    <div class="stat-value text-success" id="stat-oa">{{ analytics.oa_count if analytics and analytics.oa_count is defined else count }}</div>
+                    <div class="stat-label">Open Access PDFs</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
@@ -200,6 +259,82 @@
                 </div>
             </div>
         </div>
+
+        <!-- Collapsible Interactive Analytics & Research Landscape Drawer -->
+        {% if analytics %}
+        <div class="collapse mb-4" id="analytics-drawer">
+            <div class="card shadow-sm border-info-subtle">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0"><i class="bi bi-graph-up-arrow text-info me-2"></i>Research Landscape &amp; Maturity Analytics</h6>
+                        <span class="small text-muted">Click any bar or tag below to filter papers</span>
+                    </div>
+                    <div class="row g-3">
+                        <!-- TRL Maturity Pipeline -->
+                        <div class="col-md-4">
+                            <div class="p-2 rounded bg-body-tertiary h-100">
+                                <div class="small fw-semibold mb-2">TRL Readiness Pipeline</div>
+                                {% set b_cnt = analytics.trl_buckets.basic or 0 %}
+                                {% set p_cnt = analytics.trl_buckets.prototype or 0 %}
+                                {% set c_cnt = analytics.trl_buckets.clinical or 0 %}
+                                {% set tot = (total if total > 0 else 1) %}
+                                <div class="progress mb-2" style="height: 18px; cursor: pointer;">
+                                    <div class="progress-bar bg-info text-dark fw-semibold trl-bar-segment" data-trl="1-3"
+                                         style="width: {{ (b_cnt / tot * 100)|round(1) }}%"
+                                         title="Filter TRL 1-3: {{ b_cnt }} papers">
+                                        {{ b_cnt }}
+                                    </div>
+                                    <div class="progress-bar bg-warning text-dark fw-semibold trl-bar-segment" data-trl="4-6"
+                                         style="width: {{ (p_cnt / tot * 100)|round(1) }}%"
+                                         title="Filter TRL 4-6: {{ p_cnt }} papers">
+                                        {{ p_cnt }}
+                                    </div>
+                                    <div class="progress-bar bg-success fw-semibold trl-bar-segment" data-trl="7-9"
+                                         style="width: {{ (c_cnt / tot * 100)|round(1) }}%"
+                                         title="Filter TRL 7-9: {{ c_cnt }} papers">
+                                        {{ c_cnt }}
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between small text-muted" style="font-size: 0.75rem;">
+                                    <span><i class="bi bi-circle-fill text-info me-1"></i>Basic (1-3): <strong>{{ b_cnt }}</strong></span>
+                                    <span><i class="bi bi-circle-fill text-warning me-1"></i>Prototype/Clinical (4-6): <strong>{{ p_cnt }}</strong></span>
+                                    <span><i class="bi bi-circle-fill text-success me-1"></i>System (7-9): <strong>{{ c_cnt }}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Study Modalities Breakdown -->
+                        <div class="col-md-4">
+                            <div class="p-2 rounded bg-body-tertiary h-100">
+                                <div class="small fw-semibold mb-2">Study Modalities &amp; Interfaces</div>
+                                <div class="d-flex flex-wrap">
+                                    {% for mod_name, mod_cnt in analytics.modalities %}
+                                    <span class="modality-pill analytics-modality-btn" data-modality="{{ mod_name|lower }}">
+                                        {{ mod_name }} ({{ mod_cnt }})
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Publishing Journals / Venues -->
+                        <div class="col-md-4">
+                            <div class="p-2 rounded bg-body-tertiary h-100">
+                                <div class="small fw-semibold mb-2">Top Journals &amp; Venues</div>
+                                <div class="d-flex flex-wrap gap-1">
+                                    {% for v_name, v_cnt in analytics.top_venues %}
+                                    <span class="keyword-pill venue-filter-pill" data-venue="{{ v_name }}" title="Filter by {{ v_name }}">
+                                        <i class="bi bi-journal-text me-1"></i>{{ v_name|truncate(28) }} ({{ v_cnt }})
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
         <!-- Controls Toolbar: Search, Filters & Sorting -->
         <div class="card mb-4 shadow-sm">
@@ -211,18 +346,20 @@
                                 <i class="bi bi-search text-muted"></i>
                             </span>
                             <input type="text" id="search-input" class="form-control border-start-0"
-                                placeholder="Search by title, author, keyword, DOI, or summary...">
+                                placeholder="Search by title, author, journal, modality, keyword, or DOI...">
                             <button class="btn btn-outline-secondary" type="button" id="clear-search" title="Clear search">
                                 <i class="bi bi-x"></i>
                             </button>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex gap-2 justify-content-md-end flex-wrap">
-                        <select id="sort-select" class="form-select form-select-sm" style="max-width: 170px;">
-                            <option value="date-desc">Newest First</option>
-                            <option value="title-asc">Title (A-Z)</option>
+                        <select id="sort-select" class="form-select form-select-sm" style="max-width: 205px;">
+                            <option value="date-desc">Archive Date (Newest)</option>
+                            <option value="pubyear-desc">Publication Year (Newest)</option>
+                            <option value="citations-desc">Most Cited (OpenAlex)</option>
                             <option value="trl-desc">TRL (High to Low)</option>
                             <option value="trl-asc">TRL (Low to High)</option>
+                            <option value="title-asc">Title (A-Z)</option>
                         </select>
                         <div class="dropdown">
                             <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="export-dropdown">
@@ -269,6 +406,7 @@
             </div>
             <div class="card-footer bg-transparent py-2 d-flex justify-content-between align-items-center">
                 <span class="small text-muted" id="results-count">Showing {{ papers|length }} of {{ papers|length }} papers</span>
+                <span class="small text-info fw-semibold d-none" id="active-modality-indicator"></span>
             </div>
         </div>
 
@@ -276,12 +414,17 @@
         <div class="row" id="papers-grid">
             {% for paper in papers %}
             <div class="col-lg-6 paper-card"
+                id="card-{{ (paper.doi or '')|lower|replace('/', '-')|replace('.', '-') }}"
                 data-category="{{ (paper.category or 'general biorobotics')|lower }}"
                 data-category-raw="{{ (paper.category or 'General Biorobotics')|replace('"', '&quot;') }}"
                 data-trl="{{ paper.trl or 1 }}"
                 data-title="{{ (paper.title or '')|lower }}"
                 data-title-raw="{{ (paper.title or '')|replace('"', '&quot;') }}"
                 data-date="{{ paper.archive_date or '2025-01-01' }}"
+                data-pubyear="{{ paper.pub_year or (paper.archive_date or '2025')[:4] }}"
+                data-venue="{{ (paper.venue or '')|replace('"', '&quot;') }}"
+                data-citations="{{ paper.citations or 0 }}"
+                data-modalities="{{ (paper.modalities or [])|join('|')|lower }}"
                 data-doi="{{ paper.doi or '' }}"
                 data-authors="{% if paper.authors is string %}{{ paper.authors }}{% else %}{{ paper.authors|join('; ') }}{% endif %}"
                 data-keywords="{% if paper.keywords is string %}{{ paper.keywords }}{% else %}{{ paper.keywords|join(', ') }}{% endif %}"
@@ -293,7 +436,12 @@
                             <span class="category-badge">
                                 <i class="bi bi-tag me-1"></i>{{ paper.category or 'General Biorobotics' }}
                             </span>
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="d-flex align-items-center flex-wrap gap-1 justify-content-end">
+                                {% if paper.citations and (paper.citations|int) > 0 %}
+                                <span class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle fw-semibold" title="Total Citations (OpenAlex)">
+                                    <i class="bi bi-chat-square-quote me-1"></i>{{ paper.citations }}
+                                </span>
+                                {% endif %}
                                 {% if paper.archive_date %}
                                 <span class="badge bg-body-secondary text-secondary border fw-normal" title="Compilation Archive Date">
                                     <i class="bi bi-calendar3 me-1"></i>{{ paper.archive_date }}
@@ -303,7 +451,7 @@
                                       title="Technology Readiness Level (1-9)">
                                     TRL {{ paper.trl or 1 }}
                                 </span>
-                                <button class="btn btn-sm btn-link p-0 text-secondary star-btn" data-doi="{{ paper.doi }}" title="Save to Reading List">
+                                <button class="btn btn-sm btn-link p-0 ms-1 text-secondary star-btn" data-doi="{{ paper.doi }}" title="Save to Reading List">
                                     <i class="bi bi-star"></i>
                                 </button>
                             </div>
@@ -311,7 +459,7 @@
 
                         <h5 class="card-title fw-bold mt-1 mb-2">{{ paper.title }}</h5>
 
-                        <div class="authors-line mb-2">
+                        <div class="authors-line mb-1">
                             <i class="bi bi-person me-1"></i>
                             {% if paper.authors is string %}
                                 {{ paper.authors }}
@@ -325,6 +473,24 @@
                             {% endif %}
                         </div>
 
+                        {% if paper.venue or paper.pub_year %}
+                        <div class="venue-line mb-2">
+                            <i class="bi bi-journal-bookmark me-1 text-primary"></i>
+                            {% if paper.venue %}<span class="fw-semibold">{{ paper.venue }}</span>{% endif %}
+                            {% if paper.pub_year %}<span class="text-muted">({{ paper.pub_year }})</span>{% endif %}
+                        </div>
+                        {% endif %}
+
+                        {% if paper.modalities %}
+                        <div class="d-flex flex-wrap mb-2">
+                            {% for mod in paper.modalities %}
+                            <span class="modality-pill card-modality-pill" data-modality="{{ mod|lower }}" title="Filter by Study Modality: {{ mod }}">
+                                {{ mod }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
                         {% if paper.summary %}
                         <div class="paper-summary">
                             <strong>Summary:</strong> {{ paper.summary }}
@@ -332,7 +498,7 @@
                         {% endif %}
 
                         <div class="mt-auto pt-2">
-                            <div class="d-flex flex-wrap mb-3">
+                            <div class="d-flex flex-wrap mb-2">
                                 {% if paper.keywords is string %}
                                     <span class="keyword-pill" title="Filter by keyword">{{ paper.keywords }}</span>
                                 {% else %}
@@ -341,6 +507,27 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
+
+                            {% if paper.related_papers %}
+                            <div class="mb-2">
+                                <a class="small text-decoration-none text-secondary fw-semibold" data-bs-toggle="collapse"
+                                   href="#rel-{{ loop.index }}" role="button" aria-expanded="false">
+                                    <i class="bi bi-diagram-3 me-1"></i>Related Papers in Archive ({{ paper.related_papers|length }}) <i class="bi bi-chevron-down small"></i>
+                                </a>
+                                <div class="collapse mt-1" id="rel-{{ loop.index }}">
+                                    <div class="related-papers-box">
+                                        {% for rel in paper.related_papers %}
+                                        <a href="#card-{{ (rel.doi or '')|lower|replace('/', '-')|replace('.', '-') }}"
+                                           class="related-paper-link" data-target-doi="{{ (rel.doi or '')|lower }}">
+                                            <i class="bi bi-arrow-return-right text-primary me-1"></i>
+                                            <span class="fw-medium">{{ rel.title|truncate(75) }}</span>
+                                            <span class="text-muted">({{ rel.pub_year }} &bull; TRL {{ rel.trl }})</span>
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
 
                             <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                                 <div class="d-flex align-items-center gap-1">
@@ -372,7 +559,8 @@
                                             data-title="{{ paper.title }}"
                                             data-authors="{% if paper.authors is string %}{{ paper.authors }}{% else %}{{ paper.authors|join(' and ') }}{% endif %}"
                                             data-doi="{{ paper.doi }}"
-                                            data-year="{{ (paper.archive_date or '2026')[:4] }}"
+                                            data-venue="{{ paper.venue or '' }}"
+                                            data-year="{{ paper.pub_year or (paper.archive_date or '2026')[:4] }}"
                                             title="Copy BibTeX Citation">
                                         <i class="bi bi-quote"></i> BibTeX
                                     </button>
@@ -417,6 +605,7 @@
         // State
         let selectedCategory = 'all';
         let selectedTrl = 'all';
+        let selectedModality = 'all';
         let searchQuery = '';
         let currentSort = 'date-desc';
         let showSavedOnly = false;
@@ -432,6 +621,7 @@
         const paperCards = Array.from(document.querySelectorAll('.paper-card'));
         const noResults = document.getElementById('no-results');
         const resultsCount = document.getElementById('results-count');
+        const activeModalityIndicator = document.getElementById('active-modality-indicator');
         const categoryBtns = document.querySelectorAll('.btn-filter');
         const trlBtns = document.querySelectorAll('.btn-trl');
         const savedFilterBtn = document.getElementById('saved-filter-btn');
@@ -536,6 +726,7 @@
             if (searchQuery) params.set('q', searchQuery);
             if (selectedCategory !== 'all') params.set('cat', selectedCategory);
             if (selectedTrl !== 'all') params.set('trl', selectedTrl);
+            if (selectedModality !== 'all') params.set('mod', selectedModality);
             if (currentSort !== 'date-desc') params.set('sort', currentSort);
             if (showSavedOnly) params.set('saved', '1');
 
@@ -570,6 +761,9 @@
                     }
                 });
             }
+            if (params.has('mod')) {
+                selectedModality = params.get('mod').toLowerCase();
+            }
             if (params.has('sort')) {
                 currentSort = params.get('sort');
                 sortSelect.value = currentSort;
@@ -581,16 +775,45 @@
             }
         }
 
+        function updateModalityUI() {
+            document.querySelectorAll('.modality-pill').forEach(pill => {
+                if (selectedModality !== 'all' && pill.dataset.modality === selectedModality) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
+                }
+            });
+            if (activeModalityIndicator) {
+                if (selectedModality !== 'all') {
+                    activeModalityIndicator.innerHTML = `<i class="bi bi-funnel-fill me-1"></i>Modality: ${selectedModality} <a href="#" id="clear-modality-link" class="ms-1 text-decoration-none">&times;</a>`;
+                    activeModalityIndicator.classList.remove('d-none');
+                    const clearModLink = document.getElementById('clear-modality-link');
+                    if (clearModLink) {
+                        clearModLink.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            selectedModality = 'all';
+                            filterAndSortPapers();
+                        });
+                    }
+                } else {
+                    activeModalityIndicator.classList.add('d-none');
+                }
+            }
+        }
+
         // Filtering and Sorting
         function filterAndSortPapers() {
             let visibleCount = 0;
+            updateModalityUI();
 
             paperCards.forEach(card => {
                 const category = card.dataset.category || '';
                 const trl = parseInt(card.dataset.trl) || 1;
                 const doi = (card.dataset.doi || '').toLowerCase();
                 const fullAuthors = (card.dataset.authors || '').toLowerCase();
-                const cardText = card.textContent.toLowerCase() + ' ' + fullAuthors;
+                const venue = (card.dataset.venue || '').toLowerCase();
+                const modalities = (card.dataset.modalities || '').split('|');
+                const cardText = card.textContent.toLowerCase() + ' ' + fullAuthors + ' ' + venue;
 
                 let categoryMatch = (selectedCategory === 'all') || category.includes(selectedCategory);
 
@@ -603,10 +826,11 @@
                     trlMatch = trl >= 7 && trl <= 9;
                 }
 
+                let modalityMatch = (selectedModality === 'all') || modalities.includes(selectedModality);
                 let searchMatch = !searchQuery || cardText.includes(searchQuery);
                 let savedMatch = !showSavedOnly || (doi && savedPapers.has(doi));
 
-                if (categoryMatch && trlMatch && searchMatch && savedMatch) {
+                if (categoryMatch && trlMatch && modalityMatch && searchMatch && savedMatch) {
                     card.style.display = '';
                     visibleCount++;
                 } else {
@@ -618,6 +842,11 @@
             const sortedCards = [...paperCards].sort((a, b) => {
                 if (currentSort === 'title-asc') {
                     return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+                } else if (currentSort === 'citations-desc') {
+                    return (parseInt(b.dataset.citations) || 0) - (parseInt(a.dataset.citations) || 0);
+                } else if (currentSort === 'pubyear-desc') {
+                    const yDiff = (parseInt(b.dataset.pubyear) || 0) - (parseInt(a.dataset.pubyear) || 0);
+                    return yDiff !== 0 ? yDiff : ((parseInt(b.dataset.citations) || 0) - (parseInt(a.dataset.citations) || 0));
                 } else if (currentSort === 'trl-desc') {
                     return (parseInt(b.dataset.trl) || 1) - (parseInt(a.dataset.trl) || 1);
                 } else if (currentSort === 'trl-asc') {
@@ -653,15 +882,58 @@
             filterAndSortPapers();
         });
 
-        // Interactive Keyword Pill Filtering
+        // Interactive Keyword & Venue Pill Filtering
         document.querySelectorAll('.keyword-pill').forEach(pill => {
             pill.addEventListener('click', () => {
-                const kw = pill.textContent.trim();
+                const kw = (pill.dataset.venue || pill.textContent || '').trim();
                 if (!kw) return;
                 searchInput.value = kw;
                 searchQuery = kw.toLowerCase();
                 filterAndSortPapers();
                 searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+
+        // Interactive Study Modality Pill Filtering
+        document.querySelectorAll('.modality-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const mod = (pill.dataset.modality || '').toLowerCase();
+                if (!mod) return;
+                selectedModality = (selectedModality === mod) ? 'all' : mod;
+                filterAndSortPapers();
+            });
+        });
+
+        // Interactive Analytics TRL Bar Segments
+        document.querySelectorAll('.trl-bar-segment').forEach(seg => {
+            seg.addEventListener('click', () => {
+                const targetTrl = seg.dataset.trl;
+                if (!targetTrl) return;
+                trlBtns.forEach(b => {
+                    b.classList.toggle('active', b.dataset.trl === targetTrl);
+                });
+                selectedTrl = targetTrl;
+                filterAndSortPapers();
+            });
+        });
+
+        // Smooth Navigation to Related Papers in Archive
+        document.querySelectorAll('.related-paper-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').slice(1);
+                const targetCard = document.getElementById(targetId);
+                if (!targetCard) return;
+                if (targetCard.style.display === 'none') {
+                    resetFilters();
+                }
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const innerCard = targetCard.querySelector('.card');
+                if (innerCard) {
+                    innerCard.classList.remove('card-highlight');
+                    void innerCard.offsetWidth;
+                    innerCard.classList.add('card-highlight');
+                }
             });
         });
 
@@ -691,6 +963,7 @@
         function resetFilters() {
             selectedCategory = 'all';
             selectedTrl = 'all';
+            selectedModality = 'all';
             searchQuery = '';
             currentSort = 'date-desc';
             showSavedOnly = false;
@@ -748,11 +1021,11 @@
                     const title = card.dataset.titleRaw || card.dataset.title || '';
                     const authors = (card.dataset.authors || 'Unknown').replace(/;/g, ' and ');
                     const doi = card.dataset.doi || '';
-                    const year = (card.dataset.date || today).slice(0, 4);
-                    const category = card.dataset.categoryRaw || card.dataset.category || 'General Biorobotics';
+                    const year = card.dataset.pubyear || (card.dataset.date || today).slice(0, 4);
+                    const journal = card.dataset.venue || card.dataset.categoryRaw || card.dataset.category || 'General Biorobotics';
                     const citeKey = (authors.split(' ')[0] + year + (idx + 1)).replace(/[^a-zA-Z0-9]/g, '').toLowerCase() || `paper${idx}`;
 
-                    bibtex += `@article{${citeKey},\n  title={${title}},\n  author={${authors}},\n  year={${year}},\n  journal={${category}}${doi ? `,\n  doi={${doi}}` : ''}\n}\n\n`;
+                    bibtex += `@article{${citeKey},\n  title={${title}},\n  author={${authors}},\n  year={${year}},\n  journal={${journal}}${doi ? `,\n  doi={${doi}}` : ''}\n}\n\n`;
                 });
 
                 downloadFile(`biorobotics_papers_${today}.bib`, bibtex, 'text/plain;charset=utf-8');
@@ -777,13 +1050,15 @@
                     const authorsRaw = card.dataset.authors || '';
                     const authors = authorsRaw.includes(';') ? authorsRaw.split(';') : authorsRaw.split(',');
                     const doi = card.dataset.doi || '';
-                    const year = (card.dataset.date || today).slice(0, 4);
+                    const year = card.dataset.pubyear || (card.dataset.date || today).slice(0, 4);
+                    const venue = card.dataset.venue || '';
                     const summary = card.dataset.summary || '';
                     const keywords = (card.dataset.keywords || '').split(',');
 
                     ris += "TY  - JOUR\n";
                     ris += `TI  - ${title}\n`;
                     authors.forEach(a => { if (a.trim()) ris += `AU  - ${a.trim()}\n`; });
+                    if (venue) ris += `JO  - ${venue}\n`;
                     if (year) ris += `PY  - ${year}\n`;
                     if (doi) ris += `DO  - ${doi}\n`;
                     if (summary) ris += `AB  - ${summary}\n`;
@@ -807,15 +1082,19 @@
                 }
                 const today = new Date().toISOString().slice(0, 10);
                 const escapeCsv = (str) => `"${(str || '').replace(/"/g, '""')}"`;
-                let csv = "Title,Authors,DOI,TRL,Category,Keywords,Date,Summary,PDF\n";
+                let csv = "Title,Authors,Journal/Venue,PubYear,Citations,DOI,TRL,Category,Modalities,Keywords,ArchiveDate,Summary,PDF\n";
 
                 visible.forEach(card => {
                     csv += [
                         escapeCsv(card.dataset.titleRaw || card.dataset.title),
                         escapeCsv(card.dataset.authors),
+                        escapeCsv(card.dataset.venue),
+                        escapeCsv(card.dataset.pubyear),
+                        escapeCsv(card.dataset.citations),
                         escapeCsv(card.dataset.doi),
                         escapeCsv(card.dataset.trl),
                         escapeCsv(card.dataset.categoryRaw || card.dataset.category),
+                        escapeCsv((card.dataset.modalities || '').replace(/\|/g, '; ')),
                         escapeCsv(card.dataset.keywords),
                         escapeCsv(card.dataset.date),
                         escapeCsv(card.dataset.summary),
@@ -834,6 +1113,7 @@
                 const title = btn.dataset.title;
                 const authors = btn.dataset.authors || 'Unknown';
                 const doi = btn.dataset.doi || '';
+                const venue = btn.dataset.venue || '';
                 const year = btn.dataset.year || '2026';
 
                 const citeKey = (authors.split(' ')[0] + year).replace(/[^a-zA-Z0-9]/g, '').toLowerCase() || 'paper';
@@ -841,7 +1121,7 @@
                 const bibtex = `@article{${citeKey},
   title={${title}},
   author={${authors}},
-  year={${year}}${doi ? `,\n  doi={${doi}}` : ''}
+  year={${year}}${venue ? `,\n  journal={${venue}}` : ''}${doi ? `,\n  doi={${doi}}` : ''}
 }`;
 
                 navigator.clipboard.writeText(bibtex).then(() => {

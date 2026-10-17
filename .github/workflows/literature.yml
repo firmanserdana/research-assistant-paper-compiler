@@ -5,10 +5,23 @@ on:
     branches: [main]
   schedule:
     - cron: "0 0 * * 1" # Run weekly on Mondays
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: "Scholarly / AI provider (auto, openalex, crossref, arxiv, perplexity, gemini)"
+        required: false
+        default: "auto"
+      include_arxiv:
+        description: "Include arXiv preprints alongside primary provider"
+        required: false
+        default: "false"
 
 permissions:
   contents: write
+
+concurrency:
+  group: literature-monitor-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   monitor:
@@ -19,7 +32,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: "pip"
 
       - name: Install dependencies
@@ -39,7 +52,13 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: python src/monitor.py
+        run: |
+          PROVIDER="${{ github.event.inputs.provider || 'auto' }}"
+          ARXIV_FLAG=""
+          if [ "${{ github.event.inputs.include_arxiv }}" = "true" ]; then
+            ARXIV_FLAG="--include-arxiv"
+          fi
+          python src/monitor.py --provider "$PROVIDER" $ARXIV_FLAG
 
       - name: Verify DOIs in archives
         run: |
@@ -72,5 +91,10 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add src/archive/ docs/ doi_verification_report.json doi_verification_cache.json scholarly_metadata_cache.json
-          git commit -m "Update archived paper compilations with DOI verification" || echo "No changes to commit"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "Update archived paper compilations with DOI verification [skip ci]"
+            git pull --rebase -X ours origin main
+            git push origin HEAD:main
+          else
+            echo "No changes to commit"
+          fi

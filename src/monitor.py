@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import time
 import logging
 import html
 import requests
@@ -420,14 +421,14 @@ class LiteratureMonitor:
         ordered_words = [positions[idx] for idx in sorted(positions.keys())]
         return self._clean_jats_abstract(" ".join(ordered_words))
 
-    def _openalex_search(self, term, rows=15):
+    def _openalex_search(self, term, rows=15, filter_str="from_publication_date:2021-01-01,type:article"):
         """Find recent scholarly works via the keyless OpenAlex API with abstracts, citations, and OA PDFs."""
         try:
             response = requests.get(
                 "https://api.openalex.org/works",
                 params={
                     "search": term,
-                    "filter": "from_publication_date:2021-01-01,type:article",
+                    "filter": filter_str,
                     "per-page": rows,
                     "mailto": "literature-monitor@example.com"
                 },
@@ -464,6 +465,20 @@ class LiteratureMonitor:
                 loc = item.get("primary_location") or {}
                 oa = item.get("open_access") or {}
                 pdf_url = loc.get("pdf_url") or oa.get("oa_url") or ""
+                if not pdf_url and doi.lower().startswith("10.48550/arxiv."):
+                    pdf_url = f"https://arxiv.org/pdf/{doi.lower().split('arxiv.')[-1]}.pdf"
+                venue = ((loc.get("source") or {}).get("display_name") or "").strip()
+                pub_year = str(item.get("publication_year") or "")
+                citations = int(item.get("cited_by_count") or 0)
+
+                if not hasattr(self, "_runtime_scholarly_cache"):
+                    self._runtime_scholarly_cache = {}
+                self._runtime_scholarly_cache[doi.lower()] = {
+                    "pub_year": pub_year,
+                    "venue": venue or ("arXiv" if "arxiv" in doi.lower() else ""),
+                    "citations": citations,
+                    "oa_url": pdf_url,
+                }
 
                 record_lines = [
                     f"Title: {title}",
@@ -533,20 +548,28 @@ IMPORTANT:
                 return (term, "")
 
     def _arxiv_search(self, term, max_results=10):
-        """Find recent preprints via arXiv API without an API key."""
+        """Find relevant preprints via arXiv API without an API key, with OpenAlex arXiv index fallback."""
         try:
-            clean_term = term.replace('"', '').strip()
-            encoded_term = urllib.parse.quote(clean_term)
+            stopwords = {
+                'on', 'to', 'enable', 'and/or', 'and', 'or', 'the', 'in', 'of',
+                'for', 'with', 'patients', 'injured', 'stimulating'
+            }
+            tokens = [
+                w for w in re.sub(r'["/]', ' ', term).split()
+                if w.lower() not in stopwords
+            ][:3]
+            if tokens:
+                query_expr = "+AND+".join(f"all:{urllib.parse.quote(t)}" for t in tokens)
+            else:
+                query_expr = f"all:{urllib.parse.quote(term.replace('\"', '').strip())}"
+            fetch_count = max(max_results * 3, 10) if max_results > 1 else max_results
             url = (
                 f"https://export.arxiv.org/api/query?"
-                f"search_query=all:{encoded_term}&start=0&max_results={max_results}"
-                f"&sortBy=submittedDate&sortOrder=descending"
+                f"search_query={query_expr}&start=0&max_results={fetch_count}"
+                f"&sortBy=relevance&sortOrder=descending"
             )
-            response = requests.get(
-                url,
-                timeout=20,
-                headers={"User-Agent": "LiteratureMonitor/1.0 (mailto:contact@example.com)"}
-            )
+            headers = {"User-Agent": "LiteratureMonitor/2.0 (mailto:literature-monitor@example.com)"}
+            response = requests.get(url, timeout=10, headers=headers)
             response.raise_for_status()
 
             root = ET.fromstring(response.content)
@@ -556,7 +579,10 @@ IMPORTANT:
             }
 
             records = []
+            matched_count = 0
             for entry in root.findall('atom:entry', ns):
+                if matched_count >= max_results:
+                    break
                 raw_title = entry.find('atom:title', ns)
                 title = re.sub(r'\s+', ' ', raw_title.text.strip()) if raw_title is not None and raw_title.text else ""
 
@@ -592,6 +618,9 @@ IMPORTANT:
                 if not title or not doi or not authors:
                     continue
 
+                if not self._is_relevant_to_biorobotics(title, summary, keywords):
+                    continue
+
                 record_lines = [
                     f"Title: {title}",
                     f"Authors: {'; '.join(authors)}",
@@ -606,12 +635,17 @@ IMPORTANT:
 
                 record_lines.append("")
                 records.extend(record_lines)
+                matched_count += 1
 
-            logger.info(f"Retrieved {len(root.findall('atom:entry', ns))} entries from arXiv for: {term}")
-            return "\n".join(records)
+            if records:
+                logger.info(f"Retrieved {matched_count} relevant arXiv entries for: {term}")
+                return "\n".join(records)
+
+            logger.info(f"No direct arXiv matches for '{term}'; querying OpenAlex arXiv index...")
+            return self._openalex_search(term, rows=max(max_results * 2, 10), filter_str="indexed_in:arxiv")
         except Exception as e:
-            logger.error(f"arXiv query error for {term}: {e}")
-            return ""
+            logger.warning(f"export.arxiv.org unavailable for '{term}' ({e}); using OpenAlex arXiv index fallback...")
+            return self._openalex_search(term, rows=max(max_results * 2, 10), filter_str="indexed_in:arxiv")
 
     def _crossref_search(self, term, rows=20):
         """Find recent scholarly works through Crossref without an API key, filtered for biorobotics relevance."""
@@ -1212,13 +1246,28 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
 
     def _load_scholarly_cache(self, cache_path="scholarly_metadata_cache.json"):
         """Load cached OpenAlex / Crossref bibliometric metadata (pub_year, venue, citations, oa_url)."""
+        cache = {}
         if os.path.exists(cache_path):
             try:
                 with open(cache_path, "r", encoding="utf-8") as f:
-                    return json.load(f)
+                    cache = json.load(f)
             except Exception as e:
                 logger.warning(f"Failed to load scholarly metadata cache: {e}")
-        return {}
+
+        runtime_cache = getattr(self, "_runtime_scholarly_cache", {})
+        if runtime_cache:
+            updated = False
+            for k, v in runtime_cache.items():
+                if k not in cache:
+                    cache[k] = v
+                    updated = True
+            if updated and not getattr(self, "dry_run", True) and cache_path == "scholarly_metadata_cache.json":
+                try:
+                    with open(cache_path, "w", encoding="utf-8") as f:
+                        json.dump(cache, f, indent=2)
+                except Exception as e:
+                    logger.warning(f"Failed to update scholarly metadata cache: {e}")
+        return cache
 
     def _extract_modalities(self, paper):
         """
@@ -1559,37 +1608,43 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                 if p_doi:
                     existing_dois.add(p_doi.lower())
 
-            # Query papers for all search terms concurrently
-            with ThreadPoolExecutor(max_workers=3) as executor:
-                results = list(executor.map(self._deep_research_query, self.search_terms))
+            # Query papers for all search terms (serialize arXiv requests to respect 1-req/3s rate limit)
+            if self.provider == "arxiv":
+                results = []
+                for idx, term in enumerate(self.search_terms):
+                    if idx > 0:
+                        time.sleep(2.5)
+                    results.append(self._deep_research_query(term))
+            else:
+                with ThreadPoolExecutor(max_workers=3) as executor:
+                    results = list(executor.map(self._deep_research_query, self.search_terms))
 
-                # If include_arxiv requested alongside another provider
-                if self.include_arxiv and self.provider != "arxiv":
-                    arxiv_results = list(executor.map(
-                        lambda t: (t, self._arxiv_search(t, max_results=self.limit or 5)),
-                        self.search_terms
-                    ))
-                    results.extend(arxiv_results)
+            # If include_arxiv requested alongside another provider, query sequentially
+            if self.include_arxiv and self.provider != "arxiv":
+                for idx, term in enumerate(self.search_terms):
+                    if idx > 0:
+                        time.sleep(2.5)
+                    results.append((term, self._arxiv_search(term, max_results=self.limit or 5)))
 
-                for term, response_text in results:
-                    if not response_text:
-                        continue
+            for term, response_text in results:
+                if not response_text:
+                    continue
 
-                    parsed_papers = self._parse_response(response_text)
-                    if self.limit:
-                        parsed_papers = parsed_papers[:self.limit]
+                parsed_papers = self._parse_response(response_text)
+                if self.limit:
+                    parsed_papers = parsed_papers[:self.limit]
 
-                    for paper in parsed_papers:
-                        paper_doi = paper.get('doi', '').lower()
-                        if paper_doi and paper_doi not in existing_dois:
-                            paper['source_term'] = term
-                            paper['category'] = self._format_category_name(term)
-                            paper['summary'] = self._generate_paper_summary(paper)
+                for paper in parsed_papers:
+                    paper_doi = paper.get('doi', '').lower()
+                    if paper_doi and paper_doi not in existing_dois:
+                        paper['source_term'] = term
+                        paper['category'] = self._format_category_name(term)
+                        paper['summary'] = self._generate_paper_summary(paper)
 
-                            if not self.dry_run:
-                                self._save_to_zotero(paper)
-                            new_papers.append(paper)
-                            existing_dois.add(paper_doi)
+                        if not self.dry_run:
+                            self._save_to_zotero(paper)
+                        new_papers.append(paper)
+                        existing_dois.add(paper_doi)
 
             if self.dry_run:
                 logger.info(f"[DRY RUN] Discovered {len(new_papers)} new papers. Skipping archive writing and Zotero sync.")

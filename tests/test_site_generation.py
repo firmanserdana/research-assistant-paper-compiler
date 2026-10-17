@@ -56,6 +56,8 @@ def test_site_generation(monitor, tmp_path):
     assert "btn-filter" in html
     assert "export-bibtex-btn" in html
     assert "saved-filter-btn" in html
+    assert "oa-filter-btn" in html
+    assert "card-stat-oa" in html
     assert "star-btn" in html
     assert "feed.xml" in html
 
@@ -66,5 +68,38 @@ def test_site_generation(monitor, tmp_path):
     assert "categories" in update_data
     assert "trl_buckets" in update_data
     assert "total_citations" in update_data
+
+
+def test_create_archive_file_merges_same_day_runs(monitor, tmp_path):
+    arch_dir = str(tmp_path)
+    p1 = [{
+        'title': 'First Run Paper',
+        'authors': ['Alice Smith'],
+        'doi': '10.1000/first.1',
+        'trl': 4,
+        'keywords': ['EMG'],
+        'summary': 'First run summary.',
+        'pdf_url': 'https://example.org/first.pdf'
+    }]
+    p2 = [{
+        'title': 'Second Run Paper',
+        'authors': ['Bob Jones'],
+        'doi': '10.1000/second.2',
+        'trl': 6,
+        'keywords': ['BCI'],
+        'summary': 'Second run summary.'
+    }]
+
+    f1 = monitor._create_archive_file(p1, archive_dir=arch_dir)
+    f2 = monitor._create_archive_file(p2, archive_dir=arch_dir)
+    assert f1 == f2
+
+    with open(f2, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    parsed = monitor._parse_archive_markdown(content)
+    dois = {p['doi'] for p in parsed}
+    assert '10.1000/first.1' in dois
+    assert '10.1000/second.2' in dois
 
 

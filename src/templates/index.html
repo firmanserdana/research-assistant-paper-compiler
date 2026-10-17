@@ -201,6 +201,25 @@
             animation: pulseHighlight 1.6s ease-out;
             border-color: var(--bs-primary) !important;
         }
+
+        .stat-card-interactive {
+            cursor: pointer;
+        }
+
+        @media print {
+            header .d-flex.gap-2,
+            #analytics-drawer,
+            .card.mb-4.shadow-sm,
+            .star-btn,
+            .copy-bibtex-btn,
+            .toast-container {
+                display: none !important;
+            }
+            .paper-card {
+                break-inside: avoid;
+                width: 100% !important;
+            }
+        }
     </style>
     <link rel="alternate" type="application/rss+xml" title="Biorobotics Literature Monitor RSS Feed" href="feed.xml">
 </head>
@@ -235,25 +254,25 @@
         <!-- Stats Overview -->
         <div class="row g-3 mb-4">
             <div class="col-6 col-md-3">
-                <div class="stat-card">
+                <div class="stat-card stat-card-interactive" id="card-stat-total" title="Click to show all verified papers">
                     <div class="stat-value" id="stat-total">{{ total }}</div>
                     <div class="stat-label">Verified Papers</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="stat-card">
+                <div class="stat-card stat-card-interactive" id="card-stat-citations" title="Click to sort by Most Cited (OpenAlex)">
                     <div class="stat-value text-primary" id="stat-citations">{{ "{:,}".format(analytics.total_citations) if analytics and analytics.total_citations is defined else total }}</div>
                     <div class="stat-label">Total Citations (OpenAlex)</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="stat-card">
+                <div class="stat-card stat-card-interactive" id="card-stat-oa" title="Click to filter Open Access PDFs">
                     <div class="stat-value text-success" id="stat-oa">{{ analytics.oa_count if analytics and analytics.oa_count is defined else count }}</div>
                     <div class="stat-label">Open Access PDFs</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="stat-card">
+                <div class="stat-card" title="Last portal compilation date">
                     <div class="stat-value text-info fs-4 pt-1" id="stat-updated">{{ updated.split(' ')[0] if updated else 'Active' }}</div>
                     <div class="stat-label">Last Updated</div>
                 </div>
@@ -345,9 +364,12 @@
                             <span class="input-group-text bg-transparent border-end-0">
                                 <i class="bi bi-search text-muted"></i>
                             </span>
-                            <input type="text" id="search-input" class="form-control border-start-0"
-                                placeholder="Search by title, author, journal, modality, keyword, or DOI...">
-                            <button class="btn btn-outline-secondary" type="button" id="clear-search" title="Clear search">
+                            <input type="text" id="search-input" class="form-control border-start-0 border-end-0"
+                                placeholder="Search by title, author, journal, modality, keyword, or DOI... (Press / to focus)">
+                            <span class="input-group-text bg-transparent border-start-0 d-none d-sm-flex align-items-center">
+                                <kbd class="bg-body-tertiary text-muted border small px-1">/</kbd>
+                            </span>
+                            <button class="btn btn-outline-secondary" type="button" id="clear-search" title="Clear search (Esc)">
                                 <i class="bi bi-x"></i>
                             </button>
                         </div>
@@ -385,6 +407,9 @@
                     </button>
                     <button class="btn btn-sm btn-outline-warning" id="saved-filter-btn" title="View Starred / Saved Reading List">
                         <i class="bi bi-star-fill me-1"></i> Saved (<span id="saved-count">0</span>)
+                    </button>
+                    <button class="btn btn-sm btn-outline-success" id="oa-filter-btn" title="Filter papers with direct Open Access PDFs">
+                        <i class="bi bi-file-earmark-pdf-fill me-1"></i> Open Access ({{ analytics.oa_count if analytics and analytics.oa_count is defined else count }})
                     </button>
                     {% if categories %}
                         {% for cat_name, cat_count in categories.items() %}
@@ -609,6 +634,7 @@
         let searchQuery = '';
         let currentSort = 'date-desc';
         let showSavedOnly = false;
+        let showOaOnly = false;
         let savedPapers = new Set(JSON.parse(localStorage.getItem('saved_biorobotics_papers') || '[]'));
 
         // Elements
@@ -625,6 +651,7 @@
         const categoryBtns = document.querySelectorAll('.btn-filter');
         const trlBtns = document.querySelectorAll('.btn-trl');
         const savedFilterBtn = document.getElementById('saved-filter-btn');
+        const oaFilterBtn = document.getElementById('oa-filter-btn');
         const savedCountSpan = document.getElementById('saved-count');
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
@@ -720,6 +747,61 @@
             });
         }
 
+        function updateOaBtnUI() {
+            if (!oaFilterBtn) return;
+            if (showOaOnly) {
+                oaFilterBtn.classList.add('active', 'btn-success');
+                oaFilterBtn.classList.remove('btn-outline-success');
+            } else {
+                oaFilterBtn.classList.remove('active', 'btn-success');
+                oaFilterBtn.classList.add('btn-outline-success');
+            }
+        }
+
+        if (oaFilterBtn) {
+            oaFilterBtn.addEventListener('click', () => {
+                showOaOnly = !showOaOnly;
+                updateOaBtnUI();
+                filterAndSortPapers();
+            });
+        }
+
+        // Interactive Top Stat Cards
+        const statTotalCard = document.getElementById('card-stat-total');
+        const statCitationsCard = document.getElementById('card-stat-citations');
+        const statOaCard = document.getElementById('card-stat-oa');
+        if (statTotalCard) {
+            statTotalCard.addEventListener('click', resetFilters);
+        }
+        if (statCitationsCard) {
+            statCitationsCard.addEventListener('click', () => {
+                currentSort = 'citations-desc';
+                sortSelect.value = 'citations-desc';
+                filterAndSortPapers();
+            });
+        }
+        if (statOaCard) {
+            statOaCard.addEventListener('click', () => {
+                showOaOnly = !showOaOnly;
+                updateOaBtnUI();
+                filterAndSortPapers();
+            });
+        }
+
+        // Keyboard shortcuts: '/' to focus search, 'Escape' to clear search
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                e.preventDefault();
+                searchInput.focus();
+                searchInput.select();
+            } else if (e.key === 'Escape' && document.activeElement === searchInput) {
+                searchInput.value = '';
+                searchQuery = '';
+                searchInput.blur();
+                filterAndSortPapers();
+            }
+        });
+
         // URL Query Parameter Synchronization
         function syncUrlParams() {
             const params = new URLSearchParams();
@@ -729,6 +811,7 @@
             if (selectedModality !== 'all') params.set('mod', selectedModality);
             if (currentSort !== 'date-desc') params.set('sort', currentSort);
             if (showSavedOnly) params.set('saved', '1');
+            if (showOaOnly) params.set('oa', '1');
 
             const qStr = params.toString();
             const newUrl = window.location.pathname + (qStr ? '?' + qStr : '');
@@ -773,6 +856,10 @@
                 savedFilterBtn.classList.add('active', 'btn-warning', 'text-dark');
                 savedFilterBtn.classList.remove('btn-outline-warning');
             }
+            if (params.get('oa') === '1') {
+                showOaOnly = true;
+                updateOaBtnUI();
+            }
         }
 
         function updateModalityUI() {
@@ -810,6 +897,7 @@
                 const category = card.dataset.category || '';
                 const trl = parseInt(card.dataset.trl) || 1;
                 const doi = (card.dataset.doi || '').toLowerCase();
+                const pdf = (card.dataset.pdf || '').trim();
                 const fullAuthors = (card.dataset.authors || '').toLowerCase();
                 const venue = (card.dataset.venue || '').toLowerCase();
                 const modalities = (card.dataset.modalities || '').split('|');
@@ -829,8 +917,9 @@
                 let modalityMatch = (selectedModality === 'all') || modalities.includes(selectedModality);
                 let searchMatch = !searchQuery || cardText.includes(searchQuery);
                 let savedMatch = !showSavedOnly || (doi && savedPapers.has(doi));
+                let oaMatch = !showOaOnly || Boolean(pdf);
 
-                if (categoryMatch && trlMatch && modalityMatch && searchMatch && savedMatch) {
+                if (categoryMatch && trlMatch && modalityMatch && searchMatch && savedMatch && oaMatch) {
                     card.style.display = '';
                     visibleCount++;
                 } else {
@@ -967,6 +1056,7 @@
             searchQuery = '';
             currentSort = 'date-desc';
             showSavedOnly = false;
+            showOaOnly = false;
 
             searchInput.value = '';
             sortSelect.value = 'date-desc';
@@ -981,6 +1071,7 @@
                 savedFilterBtn.classList.remove('active', 'btn-warning', 'text-dark');
                 savedFilterBtn.classList.add('btn-outline-warning');
             }
+            updateOaBtnUI();
 
             filterAndSortPapers();
         }

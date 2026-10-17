@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Repair archive papers by verifying DOIs and looking up correct DOIs
-using Crossref bibliographic search (free, keyless) and Perplexity API (optional fallback).
+Repair archive papers by verifying DOIs (using local cache first) and looking up correct DOIs
+using Crossref and OpenAlex bibliographic search (free, keyless) and Perplexity API (optional fallback).
 Never destroys or wipes out historical archive files.
 """
 
@@ -15,11 +15,12 @@ import urllib.parse
 import urllib.error
 from pathlib import Path
 from src.monitor import LiteratureMonitor
+from verify_dois import compute_title_similarity, load_cache, save_cache
 
 ARCHIVE_DIR = "src/archive"
 REPORT_FILE = "repair_report.json"
 CACHE_FILE = "doi_verification_cache.json"
-USER_AGENT = "LiteratureMonitor/1.0 (mailto:contact@example.com)"
+USER_AGENT = "LiteratureMonitor/2.0 (mailto:literature-monitor@example.com)"
 
 PPLX_API_KEY = os.getenv("PPLX_API_KEY")
 if not PPLX_API_KEY and Path('.env').exists():
@@ -33,32 +34,8 @@ if not PPLX_API_KEY and Path('.env').exists():
         pass
 
 
-def clean_title(t):
-    if not t:
-        return ""
-    t = t.strip().strip('*').strip()
-    t = re.sub(r'\[\d+\]', '', t)
-    return re.sub(r'\s+', ' ', t).strip()
-
-
-def compute_title_similarity(t1, t2):
-    c1 = re.sub(r'[^a-z0-9 ]', '', clean_title(t1).lower())
-    c2 = re.sub(r'[^a-z0-9 ]', '', clean_title(t2).lower())
-    if not c1 or not c2:
-        return 0.0
-    if c1 in c2 or c2 in c1:
-        return 1.0
-    w1 = set(c1.split())
-    w2 = set(c2.split())
-    if not w1 or not w2:
-        return 0.0
-    jaccard = len(w1 & w2) / len(w1 | w2)
-    seq = difflib.SequenceMatcher(None, c1, c2).ratio()
-    return max(jaccard, seq)
-
-
-def verify_doi(doi, paper_title=None):
-    """Verify a DOI against CrossRef API, optionally validating title similarity."""
+def verify_doi(doi, paper_title=None, cache=None):
+    """Verify a DOI against local cache or CrossRef API, validating title similarity."""
     if not doi:
         return ("INVALID", None)
 
@@ -68,6 +45,17 @@ def verify_doi(doi, paper_title=None):
     if not doi.startswith('10.'):
         return ("INVALID", None)
 
+    if cache is not None and doi in cache:
+        cached_entry = cache[doi]
+        c_status = cached_entry.get('status')
+        c_details = cached_entry.get('details')
+        if c_status in ("VERIFIED", "PREPRINT") and isinstance(c_details, dict):
+            real_title = c_details.get('real_title', '')
+            if paper_title and real_title:
+                if compute_title_similarity(paper_title, real_title) < 0.70:
+                    return ("MISMATCH", real_title)
+            return (c_status, real_title)
+
     try:
         url = f"https://api.crossref.org/works/{doi}"
         req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
@@ -76,9 +64,19 @@ def verify_doi(doi, paper_title=None):
                 data = json.loads(response.read().decode('utf-8'))
                 msg = data.get('message', {})
                 title = (msg.get('title') or [''])[0]
+                sub = (msg.get('subtitle') or [''])[0]
+                if sub and sub.lower() not in title.lower():
+                    title = f"{title}: {sub}"
+                title = re.sub(r'\s+', ' ', title).strip()
+                if cache is not None:
+                    cache[doi] = {
+                        'status': 'VERIFIED',
+                        'details': {'real_title': title},
+                        'checked_at': time.time()
+                    }
                 if paper_title:
                     sim = compute_title_similarity(paper_title, title)
-                    if sim < 0.40:
+                    if sim < 0.70:
                         return ("MISMATCH", title)
                 return ("VERIFIED", title)
     except urllib.error.HTTPError as e:
@@ -103,7 +101,7 @@ def find_doi_crossref(title, authors=""):
             query_str = f"{title} {first_author}"
 
         encoded_query = urllib.parse.quote(query_str)
-        url = f"https://api.crossref.org/works?query.bibliographic={encoded_query}&rows=2"
+        url = f"https://api.crossref.org/works?query.bibliographic={encoded_query}&rows=3"
         req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
 
         with urllib.request.urlopen(req, timeout=10) as response:
@@ -113,16 +111,37 @@ def find_doi_crossref(title, authors=""):
                 for item in items:
                     candidate_doi = item.get('DOI', '').strip()
                     candidate_title = (item.get('title') or [''])[0].strip()
+                    sub = (item.get('subtitle') or [''])[0].strip()
+                    if sub and sub.lower() not in candidate_title.lower():
+                        candidate_title = f"{candidate_title}: {sub}"
 
-                    # Check title similarity
-                    ratio = difflib.SequenceMatcher(
-                        None, title.lower(), candidate_title.lower()
-                    ).ratio()
-
-                    if ratio > 0.65 and candidate_doi:
+                    if compute_title_similarity(title, candidate_title) >= 0.75 and candidate_doi:
                         return candidate_doi
-    except Exception as e:
-        logger_debug = str(e)
+    except Exception:
+        pass
+
+    return None
+
+
+def find_doi_openalex(title):
+    """Search OpenAlex (keyless) for the exact paper title and return its canonical DOI."""
+    if not title or len(title) < 8:
+        return None
+
+    try:
+        encoded_title = urllib.parse.quote(title)
+        url = f"https://api.openalex.org/works?search={encoded_title}&per-page=3&mailto=literature-monitor@example.com"
+        req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
+        with urllib.request.urlopen(req, timeout=10) as response:
+            if response.status == 200:
+                data = json.loads(response.read().decode('utf-8'))
+                for item in data.get('results', []):
+                    cand_title = (item.get('title') or '').strip()
+                    raw_doi = (item.get('doi') or '').replace('https://doi.org/', '').strip()
+                    if raw_doi and compute_title_similarity(title, cand_title) >= 0.75:
+                        return raw_doi
+    except Exception:
+        pass
 
     return None
 
@@ -180,11 +199,13 @@ def main():
     monitor = LiteratureMonitor(provider="crossref")
     archive_path = Path(ARCHIVE_DIR)
     archive_files = sorted(archive_path.glob("papers_*.md"))
+    cache = load_cache()
 
     results = {
         'total': 0,
         'verified': 0,
         'repaired_crossref': 0,
+        'repaired_openalex': 0,
         'repaired_pplx': 0,
         'unrepaired': 0
     }
@@ -208,7 +229,7 @@ def main():
             doi = monitor._normalize_doi(paper.get('doi', ''))
             paper['doi'] = doi
 
-            status, _ = verify_doi(doi, paper_title=paper['title'])
+            status, _ = verify_doi(doi, paper_title=paper['title'], cache=cache)
             if status in ("VERIFIED", "PREPRINT"):
                 results['verified'] += 1
                 continue
@@ -219,11 +240,23 @@ def main():
             new_doi = find_doi_crossref(paper['title'], '; '.join(paper.get('authors', [])))
 
             if new_doi:
-                v_status, _ = verify_doi(new_doi, paper_title=paper['title'])
+                v_status, _ = verify_doi(new_doi, paper_title=paper['title'], cache=cache)
                 if v_status in ("VERIFIED", "PREPRINT"):
                     print(f"  ✓ Crossref Repaired: {new_doi}")
                     paper['doi'] = new_doi
                     results['repaired_crossref'] += 1
+                    file_changed = True
+                    continue
+
+            # Attempt repair via OpenAlex (keyless)
+            time.sleep(0.15)
+            oa_doi = find_doi_openalex(paper['title'])
+            if oa_doi:
+                v_status, _ = verify_doi(oa_doi, paper_title=paper['title'], cache=cache)
+                if v_status in ("VERIFIED", "PREPRINT"):
+                    print(f"  ✓ OpenAlex Repaired: {oa_doi}")
+                    paper['doi'] = oa_doi
+                    results['repaired_openalex'] += 1
                     file_changed = True
                     continue
 
@@ -232,7 +265,7 @@ def main():
                 time.sleep(0.2)
                 pplx_doi = find_doi_perplexity(paper['title'], '; '.join(paper.get('authors', [])))
                 if pplx_doi:
-                    v_status, _ = verify_doi(pplx_doi, paper_title=paper['title'])
+                    v_status, _ = verify_doi(pplx_doi, paper_title=paper['title'], cache=cache)
                     if v_status in ("VERIFIED", "PREPRINT"):
                         print(f"  ✓ Perplexity Repaired: {pplx_doi}")
                         paper['doi'] = pplx_doi
@@ -265,9 +298,13 @@ def main():
                         f.write(f"**TRL:** {p.get('trl', 1)}\n")
                         f.write(f"**Keywords:** {', '.join(p.get('keywords', []))}\n")
                         f.write(f"**Summary:** {p.get('summary', '')}\n")
+                        if p.get('pdf_url'):
+                            f.write(f"**PDF:** {p['pdf_url']}\n")
                         f.write("---\n\n")
 
             print(f"  Updated {filepath.name} with repaired DOIs.")
+
+    save_cache(cache)
 
     print("\n" + "=" * 60)
     print("REPAIR SUMMARY")
@@ -275,6 +312,7 @@ def main():
     print(f"Total Papers Processed:    {results['total']}")
     print(f"Already Verified:          {results['verified']}")
     print(f"Repaired via Crossref:     {results['repaired_crossref']}")
+    print(f"Repaired via OpenAlex:     {results['repaired_openalex']}")
     print(f"Repaired via Perplexity:   {results['repaired_pplx']}")
     print(f"Unrepaired (retained):     {results['unrepaired']}")
 

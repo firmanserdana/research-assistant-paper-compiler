@@ -12,3 +12,4 @@ dist/
 build/
 *.log
 .pytest_cache/
+repair_report.json

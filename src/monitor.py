@@ -1099,11 +1099,16 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
             category_name = self._categorize(paper)
             collection_id = self._get_or_create_collection(category_name)
 
+            doi = paper.get('doi', '')
             item = {
                 'itemType': 'journalArticle',
                 'title': paper['title'],
                 'creators': creators,
-                'DOI': paper['doi'],
+                'DOI': doi,
+                'abstractNote': paper.get('summary', ''),
+                'publicationTitle': paper.get('venue', ''),
+                'date': str(paper.get('pub_year') or datetime.now().year),
+                'url': paper.get('pdf_url') or (f"https://doi.org/{doi}" if doi else ""),
                 'tags': [{'tag': k} for k in paper.get('keywords', [])],
                 'collections': [collection_id] if collection_id else [],
                 'extra': f"TRL: {paper.get('trl', 1)} | Added: {datetime.now().isoformat()}"
@@ -1116,41 +1121,68 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
             return None
 
     def _get_or_create_collection(self, category_name):
-        """Get or create a Zotero collection by name."""
+        """Get or create a Zotero collection by name, with in-memory caching."""
         if not self.zot:
             return None
         try:
-            collections = self.zot.collections()
-            for col in collections:
-                if col.get('data', {}).get('name') == category_name:
-                    return col['key']
+            if not hasattr(self, '_zotero_collection_cache'):
+                self._zotero_collection_cache = {}
+                for col in self.zot.collections():
+                    c_name = col.get('data', {}).get('name')
+                    if c_name and col.get('key'):
+                        self._zotero_collection_cache[c_name] = col['key']
+
+            if category_name in self._zotero_collection_cache:
+                return self._zotero_collection_cache[category_name]
 
             res = self.zot.create_collections([{'name': category_name}])
             if res and 'successful' in res and res['successful']:
-                return res['successful']['0']
+                key = res['successful']['0']
+                if isinstance(key, dict):
+                    key = key.get('key')
+                self._zotero_collection_cache[category_name] = key
+                return key
             return None
         except Exception as e:
             logger.error(f"Error with Zotero collection: {str(e)}")
             return None
 
-    def _create_archive_file(self, papers_with_summaries):
-        """Create a markdown archive file with paper summaries."""
+    def _create_archive_file(self, papers_with_summaries, archive_dir='src/archive'):
+        """Create or merge into today's markdown archive file without overwriting earlier same-day papers."""
         try:
-            archive_dir = 'src/archive'
             os.makedirs(archive_dir, exist_ok=True)
             today_str = datetime.now().strftime('%Y-%m-%d')
-            filename = f"{archive_dir}/papers_{today_str}.md"
+            filename = os.path.join(archive_dir, f"papers_{today_str}.md")
+
+            merged_by_doi = {}
+            if os.path.exists(filename):
+                try:
+                    with open(filename, 'r', encoding='utf-8') as existing_f:
+                        existing_papers = self._parse_archive_markdown(existing_f.read())
+                    for ep in existing_papers:
+                        ep_doi = self._normalize_doi(ep.get('doi', '')).lower()
+                        if ep_doi:
+                            merged_by_doi[ep_doi] = ep
+                except Exception as e:
+                    logger.warning(f"Could not read existing archive {filename} for merge: {e}")
+
+            for paper in papers_with_summaries:
+                p_doi = self._normalize_doi(paper.get('doi', '')).lower()
+                if p_doi:
+                    merged_by_doi[p_doi] = paper
+
+            all_today_papers = list(merged_by_doi.values()) if merged_by_doi else list(papers_with_summaries)
 
             # Group papers by category
             categories = {}
-            for paper in papers_with_summaries:
+            for paper in all_today_papers:
                 cat = self._categorize(paper)
                 categories.setdefault(cat, []).append(paper)
 
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(f"# Research Papers Compilation - {datetime.now().strftime('%B %d, %Y')}\n\n")
                 f.write("## Summary\n")
-                f.write(f"This compilation contains {len(papers_with_summaries)} new papers in biorobotics research.\n\n")
+                f.write(f"This compilation contains {len(all_today_papers)} new papers in biorobotics research.\n\n")
 
                 for cat, plist in categories.items():
                     f.write(f"## {cat} ({len(plist)} papers)\n\n")
@@ -1165,7 +1197,7 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                             f.write(f"**PDF:** {paper['pdf_url']}\n")
                         f.write("---\n\n")
 
-            logger.info(f"Created archive file: {filename}")
+            logger.info(f"Created archive file: {filename} ({len(all_today_papers)} papers)")
             return filename
         except Exception as e:
             logger.error(f"Failed to create archive file: {str(e)}")
@@ -1632,6 +1664,11 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                     continue
 
                 parsed_papers = self._parse_response(response_text)
+                if not parsed_papers and self.provider not in ("openalex", "crossref", "arxiv"):
+                    logger.warning(f"No verified papers from {self.provider} for '{term}'; falling back to OpenAlex.")
+                    fallback_text = self._openalex_search(term, rows=self.limit or 10)
+                    parsed_papers = self._parse_response(fallback_text) if fallback_text else []
+
                 if self.limit:
                     parsed_papers = parsed_papers[:self.limit]
 

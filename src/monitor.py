@@ -561,7 +561,8 @@ IMPORTANT:
             if tokens:
                 query_expr = "+AND+".join(f"all:{urllib.parse.quote(t)}" for t in tokens)
             else:
-                query_expr = f"all:{urllib.parse.quote(term.replace('\"', '').strip())}"
+                stripped_term = term.replace('"', '').strip()
+                query_expr = f"all:{urllib.parse.quote(stripped_term)}"
             fetch_count = max(max_results * 3, 10) if max_results > 1 else max_results
             url = (
                 f"https://export.arxiv.org/api/query?"

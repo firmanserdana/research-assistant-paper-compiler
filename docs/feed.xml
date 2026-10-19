@@ -5,8 +5,32 @@
     <link>https://firmanserdana.github.io/research-assistant-paper-compiler/</link>
     <description>Automated academic literature tracking, verification, and web portal compilation for biorobotics, neural decoding, and neuroprosthetics research.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2026 09:43:41 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 04:21:04 GMT</lastBuildDate>
     <atom:link href="https://firmanserdana.github.io/research-assistant-paper-compiler/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Physiology-aware latent shift adaptation for sEMG-based hand kinematics decoding across able-bodied and amputee populations</title>
+      <link>https://doi.org/10.1088/1741-2552/ae6ff2</link>
+      <guid isPermaLink="true">https://doi.org/10.1088/1741-2552/ae6ff2</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Wuyue Zhang; Tian Gao; Jiang Wang; Bin Deng; Tianshi Gao</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 6</p><p><strong>Summary:</strong> Abstract Objective . Decoding continuous hand kinematics from surface electromyography (sEMG) across able-bodied and amputee populations remains a significant challenge, as amputation induces systematic alterations in neural drive and muscle activation patterns that reshape the generative relationship between motor intentions and observed sEMG signals. Such physiology-driven changes are not explicitly modeled by purely statistical domain alignmen...</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1088/1741-2552/ae6ff2">10.1088/1741-2552/ae6ff2</a></p><p><strong>PDF:</strong> <a href="https://iopscience.iop.org/article/10.1088/1741-2552/ae6ff2/pdf">Open Access PDF</a></p>]]></description>
+    </item>
+    <item>
+      <title>Finger Kinematics during Human Hand Grip and Release</title>
+      <link>https://doi.org/10.3390/biomimetics8020244</link>
+      <guid isPermaLink="true">https://doi.org/10.3390/biomimetics8020244</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Xiaodong Li; Rongwei Wen; Dehao Duanmu; Wei Huang; Kinto Wan; Yong Hu</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> A bionic robotic hand can perform many movements similar to a human hand. However, there is still a significant gap in manipulation between robot and human hands. It is necessary to understand the finger kinematics and motion patterns of human hands to improve the performance of robotic hands. This study aimed to comprehensively investigate normal hand motion patterns by evaluating the kinematics of hand grip and release in healthy individuals. T...</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3390/biomimetics8020244">10.3390/biomimetics8020244</a></p>]]></description>
+    </item>
+    <item>
+      <title>Effective and efficient intracortical brain signal decoding with spiking neural networks</title>
+      <link>https://doi.org/10.1016/j.neucom.2026.134374</link>
+      <guid isPermaLink="true">https://doi.org/10.1016/j.neucom.2026.134374</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Haotian Fu; Peng Zhang; Song Yang; Herui Zhang; Ziwei Wang; Dongrui Wu</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> Technical research in Intracortical Decoding on Hand and Finger Kinematics examining Effective and efficient intracortical brain signal decoding with spiking neural networks.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.neucom.2026.134374">10.1016/j.neucom.2026.134374</a></p>]]></description>
+    </item>
     <item>
       <title>Effectiveness Of Robotic Assisted Gait Training In Spinal Cord Injured Patients – A Literature Review</title>
       <link>https://doi.org/10.55248/gengpi.6.0625.23105</link>
@@ -382,30 +406,6 @@
       <pubDate>Mon, 21 Jul 2025 00:00:00 GMT</pubDate>
       <category>EMG Decoding on Spinal Cord Injured Patients</category>
       <description><![CDATA[<p><strong>Authors:</strong> Antonio Gogeascoechea; Alexander Kuck; Edwin van Asseldonk; Francesco Negro; Jan R. Buitenweg; Utku S. Yavuz; Massimo Sartori</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper introduces a novel non-invasive methodology for decoding and analyzing individual alpha motor neuron (α-MN) spike trains in spinal cord injury (SCI) patients, leveraging advanced EMG decomposition and frequency-domain analysis to directly assess α-MN behavior in vivo. This approach enables real-time, closed-loop modulation of spinal cord excitability by optimizing electrical stimulation parameters based on direct neural feedback, potentially transforming personalized neurorehabilitation and advancing biorobotics by providing a precise neural interface for controlling assistive devices. The key innovation lies in the ability to non-invasively monitor and modulate individual α-MNs, paving the way for adaptive, model-based control strategies in rehabilitation and biorobotic applications.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3389/fneur.2020.00493">10.3389/fneur.2020.00493</a></p><p><strong>PDF:</strong> <a href="https://www.frontiersin.org/articles/10.3389/fneur.2020.00493/pdf">Open Access PDF</a></p>]]></description>
-    </item>
-    <item>
-      <title>Decoding the brain-machine interaction for upper limb assistive technologies: advances and challenges</title>
-      <link>https://doi.org/10.3389/fnhum.2025.1532783</link>
-      <guid isPermaLink="true">https://doi.org/10.3389/fnhum.2025.1532783</guid>
-      <pubDate>Mon, 14 Jul 2025 00:00:00 GMT</pubDate>
-      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Sutirtha Ghosh; Rohit Kumar Yadav; Sunaina Soni; Shivangi Giri; Suriya Prakash Muthukrishnan; Lalan Kumar; Shubhendu Bhasin; Sitikantha Roy</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> This paper presents recent advances in decoding brain-machine interactions for upper limb assistive robotics by leveraging intracortical microelectrode signals, focusing on sophisticated signal processing and deep learning-based decoding algorithms to translate neural activity into precise robotic commands. The key innovation lies in integrating advanced neural decoders—such as deep neural networks and hybrid approaches combining deep learning with Kalman filters—to improve the accuracy and reliability of continuous hand movement control, which holds significant promise for enhancing assistive technologies for individuals with tetraplegia and advancing the field of biorobotics.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3389/fnhum.2025.1532783">10.3389/fnhum.2025.1532783</a></p><p><strong>PDF:</strong> <a href="https://public-pages-files-2025.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2025.1532783/pdf">Open Access PDF</a></p>]]></description>
-    </item>
-    <item>
-      <title>Surgically Implanted Electrodes Enable Real-Time Finger and Grasp Pattern Recognition for Prosthetic Hands</title>
-      <link>https://doi.org/10.1109/tro.2022.3170720</link>
-      <guid isPermaLink="true">https://doi.org/10.1109/tro.2022.3170720</guid>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
-      <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Alex K. Vaskov; Philip P. Vu; Naia North; Alicia J. Davis; Theodore A. Kung; Deanna H. Gates; Paul S. Cederna; Cynthia A. Chestek</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 6</p><p><strong>Summary:</strong> This paper demonstrates that surgically implanted electrodes can record high-quality, finger-specific electromyography (EMG) signals, enabling reliable and intuitive control of upper limb prostheses with impressive accuracy (up to 97.9%) and low latency (as little as 135 ms). The research shows that pattern recognition systems can effectively utilize EMG signals from intramuscular electrodes and Regenerative Peripheral Nerve Interfaces (RPNIs) to provide users with fast and accurate grasp control, representing a significant advancement over traditional surface EMG approaches that often result in cumbersome or unreliable prosthetic control. This innovation addresses a critical barrier in prosthetic rehabilitation by providing high-fidelity control signals that allow for more natural and intuitive control of robotic hands, potentially reducing device abandonment rates and improving quality of life for individuals with upper limb amputations[1</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/tro.2022.3170720">10.1109/tro.2022.3170720</a></p><p><strong>PDF:</strong> <a href="https://www.medrxiv.org/content/medrxiv/early/2020/11/03/2020.10.28.20217273.full.pdf">Open Access PDF</a></p>]]></description>
-    </item>
-    <item>
-      <title>Decoding of finger, hand and arm kinematics using switching linear dynamical systems with pre-motor cortical ensembles</title>
-      <link>https://doi.org/10.1109/embc.2012.6346283</link>
-      <guid isPermaLink="true">https://doi.org/10.1109/embc.2012.6346283</guid>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
-      <category>Intracortical Decoding on Hand and Finger Kinematics</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Xiaoxu Kang; M. H. Schieber; N. V. Thakor</p><p><strong>Category:</strong> Intracortical Decoding on Hand and Finger Kinematics | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper introduces a **switching linear dynamical systems (S-LDS) framework** for decoding finger, hand, and arm kinematics from intracortical neural signals, offering a significant advance over traditional single Kalman filter approaches by modeling motion as a sequence of discrete states, each with its own linear dynamics. The key innovation is leveraging the observability of both discrete and continuous states during training, which simplifies inference and enables **motion-state-dependent adaptive decoding** with higher accuracy, making it highly promising for real-time brain–machine interfaces and adaptive control in biorobotics and prosthetic devices.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/embc.2012.6346283">10.1109/embc.2012.6346283</a></p><p><strong>PDF:</strong> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/4216179">Open Access PDF</a></p>]]></description>
     </item>
   </channel>
 </rss>

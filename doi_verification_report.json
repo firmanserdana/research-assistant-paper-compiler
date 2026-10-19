@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total": 175,
-    "unique_dois": 83,
-    "verified": 169,
+    "total": 178,
+    "unique_dois": 86,
+    "verified": 172,
     "preprints": 6,
     "fake": 0,
     "invalid": 0,
@@ -6254,6 +6254,98 @@
           "Anlitta C Johnson",
           "Nischitha R Rao",
           "Sreshtta Tinson"
+        ]
+      }
+    },
+    {
+      "title": "Finger Kinematics during Human Hand Grip and Release",
+      "category": "Intracortical Decoding on Hand and Finger Kinematics",
+      "authors": [
+        "Xiaodong Li",
+        "Rongwei Wen",
+        "Dehao Duanmu",
+        "Wei Huang",
+        "Kinto Wan",
+        "Yong Hu"
+      ],
+      "doi": "10.3390/biomimetics8020244",
+      "trl": 3,
+      "keywords": [
+        "Intracortical Decoding on Hand and Finger kinematics"
+      ],
+      "summary": "A bionic robotic hand can perform many movements similar to a human hand. However, there is still a significant gap in manipulation between robot and human hands. It is necessary to understand the finger kinematics and motion patterns of human hands to improve the performance of robotic hands. This study aimed to comprehensively investigate normal hand motion patterns by evaluating the kinematics of hand grip and release in healthy individuals. T...",
+      "pdf_url": "",
+      "source_file": "papers_2026-10-19.md",
+      "normalized_doi": "10.3390/biomimetics8020244",
+      "title_similarity": 1.0,
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Finger Kinematics during Human Hand Grip and Release",
+        "real_authors": [
+          "Xiaodong Li",
+          "Rongwei Wen",
+          "Dehao Duanmu"
+        ]
+      }
+    },
+    {
+      "title": "Physiology-aware latent shift adaptation for sEMG-based hand kinematics decoding across able-bodied and amputee populations",
+      "category": "Intracortical Decoding on Hand and Finger Kinematics",
+      "authors": [
+        "Wuyue Zhang",
+        "Tian Gao",
+        "Jiang Wang",
+        "Bin Deng",
+        "Tianshi Gao"
+      ],
+      "doi": "10.1088/1741-2552/ae6ff2",
+      "trl": 6,
+      "keywords": [
+        "Intracortical Decoding on Hand and Finger kinematics"
+      ],
+      "summary": "Abstract Objective . Decoding continuous hand kinematics from surface electromyography (sEMG) across able-bodied and amputee populations remains a significant challenge, as amputation induces systematic alterations in neural drive and muscle activation patterns that reshape the generative relationship between motor intentions and observed sEMG signals. Such physiology-driven changes are not explicitly modeled by purely statistical domain alignmen...",
+      "pdf_url": "https://iopscience.iop.org/article/10.1088/1741-2552/ae6ff2/pdf",
+      "source_file": "papers_2026-10-19.md",
+      "normalized_doi": "10.1088/1741-2552/ae6ff2",
+      "title_similarity": 1.0,
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Physiology-aware latent shift adaptation for sEMG-based hand kinematics decoding across able-bodied and amputee populations",
+        "real_authors": [
+          "Wuyue Zhang",
+          "Tian Gao",
+          "Jiang Wang"
+        ]
+      }
+    },
+    {
+      "title": "Effective and efficient intracortical brain signal decoding with spiking neural networks",
+      "category": "Intracortical Decoding on Hand and Finger Kinematics",
+      "authors": [
+        "Haotian Fu",
+        "Peng Zhang",
+        "Song Yang",
+        "Herui Zhang",
+        "Ziwei Wang",
+        "Dongrui Wu"
+      ],
+      "doi": "10.1016/j.neucom.2026.134374",
+      "trl": 3,
+      "keywords": [
+        "Intracortical Decoding on Hand and Finger kinematics"
+      ],
+      "summary": "Technical research in Intracortical Decoding on Hand and Finger Kinematics examining Effective and efficient intracortical brain signal decoding with spiking neural networks.",
+      "pdf_url": "",
+      "source_file": "papers_2026-10-19.md",
+      "normalized_doi": "10.1016/j.neucom.2026.134374",
+      "title_similarity": 1.0,
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Effective and efficient intracortical brain signal decoding with spiking neural networks",
+        "real_authors": [
+          "Haotian Fu",
+          "Peng Zhang",
+          "Song Yang"
         ]
       }
     }

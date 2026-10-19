@@ -1352,5 +1352,41 @@
       ]
     },
     "checked_at": 1792177955.97847
+  },
+  "10.3390/biomimetics8020244": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Finger Kinematics during Human Hand Grip and Release",
+      "real_authors": [
+        "Xiaodong Li",
+        "Rongwei Wen",
+        "Dehao Duanmu"
+      ]
+    },
+    "checked_at": 1792383663.4060142
+  },
+  "10.1088/1741-2552/ae6ff2": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Physiology-aware latent shift adaptation for sEMG-based hand kinematics decoding across able-bodied and amputee populations",
+      "real_authors": [
+        "Wuyue Zhang",
+        "Tian Gao",
+        "Jiang Wang"
+      ]
+    },
+    "checked_at": 1792383663.6508098
+  },
+  "10.1016/j.neucom.2026.134374": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Effective and efficient intracortical brain signal decoding with spiking neural networks",
+      "real_authors": [
+        "Haotian Fu",
+        "Peng Zhang",
+        "Song Yang"
+      ]
+    },
+    "checked_at": 1792383663.9007285
   }
 }

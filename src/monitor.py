@@ -58,6 +58,7 @@ class LiteratureMonitor:
         "crossref": None,
         "arxiv": None,
         "openalex": None,
+        "semanticscholar": None,
     }
 
     def __init__(self, model=None, provider="auto", dry_run=False, limit=None, skip_zotero=False, include_arxiv=False):
@@ -66,7 +67,7 @@ class LiteratureMonitor:
 
         Args:
             model (str, optional): The AI model to use. Defaults to provider default.
-            provider (str): AI provider - "auto", "perplexity", "gemini", "anthropic", "openai", "ollama", "crossref", "arxiv", or "openalex"
+            provider (str): AI provider - "auto", "perplexity", "gemini", "anthropic", "openai", "ollama", "crossref", "arxiv", "openalex", or "semanticscholar"
             dry_run (bool): Run without modifying archive files or syncing to Zotero.
             limit (int, optional): Maximum papers to retrieve per search term.
             skip_zotero (bool): Skip Zotero syncing even if credentials exist.
@@ -107,7 +108,7 @@ class LiteratureMonitor:
 
         self.provider = provider
         self.model = model or self.PROVIDER_DEFAULT_MODELS.get(provider, "sonar-pro")
-        self.client = None if provider in ("crossref", "arxiv", "openalex") else self._get_client(provider)
+        self.client = None if provider in ("crossref", "arxiv", "openalex", "semanticscholar") else self._get_client(provider)
 
         # Setup Zotero client if credentials exist and sync is not skipped
         self.zot = None
@@ -501,14 +502,102 @@ class LiteratureMonitor:
             logger.error(f"OpenAlex query error for {term}: {e}")
             return ""
 
+    def _semanticscholar_search(self, term, rows=15):
+        """Find scholarly works via Semantic Scholar Graph API with TL;DRs, citations, and OpenAlex fallback."""
+        try:
+            headers = {"User-Agent": "LiteratureMonitor/2.0 (mailto:literature-monitor@example.com)"}
+            s2_key = os.getenv("S2_API_KEY")
+            if s2_key:
+                headers["x-api-key"] = s2_key
+
+            response = requests.get(
+                "https://api.semanticscholar.org/graph/v1/paper/search",
+                params={
+                    "query": term,
+                    "limit": rows,
+                    "fields": "title,authors,externalIds,abstract,year,venue,citationCount,openAccessPdf,tldr,fieldsOfStudy"
+                },
+                timeout=15,
+                headers=headers,
+            )
+            response.raise_for_status()
+            items = response.json().get("data", [])
+            records = []
+            for item in items:
+                title = self._clean_jats_abstract((item.get("title") or "").strip())
+                ext_ids = item.get("externalIds") or {}
+                raw_doi = (ext_ids.get("DOI") or "").strip()
+                if not raw_doi and ext_ids.get("ArXiv"):
+                    raw_doi = f"10.48550/arXiv.{ext_ids['ArXiv']}"
+                doi = self._normalize_doi(raw_doi)
+                authors = [
+                    (a.get("name") or "").strip()
+                    for a in (item.get("authors") or [])
+                    if (a.get("name") or "").strip()
+                ]
+                if not title or not doi or not authors:
+                    continue
+
+                tldr_obj = item.get("tldr") or {}
+                tldr_text = self._clean_jats_abstract((tldr_obj.get("text") or "").strip())
+                clean_abstract = self._clean_jats_abstract((item.get("abstract") or "").strip())
+                summary_text = clean_abstract or tldr_text
+
+                fields = [f for f in (item.get("fieldsOfStudy") or []) if isinstance(f, str)]
+                keywords = fields[:5] or [term]
+
+                if not self._is_relevant_to_biorobotics(title, summary_text, keywords):
+                    continue
+
+                trl = self._estimate_trl(title, summary_text, keywords)
+                oa_obj = item.get("openAccessPdf") or {}
+                pdf_url = (oa_obj.get("url") or "").strip()
+                venue = (item.get("venue") or "").strip()
+                pub_year = str(item.get("year") or "")
+                citations = int(item.get("citationCount") or 0)
+
+                if not hasattr(self, "_runtime_scholarly_cache"):
+                    self._runtime_scholarly_cache = {}
+                self._runtime_scholarly_cache[doi.lower()] = {
+                    "pub_year": pub_year,
+                    "venue": venue,
+                    "citations": citations,
+                    "oa_url": pdf_url,
+                }
+
+                record_lines = [
+                    f"Title: {title}",
+                    f"Authors: {'; '.join(authors)}",
+                    f"DOI: {doi}",
+                    f"TRL: {trl}",
+                    f"Keywords: {', '.join(keywords)}"
+                ]
+                if summary_text:
+                    snippet = summary_text[:450] + ("..." if len(summary_text) > 450 else "")
+                    record_lines.append(f"Summary: {snippet}")
+                if pdf_url:
+                    record_lines.append(f"PDF: {pdf_url}")
+
+                record_lines.append("")
+                records.extend(record_lines)
+
+            if records:
+                return "\n".join(records)
+            return self._openalex_search(term, rows=rows)
+        except Exception as e:
+            logger.warning(f"Semantic Scholar unavailable for '{term}' ({e}); falling back to OpenAlex...")
+            return self._openalex_search(term, rows=rows)
+
     def _deep_research_query(self, term):
-        """Query AI provider, arXiv, OpenAlex, or Crossref for recent papers on a specific term."""
+        """Query AI provider, arXiv, OpenAlex, Semantic Scholar, or Crossref for recent papers on a specific term."""
         try:
             logger.info(f"Researching term: {term}")
             if self.provider == "arxiv":
                 return (term, self._arxiv_search(term, max_results=self.limit or 10))
             elif self.provider == "openalex":
                 return (term, self._openalex_search(term, rows=self.limit or 15))
+            elif self.provider == "semanticscholar":
+                return (term, self._semanticscholar_search(term, rows=self.limit or 15))
             elif self.provider == "crossref":
                 return (term, self._crossref_search(term, rows=self.limit or 15))
 
@@ -854,7 +943,7 @@ IMPORTANT:
                 return False
 
         # Verify DOI and title match against Crossref when using AI provider
-        if self.provider not in ("crossref", "arxiv") and not any(pre in doi for pre in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
+        if self.provider not in ("crossref", "arxiv", "openalex", "semanticscholar") and not any(pre in doi for pre in ['10.48550/', '10.1101/', '10.31219/', 'arXiv']):
             if not self._verify_doi(doi, expected_title=title):
                 logger.warning(f"Rejecting paper with unverified or mismatched DOI: {title} ({doi})")
                 return False
@@ -1349,6 +1438,36 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
 
         return tags[:3]
 
+    def _extract_tldr(self, paper):
+        """
+        Distill a concise 1-sentence TL;DR takeaway (inspired by Semantic Scholar & daily-arXiv-ai-enhanced)
+        from the paper's summary or title/keywords.
+        """
+        summary = (paper.get("summary") or "").strip()
+        if not summary:
+            kw = ", ".join((paper.get("keywords") or [])[:3])
+            return f"Investigates {paper.get('title', 'biorobotics')[:100]}" + (f" ({kw})." if kw else ".")
+
+        sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', summary) if len(s.strip()) > 20]
+        if not sentences:
+            return summary[:165] + ("..." if len(summary) > 165 else "")
+
+        # Prefer a sentence highlighting concrete findings, performance, or clinical demonstration
+        action_markers = (
+            "demonstrat", "achiev", "enabl", "restor", "improv", "outperform",
+            "show", "accuracy", "real-time", "clinical", "decod", "propos", "present"
+        )
+        chosen = sentences[0]
+        for sent in sentences:
+            sl = sent.lower()
+            if any(m in sl for m in action_markers) and not sl.startswith("recent research in "):
+                chosen = sent
+                break
+
+        if len(chosen) > 175:
+            chosen = chosen[:172].rsplit(" ", 1)[0] + "..."
+        return chosen
+
     def _compute_related_papers(self, unique_papers, top_k=3):
         """
         Precompute the top-K most related papers in the corpus for each paper
@@ -1497,12 +1616,15 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
 
             unique_papers = list(papers_by_doi.values())
 
-            # Enrich every unique paper with OpenAlex/Crossref bibliometrics, evidence TRL, and study modalities
+            # Enrich every unique paper with OpenAlex/Crossref bibliometrics, evidence TRL, TL;DR, and study modalities
             trl_buckets = {"basic": 0, "prototype": 0, "clinical": 0}
             modality_counts = {}
             venue_counts = {}
+            year_counts = {}
             total_citations = 0
             oa_count = 0
+            current_year = datetime.now().year
+            subject_Populations = {"Human / Clinical", "Non-Human Primate", "Preclinical / In Vivo", "Review / Survey"}
 
             for p in unique_papers:
                 doi_key = p['doi'].lower()
@@ -1512,11 +1634,20 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                 fallback_year = (p.get('archive_date') or '2025')[:4]
                 if doi_key.startswith('10.1101/202'):
                     fallback_year = doi_key.split('/')[1][:4]
-                p['pub_year'] = meta.get('pub_year') or p.get('pub_year') or fallback_year
+                p['pub_year'] = str(meta.get('pub_year') or p.get('pub_year') or fallback_year)
                 p['venue'] = meta.get('venue') or p.get('venue') or ('bioRxiv' if doi_key.startswith('10.1101/') else '')
                 p['citations'] = int(meta.get('citations') if meta.get('citations') is not None else (p.get('citations') or 0))
                 if not p.get('pdf_url') and meta.get('oa_url'):
                     p['pdf_url'] = meta['oa_url']
+
+                # Compute Citation Velocity (citations/year)
+                try:
+                    yr_int = int(p['pub_year'][:4])
+                    age = max(1, current_year - yr_int + 1)
+                except Exception:
+                    yr_int = 2025
+                    age = 1
+                p['citations_per_year'] = round(p['citations'] / age, 1)
 
                 # Upgrade generic fallback TRL (1 or 2) using clinical/engineering evidence
                 raw_trl = int(p.get('trl') or 1)
@@ -1525,8 +1656,11 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                 else:
                     p['trl'] = raw_trl
 
-                # Extract structured study modalities
+                # Extract structured study modalities, Elicit-style matrix columns, and 1-sentence TL;DR
                 p['modalities'] = self._extract_modalities(p)
+                p['subject_tag'] = next((m for m in p['modalities'] if m in subject_Populations), "Experimental")
+                p['method_tags'] = [m for m in p['modalities'] if m not in subject_Populations] or p['modalities']
+                p['tldr'] = self._extract_tldr(p)
 
                 # Aggregate analytics metrics
                 trl_val = int(p['trl'])
@@ -1541,6 +1675,8 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                     modality_counts[mod] = modality_counts.get(mod, 0) + 1
                 if p['venue']:
                     venue_counts[p['venue']] = venue_counts.get(p['venue'], 0) + 1
+                yr_bucket = str(yr_int) if yr_int >= 2018 else "≤2017"
+                year_counts[yr_bucket] = year_counts.get(yr_bucket, 0) + 1
                 total_citations += p['citations']
                 if p.get('pdf_url'):
                     oa_count += 1
@@ -1562,11 +1698,13 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
 
             top_venues = sorted(venue_counts.items(), key=lambda x: x[1], reverse=True)[:8]
             sorted_modalities = sorted(modality_counts.items(), key=lambda x: x[1], reverse=True)
+            sorted_years = sorted(year_counts.items(), key=lambda x: (0 if x[0].startswith("≤") else int(x[0])))
 
             analytics = {
                 "trl_buckets": trl_buckets,
                 "modalities": sorted_modalities,
                 "top_venues": top_venues,
+                "year_counts": sorted_years,
                 "total_citations": total_citations,
                 "oa_count": oa_count,
             }
@@ -1598,7 +1736,8 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                     "total_citations": total_citations,
                     "oa_count": oa_count,
                     "categories": categories_map,
-                    "trl_buckets": trl_buckets
+                    "trl_buckets": trl_buckets,
+                    "year_counts": dict(sorted_years)
                 }, f, indent=2)
 
             # Generate RSS feed
@@ -1664,7 +1803,7 @@ Focus on the core engineering innovation, method, and impact for biomedical robo
                     continue
 
                 parsed_papers = self._parse_response(response_text)
-                if not parsed_papers and self.provider not in ("openalex", "crossref", "arxiv"):
+                if not parsed_papers and self.provider not in ("openalex", "crossref", "arxiv", "semanticscholar"):
                     logger.warning(f"No verified papers from {self.provider} for '{term}'; falling back to OpenAlex.")
                     fallback_text = self._openalex_search(term, rows=self.limit or 10)
                     parsed_papers = self._parse_response(fallback_text) if fallback_text else []
@@ -1708,7 +1847,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Biorobotics Literature Monitor & Paper Compiler")
     parser.add_argument(
         "--provider", "-p",
-        choices=["auto", "crossref", "arxiv", "openalex", "perplexity", "gemini", "anthropic", "openai", "ollama"],
+        choices=["auto", "crossref", "arxiv", "openalex", "semanticscholar", "perplexity", "gemini", "anthropic", "openai", "ollama"],
         default="auto",
         help="Scholarly data source or AI provider (default: auto)"
     )

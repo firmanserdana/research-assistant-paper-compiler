@@ -60,6 +60,12 @@ def test_site_generation(monitor, tmp_path):
     assert "card-stat-oa" in html
     assert "star-btn" in html
     assert "feed.xml" in html
+    assert "evidence-matrix-table" in html
+    assert "view-table-btn" in html
+    assert "velocity-desc" in html
+    assert "rec-desc" in html
+    assert "tldr-box" in html
+    assert "connectedpapers.com" in html
 
     with open(update_file, 'r', encoding='utf-8') as f:
         update_data = json.load(f)

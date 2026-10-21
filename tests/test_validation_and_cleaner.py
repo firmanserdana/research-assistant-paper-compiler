@@ -157,4 +157,21 @@ def test_reconstruct_openalex_abstract(monitor):
     assert monitor._reconstruct_openalex_abstract(inv) == "Neural decoding enables dexterous control."
 
 
+def test_extract_tldr_prioritizes_key_findings(monitor):
+    paper = {
+        "title": "Real-time HD-sEMG decoding for tetraplegia",
+        "summary": (
+            "Spinal cord injury impairs hand function in millions of people worldwide. "
+            "We demonstrate a high-density surface EMG decoder that achieves 96.4% finger classification accuracy across 8 tetraplegic patients. "
+            "Future work will expand to home settings."
+        ),
+    }
+    tldr = monitor._extract_tldr(paper)
+    assert "96.4%" in tldr
+    assert len(tldr) <= 200
 
+
+def test_semanticscholar_provider_initialization():
+    s2_monitor = LiteratureMonitor(provider="semanticscholar")
+    assert s2_monitor.provider == "semanticscholar"
+    assert s2_monitor.client is None

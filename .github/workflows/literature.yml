@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       provider:
-        description: "Scholarly / AI provider (auto, openalex, crossref, arxiv, perplexity, gemini)"
+        description: "Scholarly / AI provider (auto, openalex, semanticscholar, crossref, arxiv, perplexity, gemini)"
         required: false
         default: "auto"
       include_arxiv:

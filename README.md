@@ -16,20 +16,22 @@ Live web portal: [firmanserdana.github.io/research-assistant-paper-compiler](htt
   - **Anthropic Claude** (`claude-3-5-sonnet`) with native message API support.
   - **OpenAI** (`gpt-4o-mini`) and **Ollama** (local offline models).
   - **OpenAlex API Integration (`--provider openalex`)**: 100% keyless discovery and bibliometric enrichment (official Journal/Venue name, true Publication Year, Citation Counts, inverted-index abstract recovery, and Open Access PDF resolution).
-  - **arXiv API Integration (`--provider arxiv`)**: 100% keyless discovery of neural engineering & biorobotics preprints with direct PDF resolution.
+  - **Semantic Scholar Graph API (`--provider semanticscholar`)**: Keyless discovery with automated AI **TL;DR** extraction, open-access PDF links, and citation metrics.
+  - **arXiv API Integration (`--provider arxiv`)**: 100% keyless discovery of neural engineering & biorobotics preprints with direct PDF resolution and OpenAlex fallback.
   - **Crossref Public API (`--provider crossref`)**: Keyless bibliographic search with biorobotics relevance filtering and JATS XML abstract extraction.
 - **Accurate DOI Verification, Canonicalization & Evidence-Based TRL**:
   - Remote verification against Crossref, DataCite, and bioRxiv APIs with title similarity validation ($\ge 0.70$) and local caching (`doi_verification_cache.json`).
   - Evidence-grounded **TRL Estimator (`TRL 1–8`)** evaluating clinical, preclinical, and engineering maturity indicators.
 - **Modern Interactive Research Portal (`docs/index.html`)**:
-  - **Interactive Analytics & Insights Drawer**: Visualizes the TRL Readiness Pipeline, Study Modality breakdown, and Top Publishing Journals/Venues (click any chart segment or chip to filter).
-  - **Structured Study Modality Badges**: Auto-tags papers (`Human / Clinical`, `Non-Human Primate`, `Intracortical / Brain`, `Surface / HD-sEMG`, `Peripheral Nerve`, `Closed-Loop Sensory`, `Exoskeleton / Soft Robot`, `Deep Learning / AI`).
+  - **Elicit-Style Structured Evidence Matrix View**: Switch between **Card Grid View** and a side-by-side **Evidence Matrix Table** comparing `Paper & TL;DR`, `Subject / Population`, `Interface & Method`, `Venue & Year`, `TRL`, and `Citation Velocity`.
+  - **Automated 1-Sentence TL;DR & Citation Velocity**: Highlights the key empirical finding (`TL;DR`) and computes **Citations / Year (`cit/yr`)** to surface fast-rising recent papers alongside total citation counts.
+  - **`arxiv-sanity-lite` Personalized Recommender**: Star (`★`) papers to build a local Reading List and sort by **"Recommended (Based on Saved ★)"** with live **`Match %`** badges based on keyword, modality, and title similarity.
+  - **Interactive Analytics & Timeline Drawer**: Visualizes the TRL Readiness Pipeline, Study Modality breakdown, Top Publishing Journals/Venues, and **Publication Year Timeline** (click any segment, year, or chip to filter).
+  - **1-Click External Citation Graph Exploration**: Jump directly from any paper card to its **Connected Papers** graph, **Semantic Scholar** profile, or **Google Scholar** citations.
   - **Related Papers in Archive**: Precomputes the top 3 most similar papers per card with 1-click smooth navigation and card highlighting.
-  - **Bibliometric Badges & Sorting**: Displays Journal/Venue, Publication Year, and OpenAlex Citation Counts; sort by **Most Cited**, **Publication Year**, **Archive Date**, **TRL**, or **Title**.
-  - **Personal Reading List / Favorites**: Star (`★`) papers to save in browser local storage.
-  - **Batch Citation Export**: 1-click export of filtered papers as **BibTeX (`.bib`)**, **RIS (`.ris`)**, or **CSV (`.csv`)** with full venue, year, and citation metadata.
-  - **Shareable Deep Links**: Real-time URL query parameter synchronization (`?q=...&cat=...&trl=...&mod=...`).
-  - **Open Access Direct PDF Buttons** & **RSS 2.0 Feed (`docs/feed.xml`)**.
+  - **Batch Citation Export**: 1-click export of filtered papers as **BibTeX (`.bib`)**, **RIS (`.ris`)**, or **CSV (`.csv`)** with full venue, year, TL;DR, and citation velocity metadata.
+  - **Shareable Deep Links**: Real-time URL query parameter synchronization (`?q=...&cat=...&trl=...&mod=...&yr=...&view=table`).
+  - **Open Access Direct PDF Filter & RSS 2.0 Feed (`docs/feed.xml`)**.
 - **Zotero Integration & CI/CD Reporting**: Automatic Zotero sync, GitHub Actions Job Summary (`$GITHUB_STEP_SUMMARY`), and optional Slack/Discord webhook alerts.
 
 ---

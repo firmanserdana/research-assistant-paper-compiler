@@ -1,17 +1,17 @@
 {
-  "timestamp": "2026-11-09T05:54:44.691347",
+  "timestamp": "2026-11-16T06:01:26.397023",
   "new_count": 0,
-  "total_count": 86,
+  "total_count": 87,
   "total_citations": 5098,
   "oa_count": 75,
   "categories": {
+    "Stimulating Peripheral Nerve to Enable Hand And/or Finger Control": 34,
     "Intracortical Decoding on Hand and Finger Kinematics": 22,
     "EMG Decoding on Spinal Cord Injured Patients": 20,
-    "Stimulating Peripheral Nerve to Enable Hand And/or Finger Control": 33,
     "General Biorobotics": 11
   },
   "trl_buckets": {
-    "basic": 19,
+    "basic": 20,
     "prototype": 65,
     "clinical": 2
   },
@@ -25,6 +25,6 @@
     "2023": 9,
     "2024": 11,
     "2025": 18,
-    "2026": 4
+    "2026": 5
   }
 }

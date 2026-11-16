@@ -1388,5 +1388,16 @@
       ]
     },
     "checked_at": 1792383663.9007285
+  },
+  "10.1016/j.hcl.2021.05.005": {
+    "status": "VERIFIED",
+    "details": {
+      "real_title": "Dermatosensory Peripheral Nerve Interfaces: Prevention of Pain Recurrence Following Sensory Neurectomy",
+      "real_authors": [
+        "Sarah E. Hart",
+        "David L. Brown"
+      ]
+    },
+    "checked_at": 1794808885.7834754
   }
 }

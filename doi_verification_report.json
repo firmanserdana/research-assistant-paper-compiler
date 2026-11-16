@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total": 178,
-    "unique_dois": 86,
-    "verified": 172,
+    "total": 179,
+    "unique_dois": 87,
+    "verified": 173,
     "preprints": 6,
     "fake": 0,
     "invalid": 0,
@@ -6346,6 +6346,32 @@
           "Haotian Fu",
           "Peng Zhang",
           "Song Yang"
+        ]
+      }
+    },
+    {
+      "title": "Dermatosensory Peripheral Nerve Interfaces: Prevention of Pain Recurrence Following Sensory Neurectomy",
+      "category": "Stimulating Peripheral Nerve to Enable Hand And/or Finger Control",
+      "authors": [
+        "Sarah E. Hart",
+        "David L. Brown"
+      ],
+      "doi": "10.1016/j.hcl.2021.05.005",
+      "trl": 2,
+      "keywords": [
+        "Stimulating peripheral nerve to enable hand and/or finger control"
+      ],
+      "summary": "Technical research in Stimulating Peripheral Nerve to Enable Hand And/or Finger Control examining Dermatosensory Peripheral Nerve Interfaces: Prevention of Pain Recurrence Following Sensory Neurectomy.",
+      "pdf_url": "",
+      "source_file": "papers_2026-11-16.md",
+      "normalized_doi": "10.1016/j.hcl.2021.05.005",
+      "title_similarity": 1.0,
+      "verification_status": "VERIFIED",
+      "verification_details": {
+        "real_title": "Dermatosensory Peripheral Nerve Interfaces: Prevention of Pain Recurrence Following Sensory Neurectomy",
+        "real_authors": [
+          "Sarah E. Hart",
+          "David L. Brown"
         ]
       }
     }

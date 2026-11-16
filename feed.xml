@@ -5,8 +5,16 @@
     <link>https://firmanserdana.github.io/research-assistant-paper-compiler/</link>
     <description>Automated academic literature tracking, verification, and web portal compilation for biorobotics, neural decoding, and neuroprosthetics research.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Nov 2026 05:54:44 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 06:01:26 GMT</lastBuildDate>
     <atom:link href="https://firmanserdana.github.io/research-assistant-paper-compiler/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Dermatosensory Peripheral Nerve Interfaces: Prevention of Pain Recurrence Following Sensory Neurectomy</title>
+      <link>https://doi.org/10.1016/j.hcl.2021.05.005</link>
+      <guid isPermaLink="true">https://doi.org/10.1016/j.hcl.2021.05.005</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+      <category>Stimulating Peripheral Nerve to Enable Hand And/or Finger Control</category>
+      <description><![CDATA[<p><strong>Authors:</strong> Sarah E. Hart; David L. Brown</p><p><strong>Category:</strong> Stimulating Peripheral Nerve to Enable Hand And/or Finger Control | <strong>TRL:</strong> 2</p><p><strong>Summary:</strong> Technical research in Stimulating Peripheral Nerve to Enable Hand And/or Finger Control examining Dermatosensory Peripheral Nerve Interfaces: Prevention of Pain Recurrence Following Sensory Neurectomy.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.hcl.2021.05.005">10.1016/j.hcl.2021.05.005</a></p>]]></description>
+    </item>
     <item>
       <title>Physiology-aware latent shift adaptation for sEMG-based hand kinematics decoding across able-bodied and amputee populations</title>
       <link>https://doi.org/10.1088/1741-2552/ae6ff2</link>
@@ -398,14 +406,6 @@
       <pubDate>Mon, 28 Jul 2025 00:00:00 GMT</pubDate>
       <category>EMG Decoding on Spinal Cord Injured Patients</category>
       <description><![CDATA[<p><strong>Authors:</strong> Janelle Aikens; Aaron Tabor; Kevin Englehart; Erik Scheme</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 3</p><p><strong>Summary:</strong> The key innovation of this paper is the development and qualitative evaluation of an **EMG-based visual feedback tool** designed to enhance motivation and motor learning in spinal cord injury (SCI) hand function rehabilitation. By providing real-time, tangible indicators of muscle activity, the tool acts as both an extrinsic and intrinsic motivator, supporting patient engagement and communication with therapists across various stages of recovery. This approach highlights a promising direction for **biorobotics research**, suggesting that integrating EMG visual feedback into human-machine interfaces could bridge subfunctional and functional movement, thereby advancing personalized rehabilitation strategies for individuals with SCI.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.1109/ICORR66766.2025.11063187">10.1109/ICORR66766.2025.11063187</a></p>]]></description>
-    </item>
-    <item>
-      <title>Interfacing With Alpha Motor Neurons in Spinal Cord Injury Patients Receiving Trans-spinal Electrical Stimulation</title>
-      <link>https://doi.org/10.3389/fneur.2020.00493</link>
-      <guid isPermaLink="true">https://doi.org/10.3389/fneur.2020.00493</guid>
-      <pubDate>Mon, 21 Jul 2025 00:00:00 GMT</pubDate>
-      <category>EMG Decoding on Spinal Cord Injured Patients</category>
-      <description><![CDATA[<p><strong>Authors:</strong> Antonio Gogeascoechea; Alexander Kuck; Edwin van Asseldonk; Francesco Negro; Jan R. Buitenweg; Utku S. Yavuz; Massimo Sartori</p><p><strong>Category:</strong> EMG Decoding on Spinal Cord Injured Patients | <strong>TRL:</strong> 4</p><p><strong>Summary:</strong> The paper introduces a novel non-invasive methodology for decoding and analyzing individual alpha motor neuron (α-MN) spike trains in spinal cord injury (SCI) patients, leveraging advanced EMG decomposition and frequency-domain analysis to directly assess α-MN behavior in vivo. This approach enables real-time, closed-loop modulation of spinal cord excitability by optimizing electrical stimulation parameters based on direct neural feedback, potentially transforming personalized neurorehabilitation and advancing biorobotics by providing a precise neural interface for controlling assistive devices. The key innovation lies in the ability to non-invasively monitor and modulate individual α-MNs, paving the way for adaptive, model-based control strategies in rehabilitation and biorobotic applications.</p><p><strong>DOI:</strong> <a href="https://doi.org/10.3389/fneur.2020.00493">10.3389/fneur.2020.00493</a></p><p><strong>PDF:</strong> <a href="https://www.frontiersin.org/articles/10.3389/fneur.2020.00493/pdf">Open Access PDF</a></p>]]></description>
     </item>
   </channel>
 </rss>
